@@ -22,8 +22,8 @@ _VIN_RE = re.compile(r"\b[A-HJ-NPR-Z0-9]{17}\b")
 
 
 def redact_vin(text: str) -> str:
-    """Replace 17-character VIN patterns with REDACTED_VIN_X."""
-    return _VIN_RE.sub("WBA00000000000000", text)
+    """Replace 17-character VIN patterns with WBAXXXXXXXXXXXXXXXX."""
+    return _VIN_RE.sub("WBAXXXXXXXXXXXXXXXX", text)
 
 
 def parse_ediabas_trc(content: str, redact: bool = True) -> List[Dict[str, Any]]:

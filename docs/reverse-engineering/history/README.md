@@ -40,4 +40,4 @@ In reverse-engineering research, documenting false leads, disproven hypotheses, 
 ## 3. Detailed Chronology
 
 For the exhaustive technical narrative of each audit revision and the corresponding peer review feedback, see:
-* [rev1-rev18-chronology.md](file:///Users/blogman/winkfp-research/docs/reverse-engineering/history/rev1-rev18-chronology.md)
+* [rev1-rev18-chronology.md](rev1-rev18-chronology.md)

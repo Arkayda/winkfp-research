@@ -1,0 +1,396 @@
+original_source_path,source_sha256,classification,public_destination,action,reason
+bmw_flash_re/.DS_Store,abc6a94579d62fa110a7fa78d831d411b44bd699c6624d48b185bf97b1ca0eb5,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/ALL_FOR_REVIEW.md,b52bb9fbb688441030d8b04232dea0d03c903b7eaf7a3d0695794ac6f73d9899,research documentation,docs/,published,historical research preserved and restructured
+bmw_flash_re/EDIABAS 2.INI,81861c31f0ae94ad826ac4400f1e700f38092b5f1001ef38022a11c01b7b7ee1,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS 3.INI,e95553c14d666b1821bff7a21aeca598484aa5d33ceffb59d7006bd75a770ab1,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS 4.INI,81861c31f0ae94ad826ac4400f1e700f38092b5f1001ef38022a11c01b7b7ee1,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Api/JAVA/CascadeEdiabas.jar,7953336b67c624f7810b43c87d11f549077a9c6cceb1cb9a29d010c270a6a3f4,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Api/WIN16/Api.h,7c9c60f8de0cc6233a2ad2223713089a5ae3f153688d34996f8493de5918ceff,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Api/WIN16/Apicalls.c,e6423ca83ac880e051d21886ea1eb01f4920a7233969e46d568c642cceb63b91,reverse-engineering observation,none,excluded,superseded or unreferenced decompiled artifact
+bmw_flash_re/EDIABAS_6.4.7/Api/WIN16/Apidll.h,66a121eaaba0b9eed729d7c1df907dcf956987f8a4e6b16880eb5e4801405c95,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Api/WIN16/VB30/Api.bas,15ee68687311f235e97bcf9d5d5d32d1ddb2a4375005b5f801e917704b229d61,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Api/WIN16/VB40/Api.bas,7e6b0133f67184555cffdbeaf5e0245fe5818724511872f2af4470db3e81ab8a,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Api/WIN16/VC15/ApiW.lib,d3e9888950507b3b627d3084c786033fd1b5c5d099972b19f93fe86b3a912c8b,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Api/WIN32/Api.h,7c9c60f8de0cc6233a2ad2223713089a5ae3f153688d34996f8493de5918ceff,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Api/WIN32/Apicalls.c,e6423ca83ac880e051d21886ea1eb01f4920a7233969e46d568c642cceb63b91,reverse-engineering observation,none,excluded,superseded or unreferenced decompiled artifact
+bmw_flash_re/EDIABAS_6.4.7/Api/WIN32/Apidll.h,66a121eaaba0b9eed729d7c1df907dcf956987f8a4e6b16880eb5e4801405c95,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Api/WIN32/VB40/Api.bas,7e6b0133f67184555cffdbeaf5e0245fe5818724511872f2af4470db3e81ab8a,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Api/WIN32/VB60/Api.bas,d23fa924c7bb3a1e48ee35c7b23b7df13a2e876031e95725290c8917eac98937,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Api/WIN32/VC60/apiw32.lib,96ac79faade0c0d3a5146d48ad723da3d0353dc8a410a85c6b91baba8d052782,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Api/WIN32/VC60/apiw32mt.lib,8edc240956aaf1b3fcf98350f1969093e7ec5534f1071749b083501582ab6369,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/BMW_BIN.pid,2fa62916ce74b5245ca091cc1104c7331f53775ae5d1409be474332fcee497f6,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/BMW_HW.pid,67f498c418ae8cd9c0cda7f290b72b26c046465f2572a9c1e813775d4c75d966,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/BMW_REST.pid,d98b32a83f32415dafef08c856dbd0c5a135928d3d48b6e0af9325431b6e661e,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/40D4623E,543c524512cc6bbdfab93f0995f78ce8745adb08d92f92af4ee33b801352479e,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/Ads4Most.dll,86f0a700ffbb220b2612936516c77d79fb491efb9b5da6597d8c6421a720fffb,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/Ads4Most.ini,ce41253779923feaa09e5997c3f2257a121ef3976602346b693f0c6f523ea72b,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/Ads4Most32.dll,86f0a700ffbb220b2612936516c77d79fb491efb9b5da6597d8c6421a720fffb,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/Ads4MostTest2.exe,df76d0ebfea1ad40ff5a13879a1a02ff51163a98bfd4b7de6891c0903f0fdfdd,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/Ansi2Oem.tab,d02b16c4d8be8971b164721eae225b0140427948cba63ceab5399e53c692a75e,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/Api.dll,fb84fb12dcf324d4a014da9888d15504869446dbed062eede134025a50c4d57f,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/ApiTalkW.exe,35a0e899b75a7069b215a9859d83c55934b30e6962944da481ba1fa49e941795,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/ApiTestW.exe,3b3da90c8383032ede3e05329703ed90a38c02ea0ad8bb2802bebe5cbbdff32f,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/ApiVB.dll,4dc96bb9ae59b5087e9d248a92945123edbf85a8744481c50e476ee2a1a835de,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/B2BMW.LIB,909623388b07bd1170bb6661ddd8ce32f1b212d75f9a7913ac517f73a78a3188,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/B2Runtim.lib,b6f2b93519cba16a6e507fed6ff0b47e2521261e6936cbc1406ceb1118b21d9a,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/Best1.exe,089fbbeb085934362fdcd322b6472bff198c540425c5dde066e47c17d9f82ed3,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/Best2.exe,227277a0c45dfc4ebb59f2fe6e05dcb9463e0945cf244d7c2daa14575a69dcb6,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/Best2Win.exe,93b131b8c67f73b21bc86067dc2d31a8df1596a138711e1fd031f42b6c5e5967,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/Best2Win.hlp,5888b09dc85f3494d8dd5e56cdc3c78063249666a947b40cec1f8129f093c67e,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/BestBrd.exe,6e8132d0ccf40fe64d968a90f259b8df9e26c8244e10e13292fa84e3368fcf1c,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/BestInfo.exe,3541103a508d0c7309123df05e9e5b099386340cf7d77ce1e95a441f7cc8fdaa,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/BestVer.exe,d7b70b592a97021be3b3c69a49feabc9c5a835589ce78f68e1d6981a752e9e0d,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/BestView.exe,ddeb17a1e4eb8816011ed3640f568864f84f8bcd6d024db9ed04f2b6a18c8bf8,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/BestView.hlp,c5a9fd2b507507134b8a531923ff12baedf51f9834b5ca529aa29717a0ce38ab,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/BestVw32.hlp,c9e99a7bd4e9a35297ec40de1165165f7fdb5aea969b8cc15987e55a1feaa6f8,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/CANtpLibFl.dll,639181bddea6a1a1d9f72140f7fa1d1e752681fb11414340531fcd432f9f6b83,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/CMDIALOG.VBX,80cac5b4fafd0c1e25dd19d5e359663e578042f5023970ff680377380f4c03f7,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/Can32.ini,e426990c52feff61b44dcb441e50afe2ff76ea0185dbe6836bc152cd0c6b8124,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/EDIABAS.INI,e95553c14d666b1821bff7a21aeca598484aa5d33ceffb59d7006bd75a770ab1,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/EMEDIT.VBX,a778348b3ea8b0f37ad1b2045abcd40ed1fa7a7e77281e48a988fb0b94e844ea,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/ETEST32.EXE,1629457bb33fc0084674c496731046d44fd834acb8eceae9ef2a6319a3ac66dd,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/ETESTER.EXE,59ec1144ef14c0fe6576aefe241809e4ab68999f73054b423e3650b5102b18bc,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/EdiabasW.exe,da97d562ac192de188d1b5ccc0b0d55fe853a65a7c9463ce6c616baf10d335e7,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/FUNK.DLL,0bdef455f53f5cb5933f1f58b14d67bb2991f7d8d4cbd3ac6925bfbd5a368253,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/FUNK.INI,9a5a27c6c75f8f706615afa1ee8c0813b1cb6654682bd3eb5e7b2b71a54594fb,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/FUNK32.dll,7dffaefd06997b24e0d91554c942af3bdc897aa2e836f57bc37d3e62bfe05bfd,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/GRID.VBX,1705189678023833b811634f34198b599497d6e0c3fec05dc307b6897d0d3426,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/INI.pdf,c8d286de896a4a484dfacc20514ceb3922a47d22dbdf869a9e629b445a558ec7,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/JobLoopW.exe,004d1b896ee5d4e466914a736b4a8e7d5ebfcd1bd546ce8002474f3375dc779e,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/KVP_Edit.exe,f0bdf024f27dc502676f8fa9a72995021377fd066bd93bb19b688a35d4429cef,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/KvpCo.exe,d8a7d0742cc5221f751a4572680038cbad8f64ed5e20fb74296f8411c618f9b8,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/MSFLXGRD.OCX,f2a67eb2888d8889c45576c037197c310fbbb00bb79089760508fdb132c690d2,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/NMSIfh32.dll,151ef4dbb36e02da9376304f13999b6bed0e1fa6e07065df49d6992484bc7fe6,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/OBD.DLL,d37bda0e5ba7dc3e4818e48080608d1df6dd339fd1d4c729d5e7f1ffa45d5d14,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/OBD32.dll,eb4d89abe013e101b7627a01e098963b1c7ecd6d2dd937485f879078f017bf10,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/OSS_M4PC_NS_010911.dll,717ce3ac86ef1b21aab54efbf8c2910eacda80a87b9e33d0934dd5fcb5c70fed,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/OSS_MostPacket_146.dll,1002d5e86ba7524d065e4232c00270069e56783e49f368b6b6f19f93bba24181,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/OSS_Opt4Most_NS_010911.dll,d838f889908a7774722ba00e424e9775b157d55a702dfa7f96e6122880f29f50,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/OSS_Sci2.dll,2307cb16d05a95f64c9c09709bec0f3766cbdd757ad8b1a8fa135c55af2a1162,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/PE.exe,64933f53c46e21092f043098f51427a48a1389bee1df35c2ac00f26ad1433f0a,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/REGSVR32.BAT,a36eccd9eb8c43e62c7fcf389f9620bce30cfcdb7a9a868d6b336b51a8d609b2,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/REGSVR32.EXE,7c05339da12624396d9911263dc7c993fc2e757e130009465a511045bf06d344,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/REMOTE.INI,66a293875f71e973a7a1167831a6b3878da8aec0296e7595a9ce1ed66bdc56ab,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/REMOTE1.INI,66a293875f71e973a7a1167831a6b3878da8aec0296e7595a9ce1ed66bdc56ab,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/Richtx32.ocx,0fb6eae2ab36ce6cbeb2dfc45af5dd0c4bb0dc1e59abec84db4e102c3f2b7249,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/Run16.exe,3494f4f46f3348544f1db1c371764c867026ce8a659946c5e80305cb3c67b83c,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/Strip.exe,a5b3047b432987b691b83f60de168f76b7e47898f84d585da6d17fb601998bfa,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/THREED.VBX,dca653cc793c8581504b2b614e275da9782573882da6ede2d8a64c9840671e09,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/TOOL32.BMP,b4c4fab97a314d20ac5057c2ff4386148b4a85c657937e9b6eb40bc09e621069,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/TOOL32.EXE,9758df6467be67835b2ad6bb0d0615b3034e0d0682281e9f5d83588e48570c8b,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/TOOL32.HLP,c62dfde56b464651527a50d3ee26c5164e33423deef4a662ca6b7d649b86b340,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/TOOL32.ini,b7f517681a2856e5684ca85ec65405e2fbc6b0b46fa26f3c1d1af09bc7bc2065,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/TOOL32_E.HLP,91d30478270856919d8572412e12d21cef89440708b4b56170b9ca9178cd2f8f,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/TOOLSET.EXE,9945e5727e5ec09ca2b54f52327a284b940d83d7b161330bb2dce399f22e2170,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/TOOLSET.HLP,b3c71cba8f7b33e82383e0cc0da3dc23a7b15ecfbeda86af7bfb94169c75b9e0,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/VBRUN300.DLL,eb66f71dd14b01eb3df7409b0ad73e41589046ad5bf16152f06617093f63087e,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/XAds.dll,73aee2defa3019b52b3d2ce30218f81c968b44a33cbbc1eb16ce3367acf73976,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/XAds32.dll,1d6b6cce526da19a387b6e2776dc39861a762881fd1959796eaeb974fcde68e6,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/XEdic.dat,e9fef80b84fd360a54867b89830281fa709e32939f7e423b01e30d05f0c5968b,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/XEdic.dll,8a419421f24fa5f30bfb0c5eb1ab06e913c6e1e3a217577dada776895f05398f,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/XEdic32.dll,af104e94dfb09d33ddbe09fa353def706a303a21b10e8b59df63493a16920a42,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/XEdicC.dll,997464797410653d82e781cd59f2dc3b29b204d39bff57febef0e1895dcc7b36,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/XEdicC32.dll,4611130d0808f955e873c4f03728014c57601bb98cf8948904e9827f36c1c6b7,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/XKBus.dll,46d01859cf4e960e96e12d0e054786043bec2367d501db5b15d8613dd288be08,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/XKBus32.dll,81b040e4116d19266b8dc8cd2aff3c049d1600ceedd212d5eec294e437661b99,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/XPico.dll,56ad2672d6079185edf77ff66338edab4ccc834547e16b9da7e62e68bd6d3368,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/XRemot32.dll,3c5f006876959352c433c3f33cc1907d5d8da96dea5947f0862e104e47d42246,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/XStd.dll,688fed96801bb7358e7169c6f87ab6f45780a5c33d55cacefadcb2790925722a,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/XStd32.dll,20a5dd04d67aa8a05720c5f25a931521ed2c27c42478d0489bd0ce185d443fff,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/XTRACT.DLL,dab6ef8824ebfcce58f34cbafe49f4b40d1fcc089ba8eaaa6099675b078d843f,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/XTRACT32.DLL,31c8641dadee519ede490b86643fd88b52c3b8d150dab0a0d083c4be5783e76c,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/XedicC.ini,0c7f07f9ec57a24a7b2aef1c75552a9a86c89d92cc18e52db64358d468fecfbd,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/Xtract.exe,3451b7adeee47cfacaf7172cdb919cf76a53d147fb8f1a2f1f182dc443b9fcf0,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/ads.dll,692dcdfff94473f4f090cb334c673ce4c3b88e0aea5f8520bb61bf4d1dd95e3c,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/ads32.dll,73b3598a3e5edc88b632b9ed30a5709ecef5db9b1e2722a816e2e2242aa92ef6,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/api32.dll,6ef7c0ea356a94e1c5e0fba78a38d7d810ae75464e359b2177f44958c9bc19a0,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/apijav32.dll,28edf32aa189f612e602f3a4a404502cb8161f0ade3a1a4da7ae4b3153f89de4,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/apijav32mt.dll,8b62fa066fab9e6f72e508c0c7a87f4b4327aba85badef4055183f70ea80adc3,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/apital32.exe,738ba8380f334e1682627396dfcc760775362a9a5fb72cc679680531695550d8,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/apitst32.exe,ec6c3c8ab34099d4cad6eb796ea00fd1c9f4c5650bf643aefa62bcdfeb9ab3b9,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/apivb32.dll,2ee8af014062856efbb639231f2319c05fd3491145d37011b3b7e19e70948b6a,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/bestbd32.exe,44ff12d92c7b54da9dbc90f1457cce9f833e1eb2f48e56b8b1b1ba77bc542188,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/bestvw32.exe,77e8864a739fce64ba29b74d005ce94177d96987b03cfd76cdd0f149e04dde1e,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/can32.dll,263875685db4b913cda53b89c916d7c697068622144ead483e975fc85370e00a,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/can32.vlf,bc924558b2eeec85a98119be2e2e94367d00fb46e2c20dde87ea3e1d8304b2ed,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/ebas32.dll,62a68304451b866d4bbafb1121f1ec283a0609aa0a8b1bd52702a5047f64e054,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/ebas32.exe,611814d442132833cf1f15cf84a5543c913eb0761a7789dc95e117bfb3816ccd,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/ebasmt32.dll,b09a64d2f115105e478bc1ad6492c0ec388fed3a49d34ecf95755bf5680c3ca7,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/ebasmt32.exe,d99c313c1d37057bbc930e76bb13e3f282601579624adae41baad30edf3f73d6,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/ebasx32.exe,8b247a0bceda2b1155f290cf91335dbf89bbe18fffc4099cdbfdd859b84ca86a,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/ifhsrv32.exe,ea9da5edd335eb2bc9d947c9a4012ba8782a0da789f669a4938492e4ec584de3,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/jobloo32.exe,1a6727648798e4142e3f6546be3e029e778f3d942a8a241c340797bcf8faea20,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/kbus.dll,3e9199e2872c484b068e2ad2ec1424a9cdba1991d3f329e2abcabe3285c0f559,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/kbus32.dll,f40e6986cea9cfda04b4b0d08e7b41263a6582154cad5826f58d7046428847ca,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/netpro32.dll,c76f5da6077ef2ea2e633dcc9cf637996d1fdcf409ad383b58fa972bc3a09f17,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/nettcp32.dll,5749db478ee2a6a26f6c453511db78b568e440ecdcf7705f96b007d36c4c6b00,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/obd.ini,ddaf2c69a90d3b4896a964649790836248edaee731dea15933868339430bc265,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Bin/run1632.exe,6d8c90bd532c1c1d41ba02c8e1e9dc303634a59f7d6bf95abc66789e21311a15,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/sxlrt233.dll,503916e4033a7a345497ae96e315829c714449cbc0d17e5a107934feefd14b67,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/tracex32.exe,ba1263a3fe7011afc1841cb1d5dbdad99088a1c2deb033fe3f963217bb2b061a,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/vmc32.dll,eb4c721cbbd71915607a053f4bc52beeab8648fe16f2491c511fbc746fcfa223,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Bin/vowl6vs.dll,745e640822257a09a4df0e010fef2ba1aec37d22f5e86059e4e4d14c96499b24,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Doku/Api.pdf,463d8e952879cc0639184b8be47ef2cf530b62b905c748a202d310255fb3091d,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Doku/Apiref.pdf,563734e07c0ce1d64980dc8bb9e0f864e89dc853a95c20de189653f6f818cf67,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Doku/Apiuser.pdf,280514c0a60cb636811e6b2559ede655afbee747d491f0f9802f13c69bf9f3a7,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Doku/BMWRTL.pdf,134f46204b09ac2009b342eaf585b273582379a4a18550812cff70991a5febaa,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Doku/Best2rtl.pdf,adce211a6651973bc0064313cf579e26eb4cebdace53f3009506f64fa1b78857,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Doku/Best2spc.pdf,82a5b13643ed4b35c030d7f1847b2864fdf7454e83c6dfa9c2e5575dcda8935c,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Doku/Bestuser.pdf,c9119dd441eaaca8dcbc3f58aa82686885abe73ae38a4b9ee0e263637dca4b7c,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Doku/Contents.pdf,6be6ce2b3f99b987c23884a6a793475bbe3be8ab661d123c455bd14444ea0470,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Doku/Error.pdf,33aaae9c3c798b29963b5c503d715390987641b9d8cc82a28c44b163fe39256a,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Doku/FAQ.pdf,0cfbb84e2a68476251db6e0757bfa3452cb1c1d9aa5383f7a59b44e0ce00f355,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Doku/Simulate.pdf,cb486c5c6d4a00d9a183c1a29fa6632534550bbb97651860fb288d92ca0c5ec3,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Doku/TMode.pdf,1c98cca7dc2c0b24b7cb5652de2b0bc14f5a58a192072b32e7c57027ccf3af50,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Doku/User.pdf,4577534182a3b4c227dce80a5a7d918ada881d176b9391de49caf1dac4784d3d,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Ediabas-Konfigurator.exe,7b7a78c162f60832d11a042006d1876b1f40bffea00728cc10f45df0c3d604d2,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Edic.pid,8fc394fce93dd21c3c061e8ccf5b327c54b1dcb5c03abf6fcbb2be4de6460623,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/HELP/B2BMW.HLP,fb8bcae385200370b666fa1d2fadd48dfbb343301987dbdad1c88226f758e104,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/HELP/B2RUNTIM.HLP,b4fcb3e590648959ba78d47aad14e86078054699e56b837640b10229d1760111,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/ADS/ADS32/ADSSETUP.EXE,6156d9776d13771d98a67c61313b8377e338a6c21b045e5a4c0ede1aec238bae,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/ADS/ADS32/DIRECTNT.INI,8fc62a3b821eb86618c8c819c72344a0e2294866207a515d4fe4e163c41f452a,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/ADS/ADS32/DIRECTNT.SYS,059d07a6b8057b27d707d763f1eafa2bf0658acceae34c6c7a47e0c032982af3,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/ADS/ADS32/README.TXT,0a7b4f654ad82866ba2c19b4d1d4e24b7580d8d9b5f6ed87846e8fad7d1a80e5,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/ADS/ads_doku.pdf,26812c4e234ddafbb04e04cb335eae53ad351d11342f8d8559b7e12eb272e2fc,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/CAN/Can32IniEditor.exe,96655ad513cd9dde40467b2df3ca96e4e12deaecebcfd0609eac2d8bbaa22e5a,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Hardware/CAN/EdiabasDriver.pdf,4c7922b128b7c2bf92d3913b9ba159368cfa14b82e8aa65888c774dc4c683932,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/CAN/Release_Notes_CANdriver_EDIABAS.pdf,d3f4d9a2d45dc74ccf30cb33a2dbe2c3130680f08a52ea37074a443c9cab46ab,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/CAN/VaddAppl.exe,c9d2bec0ce7aea5de315416221cc84b1f1689ba801dabb5680a06b31eba0f8d1,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Hardware/FUNK/FUNK-Erweiterung.doc,f2f465bdb40c260442db81dc2de024fc6263d64701f004dbff30b236d247a6ff,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/FUNK/Funk-Treiber-Dokumentation-V6_0_34.doc,75d4fae667ec53157ed652743ae3e38e5e198f06035276f092e4aee9b8a0cb22,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/MOST/PCI_NT4_DriverDisc_1V94.ZIP,561ad2aebcce782ab3f9b9de2c910d17e3586477d7cb780aa1226e87b5873075,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/MOST/README.txt,2171ffe46dc0035ef4732112b4877cf8eece614a5667e74b44eb2371ab126963,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/OBDSetup.exe,e2f29a2e2615b3fc45637ec645bb85d928a0d435119ac0f812aa8752a08469c4,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/OBD_DOKU.pdf,112d63452a4a1553119abe71f99ce47972b2c251c09ca833e41b6fa2713ca7a1,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB-OBD.pdf,7bc0a46210862d8bfa53b240188a58a1953307eba7cfc53cefc3ac78cbadd3f6,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB1.1 Win XP/DrvRemover.exe,5116bbcb8abe39b041488af7a796d89ed8b4dbdc0a926c835621a7304c7ac6cc,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB1.1 Win XP/id.txt,8b27eaf49539cdaf452e74365f11e13e4df7a9e695a0263685512df115fedbc3,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB1.1 Win XP/pl2303.cat,2c4c3b38d568d316b7a12f557b36a6c9657d18c5a5f1755a97c0fc5be5940d7c,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB1.1 Win XP/riverLanguageMap.xml,b0f22037684ebeff175dbb719619f76c5dd236ff9945f8eddc81de6556ffd511,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB1.1 Win XP/ser2pl.inf,168c7facaddead0e9dcc9cdf916362995458becb3286b118a7b85f1578068ada,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB1.1 Win XP/ser2pl.sys,8ca94b9eeb5e92023d95a2038bcbc83dde1dede53682533c313a6efca431a714,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/2115 Release Info.doc,da5840777e3f4398879f9b2eab3a876dd3c793481fc3c3953100300cbdeea2e3,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/806 Release Info.doc,06a972c3f2c97ff749fce38239822d91adfa59209226a1c0c38f4db5836a8f55,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/ComPort.PDF,9eda2fa640a71266a5ab8ed8336596c9b0b96bc3f00fecc453f7397ab7d187ec,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/FTCOMMS.VXD,047a101352d6dc137d3c1e8ef99b6e5bebe867d01c400052bcf79a0d4025221a,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/FTDIPORT.INF,f5ba17f9ee0c8eff826da96540a390b2c933f3c23769544ebebf54f1429a9c43,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/FTDIUNIN.INI,dd951f145c3b9baafa45802a07417126642eb5e10ba860406c2a9a275a645ab3,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/FTSENUM.SYS,0f80d2a6ef5230bab46ce92122deee774e1daf9bacdf5b872e7c977952bd13b3,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/FTSENUM.VXD,743bfdee05601d77033b08dbfad922fc3040ca9b4674e699ec10dc63ec7a6939,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/FTSER2K.SYS,99b813e8acb0ef0e1077429bd50868318cc64af820506ee1e4146de779df5080,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/FTSERIAL.SYS,6f747da400f1792c45e4ff13a774688f86ca404798d3e77795c0f40a06efcfbf,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/FTSERMOU.INF,175890c3ed27f543d4a6222993019488b58120e8f2a7d32632f1e48a7d25c101,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/FTSERMOU.VXD,7becbfffd47ab190568dcd2347ae498830bc9c7d31ba75608be6435f1e43fe1e,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/FTSERUI.DLL,4abbaafd591a8f76066fd25c8f908d6a2e867203331273138e168767139c5ecc,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/Ftdiunin.exe,009550a679de51b3e5336d9ab2a0f4cd3dbfa845aa8594e35815557f2b5194dc,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/ftdibus.cat,25856f84aff0005c67b21dca30db44b1f1f1ce886c16ed12b83088f1b603c282,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/ftdibus.inf,5e6ebb42a2e41a9a3d3c6eb65bc555879383b3a623ad8293b315152ee4ca0c4f,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/ftdibus.sys,e87fe175aec7bb03bad12e2e3f990ffc615ed3039ea01a22406fae4d1bb509e2,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/ftdiport.cat,193dd9a00e1ea9135bdfd845a2b4a62e101f34b12ce283aa20f136efe3847264,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/ftdiun2k.ini,0ee6abb5f459a1262254cca9620312ec9725563228f12d9bdba13933f305af50,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/ftserui2.dll,6abce75bf9a3cf5bb1aae3ae45ccc00f5cb958b6ac18e8f9241cd69998cda46e,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/EDIABAS_6.4.7/Hardware/OBD/USB2.0 Win XP/readme.txt,d91e6ae13e46de51c77668e609119cbc53218e3a5f420ce3e02568e005fde0f1,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Package.pdf,bfce69253b37d7f20df97eace490ba007f15f4b60639438d52ecdd13be15946f,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Softing.pid,6b60a02c3e7557d24144ca3ff5523597e74a6c611affe6ff3d4858be17c85b6d,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/TRACE/api.trc,9d57bb7c2029b92949c59810e3ccb5dd42991766008dbf640ad9a1f1d2421b83,trace artifact,traces/,published (sanitized),sanitized execution trace without sensitive identifiers
+bmw_flash_re/EDIABAS_6.4.7/TRACE/apiold.trc,f3f84021d18aa6e3076dffea060c4d358b9bc87b56d656302fabc96a32b08d7d,trace artifact,traces/,published (sanitized),sanitized execution trace without sensitive identifiers
+bmw_flash_re/EDIABAS_6.4.7/TRACE/ifh.trc,8dca6e0a7042c5c89dde7cc418532ce1baa0017c9fe9c9d0a8a04adf0139bdec,trace artifact,traces/,published (sanitized),sanitized execution trace without sensitive identifiers
+bmw_flash_re/EDIABAS_6.4.7/TRACE/ifhold.trc,266493a9cb328ca87a920fb85689d64c389fbfad31cb26241837b2f6a6c0af11,trace artifact,traces/,published (sanitized),sanitized execution trace without sensitive identifiers
+bmw_flash_re/EDIABAS_6.4.7/TRACE/trace.ifh,a056802f6f584071592d03b28f351711da85fd1097d1a3f0f7182fa2cae25e02,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/TRACE/traceold.ifh,03c2ce1a0a68fe4a09beb8395a2551add17b0274e792180cc22be36a53ac5dfa,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Tutorial/Demo0.b2v,2a6cf05d90c6ec6487f459e5134c26892a1b85ed9cea9899c1c7760e7aa8a2f6,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Tutorial/Demo1.b2v,94afe1c982ab24bdf501350e5db7f3f75721daa622814d9abf2a06a5f12a9a11,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Tutorial/Demo2.b2v,1d6cee645dfa374da200846359cf7de048c4950153a228b677fb1daf7403cf32,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Tutorial/Demo2.sim,dcfdf500405edb0e8b3a61bc9df28f69b0a9b392460bc6d91e8eb2e0c541bf4d,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Tutorial/Demo3.b2v,3e7e9bd7c8b7e276e111ef6c54252cd00db5f9a1910326a91eeb4b4c1a2eae58,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Tutorial/Demo3.sim,dcfdf500405edb0e8b3a61bc9df28f69b0a9b392460bc6d91e8eb2e0c541bf4d,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Tutorial/Demo4.b2v,cec5d341eeb7dd2f21fda2e741a8d748a8255a3b79d257291e08483c00af2c93,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Tutorial/Demo4.sim,dcfdf500405edb0e8b3a61bc9df28f69b0a9b392460bc6d91e8eb2e0c541bf4d,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Tutorial/Demo5.b2v,f07e091b60df05f8f4e6ee17e8439d82977278c4e484a2eb6ec8e31d33343ce4,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Tutorial/Demo5.sim,dcfdf500405edb0e8b3a61bc9df28f69b0a9b392460bc6d91e8eb2e0c541bf4d,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Tutorial/Demo6.b2v,4a15d2a7e1296799f1649df0f53c314f17b456e9d1dd37327600c45d707e4cb0,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Tutorial/Demo6.sim,dcfdf500405edb0e8b3a61bc9df28f69b0a9b392460bc6d91e8eb2e0c541bf4d,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Tutorial/Demo7.b2v,79044c12af935f5b26a5eb3ba7a4f7b159dccf197f848b0d2c0dab65f3c79c03,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Tutorial/Demo7.sim,dcfdf500405edb0e8b3a61bc9df28f69b0a9b392460bc6d91e8eb2e0c541bf4d,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Tutorial/Demo8.b2v,93b3c5546288020439c07369038b33ac27acd2235797a47e645e549d4e1febeb,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Tutorial/Demo8.sim,dcfdf500405edb0e8b3a61bc9df28f69b0a9b392460bc6d91e8eb2e0c541bf4d,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Tutorial/Ediabas.ini,a0e74ff4e67ff107374e992213a3fb68b61d01fe62bde443d95b2f4d847b21ec,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Tutorial/Edic.sim,676c3b5336fff9c7edf31db4d0496a05f4f929758337fed5a7107fd24e9750c2,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Tutorial/V400.b2v,135f4885a7f64399e5b55eb37465706f95e0b468ba0b980ecc2a3b875d5d7f6c,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/VC.EXE,7c29df208f4836517e02d5f3a8e4708a83ea525666995e9f2beda9ed958cba9e,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/VC.INI,a50922c770df71796b653ed14abad7551e0f0e35949fd10c4783353641db9ac1,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Version.txt,23ea08091b7bd6fbdde8a64c342550eb85e544a8c876254c64081913304568ac,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/Versions.def,269695cddee3784d655641341d89afb23f275a51c1f7ece31770e241f53664b2,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/EDIABAS_6.4.7/obd.ini,ddaf2c69a90d3b4896a964649790836248edaee731dea15933868339430bc265,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/Ediabas.ini,a0e74ff4e67ff107374e992213a3fb68b61d01fe62bde443d95b2f4d847b21ec,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/IFH_OBD.md,c2a06af6340d2f803f9677e81c1f78f7b4f91506dbeb936bb197cb8b2bfa27ca,research documentation,docs/reverse-engineering/obd32-ifh.md,published,historical research preserved and restructured
+bmw_flash_re/KEYS_AS2.md,4501840e093949ac00079ea323e709dab15f47507059ab955dfa162a7a88148b,research documentation,docs/reverse-engineering/get-auth-key.md,published,historical research preserved and restructured
+bmw_flash_re/REPORT.md,dc2fdbe26dd1c88d70c5e1251d576b0d6d8409acb802456d341beb60638ed0d4,research documentation,docs/reverse-engineering/history/rev1-rev18-chronology.md,published,historical research preserved and restructured
+bmw_flash_re/SECUR_DECODED.md,31a80ec91b90776bc2bbad233a9b1baed3342ed4fa51b8b61a166241e41c1447,research documentation,docs/,published,historical research preserved and restructured
+bmw_flash_re/SPDATEN.md,15ac961da4746fc2045b665ca62ff187fdc30641ebc1eff8e07e4739d447f48b,research documentation,docs/,published,historical research preserved and restructured
+bmw_flash_re/VDLE_DIFF.md,b0a5e9f1fe2746b9e0a9796b85c51ce10b77b4e0397d48be935db4759373a8f9,research documentation,docs/reverse-engineering/vdle.md,published,historical research preserved and restructured
+bmw_flash_re/VDLE_TRACE.md,a056bbb31f8f3ccb629f7685db2611fbfbd05142ea6923f5b1ac769cfa520253,research documentation,docs/reverse-engineering/vdle.md,published,historical research preserved and restructured
+bmw_flash_re/WAS_ORCHESTRATION.md,ad99d0efe698a44941cfd74d2ba8459ed5629b4cf5318a3311877c2df8046ceb,research documentation,docs/,published,historical research preserved and restructured
+bmw_flash_re/asym_full_kat.py,d6c723e5c1a29746436bee9bd9012d53ebeb19adaf0e827cf7546fb584ae97ed,reconstruction or verification tool,tests/,published,verification test harness
+bmw_flash_re/bench_diff.py,8cf0e3b7be0949f49ad147f13b81d70938fb4de43f93dab20610ed3ef95840be,reconstruction or verification tool,tests/,published,verification test harness
+bmw_flash_re/bench_scenario.py,1f92b1bc1b62a624588a196de2854f7ba296787bf9664ce5010f3be8e3834603,reconstruction or verification tool,tools/,published,research analysis tool
+bmw_flash_re/decompiled/ebas32_100217e4.c,e9a3f4ef79832659078ede0df2285a286ed8e8ba3543b731d8f118c7fa01f51d,reverse-engineering observation,analysis/ediabas/ebas32_100217e4.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/ebas32_10021c38.c,42d58c188155521061b9f595f96c8dcb42677d70f32746e3480d442075230681,reverse-engineering observation,analysis/ediabas/ebas32_10021c38.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_0041ae40.c,0929052e1bf2c099fed24e4a43ea82411b98df84b248dee531842bf4a135d381,reverse-engineering observation,analysis/kr_api/winkfpt_0041ae40.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_0041c920.c,16fff1fb26448c99aabd8d06f9fe1bc25734b7dab2c46f7c2c35fe47eea171b9,reverse-engineering observation,analysis/kr_api/winkfpt_0041c920.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004617c0.c,2bae668fa85b90034c65a26649e3a92016cad51e71a067755eda2ebccf028b11,reverse-engineering observation,analysis/kr_api/winkfpt_004617c0.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_00461800.c,a6bb5d338dac123b845ca88baff50d8c8883a27038aa71dc7ceb6d8f565905be,reverse-engineering observation,analysis/kr_api/winkfpt_00461800.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_00461c80.c,970792a2435cbd861b349d7a5ed521589065e163a3d6515a4e4f6f191d385a05,reverse-engineering observation,analysis/kr_api/winkfpt_00461c80.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_00461e40.c,65c51e081f7b09953851600478dec633a6b3aa600eb60f71aaadfe5619794edc,reverse-engineering observation,analysis/kr_api/winkfpt_00461e40.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004665d0.c,54581d330d05ffca66974ae15f789079d7bac5701f34228e66bfc53adbc97432,reverse-engineering observation,analysis/vdle/winkfpt_004665d0.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004668b0.c,0ac1421d3d6dc9f274fbf73340241d7d9bad4520009769313da636731b18277a,reverse-engineering observation,analysis/vdle/winkfpt_004668b0.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_0046f350.c,a0a8da490b57c2ce15758f425a67ca7b8def4ea00ab8f9921a85ecd0e56b9eb9,reverse-engineering observation,analysis/get_auth_key/winkfpt_0046f350.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_0046f630.c,c341ac62099f0ed99c67b21e5302b89f8b6e5711faf9dc675c2216810f45cf13,reverse-engineering observation,analysis/get_auth_key/winkfpt_0046f630.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_0046f6d0.c,9d9ff827ca6db212b8037c5351463a0d75fe1a64534cf91ac4ae84dddd0dadeb,reverse-engineering observation,analysis/get_auth_key/winkfpt_0046f6d0.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_00490250.c,2f7a08648a7d666fb37b52ba8b54b6dfbdb3d4a59e62d9b072c11ffc102b7af6,reverse-engineering observation,analysis/ediabas/winkfpt_00490250.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_00492a90.c,9d63cda2ae8a587ac7a0fea2c4a80ae9da38818aa5d1d5d12c86297811ec4f38,reverse-engineering observation,analysis/get_auth_key/winkfpt_00492a90.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_00493090.c,53111fe1be6cd52bc92e60f2470effa887c399612a9497840ee9a865d6374b4f,reverse-engineering observation,analysis/get_auth_key/winkfpt_00493090.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004a1f80.c,a58943caef8f3b1f9fee86ede44bda48bf1cb28456f51f03bba52d576f473bce,reverse-engineering observation,analysis/vdle/winkfpt_004a1f80.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004a5850.c,eb8b540bda7cce5ba9ee0ef6249d33b181566bb84574e7d46537271a87e1fe33,reverse-engineering observation,analysis/vdle/winkfpt_004a5850.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004a5960.c,4233d796335eaa3aa329d5bae202493e7714d4b1a67f9b8e8741ae4c1d33b6b1,reverse-engineering observation,analysis/vdle/winkfpt_004a5960.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004a5a40.c,a606c210f7145f34ddca7829236a6c0d9ed4233c5871f56005ccf7ba429d5564,reverse-engineering observation,analysis/vdle/winkfpt_004a5a40.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004a5ac0.c,c99bf28e237b393c133561f487eabc0fe65699016c8da18f78fa93a1cae760ae,reverse-engineering observation,analysis/vdle/winkfpt_004a5ac0.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004a5b60.c,f8e7029f815025a508e93125edaa19ce7f88a5facbb1c3b833b81dfeba145209,reverse-engineering observation,analysis/vdle/winkfpt_004a5b60.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004a5eb0.c,f3922ef0eddb744c10187207a8c57f573f9fd9c1c0621869aeeeeeb42b5b19b6,reverse-engineering observation,analysis/vdle/winkfpt_004a5eb0.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004a6150.c,35ce1cf120a7bdfefb92dca34f1fdd4088b1160620b7b35f4730c9b32e1b2615,reverse-engineering observation,analysis/vdle/winkfpt_004a6150.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004b8a70.c,ee25a6617386d1101e0c3735a86b821f4479f499ab1b85187aee2932c1041787,reverse-engineering observation,analysis/crypto/asymmetric/winkfpt_004b8a70.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004b8ac0.c,cb74c3d818fb12296c78ea7f6e1411ccc2405e4cfd2bcb96251dac487777a8d9,reverse-engineering observation,analysis/crypto/asymmetric/winkfpt_004b8ac0.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004b8bc0.c,e097e86deece06f1cd827ade872203e4ce449bc7283da72c5ea7ce65c90834c3,reverse-engineering observation,analysis/crypto/asymmetric/winkfpt_004b8bc0.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004b8cc0.c,6ec3890bef8902f1ac805188acdc1fff12bebbb2be3e97891edcb14049faa181,reverse-engineering observation,analysis/crypto/symmetric/winkfpt_004b8cc0.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004b8e10.c,47c4efee40816788971bdffcd469b8f8f681117a7d864421b6a1d9fbfe6146ed,reverse-engineering observation,analysis/crypto/simple/winkfpt_004b8e10.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004b8fe0.c,ba4b8200ccb62968a1be1d20142a975d7f18a9d3ea55335662e5d8013b1e2ce8,reverse-engineering observation,analysis/get_auth_key/winkfpt_004b8fe0.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004b95a0.c,837870f9f77d7e77d0b536b5c37c606306bbaf92abecfc6409e55ae250f8ca05,reverse-engineering observation,analysis/kr_api/winkfpt_004b95a0.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004b9e30.c,c4052c8dfe62af029522bd61b2f0b0764e2a705bda23b36c321433eea9804003,reverse-engineering observation,analysis/crypto/asymmetric/winkfpt_004b9e30.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004b9f50.c,5aa9e88c24080cbbcf1b68e4ca3bc587dc271be02ab3d159103a74050414935a,reverse-engineering observation,analysis/crypto/symmetric/winkfpt_004b9f50.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004ba080.c,d1501eac982168120fed867b1379c2d830524f850d90544ab6a38c91e0348752,reverse-engineering observation,analysis/crypto/simple/winkfpt_004ba080.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004ba1b0.c,c591fa1aa176026cd107299c9ea9596f2abf131bcf273c4d0628c39e10fc1df1,reverse-engineering observation,analysis/crypto/simple/winkfpt_004ba1b0.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004bb720.c,11843704ceac4621050a75f86246d1488f17792e9fef88088b6d13555e0d6daa,reverse-engineering observation,analysis/crypto/rsa/winkfpt_004bb720.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004bb780.c,9709193d2d00b084e3e4977838ae798203c7b2c876e03414412b3c685eb147d0,reverse-engineering observation,analysis/crypto/rsa/winkfpt_004bb780.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004bb8c0.c,3204a2638a7321b48f858760e16750e45754b1426d628495e658f45001b6b9e7,reverse-engineering observation,analysis/crypto/rsa/winkfpt_004bb8c0.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004bb910.c,e646ff4bacd86ada28344beb9c33531394d24aec596b4b2b869cf8078714e570,reverse-engineering observation,analysis/crypto/rsa/winkfpt_004bb910.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004bb930.c,5cc1ccbce574d526d713870a830b30f4856401ad20ea62d917679aec26cbafc0,reverse-engineering observation,analysis/crypto/rsa/winkfpt_004bb930.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004bbdb0.c,b4a9e55d1b76e64b58effc33ce1a3069fd00371160be4987f8447e84360de898,reverse-engineering observation,analysis/crypto/symmetric/winkfpt_004bbdb0.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004bbdf0.c,8e2d7f1b2f4f69744a2384c20f9c08492523f9d2bbf1fc610146102789785b1c,reverse-engineering observation,analysis/crypto/symmetric/winkfpt_004bbdf0.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004bbf90.c,f3155d406427d8234214ae2c5a8b1b1365e036c063ae852411909f82ee75d926,reverse-engineering observation,analysis/crypto/symmetric/winkfpt_004bbf90.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004bbff0.c,649b7235d3bb86cac1c1d202e6f75f67b57875ee782249dbc14445fced98d059,reverse-engineering observation,analysis/crypto/symmetric/winkfpt_004bbff0.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/decompiled/winkfpt_004bd0e0.c,9432172673553ae68da031c0aecd3b5422924d46c18960fca99b229a0838cc32,reverse-engineering observation,analysis/vdle/winkfpt_004bd0e0.c,published,decompiled behavioral analysis artifact
+bmw_flash_re/flash_runner.py,085229a6a04d79b0aa23f36d4f33e158272eeed37913e0847e12cd488016f8c3,reconstruction or verification tool,tools/,published,research analysis tool
+bmw_flash_re/kat_e2e_getauthkey.py,6d449b6abf89f30ecc537437805393ea48fc12e5cd0d0fe6662baff2852ac4ef,reconstruction or verification tool,tests/,published,verification test harness
+bmw_flash_re/kat_emulate.py,93ad198c6257d4e98699a0506945f76543ed8319a8253601cfc6ea9700527f0c,reconstruction or verification tool,tests/,published,verification test harness
+bmw_flash_re/kat_realkeys.py,e2a3f684aecb80ca9547d8f067570bf79bc69439304014202fb25422949c7035,reconstruction or verification tool,tests/,published,verification test harness
+bmw_flash_re/obd_emulate.py,09a8bc4dfa832641250a5c3c5d29a4a23bfbc0813b7ab282370098e10de51c48,reconstruction or verification tool,tools/,published,research analysis tool
+bmw_flash_re/probe_e2e.py,6a5447bc053dab7458a4ae362328f4035f0fd15a2d97dbf5373aa6d89eca2806,reconstruction or verification tool,tools/,published,research analysis tool
+bmw_flash_re/reconstruction/__init__.py,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,reconstruction or verification tool,reconstruction/__init__.py,published,clean-room Python reconstruction module
+bmw_flash_re/reconstruction/as2_keys.py,73a0f3dddfe5faa338d4013fd0ed9147dedb30b28ce2e2ebf41b0deb1b23a193,reconstruction or verification tool,reconstruction/as2_keys.py,published,clean-room Python reconstruction module
+bmw_flash_re/reconstruction/obd_ifh.py,cc340c6c86d7facbb895d9ff6bd41e8b3ea9d5973f91178bf44bef0e066db3f2,reconstruction or verification tool,reconstruction/obd_ifh.py,published,clean-room Python reconstruction module
+bmw_flash_re/reconstruction/rsa_keys.py,eed5490881895656a7e75ed824b982eb2638b832a30a25bb9f1b4adfb9e9ae01,reconstruction or verification tool,reconstruction/rsa_keys.py,published,clean-room Python reconstruction module
+bmw_flash_re/reconstruction/security.py,3314cc3a6e4dcb2bf804592776e05e49dd36bbeb9754c766e8f49e1429eecbaf,reconstruction or verification tool,reconstruction/security.py,published,clean-room Python reconstruction module
+bmw_flash_re/reconstruction/tester_present.py,5692a32ca6a2b36a74c66c12744f2692bf929e0f9ce3e991b38d2d71a33424ab,reconstruction or verification tool,reconstruction/tester_present.py,published,clean-room Python reconstruction module
+bmw_flash_re/reconstruction/vdle.py,ff39e92029cd86b4e7af509f0f7829b95d0c414734dbbb33e037d196b41e990f,reconstruction or verification tool,none,excluded,
+bmw_flash_re/run_selftest.py,434c7ecfbf3ca8d3e0223756df2a84e6229b0dad81c3f36957baa977b1f6b3ff,reconstruction or verification tool,tests/,published,verification test harness
+bmw_flash_re/safety/__init__.py,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,reconstruction or verification tool,tools/,published,research analysis tool
+bmw_flash_re/safety/hypotheses.py,f65e3bed0b82be07f8ee1edcc826e57be96126e9efe9a80c2a9c6ef2a098356c,reconstruction or verification tool,tools/,published,research analysis tool
+bmw_flash_re/safety/id_check.py,eff3f1bd8e577a104e836343e35da8e5292919ac5f39e43afffecda5b9a4e7ae,reconstruction or verification tool,tools/,published,research analysis tool
+bmw_flash_re/secur_decode.py,cceac9a831c874e3587a53d9ffdd4bbae7f417f1a86c17b30166c7f1fe51454d,reconstruction or verification tool,tools/,published,research analysis tool
+bmw_flash_re/sgbd/GS19.PRG,30dad98eed183315e5a0e0b2b570836c9fd516f12ec02c1e685171298aa0ea5b,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/sgbd/GS1912.PRG,7dd0c6e4bd589d6168990d7cb87a22ee608e7088868bc4fbdfcf0d9dd57ac395,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/sgbd/GS19A.PRG,d574f9e89402af663078a5141e1928820f3879a83fff52fa30569e3edf15dbbc,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/sgbd/GS19B.PRG,f59c1b29576a333b3d46ecf2bec741ad1c24ba3f9d15b6d928ecd98640c4ee22,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/sgbd/GS19C.PRG,2bf1407c7da7e9174bfa3cb651927e8b4c53d38a5672744230a45ca84bade6f1,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/sgbd/GS19D.PRG,9c751d3b2ad016cd3b7ffe6700df94fc15bdff4ef44e33b43404b8ae25339f13,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/sgbd/SECUR1.PRG,395cecfa65e338e11e353c37c4a86c166d79e195a178165f1f9b0789a3eb0b59,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/sgbd/SECUR2.PRG,95dca205ddb654b8891e12c66cd2b61290087f02066908ed12f24bf8c4061704,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/spdaten_gke/E60/data/GKE191/A7564197.0da,78b9d4b2268669f644314675277246f497aae591824f5b48c55cfa2e865926c5,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE191/A7564199.0da,9b9329a5eca9ce8ccd6c4ca9b97eead883c4fe69b485c11f14139ae7ff0e2d69,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE191/A7564201.0da,ff30346799e74456113603a84cd389cfaa4a4a2613b75071fc1a2d33c6fe4bb9,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE191/A7564203.0da,24c90986c23de5c223627f2f2f04db04f3d1382081a863b9b91328452393e7ff,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE191/A7564205.0da,30b80461c064aa9984dbeff1620f7c49b711283ebdee59136887f3781393e00a,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE191/A7564207.0da,ad93b3384e18d5cac5ca1f19639505863e0bf011a682c7e047d13070ad94eb3b,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE191/A7564209.0da,483cee9c94a9a31dd1a3977a501f31eac602ae396587d296eea06a7fc6d0f244,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE191/A7564211.0da,744ed0b568df5e5f78cc5ba8c1c679e83135ea4df958824b578fd21a9634a866,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE191/A7564215.0da,49ddcf02e213bb5f16618a3f2e2da78a287bae1d6f6a948f88bee911379c6407,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE191/A7573490.0da,0324a927b37a8a99866951f01bc04fee2c796327d1c6e51364650220d578b527,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE191/A7582703.0da,fab661a165d41b35a5e3f4130798e99d69c2ccf0953ae29d988b89bdb0cbb812,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE191/A7587966.0da,1f397604fc440b88bb6d89ea28b9728236d6fe5cdb66e1156d23b829d4356323,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE191/A7587968.0da,d72d0c2cd651bba9d0343047bd8331d8aa8a3aaf0b631af1b4c2b7c9fec81f48,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE191/A7599012.0da,5f2b11b28e9b788c6d9a78cd8e911adaf63a7b35790c20d5e5aba9810a8dacc0,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE191/A7599014.0da,a2ddb8de7bf82b9b43cb271663f2037173c436ed62188af12a2acba53f50bb94,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE191/GKE191.DAT,90e5f19a4f152fb46eb8cd4a656bc1358ea8ad3ce5c876ec5014fdabc54d8ce5,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/spdaten_gke/E60/data/GKE194/A7535252.0DA,da85fed63e442f6bc21bfe9a37ae77af32c3a75621b23e3cced9b0f8fb30cd40,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/spdaten_gke/E60/data/GKE194/A7558363.0da,38776baea54d07236778b37f13056872340f6696310c3d3462798797677312de,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE194/A7558365.0da,84bba5621b21007db355097128f0e546eee1be931cb493749f1cc2ca48049ab1,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE194/A7558367.0da,2610d70188089f1273ccefc7fd97dcac12c3566a9435e573445e5cc5eb9ab0ae,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE194/A7558369.0da,3ace63fa45e47f0a77394d982d8c50e5f806813b6f07249c324e91e7677a93e3,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE194/A7558371.0da,aa88e1830b8b5e6be8c086493cf55ca028c303136c8af4fffd57f956a86270e8,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE194/A7558373.0da,7c4120326a3b884ece6701060134e18925154f92d6aa56bad752e84ea8a55790,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE194/A7558375.0da,1f6a6a286aa9602e076c90bbcd8bfaf06bbd6a3b5c6a416125b156367eb8bd17,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE194/A7573680.0da,19ff9f90f5d83ce694844214c42938766a579cd49fa4aa414d8bf63b2fd1f3d2,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE194/A7573682.0da,b1de1fa1ecfa48479f16d8dfc3fab7f65af11b4aeca8451b73414d3268069930,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE194/A7582701.0da,819d8c597bb1266a5f59b9940bf9de279241b2d2bd2180e580c13d69617be14a,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE194/GKE194.DAT,aff32ad0363fad95011af916ae552cf484bc1e9063a774227f1648ac9f03b585,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/spdaten_gke/E60/data/GKE195/A7583974.0da,419b5c133c9a20a470f35fff4edbf83a0cf01aae1df20fe7c5cb46bd84943f4c,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE195/A7592131.0da,5f1154045ed17420797887b798deac400a2572aad48636499020b03edde317e5,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE195/A7592133.0da,45b473d1ee8cc2542a1eb3ecb77bf446f357f81827a464e6c3489257312a0112,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE195/A7592135.0da,543f1a968101f8e9270a2cb0c7ccb358ff598818b864e1a1269dc32be27708b3,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE195/A7592137.0da,a8f6df8664e2894cb5fab6fad148660591fae4d70af3d952a4ba73ae14c11903,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE195/A7592139.0da,a2299db1a0988ce3478298a7b7a2e7e805e430ad349603c5131538472745b298,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE195/A7592141.0da,6643897036e23ca4f7386913d9b59cfd7879c6dbdba3006ec1e36afd4ecbcc2b,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE195/A7592143.0da,6cad4f6762ffe73277b99a286ea6ca60945806edb3d95c3b314fe007dbd38b38,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE195/A7592145.0da,583bad578d520304c9b6c8324554f9cce89f4a7c9068bffc5d9f9d54e0d2a769,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE195/A7592147.0da,3ef7986f8de3dbbf87b3848b31a517c85f24eef6377ccdd6d9b266aa78abcafb,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE195/A7592149.0da,e4fbd055cbd5bb77042c60c75c1d4ae382fc8e5fcf6b8f13161c6cbed6690f43,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE195/A7592151.0da,e106a26e2fc288088e942f54ac3435eb5e79fae4b8fabb200e4029913c854a6d,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE195/A7592153.0da,1087814923296acd310becc5ebd4bd3d7470761f962fa65ffb3d1d2dc12a3964,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE195/A7592155.0da,5755c54317dd3f7e7c018b53c43b2c982c6bebc559054a4aef3469e406f79ffd,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE195/GKE195.DAT,6e88abf482c0cfe63ce302297b3721d2b00d47032593c477ee79ba6838daea98,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/spdaten_gke/E60/data/GKE211/A7563801.0da,22a7d42e49e5fe9c31c4633c8e3a3d4075851212b0ed8081f85fbceb8ca5e67e,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE211/A7564217.0da,c9ad2fa08c04f5fa334858076147e481f1cd726b8c12a343d3cc72d6cc05ac90,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE211/A7564219.0da,843e1a92a9776372ab79f618109c3cb7b475e028ea9c65f7ac7c2e01db67ec2c,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE211/A7564223.0da,a4380c5d12ad0d0c3e0f45e1f10155b2eb0f04be1e5f14ad1e7755e0349a85d9,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE211/A7564227.0da,60eff1c6f58d292c5b83630169d46192196d9a151d4a063877e9a8b75665bb55,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE211/A7572856.0da,fa55d959eba743d60862c8661d48694721f28fd3f51ebf331ee52e12b443695c,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE211/A7572858.0da,e55c25d6ab879352442b02f7dea0b2ea6e05f8b7ccc53c570107a3f7d3eb7095,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE211/A7585470.0da,0bddc83f0a593c8791e692e79b00cb5249ae0e61a9f366aee0442420fc8fe1d5,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE211/GKE211.DAT,3771866ec6ec77512f572bb304fe75202c5d64474bb77ef281b77a7e12f61b91,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/spdaten_gke/E60/data/GKE214/A7548089.0da,f7d95b3d9ab9dff5d5145cd304756f5d5746b6683938a94ee39e055c6b5916a3,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE214/A7548091.0da,e3a0601647981990812d05ee9cd9635afd118b758c92bfe31a35b3a2449ae238,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE214/A7548093.0da,02927bb8ba575e3223135e6d5a8ad3424f71d730a353606d81469bc642dce964,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE214/A7552679.0DA,5580f6c15346d68513e66ac52f0f4aa8266e0478bdc620166571102827fb27d8,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/spdaten_gke/E60/data/GKE214/A7552681.0DA,d857793f4b0d6d0be5123ead5d7b8ac991c1fad9618d525ab037bb5defb8cc38,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/spdaten_gke/E60/data/GKE214/A7553809.0da,f2685e71bab57abda9f88851a34c8c366219b83051d219a2bd9cab86a02dfe96,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE214/A7571163.0da,5bee29e7ce24c4d26d45b65216c8cf569b3aa7d303bb57224030a5aa44efa960,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE214/GKE214.DAT,ede9258b7aa76d30d9acf7725b2e63b93b7f9139228109c2c6e71edb766ef7c5,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/spdaten_gke/E60/data/GKE215/7591971A.0pa,63b204d2edbdaa0945d9b0241d55df7c6859b41d3376d9f35e93cc6c82ecfcc3,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/spdaten_gke/E60/data/GKE215/A7592101.0da,551c3bd58a4c8c32211892ee8492bfc069896ebe21796e8d1735af0fcb8899c5,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE215/A7592107.0da,2435ab064452760d02e6fd3a456e2bc9e97fcb535a83651e41a5e765cd48b690,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE215/A7592111.0da,e778e3842c8ea7308052078386401ca45c5f0ee63803d36ba132fd75bcca1d14,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE215/A7592117.0da,f8b8d4eec4d295b8f9e9d0f5d82ffce671858e940c915988eff11e0210cc4671,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE215/A7592121.0da,41c4e48b96fb193e82ee022259be2ccbcc9eada385c6d84792e47cd1849cf5a3,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE215/A7592129.0da,ca2e4c0ff19639cc5fdcf0cb0ec47b8dadf22512965db2a3f2cadac6c8f1dec5,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE215/A7593813.0da,e14033c95da6160993d02ff9ae6e340dc6e7a3ec8794e7bcd0350881682d27e0,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE215/A7598441.0da,f4acbb27b3b23710ba62a904ecffc861367478820496160271ee92ecddae4ed2,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE215/A7601457.0da,69ade0b41e695308effce1bfcca6645b12f3110b89a7016545aaf1fb7b68c611,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE215/A7601459.0da,f17121c61946f459d1b011300596f64894da810a95745c094e696537c9bd7b2b,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE215/A7601461.0da,c8f77ac7acde4e7ea0a7ac41dd96529732b0fe0306274479ab2de3a37a00fc2d,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE215/A7603577.0da,d95d02144684c369efa4aef210a1aab1379886a8d0edf592101ff727252931dd,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE215/A7603579.0da,9d185065a4d6275c43ef27bed2e57c8c623192788fb5ff8d43c80bed5e4b80e3,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE215/A7603581.0da,3f8b7b7174caee755386b9dec156c443b4fddc1cb58955d8d04eb4018f1a2163,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE215/A7603583.0da,5873ed5315679c351df33665880477ce36353349b71255fa2f2bbfeffa6963cf,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE215/A7603585.0da,3840dd05cf401fafed816200def2e8d3d73af25cc0ea2e1e51b919e0bae7d0b8,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE215/A7603587.0da,6974b33c580336033162457053033ed4a3dfcf78e06aafa6c8ff424fffc4ce80,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE215/A7609633.0da,e0d01f5221037df479211f6e951121624645327af4a829a20c59097628e1d616,proprietary binary,none,excluded,OEM binary not redistributed
+bmw_flash_re/spdaten_gke/E60/data/GKE215/GKE215.ATS,bebae0a78ecaa13df02bd3373b53ed318d06928c9920f32b4030b862c603f58d,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/spdaten_gke/E60/data/GKE215/GKE215.DAT,ddf7f9f926bcc890bf7fac2bd7cdf4037d3f5828d4abedab8b5099e152b35abe,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/spdaten_gke/E60/data/GKE215/GKE215.HIS,e88f2cdc16b9bb80751f849aa888c5d8f2e1941e8c8d17358be2c3a38d762de5,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/spdaten_gke/E60/data/GKE215/GKE215.HWH,cf119e3beffa8b4669efc78b1566221664c87429960dd0760a24d8c78362dcf5,ancillary file,none,excluded,environment-specific or temporary file
+bmw_flash_re/spdaten_scan.py,46e32c64ccfd7f79517cd2f7bc4b6ca7f6cd27318f4acd537ea8301c22a230ce,reconstruction or verification tool,tools/,published,research analysis tool
+bmw_flash_re/transport/__init__.py,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,reconstruction or verification tool,tools/,published,research analysis tool
+bmw_flash_re/transport/ediabas_api.py,46a89eeb7cc84e25998e4dc361040510a30ecae493a794223a00ae0994470cf9,reconstruction or verification tool,tools/,published,research analysis tool
+bmw_flash_re/transport/isotp.py,16ec0d1540a2ec30519a710cc3ce03966654697930aba8d41fc2632698634c28,reconstruction or verification tool,tools/,published,research analysis tool
+bmw_flash_re/vdle_diff.py,5eb2fc4ab2e3fee03f20eb4023a02ace4eecf5916d46e001f634a527ba4701be,reconstruction or verification tool,tests/,published,verification test harness
+bmw_flash_re/vdle_trace.py,39473fd5aca07444982486ad4884ca43620542f62ce90697f9a6e42f7818c98a,reconstruction or verification tool,tools/,published,research analysis tool

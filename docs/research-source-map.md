@@ -2,6 +2,9 @@
 
 This document provides a comprehensive traceability mapping linking every published file in `winkfp-research` back to its origin in the immutable research archive `bmw_flash_re/`.
 
+A complete, machine-readable manifest of all evaluated source files, their SHA-256 digests, provenance classification, public destinations, and disposition actions is available in:
+- [`research-source-map.csv`](research-source-map.csv) (395 inventoried entries with cryptographic SHA-256 hashes)
+
 ---
 
 ## 1. Documentation & Research Guides

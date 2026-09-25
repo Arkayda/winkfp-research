@@ -20,19 +20,21 @@ Quarantined files are **never committed to the repository** until their status i
 
 ## 2. Source Archive Inventory & Classification Summary
 
-A comprehensive recursive audit of `/Users/blogman/bmw_flash_re/` inspected all **3,359 filesystem entries**:
+A comprehensive recursive audit of the `bmw_flash_re` source research archive inspected all **3,359 filesystem entries**:
 
 | Category Code | Provenance Category | Count | Disposition in `winkfp-research` |
 |:---:|---|:---:|---|
-| **A** | Original / OEM proprietary material | 1,700 | **EXCLUDED** (Documented in [PROPRIETARY_MATERIAL.md](file:///Users/blogman/winkfp-research/docs/PROPRIETARY_MATERIAL.md)) |
+| **A** | Original / OEM proprietary material | 1,700 | **EXCLUDED** (Documented in [PROPRIETARY_MATERIAL.md](PROPRIETARY_MATERIAL.md)) |
 | **A/E** | Traces containing real sessions & VINs | 5 | **SANITIZED** (Redacted extracts in `traces/sanitized/`) |
 | **B** | Project-authored research notes & reports | 12 | **PUBLISHED** (`docs/`, `analysis/`) |
 | **B (decomp)** | Ghidra decompiler pseudocode | 45 | **PUBLISHED** (`analysis/`) |
 | **B/C** | Verification test scripts & differential runners | 10 | **PUBLISHED** (`tests/`, `tools/`) |
-| **C** | Clean-room Python reconstructions | 14 | **PUBLISHED** (`reconstruction/`) |
+| **C** | Python reconstructions | 14 | **PUBLISHED** (`reconstruction/`) |
 | **G** | Build artifacts, `.venv`, `.pyc`, `.DS_Store` | 1,573 | **EXCLUDED** (Filtered via `.gitignore`) |
 | **H** | Unknown provenance / Unclassified | 0 | **NONE** (All files definitively classified) |
-| **Total** | **All cataloged entries** | **3,359** | **Complete coverage** |
+| **Total** | **All cataloged entries** | **3,359** | **Fully Audited & Classified** |
+
+The public repository preserves the research material selected from the source archive after provenance and redistribution review.
 
 ---
 
@@ -42,4 +44,4 @@ A comprehensive recursive audit of `/Users/blogman/bmw_flash_re/` inspected all 
 Status: ZERO QUARANTINED ARTIFACTS
 ```
 
-Because every item in the historical archive was definitively traced either to original BMW distributions (Category A), temporary environment files (Category G), or project-authored research and clean-room reconstructions (Categories B, C), **no files remain in quarantine**.
+Because every item in the historical archive was definitively traced either to original BMW distributions (Category A), temporary environment files (Category G), or project-authored research and reconstructions (Categories B, C), **no files remain in quarantine**.

@@ -26,8 +26,12 @@ The goal of this research project is to:
 > [!IMPORTANT]
 > **Independent Research Repository**: `winkfp-research` is a standalone public research archive. It is **NOT** a submodule, branch, package, or component of `open6hp` or any active flashing tool.
 
-* **No Physical ECU Flashing**: This repository is an analytical research archive and testbed. Physical in-vehicle ECU flashing has **NOT** been performed (see [Evidence Model](#5-evidence-and-validation-model)).
-* **Clean-Room & Free of Proprietary OEM Assets**: In accordance with intellectual property laws and automotive security guidelines, this repository contains **NO proprietary OEM binaries** (`.exe`, `.dll`, `.prg`, `.ipo`, `.0da`), **NO BMW SP-Daten archives**, **NO proprietary ECU firmware images**, and **NO production cryptographic key databases** (`SGIDC.as2`, `SGIDD.as2`). All tests and examples execute against synthetic test vectors or dynamically utilize local user-supplied binaries via differential hooks.
+* **No Physical ECU Flashing**: This repository is an analytical research archive and testbed. Physical in-vehicle ECU contact and reprogramming have **NOT** been validated on physical hardware (see [Evidence Model](#5-evidence-and-validation-model)).
+* **Artifact Separation & Redistribution Policy**:
+  - **No Original Proprietary Binaries**: No original proprietary OEM binaries (`.exe`, `.dll`, `.prg`, `.ipo`, `.0da`), BMW SP-Daten archives, proprietary ECU firmware images, or production key containers (`SGIDC.as2`, `SGIDD.as2`) are distributed in this repository.
+  - **Reverse-Engineering Analysis (`analysis/`)**: Contains behavioral reverse-engineering observations, decompiler-derived C pseudocode, and structural annotations derived from proprietary binaries for research and interoperability analysis.
+  - **Independent Reconstruction (`reconstruction/`)**: Contains independently authored Python reimplementations modeling the observed protocols and algorithms.
+  - **Public RSA Parameters**: The repository contains public RSA parameters ($N, E$) recovered during reverse engineering. No private RSA exponent or private signing key is included.
 * **Privacy Sanitization**: All communication traces and log artifacts have been scrubbed of sensitive identifiers, vehicle identification numbers (VINs), serial numbers, and private key material.
 
 ---
@@ -46,7 +50,7 @@ graph TD
         OBD["OBD32.dll<br/>(IFH Serial / K-Line Driver)"]
     end
 
-    subgraph "Clean-Room Reconstruction (reconstruction/)"
+    subgraph "Independent Reconstruction (reconstruction/)"
         VDLE_CORE["reconstruction.vdle<br/>(Block Framing, OPPS Setup)"]
         CRYPTO_CORE["reconstruction.crypto<br/>(Symmetric MD5, RSA-1024, Simple)"]
         AUTH_CORE["reconstruction.auth<br/>(AS2 3DES Decryption, Key Lookup)"]
@@ -57,8 +61,8 @@ graph TD
 
     subgraph "Validation Tiers"
         KAT["tests/kat/<br/>Known-Answer Tests (L3)"]
-        GOLDEN["tests/golden/<br/>Protocol Golden Tests (L3/L4)"]
-        DIFF["tests/differential/<br/>Unicorn x86 Differential (L4/L5)"]
+        GOLDEN["tests/golden/<br/>Protocol Golden Tests (L3)"]
+        DIFF["tests/differential/<br/>Unicorn x86 Differential (L4)"]
     end
 
     WINKFPT --> VDLE_CORE
@@ -85,15 +89,17 @@ graph TD
 Detailed technical specifications are located in [`docs/reverse-engineering/`](docs/reverse-engineering/):
 
 ### 4.1 KrApi Cryptographic Algorithms
-WinKFP implements three distinct cryptographic challenge-response authentication algorithms:
-* **Symmetric MD5 Mode** (`FUN_004b9f50`): Uses an 8-byte ECU seed, a 4-byte tester nonce, a 4-byte ECU serial, and a 16-byte shared key (`T_SMA`, `T_SMB`, or `T_SMC`). Produces a 16-byte response key (`SG-Schluessel`). Reconstructed in [`reconstruction/crypto/symmetric.py`](reconstruction/crypto/symmetric.py).
-* **Asymmetric RSA-1024 Mode** (`FUN_004b9e30`): Computes `MD5(nonce + serial[:4] + seed)`, converts the digest into an integer, and calculates raw modular exponentiation $S = m^e \pmod n$ using static 1024-bit RSA public keys. Post-processes the result through a 32-bit per-dword byteswap (`FUN_004b8a70`). Reconstructed in [`reconstruction/crypto/asymmetric.py`](reconstruction/crypto/asymmetric.py).
-* **Simple Mode** (`FUN_004ba080`): A lightweight 8-byte permutation and key-mixing routine used on legacy control units. Reconstructed in [`reconstruction/crypto/simple.py`](reconstruction/crypto/simple.py).
+WinKFP implements distinct challenge-response authentication algorithms:
+* **Symmetric MD5 Mode** (`FUN_004b9f50`): Uses an 8-byte ECU seed, a 4-byte tester nonce, a 4-byte ECU serial, and a 16-byte shared key (`T_SMA`, `T_SMB`, or `T_SMC`). Produces a 16-byte response key (`SG-Schluessel`). Reconstructed in [`reconstruction/crypto/symmetric/`](reconstruction/crypto/symmetric/).
+* **Asymmetric Authentication (RSA-1024 vs RSA-512)**:
+  - **KrApi Static Asymmetric Mode** (`FUN_004b9e30`): Computes `MD5(nonce + serial[:4] + seed)`, converts the digest into an integer, and calculates raw modular exponentiation $S = m^e \pmod n$ using static 1024-bit RSA public keys (`RSA_KEYS` slots 3, 4, 5). Post-processes the result through a 32-bit per-dword byteswap (`FUN_004b8a70`). Reconstructed in [`reconstruction/crypto/asymmetric/`](reconstruction/crypto/asymmetric/).
+  - **AS2 Container Asymmetric Mode**: Container-based per-ECU keys (e.g. for `GKE191` in `SGIDC.as2`) utilize 512-bit RSA public keys (136-byte / `0x88` structure: 64-byte $N$, 64-byte $E$, word count `0x10`). Reconstructed in [`reconstruction/security.py`](reconstruction/security.py).
+* **Simple Mode** (`FUN_004ba080`): A lightweight 8-byte permutation and key-mixing routine used on legacy control units. Reconstructed in [`reconstruction/crypto/simple/`](reconstruction/crypto/simple/).
 
 ### 4.2 Key Storage & AS2 Container Parsing
 * Runtime keys are read from 3DES-encrypted flat files (`SGIDC.as2`, `SGIDD.as2`) via `GetAuthKey` (`FUN_004b8fe0`).
 * The encryption utilizes 3DES in ECB mode with a hardcoded static key.
-* Records follow fixed column alignment: `$K <ecu_name:20><ident:4><field6:6><hex_payload>`. Reconstructed in [`reconstruction/auth/key_containers/as2_keys.py`](reconstruction/auth/key_containers/as2_keys.py).
+* Records follow fixed column alignment: `$K <ecu_name:20><ident:4><field6:6><hex_payload>`. Reconstructed in [`reconstruction/as2_keys.py`](reconstruction/as2_keys.py).
 
 ### 4.3 VDLE Flash Protocol & Block Framing
 * **Sequence**: `INIT_VDLE` $\rightarrow$ `LOADTABLE` $\rightarrow$ `REQUEST_SEGMENTINFO` $\rightarrow$ `SEND_SEGMENT` $\rightarrow$ `FLASH_SCHREIBEN_STATUS`.
@@ -117,21 +123,21 @@ Flash execution is hard-gated by the `SafetyContext` and provenance-tracked `Lim
 
 ## 5. Evidence and Validation Model
 
-The project tracks experimental rigor across eight standardized tiers defined in [`docs/EVIDENCE.md`](docs/EVIDENCE.md):
+The project tracks experimental rigor across the canonical eight-tier taxonomy defined in [`docs/EVIDENCE.md`](docs/EVIDENCE.md):
 
-| Tier | Name | Description | Current Status |
-|:---|:---|:---|:---:|
-| **L0** | Ghidra Static Decompilation | C decompilation and disassembly analysis | **Complete** (45 files) |
-| **L1** | Algorithm Extraction | Pure Python algorithmic model | **Complete** |
-| **L2** | Known-Answer Tests (KAT) | Verified against static reference vectors | **Complete** (15 tests) |
-| **L3** | Golden State Machine | Verified against mock EDIABAS buses | **Complete** (10 tests) |
-| **L4** | Software Differential | Compared event-for-event against emulated x86 code | **Complete** (8 tests) |
-| **L5** | Trace Integration | Differentially matched against historical EDIABAS traces | **Complete** |
-| **L6** | Bench Contact (Write-Free) | Diagnostic/auth handshake on physical bench ECU | *Prototyped* |
-| **L7** | Physical ECU Writing | Modifying non-volatile flash on physical ECU | **NOT PERFORMED** |
+| Level | Designation | Description | Current Status |
+|:---:|---|---|:---:|
+| **L0** | Static observation | Raw strings, symbol names, table entries in disassembled binaries | Validated (45 functions) |
+| **L1** | Decompiled / disassembled behavior | Control flow and data structures analyzed via Ghidra/IDA decompiler output | Validated (45 C files in `analysis/`) |
+| **L2** | Independent reconstruction | Python reimplementation of algorithms and protocols | Validated (`reconstruction/`) |
+| **L3** | Known-answer / execution validation | Deterministic KAT unit tests comparing against known test vectors | Validated (15 KAT + 10 Golden tests) |
+| **L4** | Differential trace validation | Execution of original OEM machine code under Unicorn x86 compared against reconstruction | Validated (8 differential test suites) |
+| **L5** | Real EDIABAS integration | Reconstructed engine interacting with EDIABAS API or parsing historical EDIABAS traces | Validated (`traces/sanitized/`, `tools/bench_diff/`) |
+| **L6** | Real ECU contact | Diagnostic handshake (ID, auth negotiation, session status) on physical ECU | Not validated |
+| **L7** | Real ECU programming | Complete flashing of ECU firmware block on a physical vehicle or hardware bench | Not validated |
 
 > [!CAUTION]
-> **No Physical In-Vehicle Flashing**: Writing to automotive flash memory carries severe bricking and safety risks. Physical ECU flash modification (L7) has deliberately **not** been executed.
+> **No Physical In-Vehicle Flashing**: Writing to automotive flash memory carries severe bricking and safety risks. Physical ECU contact (**L6**) and ECU programming (**L7**) have **NOT** been validated on physical hardware. Controlled/write-free bench test harnesses (`tools/bench_diff/bench_scenario.py`) exist for diagnostic exploration, but physical ECU validation remains unperformed.
 
 ---
 
@@ -244,7 +250,7 @@ If you utilize this research, reverse-engineering methodology, or reconstructed 
   title = {WinKFP Reverse Engineering & Protocol Reconstruction Archive},
   year = {2026},
   publisher = {GitHub},
-  howpublished = {\url{https://github.com/winkfp-research/winkfp-research}}
+  howpublished = {\url{https://github.com/open6hp/winkfp-research}}
 }
 ```
 See [`CITATION.cff`](CITATION.cff) for full machine-readable metadata.

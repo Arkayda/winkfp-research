@@ -27,10 +27,13 @@ This repository contains reverse-engineering research and clean-room protocol im
 
 ---
 
-## Reporting Vulnerabilities
+## Reporting Vulnerabilities & Submitting Material
 
-If you identify a security flaw in the reconstructed code or believe an unintended proprietary artifact or sensitive secret has been committed to this repository:
-
-1. **Do not open a public issue.**
-2. Report the vulnerability privately to the project maintainers via email or security advisory.
-3. Include specific commit hashes, file paths, and technical rationale.
+* This repository is an independent research archive.
+* If you identify a security issue concerning the repository or code, please report it privately via GitHub Security Advisories at https://github.com/open6hp/winkfp-research/security/advisories.
+* **Do NOT submit**:
+  - Proprietary BMW executable binaries (`.exe`, `.dll`, `.prg`, `.ipo`, `.0da`).
+  - Production customer ECU memory dumps.
+  - Real vehicle identification numbers (VINs) or chassis identifiers.
+  - OEM private signing keys, certificate credentials, or production AS2 databases.
+* Include specific commit hashes, file paths, and technical rationale in any report.

@@ -1,3 +1,10 @@
+"""Recovered static KrApi RSA-1024 public key parameters.
+
+The repository contains public RSA parameters (N, E) recovered during
+reverse engineering of winkfpt.exe (FUN_004b9e30). No private RSA exponent
+or private signing key is included.
+"""
+
 RSA_KEYS = {
     3: {
         "N": "3560dd442cff7002918f3693a35b5dc32260d88fc7c1f0bb435c1df682ae32a1dbb79a0f4ce73dbf9e1c97e5c60da143505e6107d817794eba7054afea2c1b1e9be0bd073656319c057fc89eac338ddd967019abbcdb78ce6f93feadb519e1f105940b51089e362ac6985195acd6bb0a1ff46ca4d82af77e260b6739e25121a6",

@@ -89,13 +89,13 @@ To preserve technical rigor, components are strictly separated into four categor
 
 4. **Physical Hardware Boundary**:
    - Serial transceivers, OBD cables, microcontrollers, and actual electronic control units.
-   - As documented in [EVIDENCE.md](file:///Users/blogman/winkfp-research/docs/EVIDENCE.md), the repository establishes validation up to **L4** (differential trace) and **L5** (EDIABAS API trace integration). Physical bench and vehicle testing (**L6/L7**) represent future roadmap goals.
+   - As documented in [EVIDENCE.md](EVIDENCE.md), the repository establishes validation up to **L4** (differential trace) and **L5** (EDIABAS API trace integration). Physical bench and vehicle testing (**L6/L7**) are explicitly not validated.
 
 ---
 
 ## 3. Relationship to `open6hp`
 
 * `winkfp-research` and `open6hp` are **separate, independent repositories**:
-  - `winkfp-research` is the **research and evidence repository**. It documents how legacy BMW toolchains function, provides Ghidra analysis notes, maintains historical revision logs, and proves reconstruction equivalence via KATs and differentials.
-  - `open6hp` is the **firmware and transmission flasher project** focused on ZF 6HP gearboxes.
-* Neither repository is a submodule, subdirectory, or package of the other. They are developed independently.
+  - `winkfp-research` (https://github.com/open6hp/winkfp-research) is the **research and evidence repository**. It documents how legacy BMW toolchains function, provides Ghidra analysis notes, maintains historical revision logs, and proves reconstruction equivalence via KATs and differentials.
+  - `open6hp` (https://github.com/open6hp/open6hp) is the **independent transmission flasher project** focused on ZF 6HP gearboxes.
+* They are related projects with independent Git histories. Neither repository is a submodule, subdirectory, or package of the other.
