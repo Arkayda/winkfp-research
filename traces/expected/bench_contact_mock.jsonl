@@ -1,0 +1,17 @@
+{"t": 0.0001, "op": "job", "dev": "VDLE", "name": "INIT_VDLE", "args": "OKAY;1", "ok": true, "status": "OKAY"}
+{"t": 0.0004, "op": "job", "dev": "DLE08", "name": "SG_PHYS_HWNR_LESEN", "args": "OKAY", "ok": true, "status": "OKAY"}
+{"t": 0.0008, "op": "read_text", "name": "SG_PHYS_HWNR", "value": "GKE192"}
+{"t": 0.001, "op": "job", "dev": "DLE08", "name": "AUTHENTISIERUNG", "args": "OKAY", "ok": true, "status": "OKAY"}
+{"t": 0.0012, "op": "read_text", "name": "AUTHENTISIERUNG", "value": "T_SMB"}
+{"t": 0.0134, "op": "job", "dev": "DLE08", "name": "SERIENNUMMER_LESEN", "args": "OKAY", "ok": true, "status": "OKAY"}
+{"t": 0.0137, "op": "read_binary", "name": "SERIENNUMMER", "bytes": 4, "hex": "574b3933"}
+{"t": 0.0138, "op": "job", "dev": "DLE08", "name": "FLASH_ZEITEN_LESEN", "args": "OKAY", "ok": true, "status": "OKAY"}
+{"t": 0.014, "op": "read_text", "name": "AuthentisierungZeit", "value": "10000"}
+{"t": 0.0144, "op": "job", "dev": "DLE08", "name": "AUTHENTISIERUNG_ZUFALLSZAHL_LESEN", "args": "3;", "ok": true, "status": "OKAY"}
+{"t": 0.0146, "op": "read_binary", "name": "ZUFALLSZAHL", "bytes": 8, "hex": "0102030405060708"}
+{"t": 0.017, "op": "job_bin", "dev": "DLE08", "name": "NG_AUTHENTISIERUNG_START", "bytes": 16, "sha": "565764a1f0f12ccba41209571dd7ea8bb90fb0b22135e76624f0d044a98dd23b", "redacted": true, "ok": true, "status": "OKAY"}
+{"t": 0.0172, "op": "read_text", "name": "JOB_STATUS", "value": "OKAY"}
+{"t": 0.0174, "op": "job", "dev": "VDLE", "name": "REQUEST_SEGMENTINFO", "args": "OKAY;0x00870000;0x00000100", "ok": true, "status": "OKAY"}
+{"t": 0.0176, "op": "job", "dev": "VDLE", "name": "REQUEST_SEGMENTINFO", "args": "OKAY;0x00870000;0x00000100", "ok": true, "status": "OKAY"}
+{"t": 0.0177, "op": "job", "dev": "VDLE", "name": "EXIT_VDLE", "args": "OKAY", "ok": true, "status": "OKAY"}
+{"t": 0.0179, "op": "auth_audit", "attempt": 1, "ecu": "GKE192", "art": "Symetrisch", "idx": 3, "seed_hex": "0102030405060708", "nonce_hex": "35643531", "status": "OKAY", "ok": true, "key_len": 16, "key_sha256": "565764a1f0f12ccba41209571dd7ea8bb90fb0b22135e76624f0d044a98dd23b"}

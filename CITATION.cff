@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this research or clean-room implementation in your work, please cite it as below."
+title: "winkfp-research"
+abstract: "Reverse-engineering and clean-room reconstruction of selected behavior from a legacy BMW WinKFP / EDIABAS ECU programming stack."
+type: software
+authors:
+  - name: "winkfp-research contributors"
+repository-code: "https://github.com/winkfp-research"
+keywords:
+  - "reverse-engineering"
+  - "automotive"
+  - "ecu-programming"
+  - "winkfp"
+  - "ediabas"
+  - "iso-tp"
+  - "uds"
+  - "clean-room"
+license: "MIT"
+date-released: 2026-09-25

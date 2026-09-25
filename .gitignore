@@ -1,0 +1,59 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C / C++ build artifacts
+*.o
+*.obj
+*.so
+*.dylib
+*.dll
+*.exe
+
+# Environments and tooling
+.venv/
+venv/
+ENV/
+env/
+.env
+
+# Editor and OS files
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local BMW proprietary binaries and data (MUST NEVER BE COMMITTED)
+*.as2
+*.AS2
+!tests/fixtures/synthetic/*.as2
+*.prg
+*.PRG
+*.ipo
+*.IPO
+*.0da
+*.0DA
+*.grp
+*.GRP
+*.vlf
+*.VLF
+/E60_daten/
+/spdaten*/
+/standard_tools/
+/EDIABAS*/
+/EDIABAS_*/
+/sgbd/
+
+# Local raw unredacted traces and private logs
+*.trc
+*.TRC
+!traces/sanitized/*.trc
+!tests/fixtures/sanitized/*.trc
+*.ifh
+*.IFH
+*.log
+local_traces/
+secret_reports/
+bench_log_private.jsonl

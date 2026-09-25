@@ -1,0 +1,73 @@
+{"t": 0.0, "op": "job", "dev": "DLE08", "name": "FLASH_PARAMETER_SETZEN", "args": "0x62;2;18;1;simple", "ok": true, "status": "OKAY"}
+{"t": 0.0003, "op": "job", "dev": "VDLE", "name": "INIT_VDLE", "args": "OKAY;1", "ok": true, "status": "OKAY"}
+{"t": 0.0004, "op": "job", "dev": "VDLE", "name": "REQUEST_SEGMENTINFO", "args": "OKAY;0x00870000;0x00000100", "ok": true, "status": "OKAY"}
+{"t": 0.0006, "op": "job", "dev": "VDLE", "name": "REQUEST_SEGMENTINFO", "args": "OKAY;0x00870000;0x00000100", "ok": true, "status": "OKAY"}
+{"t": 0.0007, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "8a851ff82ee7048ad09ec3847f1ddf44944104d2cbd17ef4e3db22c6785a0d45", "hex": "0001020304050607", "ok": true, "status": "OKAY"}
+{"t": 0.0009, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0011, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "34179de5450f6796386cb746cf0608b2a3356e937fb69e5e9ac0c6c29ef61a05", "hex": "08090a0b0c0d0e0f", "ok": true, "status": "OKAY"}
+{"t": 0.0012, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0014, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "b2aaa79d46b694069b0842d6c933236a0865142674a56a957ebae5f2028af6b9", "hex": "1011121314151617", "ok": true, "status": "OKAY"}
+{"t": 0.0015, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0016, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "78dddb0dfb7089605f0e2a4efef6c4a33d10171a34694fff4a97b8122e1df1e9", "hex": "18191a1b1c1d1e1f", "ok": true, "status": "OKAY"}
+{"t": 0.0017, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.002, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "1efc915d1274d56c3a2800a0eadaf508be4ea8fbb30093445d94b7864a5c578b", "hex": "2021222324252627", "ok": true, "status": "OKAY"}
+{"t": 0.0021, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0022, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "37fcef1ac658adfdbd80deb61cf034db1cfd3cb9b39f5b699bddcb22f2d900d9", "hex": "28292a2b2c2d2e2f", "ok": true, "status": "OKAY"}
+{"t": 0.0023, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0026, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "924592b9b103f14f833faafb67f480691f01988aa457c0061769f58cd47311bc", "hex": "3031323334353637", "ok": true, "status": "OKAY"}
+{"t": 0.0027, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0029, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "8fa0451a309e449994626eda229be2e24945bc952d0bd2b0f0452872989dc92d", "hex": "38393a3b3c3d3e3f", "ok": true, "status": "OKAY"}
+{"t": 0.003, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0031, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "759d378f139ee9e71d8225ee1882b96a3df6e57af705335af1722efdf2a6e4bc", "hex": "4041424344454647", "ok": true, "status": "OKAY"}
+{"t": 0.0032, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0033, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "1f86e075b6b6e1055e250ad803798135002bd79b78f06d70757f38ee05693d12", "hex": "48494a4b4c4d4e4f", "ok": true, "status": "OKAY"}
+{"t": 0.0034, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0035, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "86912194063de377f14ee690d64e798822ea3a58d224d8a88a1c255774bc6e5f", "hex": "5051525354555657", "ok": true, "status": "OKAY"}
+{"t": 0.0036, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0038, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "cbaeb8afc0479e005398d8b783b8a31c0e8e016ad2a9729ad8fa9258fd81ee89", "hex": "58595a5b5c5d5e5f", "ok": true, "status": "OKAY"}
+{"t": 0.0039, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0041, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "5b55852bbfb104bec95903ac5d6f97b8656a6309a4ccb2cca418a23bebf571a0", "hex": "6061626364656667", "ok": true, "status": "OKAY"}
+{"t": 0.0042, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0043, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "10d51af3d5ccf1c4e82b586bc815de410454fb30cfa6d59eef5cec574cd79ef4", "hex": "68696a6b6c6d6e6f", "ok": true, "status": "OKAY"}
+{"t": 0.0044, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0045, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "2dc770fd44d44afea53d10b3282d16d91bb4b0473163ee2c4d3444fe97b2c758", "hex": "7071727374757677", "ok": true, "status": "OKAY"}
+{"t": 0.0046, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0047, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "231ec131584a3c79e3c5e9f2a39217ca1abfc924074d2131f5f43fef909d5d84", "hex": "78797a7b7c7d7e7f", "ok": true, "status": "OKAY"}
+{"t": 0.0048, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0049, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "f1a850c8b36cece8c992f96340868834098d969460cb5cb3638461e14c00e507", "hex": "8081828384858687", "ok": true, "status": "OKAY"}
+{"t": 0.005, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0052, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "533ae676b2e73ebfa34350a466e9e40a044f6fd1947dd361faa4c04ca4f6502e", "hex": "88898a8b8c8d8e8f", "ok": true, "status": "OKAY"}
+{"t": 0.0053, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0054, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "78cc470825693fbeaee8ae104794cc0ee125609cce2e5f9dec27442f88a31232", "hex": "9091929394959697", "ok": true, "status": "OKAY"}
+{"t": 0.0055, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0056, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "9162d2af70e386f41b68b0140de8af64e838586f882595f55b502bfc09e3fca6", "hex": "98999a9b9c9d9e9f", "ok": true, "status": "OKAY"}
+{"t": 0.0057, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0058, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "ebaeb334608f2c327073263eb7ea23a4ace2aa98e0f5a7d04cce3af547bcc329", "hex": "a0a1a2a3a4a5a6a7", "ok": true, "status": "OKAY"}
+{"t": 0.0059, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.006, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "9d95900b85ddd76db2512d0371ef3dfc37debfdc54c983fa6ff2304f91869241", "hex": "a8a9aaabacadaeaf", "ok": true, "status": "OKAY"}
+{"t": 0.006, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0062, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "2239b6e96d703b6e0e285416b817b1015f094d149996d810350edebe6dbc1729", "hex": "b0b1b2b3b4b5b6b7", "ok": true, "status": "OKAY"}
+{"t": 0.0063, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0065, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "55ef33eba56f5ca62bd05e739c2579aa5e7e73407fee2aa16f2c611cfdca8e3d", "hex": "b8b9babbbcbdbebf", "ok": true, "status": "OKAY"}
+{"t": 0.0066, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0067, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "2d16485c5853ff9f54e013685aff6c7a2147b9a6a934e02bcbdff83e507e0c6e", "hex": "c0c1c2c3c4c5c6c7", "ok": true, "status": "OKAY"}
+{"t": 0.0069, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0071, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "ec719f971fcc0727b5662765d8966747f6c2275d237a1c80560f9b748cd547cd", "hex": "c8c9cacbcccdcecf", "ok": true, "status": "OKAY"}
+{"t": 0.0072, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0074, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "bf7d00c6b1f28fe20548b2d6cbad0f0be7d6413ad9e913b40e0624fa165c465e", "hex": "d0d1d2d3d4d5d6d7", "ok": true, "status": "OKAY"}
+{"t": 0.0075, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0076, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "96124becbdfd7a42702cfa0f63dd5a2aba5ce8ae5892da025e90a850f08210b1", "hex": "d8d9dadbdcdddedf", "ok": true, "status": "OKAY"}
+{"t": 0.0077, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0079, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "74441a990f34ad3c414038f37a30729b5520b7aba3229cd094c9316c2caeac81", "hex": "e0e1e2e3e4e5e6e7", "ok": true, "status": "OKAY"}
+{"t": 0.008, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0081, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "003ac4678a682d51066d75e8c1bf424181f435d272984a7d1bc7ecb3bd725e75", "hex": "e8e9eaebecedeeef", "ok": true, "status": "OKAY"}
+{"t": 0.0082, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0083, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "aae81c916c72b03b0a0b7b12a82a23fca3c0698efc478be01242218ce5ae59cf", "hex": "f0f1f2f3f4f5f6f7", "ok": true, "status": "OKAY"}
+{"t": 0.0084, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0085, "op": "job_bin", "dev": "DLE08", "name": "FLASH_SCHREIBEN", "bytes": 8, "sha": "ca5503b28eb12a1f3bfddfa2d5594a51121708af20d84141c781c71242b73ded", "hex": "f8f9fafbfcfdfeff", "ok": true, "status": "OKAY"}
+{"t": 0.0086, "op": "read_binary", "name": "FLASH_SCHREIBEN_STATUS", "bytes": 1, "hex": "01"}
+{"t": 0.0087, "op": "job", "dev": "VDLE", "name": "SEND_SEGMENT", "args": "OKAY;1;", "ok": true, "status": "OKAY"}
+{"t": 0.0088, "op": "job", "dev": "DLE08", "name": "NG_SIGNATUR_PRUEFEN", "args": "", "ok": true, "status": "OKAY"}
+{"t": 0.0089, "op": "read_text", "name": "Daten", "value": "OKAY"}
+{"t": 0.009, "op": "job", "dev": "VDLE", "name": "EXIT_VDLE", "args": "OKAY", "ok": true, "status": "OKAY"}
+{"t": 0.0091, "op": "auth_audit", "ecu": "", "art": "", "attempts": 0, "ok": false, "note": "auth disabled/skipped"}
