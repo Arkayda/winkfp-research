@@ -250,7 +250,7 @@ If you utilize this research, reverse-engineering methodology, or reconstructed 
   title = {WinKFP Reverse Engineering & Protocol Reconstruction Archive},
   year = {2026},
   publisher = {GitHub},
-  howpublished = {\url{https://github.com/open6hp/winkfp-research}}
+  howpublished = {\url{https://github.com/Arkayda}}
 }
 ```
 See [`CITATION.cff`](CITATION.cff) for full machine-readable metadata.

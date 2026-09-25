@@ -5,7 +5,7 @@ abstract: "Reverse-engineering and clean-room reconstruction of selected behavio
 type: software
 authors:
   - name: "winkfp-research contributors"
-repository-code: "https://github.com/open6hp/winkfp-research"
+repository-code: "https://github.com/Arkayda/winkfp-research"
 keywords:
   - "reverse-engineering"
   - "automotive"

@@ -96,6 +96,6 @@ To preserve technical rigor, components are strictly separated into four categor
 ## 3. Relationship to `open6hp`
 
 * `winkfp-research` and `open6hp` are **separate, independent repositories**:
-  - `winkfp-research` (https://github.com/open6hp/winkfp-research) is the **research and evidence repository**. It documents how legacy BMW toolchains function, provides Ghidra analysis notes, maintains historical revision logs, and proves reconstruction equivalence via KATs and differentials.
-  - `open6hp` (https://github.com/open6hp/open6hp) is the **independent transmission flasher project** focused on ZF 6HP gearboxes.
+  - `winkfp-research` (https://github.com/Arkayda/winkfp-research) is the **research and evidence repository**. It documents how legacy BMW toolchains function, provides Ghidra analysis notes, maintains historical revision logs, and proves reconstruction equivalence via KATs and differentials.
+  - `open6hp` (https://github.com/Arkayda/open6hp) is the **independent transmission flasher project** focused on ZF 6HP gearboxes.
 * They are related projects with independent Git histories. Neither repository is a submodule, subdirectory, or package of the other.
