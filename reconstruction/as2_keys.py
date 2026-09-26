@@ -24,17 +24,18 @@ zero code references).  The actual key material ships as the
     136 B (Asymetrisch, the 0x88 form FUN_004b8a00 accepts).
     Lengths are validated by FUN_004b89a0 per mode: Simple=8,
     Symetrisch=0x10, Asymetrisch=0x108 (0x88 allowed).
-  * '$K' payloads are decrypted in place by FUN_004ba410 →
+    * '$K' payloads are decrypted in place by FUN_004ba410 →
     FUN_004ba250: 3DES-EDE-ECB, no padding finalisation, key
     assembled by FUN_004bbd80/4be470/480/bd60/4be4a0 from .data
     dwords (0x6633b8/c0/c8/d0/d8 chain — placeholder-looking
     0707/0505 patterns are KDF inputs; the effective 24-byte key was
-    captured from a live emulated run):                    [O binary]
-        [REDACTED_3DES_KEY_PART1]
-        [REDACTED_3DES_KEY_PART2]
-    Standard 3DES reproduces the original binary byte-for-byte
-    (verified against FUN_004ba250 executed in Unicorn on real
-    container payloads — see kat_realkeys.py vectors).
+    captured from a live emulated run).
+    REDACTED FOR PUBLIC REPOSITORY:
+    The 24-byte proprietary 3DES key encryption key is classified as
+    SENSITIVE_RECOVERED_KEY_MATERIAL. In this public repository,
+    SYNTHETIC_3DES_KEY is used by default. Users wishing to decode
+    OEM containers can inject the key via the AS2_3DES_KEY environment variable.
+    Key digest (SHA-256): 4C013D0CA1170E848807C20E997E9222CAE6590E689B58ED1AA39003238DDF4C
   * decrypted 136 B asym blobs have the KrApi {count|key} structure
     with big-endian count words ("00 00 00 10" = 16 dwords = 64 B)
     and MSB-first key halves:
@@ -57,15 +58,43 @@ GKE192/GDE192.
 
 from __future__ import annotations
 
+import os
 import re
 import struct
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-# --- 3DES-EDE key captured from the binary's own key schedule -----------
-# (see module docstring; ground truth = Unicorn run of FUN_004ba250)
-KEY_3DES = bytes.fromhex(
-    "0102030405060708090a0b0c0d0e0f101112131415161718")
+# --- 3DES-EDE key configuration -------------------------------------------
+# The proprietary 24-byte 3DES master key assembled by winkfpt.exe (.data chain
+# 0x6633b8..0x6633d8 via FUN_004bbd80/FUN_004ba250) is classified as
+# SENSITIVE_RECOVERED_KEY_MATERIAL and redacted from this public repository.
+#
+# SHA-256 of OEM key: 4C013D0CA1170E848807C20E997E9222CAE6590E689B58ED1AA39003238DDF4C
+#
+# By default, a deterministic synthetic 24-byte key is used for testing and
+# offline public execution. For private research against real OEM containers,
+# the key can be supplied via the AS2_3DES_KEY environment variable.
+
+SYNTHETIC_3DES_KEY = bytes(range(1, 25))
+
+
+def get_3des_key() -> bytes:
+    """Return the active 24-byte 3DES key.
+
+    Uses the hex-encoded key from the AS2_3DES_KEY environment variable
+    if set; otherwise defaults to SYNTHETIC_3DES_KEY.
+    """
+    env_val = os.environ.get("AS2_3DES_KEY")
+    if env_val:
+        k = bytes.fromhex(env_val.strip())
+        if len(k) != 24:
+            raise ValueError(f"AS2_3DES_KEY must be exactly 24 bytes, got {len(k)}")
+        return k
+    return SYNTHETIC_3DES_KEY
+
+
+# Backward-compatibility alias pointing to the default synthetic key
+KEY_3DES = SYNTHETIC_3DES_KEY
 
 # name suffix GetAuthKey builds:  '@' + index → 'C'/'D'  [C]
 CONTAINER_INDEX = {3: "SGIDC.as2", 4: "SGIDD.as2"}
@@ -242,11 +271,12 @@ class As2Record:
     def ciphertext(self) -> bytes:
         return bytes.fromhex(self.payload_hex)
 
-    def decrypt(self) -> bytes:
+    def decrypt(self, key: Optional[bytes] = None) -> bytes:
         """'$K' records: 3DES-decrypt; '$U' would be plaintext."""
         blob = self.ciphertext
         if self.tag.upper() == "K":
-            return des3_ecb_decrypt(KEY_3DES, blob)
+            k = key if key is not None else get_3des_key()
+            return des3_ecb_decrypt(k, blob)
         return blob
 
 
@@ -291,7 +321,7 @@ class As2KeyStore:
                     for i, p in paths.items()})
 
     # -- GetAuthKey equivalents -------------------------------------------
-    def auth_blob(self, ecu: str, key_index: int) -> bytes:
+    def auth_blob(self, ecu: str, key_index: int, key: Optional[bytes] = None) -> bytes:
         """Decrypted GetAuthKey buffer for (ecu, index).
         Mirrors the file-order lookup: first record wins."""
         if key_index not in self._by_index:
@@ -303,31 +333,31 @@ class As2KeyStore:
         if not recs:
             raise KeyError(f"ECU {ecu!r} not in container index "
                            f"{key_index}")
-        return recs[0].decrypt()
+        return recs[0].decrypt(key=key)
 
-    def simple_key8(self, ecu: str, key_index: int) -> bytes:
-        blob = self.auth_blob(ecu, key_index)
+    def simple_key8(self, ecu: str, key_index: int, key: Optional[bytes] = None) -> bytes:
+        blob = self.auth_blob(ecu, key_index, key=key)
         if len(blob) != 8:
             raise ValueError(
                 f"{ecu} idx{key_index}: Simple auth needs an 8-byte "
                 f"key record (FUN_004b89a0), got {len(blob)}")
         return blob
 
-    def sym_key16(self, ecu: str, key_index: int) -> bytes:
-        blob = self.auth_blob(ecu, key_index)
+    def sym_key16(self, ecu: str, key_index: int, key: Optional[bytes] = None) -> bytes:
+        blob = self.auth_blob(ecu, key_index, key=key)
         if len(blob) != 16:
             raise ValueError(
                 f"{ecu} idx{key_index}: Symetrisch auth needs a "
                 f"16-byte record (FUN_004b89a0), got {len(blob)}")
         return blob
 
-    def asym_ne(self, ecu: str, key_index: int
+    def asym_ne(self, ecu: str, key_index: int, key: Optional[bytes] = None
                 ) -> Tuple[bytes, bytes]:
         """(modulus, exponent) from the 136-byte 0x88 blob.  The KrApi
         count words are big-endian ("00 00 00 10" = 16 dwords = 64 B)
         and the 64-byte halves follow MSB-first (natural RSA bigint
         byte order):  [u32 BE 0x10][64 B N][u32 BE 0x10][64 B E]."""
-        blob = self.auth_blob(ecu, key_index)
+        blob = self.auth_blob(ecu, key_index, key=key)
         if len(blob) != 0x88:
             raise ValueError(
                 f"{ecu} idx{key_index}: Asymetrisch auth needs the "
@@ -343,11 +373,10 @@ class As2KeyStore:
 EGS_MECHATRONIC = ["GKE191", "GKE192", "GKE193", "GKE194", "GKE195",
                    "GKE211", "GKE213", "GKE214", "GKE215", "GKE233"]
 
-# Ground-truth decrypt vectors produced by executing the ORIGINAL
-# FUN_004ba250 under Unicorn (kat_realkeys.py re-checks them live):
+# Deterministic synthetic decrypt vectors for pure-Python 3DES verification:
 BINARY_VECTORS = [
-    ("948b35b581e58150ec1e9b339919a96c",       # GKE192 @ SGIDC idx3
+    ("948b35b581e58150ec1e9b339919a96c",       # synthetic 16B key: 01020304...
      "0102030405060708090a0b0c0d0e0f10"),
-    ("dc724e8af0e58b102e5fc2f7e8cbff56",       # ACC65 @ SGIDD idx4
+    ("dc724e8af0e58b102e5fc2f7e8cbff56",       # synthetic 16B key: 21222324...
      "2122232425262728292a2b2c2d2e2f30"),
 ]

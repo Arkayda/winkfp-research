@@ -56,11 +56,8 @@ When the record tag is `'K'`, the hex payload is decoded into raw bytes and decr
 * **Cipher**: Triple-DES (3DES / TDEA) in Electronic Codebook (ECB) mode (`DES-EDE3-ECB`).
 * **Padding**: Raw block decryption without PKCS#7 finalization.
 * **Effective 24-Byte Key**:
-  Reconstructed from `.data` dwords at `0x006633b8` / `0x006633c0` / `0x006633c8` / `0x006633d0`:
-  ```text
-  [REDACTED_3DES_KEY_PART1]
-  [REDACTED_3DES_KEY_PART2]
-  ```
+  Reconstructed at runtime from `.data` dwords at `0x006633b8` / `0x006633c0` / `0x006633c8` / `0x006633d0` / `0x006633d8` via `FUN_004bbd80` -> `FUN_004ba250`.
+  *(Note: The proprietary 24-byte 3DES master key encryption key is classified as `SENSITIVE_RECOVERED_KEY_MATERIAL` and redacted from this public repository. SHA-256 digest: `4C013D0CA1170E848807C20E997E9222CAE6590E689B58ED1AA39003238DDF4C`).*
 
 ---
 

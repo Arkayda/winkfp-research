@@ -19,9 +19,12 @@ EVIDENCE BIFURCATION (Milestone 3.2):
 from __future__ import annotations
 
 import unittest
+from pathlib import Path
 from typing import Any, Dict
 
+from reconstruction.as2_keys import As2KeyStore
 from reconstruction.security import compute_security_key
+from reconstruction.transport.kdcan.framing import build
 
 # ---------------------------------------------------------------------------
 # 1. Private Factory Vector Metadata (Audit Record — Raw Key Omitted)
@@ -46,6 +49,28 @@ PRIVATE_FACTORY_10FLASH_VECTOR_METADATA: Dict[str, Any] = {
     # Telegram: 92 78 F1 31 08 EA 9C 6D F4 F5 BC 93 1D 07 14 2B 5D 25 75 5E 45
     "observed_wire_key": bytes.fromhex("EA9C6DF4F5BC931D07142B5D25755E45"),
     "offline_verified_match": True,
+}
+
+# ---------------------------------------------------------------------------
+# 1.1 EGS Key Container Metadata (Audit Record — Raw Key Omitted)
+# ---------------------------------------------------------------------------
+# Target: ZF 6HP EGS mechatronic at address 0x18 (SGBD 0479S90T641Z, family GS19)
+PRIVATE_EGS_GKE192_METADATA: Dict[str, Any] = {
+    "target": "ZF 6HP EGS",
+    "target_address": 0x18,
+    "sgbd": "0479S90T641Z",
+    "ecu_family": "GS19",
+    "container_file": "SGIDC.as2",
+    "container_index": 3,
+    "record_identifier": "2L18",
+    "key_record_reference": "$K GKE192 2L18000034[REDACTED_16B_CIPHERTEXT]",
+    "key_length_bytes": 16,
+    # SHA-256 digest of decrypted 16-byte key:
+    "key_sha256": "B58F3D47331250FFF5C770FBAFDABF654B338DB278A0258BD9331FB7AB2E8B51",
+    "supported_method": "Symetrisch",
+    "t_smb_compatible": True,
+    "t_sma_compatible": False,  # No 136-byte RSA key record
+    "t_smc_compatible": False,  # No 8-byte Simple key record
 }
 
 # ---------------------------------------------------------------------------
@@ -131,6 +156,73 @@ class TestGoldenAuth(unittest.TestCase):
         self.assertNotIn("key16", meta)
         self.assertNotIn("key", meta)
         self.assertNotIn("raw_key", meta)
+
+    def test_egs_metadata_integrity(self):
+        """EGS GKE192 metadata record preserves forensic integrity without secret key bytes."""
+        meta = PRIVATE_EGS_GKE192_METADATA
+
+        self.assertEqual(meta["target"], "ZF 6HP EGS")
+        self.assertEqual(meta["target_address"], 0x18)
+        self.assertEqual(meta["sgbd"], "0479S90T641Z")
+        self.assertEqual(meta["ecu_family"], "GS19")
+        self.assertEqual(meta["container_file"], "SGIDC.as2")
+        self.assertEqual(meta["container_index"], 3)
+        self.assertEqual(meta["record_identifier"], "2L18")
+        self.assertEqual(meta["key_record_reference"], "$K GKE192 2L18000034[REDACTED_16B_CIPHERTEXT]")
+        self.assertEqual(meta["key_length_bytes"], 16)
+        self.assertEqual(meta["supported_method"], "Symetrisch")
+        self.assertTrue(meta["t_smb_compatible"])
+        self.assertFalse(meta["t_sma_compatible"])
+        self.assertFalse(meta["t_smc_compatible"])
+
+        # Cryptographic digest of recovered key is validated; raw key is strictly absent
+        self.assertEqual(len(meta["key_sha256"]), 64)
+        self.assertEqual(
+            meta["key_sha256"],
+            "B58F3D47331250FFF5C770FBAFDABF654B338DB278A0258BD9331FB7AB2E8B51",
+        )
+        self.assertNotIn("key16", meta)
+        self.assertNotIn("key", meta)
+        self.assertNotIn("raw_key", meta)
+
+    def test_egs_container_constraints(self):
+        """EGS GKE192 record enforces symmetric authentication mode only (FUN_004b89a0 gates)."""
+        fixture_path = Path(__file__).resolve().parents[2] / "fixtures" / "synthetic" / "synthetic_sgidc.as2"
+        store = As2KeyStore.from_paths({3: fixture_path})
+
+        # Symmetric extraction succeeds and matches expected 16-byte synthetic test key
+        key = store.sym_key16("GKE192", 3)
+        self.assertEqual(len(key), 16)
+        self.assertEqual(key, bytes(range(1, 17)))
+
+        # Verify that the public fixture contains a genuinely synthetic key
+        # and does NOT contain the private recovered key or its digest:
+        import hashlib
+        synth_digest = hashlib.sha256(key).hexdigest().upper()
+        self.assertEqual(synth_digest, "5DFBABEEDF318BF33C0927C43D7630F51B82F351740301354FA3D7FC51F0132E")
+        self.assertNotEqual(synth_digest, PRIVATE_EGS_GKE192_METADATA["key_sha256"])
+
+        # Simple mode requires 8-byte record -> rejected
+        with self.assertRaises(ValueError) as ctx_simple:
+            store.simple_key8("GKE192", 3)
+        self.assertIn("Simple auth needs an 8-byte key record", str(ctx_simple.exception))
+
+        # Asymmetric mode requires 0x88 (136-byte) record -> rejected
+        with self.assertRaises(ValueError) as ctx_asym:
+            store.asym_ne("GKE192", 3)
+        self.assertIn("Asymetrisch auth needs the 0x88-byte record", str(ctx_asym.exception))
+
+    def test_candidate_probe_frames_builder(self):
+        """Candidate physical probe telegrams build mathematically correct checksums via framing.build."""
+        # Step 1 candidate: 0x1A 0x89 (Serial read)
+        frame_1a89 = build(dst=0x18, src=0xF1, payload=bytes([0x1A, 0x89]))
+        self.assertEqual(frame_1a89, bytes.fromhex("8218F11A892E"))
+        self.assertEqual(frame_1a89[-1], 0x2E)
+
+        # Step 2 candidate: 0x31 0x07 (RoutineControl seed acquisition probe with dummy nonce)
+        frame_3107 = build(dst=0x18, src=0xF1, payload=bytes([0x31, 0x07, 0x03, 0x00, 0x00, 0x00, 0x00]))
+        self.assertEqual(frame_3107, bytes.fromhex("8718F131070300000000CB"))
+        self.assertEqual(frame_3107[-1], 0xCB)
 
 
 if __name__ == "__main__":

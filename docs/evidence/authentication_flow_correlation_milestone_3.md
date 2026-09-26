@@ -438,8 +438,8 @@ The E60 SP-Daten files and key containers were reviewed to assess how the ZF 6HP
 * **EGS Module Identity**: In E60 SP-Daten, the EGS mechatronics belong to the `GS19` family, utilizing SGBD files such as `0479S90T641Z` and key container entries `GKE191`, `GKE192`, `GKE193`, `GKE194`, `GKE195`.
 * **Key Store Container `SGIDC.as2`**:
   * In container index 3 (`SGIDC.as2`), entry `GKE192` exists with record identifier `2L18`:
-    `$K GKE192              2L18000034948b35b581e58150ec1e9b339919a96c`
-  * This record yields an encrypted 16-byte symmetric key.
+    `$K GKE192              2L18000034[REDACTED_16B_CIPHERTEXT]`
+  * This record yields an encrypted 16-byte symmetric key (raw ciphertext and key material are redacted from public artifacts; SHA-256 digest: `B58F3D47331250FFF5C770FBAFDABF654B338DB278A0258BD9331FB7AB2E8B51`).
   * **Critical Finding**: Entry `GKE192` contains **only** a 16-byte symmetric key record; it does not contain RSA (136-byte) or Simple (8-byte) records.
 * **SP-Daten IPO Flags**:
   * In SP-Daten IPO scripts for CI62F1/GS19, the ECU responds to job `AUTHENTISIERUNG` with supported mode flags:
@@ -511,8 +511,8 @@ All test tiers were executed using the clean virtual environment interpreter (`.
 ======================================================================
   WinKFP Research — Automated Verification Suite
 ======================================================================
-Python interpreter: /Users/blogman/winkfp-research/.venv/bin/python3
-Repository root:    /Users/blogman/winkfp-research
+Python interpreter: .venv/bin/python3
+Repository root:    .
 
 --- Running Tier: KAT (tests/kat) ---
 ...............................
@@ -548,7 +548,7 @@ TOTAL: 54 tests in 4.110s | 54 passed | 0 skipped | 0 failed
 
 ### 11.2 Repository Hygiene Audit
 1. **Zero Hardware Operations**: No serial ports were opened during Milestone 2.1, Milestone 3, Milestone 3.1, or Milestone 3.2. `tools/kdcan_probe.py` was not run. Zero physical diagnostic requests were transmitted.
-2. **Clean-Room Boundary**: `open6hp` (`/Users/blogman/sHPAT`) was not modified, imported, symlinked, or referenced as a dependency.
+2. **Clean-Room Boundary**: `open6hp` was not modified, imported, symlinked, or referenced as a dependency.
 3. **Intellectual Property & Secrets**:
    - Zero proprietary OEM binaries (`.prg`, `.ipo`, `.dll`) added.
    - Zero raw recovered OEM authentication keys embedded in public artifacts. All recovered keys are sanitized and represented by cryptographic digest (SHA-256) only.

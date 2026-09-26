@@ -5,6 +5,8 @@ from ...as2_keys import (
     des3_ecb_decrypt,
     BINARY_VECTORS,
     KEY_3DES,
+    SYNTHETIC_3DES_KEY,
+    get_3des_key,
 )
 
 __all__ = [
@@ -13,4 +15,6 @@ __all__ = [
     "des3_ecb_decrypt",
     "BINARY_VECTORS",
     "KEY_3DES",
+    "SYNTHETIC_3DES_KEY",
+    "get_3des_key",
 ]

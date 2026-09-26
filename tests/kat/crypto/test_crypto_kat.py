@@ -1,5 +1,6 @@
 """Cryptographic Known-Answer Tests (KAT) for KrApi algorithms."""
 
+import os
 import unittest
 import hashlib
 from reconstruction.crypto import (
@@ -12,7 +13,13 @@ from reconstruction.crypto import (
     RSA_KEYS,
     msvc_rand_after_srand,
 )
-from reconstruction.auth import des3_ecb_decrypt, BINARY_VECTORS, As2Record
+from reconstruction.auth import (
+    des3_ecb_decrypt,
+    BINARY_VECTORS,
+    As2Record,
+    SYNTHETIC_3DES_KEY,
+    get_3des_key,
+)
 from reconstruction.as2_keys import _des_block, _des_subkeys, KEY_3DES
 
 
@@ -48,10 +55,35 @@ class TestCryptoKAT(unittest.TestCase):
         self.assertEqual(ct.hex().lower(), "85e813540f0ab405")
 
     def test_3des_ecb_decrypt_vectors(self):
-        """3DES-EDE-ECB decrypt against original machine code vectors."""
+        """3DES-EDE-ECB decrypt against synthetic vectors."""
         for ct_hex, pt_hex in BINARY_VECTORS:
             pt = des3_ecb_decrypt(KEY_3DES, bytes.fromhex(ct_hex))
             self.assertEqual(pt.hex().lower(), pt_hex.lower())
+
+    def test_get_3des_key_environment(self):
+        """get_3des_key returns synthetic default or parses AS2_3DES_KEY env variable."""
+        # 1. Default fallback is synthetic key
+        orig_env = os.environ.get("AS2_3DES_KEY")
+        try:
+            if "AS2_3DES_KEY" in os.environ:
+                del os.environ["AS2_3DES_KEY"]
+            self.assertEqual(get_3des_key(), SYNTHETIC_3DES_KEY)
+            self.assertEqual(KEY_3DES, SYNTHETIC_3DES_KEY)
+
+            # 2. Valid 24-byte hex key injected via environment
+            injected_hex = "aa" * 24
+            os.environ["AS2_3DES_KEY"] = injected_hex
+            self.assertEqual(get_3des_key(), bytes.fromhex(injected_hex))
+
+            # 3. Invalid length raises ValueError
+            os.environ["AS2_3DES_KEY"] = "aa" * 16
+            with self.assertRaises(ValueError):
+                get_3des_key()
+        finally:
+            if orig_env is not None:
+                os.environ["AS2_3DES_KEY"] = orig_env
+            elif "AS2_3DES_KEY" in os.environ:
+                del os.environ["AS2_3DES_KEY"]
 
     def test_rsa_key_parameters(self):
         """RSA static keys 3, 4, 5: 128 bytes (1024-bit) and strictly odd."""
