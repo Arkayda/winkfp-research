@@ -129,31 +129,36 @@ stateDiagram-v2
 To strictly separate physical wire observations from high-level EDIABAS / SGBD job semantics, all diagnostic interactions are evaluated across two independent evidence dimensions:
 
 1. **`OBSERVED_WIRE`**: A specific byte sequence was physically transmitted and received on the physical K+DCAN wire.
-2. **`OBSERVED_JOB_MAPPING`**: A high-level EDIABAS / SGBD / WinKFP job name is confirmed to map to a specific wire telegram via direct execution evidence (e.g. SGBD bytecode execution or factory EDIABAS trace correlation for this ECU).
+2. **`OBSERVED_JOB_MAPPING[target=X]`**: A high-level EDIABAS / SGBD / WinKFP job name is confirmed to map to a specific wire telegram for target `X` via direct execution evidence (e.g. SGBD bytecode execution or factory EDIABAS trace correlation). Must never be generalized across all ECUs.
+3. **`INFERRED_JOB_MAPPING[target=X]`**: Job believed to map to a wire service based on context or generic protocol knowledge, but direct target-specific execution evidence is absent.
+4. **`UNKNOWN[target=X]`**: Insufficient evidence to establish the mapping. Fails closed.
+5. **`RECONSTRUCTION_ALIAS`**: Convenient name introduced by the clean-room reconstruction that is not established as an original EDIABAS/SGBD job name.
+6. **`FORBIDDEN`**: Operation explicitly prohibited by safety boundary.
+7. **`VIRTUAL`**: Internal orchestration / GUI / callback operation without wire representation.
 
-The three direct probe runs establish **`OBSERVED_WIRE` ONLY**. Direct SGBD execution traces for this specific transmission controller were not captured during this milestone; therefore, all job mappings remain `INFERRED_JOB_MAPPING` or `UNKNOWN`.
+The three direct probe runs establish **`OBSERVED_WIRE` ONLY**. Direct SGBD execution traces for this specific transmission controller (target: ZF 6HP EGS, address `0x18`, SGBD `0479S90T641Z`) were not captured during this milestone; therefore, **`OBSERVED_JOB_MAPPING[target=0479S90T641Z]` is completely absent**, and all high-level job names for the EGS remain strictly categorized as `UNKNOWN[target=0479S90T641Z]` or `RECONSTRUCTION_ALIAS`.
 
-### Two-Dimensional Evidence Matrix
+### Target-Scoped Evidence Matrix
 
-| Diagnostic Operation / Job Name | Raw Wire Telegram | `OBSERVED_WIRE` | `OBSERVED_JOB_MAPPING` | Final Classification | DirectKdcanBus Handling |
+| Diagnostic Operation / Job Name | Raw Wire Telegram | `OBSERVED_WIRE` | Target-Scoped Evidence | Final Classification | DirectKdcanBus Handling |
 |---|---|---|---|---|---|
-| **Wire: AIF Identification Query** | `0x1A 0x86` | **YES** (3/3 runs, 66 B) | N/A (low-level wire service) | **OBSERVED_WIRE** | Executed via `wire_read_aif()` or `transport.send_job()`. |
-| **Wire: TesterPresent** | `0x3E 0x00` | **YES** (3/3 runs, `7F 3E 12`) | N/A (low-level wire service) | **OBSERVED_WIRE** | Executed via `wire_tester_present()` or `transport.send_job()`. |
-| `AIF_LESEN` | Inferred to `0x1A 0x86` | **YES** (wire verified) | **NO** (unverified SGBD mapping on ECU) | **INFERRED_JOB_MAPPING** | **FAIL-CLOSED** by default (`NotImplementedError`); allowed only with `allow_inferred=True`. |
-| `TESTER_PRESENT` | Inferred to `0x3E 0x00` | **YES** (wire verified) | **NO** (unverified SGBD mapping on ECU) | **INFERRED_JOB_MAPPING** | **FAIL-CLOSED** by default (`NotImplementedError`); allowed only with `allow_inferred=True`. |
-| `IDENT_LESEN` | Inferred to `0x1A 0x86` / `0x1A 0x80` | **YES** (via `1A 86`) | **NO** (unverified SGBD mapping on ECU) | **INFERRED_JOB_MAPPING** | **FAIL-CLOSED** by default (`NotImplementedError`); allowed only with `allow_inferred=True`. |
-| `SG_PHYS_HWNR_LESEN` | Inferred to extract ZB from `0x1A 0x86` | **YES** (via `1A 86`) | **NO** (unverified SGBD mapping on ECU) | **INFERRED_JOB_MAPPING** | **FAIL-CLOSED** by default (`NotImplementedError`); allowed only with `allow_inferred=True`. |
-| `SG_STATUS_LESEN` | Speculatively assumed `0x3E 0x00` | **NO** | **NO** (zero trace / SGBD evidence) | **UNKNOWN** | **FAIL-CLOSED ALWAYS** (`NotImplementedError` even if `allow_inferred=True`). |
-| `AUTHENTISIERUNG` | KWP2000 ReadAuthCapabilities | **NO** | **NO** | **INFERRED** | **FAIL-CLOSED** (`NotImplementedError`). |
-| `AUTHENTISIERUNG_ZUFALLSZAHL_LESEN` | `0x27 0x01` / `0x03` / `0x05` (Seed) | **NO** | **NO** | **INFERRED** | **FAIL-CLOSED** (`NotImplementedError`). |
-| `NG_AUTHENTISIERUNG_START` | `0x27 0x02` / `0x04` / `0x06` (Key) | **NO** | **NO** | **INFERRED** | **FAIL-CLOSED** (`NotImplementedError`). |
-| `SERIENNUMMER_LESEN` | `0x1A 0x90` / `0x21` serial record | **NO** | **NO** | **INFERRED** | **FAIL-CLOSED** (`NotImplementedError`). |
-| `FLASH_PARAMETER_SETZEN` | Session / Baud / Block size negotiation | **NO** | **NO** | **UNKNOWN** | **FAIL-CLOSED** (`NotImplementedError`). |
-| `INIT_VDLE` | WinKFP VDLE virtual dispatcher callback | N/A (virtual) | N/A (virtual) | **VIRTUAL** | **FAIL-CLOSED** (`NotImplementedError`). |
-| `FLASH_SCHREIBEN` | Flash Block Write Transfer (`0x36`) | Prohibited | Prohibited | **FORBIDDEN** | Hard Block (`KdcanError`). |
-| `FLASH_SCHREIBEN_XXL` | High-speed Flash Block Write | Prohibited | Prohibited | **FORBIDDEN** | Hard Block (`KdcanError`). |
-| `SEND_SEGMENT` | VDLE segment download iteration | Prohibited | Prohibited | **FORBIDDEN** | Hard Block (`KdcanError`). |
-| `NG_SIGNATUR_PRUEFEN` | Signature verification / checksum job | Prohibited | Prohibited | **FORBIDDEN** | Hard Block (`KdcanError`). |
+| **Wire: AIF Identification Query** | `0x1A 0x86` | **YES** (3/3 runs, 66 B) | Bench EGS (`0x18`) | **OBSERVED_WIRE** | Executed via `wire_read_aif()` or `transport.send_job()`. |
+| **Wire: TesterPresent** | `0x3E 0x00` | **YES** (3/3 runs, `7F 3E 12`) | Bench EGS (`0x18`) | **OBSERVED_WIRE** | Executed via `wire_tester_present()` or `transport.send_job()`. |
+| `AIF_LESEN` | Inferred to `0x1A 0x86` | **YES** (wire verified) | Trace `10FLASH` uses `0x23`; no EGS trace | **UNKNOWN[target=0479S90T641Z]** | **FAIL-CLOSED** by default (`NotImplementedError`); allowed only with `allow_inferred=True`. |
+| `TESTER_PRESENT` | Inferred to `0x3E 0x00` | **YES** (wire verified) | Trace `10FLASH` uses `DIAGNOSE_AUFRECHT -> 3E 02` | **RECONSTRUCTION_ALIAS** / **UNKNOWN[target=0479S90T641Z]** | **FAIL-CLOSED** by default (`NotImplementedError`); allowed only with `allow_inferred=True`. |
+| `IDENT_LESEN` | Inferred to `0x1A 0x86` / `0x1A 0x80` | **YES** (via `1A 86`) | Factory trace uses `IDENT -> 1A 80` | **RECONSTRUCTION_ALIAS** / **UNKNOWN[target=0479S90T641Z]** | **FAIL-CLOSED** by default (`NotImplementedError`); allowed only with `allow_inferred=True`. |
+| `SG_PHYS_HWNR_LESEN` | Inferred to extract ZB from `0x1A 0x86` | **YES** (via `1A 86`) | Factory trace uses `PHYSIKALISCHE_HW_NR_LESEN -> 1A 87` | **RECONSTRUCTION_ALIAS** / **UNKNOWN[target=0479S90T641Z]** | **FAIL-CLOSED** by default (`NotImplementedError`); allowed only with `allow_inferred=True`. |
+| `SG_STATUS_LESEN` | Speculatively assumed `0x3E 0x00` | **NO** | Unevidenced assumption | **UNKNOWN[target=0479S90T641Z]** | **FAIL-CLOSED ALWAYS** (`NotImplementedError` even if `allow_inferred=True`). |
+| `AUTHENTISIERUNG` | KWP2000 ReadAuthCapabilities | **NO** | No EGS auth wire trace | **UNKNOWN[target=0479S90T641Z]** | **FAIL-CLOSED** (`NotImplementedError`). |
+| `AUTHENTISIERUNG_ZUFALLSZAHL_LESEN` | RoutineControl `0x31 0x07` (Seed) | **NO** | `OBSERVED_JOB_MAPPING[target=10FLASH]` (`31 07`) | **UNKNOWN[target=0479S90T641Z]** | **FAIL-CLOSED** (`NotImplementedError`). |
+| `NG_AUTHENTISIERUNG_START` | RoutineControl `0x31 0x08` (Key) | **NO** | `OBSERVED_JOB_MAPPING[target=10FLASH]` (`31 08`) | **UNKNOWN[target=0479S90T641Z]** | **FAIL-CLOSED** (`NotImplementedError`). |
+| `SERIENNUMMER_LESEN` | `0x1A 0x89` serial record | **NO** | `OBSERVED_JOB_MAPPING[target=10FLASH]` (`1A 89`) | **UNKNOWN[target=0479S90T641Z]** | **FAIL-CLOSED** (`NotImplementedError`). |
+| `FLASH_PARAMETER_SETZEN` | Session / Baud / Block size negotiation | **NO** | SGBD configuration | **UNKNOWN[target=0479S90T641Z]** | **FAIL-CLOSED** (`NotImplementedError`). |
+| `INIT_VDLE` | WinKFP VDLE virtual dispatcher callback | N/A (virtual) | WinKFP internal GUI callback | **VIRTUAL** | **FAIL-CLOSED** (`NotImplementedError`). |
+| `FLASH_SCHREIBEN` | Flash Block Write Transfer (`0x36`) | Prohibited | Hard safety interlock | **FORBIDDEN** | Hard Block (`KdcanError`). |
+| `FLASH_SCHREIBEN_XXL` | High-speed Flash Block Write | Prohibited | Hard safety interlock | **FORBIDDEN** | Hard Block (`KdcanError`). |
+| `SEND_SEGMENT` | VDLE segment download iteration | Prohibited | Hard safety interlock | **FORBIDDEN** | Hard Block (`KdcanError`). |
+| `NG_SIGNATUR_PRUEFEN` | Signature verification / checksum job | Prohibited | Hard safety interlock | **FORBIDDEN** | Hard Block (`KdcanError`). |
 
 ---
 
@@ -175,7 +180,7 @@ The 66-byte AIF payload returned by the physical ZF 6HP EGS mechatronic decoded 
 
 ## 8. Non-Destructive Safety Boundary Verification
 
-1. **SecurityAccess Prohibited**: Service `0x27` was **NEVER** sent during Milestone 1.1 physical testing. No seeds were requested, and no authentication attempts were performed.
+1. **Authentication Prohibited**: Neither KWP2000 SecurityAccess (`0x27`) nor RoutineControl authentication (`0x31 0x07` / `0x31 0x08`) was sent during Milestone 1.1 physical testing. No seeds were requested, and no authentication attempts were performed.
 2. **Flash Services Blocked**: Services `0x34` (RequestDownload), `0x36` (TransferData), `0x37` (RequestTransferExit), and `0x31` (RoutineControl / EraseMemory) are blocked by both software assertion gates and physical bus adapter exceptions.
 3. **Fail-Closed Execution**: Calling unmapped or inferred jobs without explicit configuration raises `NotImplementedError` rather than fabricating synthetic diagnostic responses.
 

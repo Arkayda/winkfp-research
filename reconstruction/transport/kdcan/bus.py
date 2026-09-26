@@ -6,17 +6,20 @@ Contract:
 - read_text(name: str, default: str = "") -> str
 - read_binary(name: str) -> bytes
 
-TWO-DIMENSIONAL EVIDENCE POLICY:
+CANONICAL TARGET-SCOPED EVIDENCE POLICY:
 - OBSERVED_WIRE: Wire exchanges physically captured and confirmed on hardware.
   Direct wire operations (wire_read_aif, wire_tester_present) execute these directly.
-- OBSERVED_JOB_MAPPING: Verified correspondence between high-level EDIABAS job
-  names and wire requests via direct SGBD bytecode execution or correlated factory traces.
-- INFERRED_JOB_MAPPING: Jobs where wire service is observed, but SGBD job mapping
-  lacks direct execution evidence for this ECU (AIF_LESEN, TESTER_PRESENT, IDENT_LESEN,
-  SG_PHYS_HWNR_LESEN). These FAIL CLOSED by default unless allow_inferred=True.
-- UNKNOWN: Unevidenced job names (e.g. SG_STATUS_LESEN -> 0x3E 0x00 assumption is rejected).
+- OBSERVED_JOB_MAPPING[target=X]: Verified correspondence between high-level EDIABAS job
+  names and wire requests via direct SGBD bytecode execution or correlated factory traces for target X.
+  (Absent for bench target 0479S90T641Z / EGS 0x18).
+- INFERRED_JOB_MAPPING[target=X]: Jobs where wire service is observed, but SGBD job mapping
+  lacks direct execution evidence for this ECU (e.g. AIF_LESEN on EGS).
+- RECONSTRUCTION_ALIAS: Convenient names introduced by clean-room reconstruction
+  (IDENT_LESEN, TESTER_PRESENT, SG_PHYS_HWNR_LESEN). Must not be represented as original OEM jobs.
+- UNKNOWN[target=X]: Unevidenced job names (e.g. SG_STATUS_LESEN -> 0x3E 0x00 assumption is rejected).
   These FAIL CLOSED always.
-- FORBIDDEN: Flash modification and erase operations. Hard safety block.
+- FORBIDDEN: Flash modification, erase, and write operations. Hard safety block.
+- VIRTUAL: Internal orchestration / GUI / callback operation without wire representation.
 """
 
 from __future__ import annotations
@@ -116,18 +119,20 @@ class DirectKdcanBus:
                 f"fail-closed per repository evidence policy."
             )
 
-        # 3. High-level WinKFP/EDIABAS jobs classified as INFERRED_JOB_MAPPING:
-        # Physical wire telegrams (0x1A 0x86 and 0x3E 0x00) are OBSERVED_WIRE,
-        # but their mapping to these specific high-level EDIABAS job names on this ECU
-        # lacks direct SGBD bytecode execution evidence. Fail-closed unless allow_inferred=True.
+        # 3. High-level WinKFP/EDIABAS jobs classified as INFERRED_JOB_MAPPING or RECONSTRUCTION_ALIAS:
+        # Physical wire telegrams (0x1A 0x86 and 0x3E 0x00) are OBSERVED_WIRE on this ECU,
+        # but their mapping to high-level EDIABAS job names on this ECU (0479S90T641Z)
+        # lacks direct SGBD bytecode execution evidence (AIF_LESEN is INFERRED_JOB_MAPPING[target=0479S90T641Z];
+        # IDENT_LESEN, SG_PHYS_HWNR_LESEN, TESTER_PRESENT are RECONSTRUCTION_ALIAS).
+        # Fail-closed unless allow_inferred=True.
         if name in ("AIF_LESEN", "IDENT_LESEN", "SG_PHYS_HWNR_LESEN", "TESTER_PRESENT"):
             if not self.allow_inferred:
                 self._last_job_status = "ERROR_JOB_INFERRED_FAIL_CLOSED"
                 self._text_results["JOB_STATUS"] = self._last_job_status
                 raise NotImplementedError(
-                    f"Job '{name}' on device '{device}' is INFERRED_JOB_MAPPING (physical wire request is observed, "
-                    f"but high-level job mapping lacks direct SGBD execution evidence for this ECU); "
-                    f"fail-closed per repository evidence policy. Pass allow_inferred=True to execute."
+                    f"Job '{name}' on device '{device}' is INFERRED_JOB_MAPPING / RECONSTRUCTION_ALIAS "
+                    f"(physical wire request is observed, but high-level job mapping lacks direct SGBD execution "
+                    f"evidence for this ECU); fail-closed per repository evidence policy. Pass allow_inferred=True to execute."
                 )
             if name in ("AIF_LESEN", "IDENT_LESEN", "SG_PHYS_HWNR_LESEN"):
                 return self._execute_aif_lesen(dst)

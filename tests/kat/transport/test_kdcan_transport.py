@@ -306,8 +306,8 @@ class TestPhysicalHardwareDiscovery(unittest.TestCase):
     def test_physical_port_detection(self):
         port = SerialKdcanTransport.auto_detect_port()
         print(f"\n[Hardware Scan] Detected K+DCAN serial port: {port}")
-        if port and os.path.exists(port):
-            # Port is physically present; verify open and close
+        # Only open physical port when explicitly requested (keeps KAT suites strictly off-hardware by default)
+        if os.environ.get("KDCAN_ENABLE_HW_TEST") == "1" and port and os.path.exists(port):
             transport = SerialKdcanTransport(port=port)
             try:
                 transport.open()
@@ -317,7 +317,7 @@ class TestPhysicalHardwareDiscovery(unittest.TestCase):
                 transport.close()
                 self.assertIsNone(transport._ser)
         else:
-            print("[Hardware Scan] No physical K+DCAN adapter detected; skipping hardware open check.")
+            print("[Hardware Scan] Pure off-hardware mode; skipping hardware port open.")
 
 
 if __name__ == "__main__":
