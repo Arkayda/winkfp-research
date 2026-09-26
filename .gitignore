@@ -18,12 +18,15 @@ ENV/
 env/
 .env
 
-# Editor and OS files
+# Editor, agent, and OS files
 .DS_Store
 .vscode/
 .idea/
 *.swp
 *.swo
+docs/superpowers/
+.superpowers/
+superpowers/
 
 # Local BMW proprietary binaries and data (MUST NEVER BE COMMITTED)
 *.as2
