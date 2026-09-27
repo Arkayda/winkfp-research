@@ -225,13 +225,13 @@ We formulate and evaluate three competing hypotheses regarding the wire-level au
 During Milestone 1.1 validation, three independent bench runs were executed against the physical ZF 6HP EGS mechatronic at address `0x18`:
 
 1. **Transaction 1: `0x3E 0x00` (TesterPresent)**:
-   - Request: `82 18 F1 3E 00 CD`
-   - Response: `83 F1 18 7F 3E 12 57`
+   - Request: `82 18 F1 3E 00 C9`
+   - Response: `83 F1 18 7F 3E 12 5B`
    - Result: Negative Response `7F 3E 12` (NRC `0x12`: SubFunctionNotSupported-InvalidFormat).
    - Behavior: 100% reproducible across 3 runs.
 2. **Transaction 2: `0x1A 0x86` (ReadDataByIdentifier: AIF)**:
-   - Request: `82 18 F1 1A 86 4B`
-   - Response: `B8 F1 18 5A 86 40 43 53 36 38 32 39 34 20 ...` (66 bytes payload)
+   - Request: `82 18 F1 1A 86 2B`
+   - Response: `80 F1 18 42 5A 86 40 43 53 36 38 32 39 34 20 ... 0F` (66 bytes payload, 71 total bytes)
    - Extracted Identifiers:
      - SGBD: `0479S90T641Z`
      - ZB-Number: `7592132` (Current), `7592133` (Target/Change)

@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-09-26T14:32:00.724519+00:00",
+  "mode": "HARDWARE_READ_ONLY",
+  "target": "0x18",
+  "tester": "0xF1",
+  "transport": "K+DCAN",
+  "serial_port": "/dev/cu.usbserial-A50285BI",
+  "probe": "aif",
+  "tx": "82 18 f1 1a 86 2b",
+  "rx": "80 f1 18 42 5a 86 40 43 53 36 38 32 39 34 20 08 12 04 00 00 07 59 21 32 00 00 07 59 21 33 00 00 00 00 00 00 00 02 40 4e 46 53 30 31 00 30 34 37 39 53 39 30 54 36 34 31 5a 57 42 41 4e 58 37 31 30 34 30 ff ff ff 0f",
+  "rx_payload": "5a 86 40 43 53 36 38 32 39 34 20 08 12 04 00 00 07 59 21 32 00 00 07 59 21 33 00 00 00 00 00 00 00 02 40 4e 46 53 30 31 00 30 34 37 39 53 39 30 54 36 34 31 5a 57 42 41 4e 58 37 31 30 34 30 ff ff ff",
+  "rx_len": 71,
+  "checksum_valid": true,
+  "rtt_ms": 85.01,
+  "result": "SUCCESS",
+  "evidence_class": "OBSERVED_WIRE",
+  "parsed": {
+    "short_vin": "CS68294",
+    "flash_date": "2008.12.04",
+    "zb_number": "7592132",
+    "sw_number": "7592133",
+    "sgbd": "0479S90T641Z",
+    "tool_marker": "NFS01",
+    "chassis_prefix": "WBANX71040",
+    "chassis_vin_sanitized": "WBANX71040XXXXXXX"
+  },
+  "golden_comparison": {
+    "status": "EXACT_BYTE_MATCH",
+    "tx_match": true,
+    "rx_exact_match": true,
+    "expected_tx": "82 18 f1 1a 86 2b",
+    "expected_rx": "80 f1 18 42 5a 86 40 43 53 36 38 32 39 34 20 08 12 04 00 00 07 59 21 32 00 00 07 59 21 33 00 00 00 00 00 00 00 02 40 4e 46 53 30 31 00 30 34 37 39 53 39 30 54 36 34 31 5a 57 42 41 4e 58 37 31 30 34 30 ff ff ff 0f",
+    "reference_source": "docs/DIRECT_KDCAN_VALIDATION.md",
+    "differences": []
+  }
+}

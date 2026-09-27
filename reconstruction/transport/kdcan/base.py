@@ -44,3 +44,21 @@ class KdcanTransport(ABC):
     ) -> bytes:
         """Transmit DS2 frame and return the response payload."""
         ...
+
+    def send_job_raw(
+        self,
+        dst: int,
+        payload: bytes,
+        src: int = 0xF1,
+        timeout: Optional[float] = None,
+    ) -> tuple[bytes, bytes, bytes, float]:
+        """Transmit DS2 frame and return (raw_tx, raw_rx, payload, rtt_ms)."""
+        import time
+        from . import framing
+
+        raw_tx = framing.build(dst, src, payload)
+        t0 = time.perf_counter()
+        resp_payload = self.send_job(dst, payload, src=src, timeout=timeout)
+        rtt_ms = (time.perf_counter() - t0) * 1000.0
+        raw_rx = framing.build(src, dst, resp_payload)
+        return raw_tx, raw_rx, resp_payload, rtt_ms

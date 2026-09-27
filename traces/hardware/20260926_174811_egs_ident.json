@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-09-26T14:48:10.870016+00:00",
+  "mode": "HARDWARE_READ_ONLY",
+  "target": "0x18",
+  "tester": "0xF1",
+  "transport": "K+DCAN",
+  "serial_port": "/dev/cu.usbserial-A50285BI",
+  "probe": "ident",
+  "raw_tx": "82 18 f1 1a 80 25",
+  "raw_rx": "bc f1 18 5a 80 00 00 07 59 19 72 10 05 02 04 53 4c 20 08 10 30 08 00 1d 45 c3 40 01 02 03 0a 00 00 00 00 00 07 56 99 80 00 40 59 38 30 34 37 39 53 39 30 30 34 37 39 53 39 30 54 36 34 31 5a d9",
+  "tx": "82 18 f1 1a 80 25",
+  "rx": "bc f1 18 5a 80 00 00 07 59 19 72 10 05 02 04 53 4c 20 08 10 30 08 00 1d 45 c3 40 01 02 03 0a 00 00 00 00 00 07 56 99 80 00 40 59 38 30 34 37 39 53 39 30 30 34 37 39 53 39 30 54 36 34 31 5a d9",
+  "rx_payload": "5a 80 00 00 07 59 19 72 10 05 02 04 53 4c 20 08 10 30 08 00 1d 45 c3 40 01 02 03 0a 00 00 00 00 00 07 56 99 80 00 40 59 38 30 34 37 39 53 39 30 30 34 37 39 53 39 30 54 36 34 31 5a",
+  "rx_len": 64,
+  "checksum_valid": true,
+  "rtt_ms": 80.01,
+  "result": "SUCCESS",
+  "parser_result": "SUCCESS",
+  "evidence_class": "OBSERVED_WIRE",
+  "parsed": {
+    "sid": "0x5A",
+    "record_id": "0x80",
+    "payload_hex": "5a 80 00 00 07 59 19 72 10 05 02 04 53 4c 20 08 10 30 08 00 1d 45 c3 40 01 02 03 0a 00 00 00 00 00 07 56 99 80 00 40 59 38 30 34 37 39 53 39 30 30 34 37 39 53 39 30 54 36 34 31 5a",
+    "ascii_preview": "...Y.r....SL ..0...E.@..........V...@Y80479S900479S90T641Z"
+  },
+  "golden_comparison": {
+    "status": "UNKNOWN",
+    "tx_match": false,
+    "rx_exact_match": false,
+    "header_match": false,
+    "payload_match": false,
+    "expected_tx": null,
+    "expected_rx": null,
+    "reference_source": null,
+    "details": "No golden reference available for probe 'ident'",
+    "differences": [
+      "Unknown probe 'ident'; reference not found"
+    ]
+  }
+}

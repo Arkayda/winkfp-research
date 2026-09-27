@@ -125,13 +125,14 @@ class SerialKdcanTransport(KdcanTransport):
                     pass
                 self._ser = None
 
-    def send_job(
+    def send_job_raw(
         self,
         dst: int,
         payload: bytes,
         src: int = 0xF1,
         timeout: Optional[float] = None,
-    ) -> bytes:
+    ) -> tuple[bytes, bytes, bytes, float]:
+        """Transmit DS2 frame and return (raw_tx, raw_rx, payload, rtt_ms)."""
         with self._lock:
             if self._ser is None:
                 self.open()
@@ -142,6 +143,7 @@ class SerialKdcanTransport(KdcanTransport):
             frame = framing.build(dst, src, payload)
             self._wait_regen()
             eff_timeout = self.response_timeout if timeout is None else timeout
+            t0 = time.perf_counter()
             try:
                 self._ser.reset_input_buffer()
                 self._ser.write(frame)
@@ -149,12 +151,15 @@ class SerialKdcanTransport(KdcanTransport):
                 if self.adapter_echo:
                     self._read_echo(frame)
                 response = self._read_telegram(eff_timeout)
+                rtt_ms = (time.perf_counter() - t0) * 1000.0
                 self._last_response_at = time.monotonic()
                 parsed = framing.parse(response)
                 # Auto-detect cable echo: if we received our own outgoing frame
                 if parsed.dst == dst and parsed.src == src:
                     self.adapter_echo = True
+                    t0 = time.perf_counter()
                     response = self._read_telegram(eff_timeout)
+                    rtt_ms = (time.perf_counter() - t0) * 1000.0
                     self._last_response_at = time.monotonic()
                     parsed = framing.parse(response)
                 if parsed.dst != src:
@@ -165,7 +170,7 @@ class SerialKdcanTransport(KdcanTransport):
                     raise KdcanError(
                         f"Response from unexpected ECU: src=0x{parsed.src:02X} (expected 0x{dst:02X})"
                     )
-                return parsed.payload
+                return frame, response, parsed.payload, rtt_ms
             except Exception:
                 try:
                     if self._ser is not None:
@@ -175,6 +180,18 @@ class SerialKdcanTransport(KdcanTransport):
                 raise
             finally:
                 self._last_response_at = time.monotonic()
+
+    def send_job(
+        self,
+        dst: int,
+        payload: bytes,
+        src: int = 0xF1,
+        timeout: Optional[float] = None,
+    ) -> bytes:
+        _raw_tx, _raw_rx, parsed_payload, _rtt = self.send_job_raw(
+            dst, payload, src=src, timeout=timeout
+        )
+        return parsed_payload
 
     def _wait_regen(self) -> None:
         elapsed = time.monotonic() - self._last_response_at

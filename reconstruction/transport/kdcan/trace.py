@@ -153,3 +153,24 @@ class TracedKdcanTransport(KdcanTransport):
             duration_ms = (time.monotonic() - start) * 1000.0
             self.tracer.log_error(f"send_job failed after {duration_ms:.1f}ms: {exc}")
             raise
+
+    def send_job_raw(
+        self,
+        dst: int,
+        payload: bytes,
+        src: int = 0xF1,
+        timeout: Optional[float] = None,
+    ) -> tuple[bytes, bytes, bytes, float]:
+        raw_tx = framing.build(dst, src, payload)
+        self.tracer.log_tx(dst, src, payload, raw_frame=raw_tx)
+        start = time.monotonic()
+        try:
+            raw_tx_out, raw_rx_out, response_payload, duration_ms = self.inner.send_job_raw(
+                dst, payload, src=src, timeout=timeout
+            )
+            self.tracer.log_rx(src, dst, response_payload, raw_frame=raw_rx_out, duration_ms=duration_ms)
+            return raw_tx_out, raw_rx_out, response_payload, duration_ms
+        except Exception as exc:
+            duration_ms = (time.monotonic() - start) * 1000.0
+            self.tracer.log_error(f"send_job_raw failed after {duration_ms:.1f}ms: {exc}")
+            raise

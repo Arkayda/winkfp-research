@@ -4,29 +4,34 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Verification: L4/L5 Proven](https://img.shields.io/badge/Verification-L4%2FL5%20Proven-success.svg)](docs/EVIDENCE.md)
 [![Safety Interlock: Hard-Gated](https://img.shields.io/badge/Safety-Hard--Gated-critical.svg)](docs/ARCHITECTURE.md)
+[![Test Suite: 153 Passed](https://img.shields.io/badge/Tests-153%20Passed-brightgreen.svg)](tests/)
 
-This repository contains the reverse-engineering analysis, technical documentation, clean-room protocol reconstructions, and differential validation suites for the BMW WinKFP automotive ECU flashing software and its associated EDIABAS subsystem.
+This repository contains the reverse-engineering analysis, technical documentation, clean-room protocol reconstructions, differential validation suites, and offline diagnostic replay layers for the BMW WinKFP automotive ECU flashing software and its associated EDIABAS subsystem, focused on the BMW E60 ZF 6HP EGS (`GKE195` / `10FLASH.prg`).
 
 ---
 
 ## 1. Executive Summary & Purpose
 
-Modern automotive control units (ECUs) rely on complex vendor-specific diagnostic and bootloader protocols for firmware updating and calibration programming. For decades, BMW's proprietary engineering tools (`WinKFP`, `NFS`, `EDIABAS`, and `INPA`) have served as the de facto standard for flashing engine (DME/DDE) and transmission (EGS, e.g., ZF 6HP) controllers. However, the precise cryptographic handshakes, transport packaging, keepalive timings, and failure-recovery behaviors remained closed and undocumented.
+Modern automotive control units (ECUs) rely on complex vendor-specific diagnostic and bootloader protocols for firmware updating and calibration programming. For decades, BMW's proprietary engineering tools (`WinKFP`, `NFS`, `EDIABAS`, and `INPA`) have served as the standard toolchain for flashing engine (DME/DDE) and transmission (EGS, e.g., ZF 6HP) controllers. However, the precise cryptographic handshakes, transport packaging, keepalive timings, and failure-recovery behaviors remained closed and undocumented.
 
 The goal of this research project is to:
-1. **Deconstruct the internal protocol stack** of WinKFP (`winkfpt.exe`, `ebas32.dll`, `api32.dll`, `OBD32.dll`, `nfs.exe`) using static binary analysis (Ghidra).
-2. **Reconstruct clean-room Python implementations** for the cryptographic authentication (`KrApi`), key storage (`AS2` 3DES containers), flash transport orchestration (`VDLE`), and bus interfacing (`EDIABAS`/`IFH`).
-3. **Differentially validate the reconstructions** against the original x86 machine code via hardware-free instruction-level emulation (Unicorn x86) and known-answer test (KAT) suites.
-4. **Formalize safety interlocks** preventing unauthorized or dangerous vehicle execution without rigorous precondition verification.
+1. **Deconstruct the internal protocol stack** of WinKFP (`winkfpt.exe`, `ebas32.dll`, `api32.dll`, `OBD32.dll`, `nfs.exe`) and SGBD diagnostic scripts (`10FLASH.prg`, `03GKE195.ipo`) using static binary analysis (Ghidra).
+2. **Reconstruct clean-room Python implementations** for cryptographic authentication (`KrApi`), key storage (`AS2` 3DES containers), flash transport orchestration (`VDLE`), and diagnostic bus interfacing (`EDIABAS`/`IFH`).
+3. **Establish a canonical, decoupled read-only diagnostic runtime and replay layer** (`CanonicalPipeline`, `EdiabasJobReplayEngine`, `DiagnosticTransport`) for querying ECU identification records offline with fail-closed validation.
+4. **Differentially validate the reconstructions** against original x86 machine code via hardware-free instruction-level emulation (Unicorn x86), known-answer test (KAT) suites, and immutable hardware trace fixtures.
+5. **Formalize safety interlocks** preventing unauthorized or dangerous vehicle execution without rigorous precondition verification.
 
 ---
 
 ## 2. Repository Scope & Critical Boundaries
 
 > [!IMPORTANT]
-> **Independent Research Repository**: `winkfp-research` is a standalone public research archive. It is **NOT** a submodule, branch, package, or component of `open6hp` or any active flashing tool.
+> **Independent Research Repository**: `winkfp-research` is a standalone public research archive. It is **NOT** a submodule, branch, package, or component of `open6hp` or any active flashing tool. It does not import, depend on, or modify `open6hp`.
 
-* **No Physical ECU Flashing**: This repository is an analytical research archive and testbed. Physical in-vehicle ECU contact and reprogramming have **NOT** been validated on physical hardware (see [Evidence Model](#5-evidence-and-validation-model)).
+* **No Physical ECU Flashing**: This repository is an analytical research archive and testbed. Physical in-vehicle ECU reprogramming and flashing have **NOT** been validated on physical hardware (see [Evidence Model](#6-evidence-and-validation-model)).
+* **Strict Read-Only Runtime Scope**:
+  - The runtime execution layer is restricted strictly to read-only diagnostic identification jobs (`IDENT`, `PHYSIKALISCHE_HW_NR_LESEN`, `SERIENNUMMER_LESEN`, `AIF_LESEN`, `AIF_READ_BENCH_ALIAS`, `ZIF_LESEN`, `ZIF_BACKUP_LESEN`, `HARDWARE_REFERENZ_LESEN`, `DATEN_REFERENZ_LESEN`).
+  - Write operations, flash memory erasing (`0x31 0x01` / `0x31 0x02`), flash block downloading (`0x34`, `0x36`, `0x37`), ECU reset (`0x11`), diagnostic session transitions (`0x10`), and security access / routine authentication (`0x27`, `0x31 0x07`, `0x31 0x08`) remain **STRICTLY EXCLUDED** from the read-only runtime and are blocked fail-closed before any dispatch.
 * **Artifact Separation & Redistribution Policy**:
   - **No Original Proprietary Binaries**: No original proprietary OEM binaries (`.exe`, `.dll`, `.prg`, `.ipo`, `.0da`), BMW SP-Daten archives, proprietary ECU firmware images, or production key containers (`SGIDC.as2`, `SGIDD.as2`) are distributed in this repository.
   - **Reverse-Engineering Analysis (`analysis/`)**: Contains behavioral reverse-engineering observations, decompiler-derived C pseudocode, and structural annotations derived from proprietary binaries for research and interoperability analysis.
@@ -38,90 +43,132 @@ The goal of this research project is to:
 
 ## 3. Architecture Overview
 
-The WinKFP protocol stack operates across several distinct software layers, reverse-engineered and reconstructed as follows:
+The WinKFP research stack models diagnostic orchestration and protocol execution across several distinct software layers:
 
-```mermaid
-graph TD
-    subgraph "Reverse Engineered WinKFP Binaries"
-        WINKFPT["winkfpt.exe<br/>(VDLE Orchestrator)"]
-        KRAPI["KrApi / Crypto<br/>(FUN_004b9f50, FUN_004b9e30)"]
-        KEYSTORE["GetAuthKey<br/>(FUN_004b8fe0 / AS2 Containers)"]
-        EBAS["ebas32.dll / api32.dll<br/>(EDIABAS Runtime)"]
-        OBD["OBD32.dll<br/>(IFH Serial / K-Line Driver)"]
-    end
-
-    subgraph "Independent Reconstruction (reconstruction/)"
-        VDLE_CORE["reconstruction.vdle<br/>(Block Framing, OPPS Setup)"]
-        CRYPTO_CORE["reconstruction.crypto<br/>(Symmetric MD5, RSA-1024, Simple)"]
-        AUTH_CORE["reconstruction.auth<br/>(AS2 3DES Decryption, Key Lookup)"]
-        EDIABAS_CORE["reconstruction.ediabas<br/>(MockBus & API Adapter)"]
-        IFH_CORE["reconstruction.transport<br/>(OBD IFH, XOR Checksum, Timings)"]
-        RUNNER["reconstruction.runner<br/>(FlashRunner & Hard-Gated Safety)"]
-    end
-
-    subgraph "Validation Tiers"
-        KAT["tests/kat/<br/>Known-Answer Tests (L3)"]
-        GOLDEN["tests/golden/<br/>Protocol Golden Tests (L3)"]
-        DIFF["tests/differential/<br/>Unicorn x86 Differential (L4)"]
-    end
-
-    WINKFPT --> VDLE_CORE
-    KRAPI --> CRYPTO_CORE
-    KEYSTORE --> AUTH_CORE
-    EBAS --> EDIABAS_CORE
-    OBD --> IFH_CORE
-
-    VDLE_CORE --> RUNNER
-    CRYPTO_CORE --> RUNNER
-    AUTH_CORE --> RUNNER
-    EDIABAS_CORE --> RUNNER
-
-    RUNNER --> KAT
-    RUNNER --> GOLDEN
-    WINKFPT -.-> DIFF
-    RUNNER -.-> DIFF
+```
++-------------------------------------------------------------------------+
+|                        EDIABAS Job API Layer                            |
+|             (execute_job / EdiabasJobReplayEngine)                      |
++-------------------------------------------------------------------------+
+                                    |
+                                    v
++-------------------------------------------------------------------------+
+|                  Stage 1: SGBD Job Definition & Catalog                 |
+|                (SgbdJobDefinition, 10FLASH.prg Semantics)               |
++-------------------------------------------------------------------------+
+                                    |
+                                    v
++-------------------------------------------------------------------------+
+|                  Stage 2: Canonical Request Builder                     |
+|           (build_request -> Canonical DS2 Wire Request Frame)           |
++-------------------------------------------------------------------------+
+                                    |
+                                    v
++-------------------------------------------------------------------------+
+|              Stage 3: Diagnostic Transport Boundary                     |
+|        transceive_ds2(wire_frame: bytes, timeout: float) -> bytes       |
+|    [FixtureTransport (Immutable Traces) | MockTransport (Synthetic)]    |
++-------------------------------------------------------------------------+
+                                    |
+                                    v
++-------------------------------------------------------------------------+
+|                  Stage 4: Fail-Closed Response Validator                |
+|      (Format Byte, Length, Addressing, Checksum, Expected SID/SubID)    |
++-------------------------------------------------------------------------+
+                                    |
+                                    v
++-------------------------------------------------------------------------+
+|                  Stage 5: SGBD Semantic Parser                          |
+|         (decode_10flash_* -> Typed Fields, Structured Dict)             |
++-------------------------------------------------------------------------+
+                                    |
+                                    v
++-------------------------------------------------------------------------+
+|                  Stage 6: Provenanced EdiabasJobResult                  |
+|    (Fields, Status, EvidenceDomain, Target/Tester Provenance, Axes)     |
++-------------------------------------------------------------------------+
 ```
 
 ---
 
-## 4. Key Reverse-Engineered Protocols & Algorithms
+## 4. Canonical EDIABAS Replay & Diagnostic Transport Boundary
 
-Detailed technical specifications are located in [`docs/reverse-engineering/`](docs/reverse-engineering/):
+Milestone 5.12 established a decoupled, offline-first transport architecture separating high-level SGBD diagnostic logic from wire communication.
 
-### 4.1 KrApi Cryptographic Algorithms
-WinKFP implements distinct challenge-response authentication algorithms:
-* **Symmetric MD5 Mode** (`FUN_004b9f50`): Uses an 8-byte ECU seed, a 4-byte tester nonce, a 4-byte ECU serial, and a 16-byte shared key (`T_SMA`, `T_SMB`, or `T_SMC`). Produces a 16-byte response key (`SG-Schluessel`). Reconstructed in [`reconstruction/crypto/symmetric/`](reconstruction/crypto/symmetric/).
-* **Asymmetric Authentication (RSA-1024 vs RSA-512)**:
-  - **KrApi Static Asymmetric Mode** (`FUN_004b9e30`): Computes `MD5(nonce + serial[:4] + seed)`, converts the digest into an integer, and calculates raw modular exponentiation $S = m^e \pmod n$ using static 1024-bit RSA public keys (`RSA_KEYS` slots 3, 4, 5). Post-processes the result through a 32-bit per-dword byteswap (`FUN_004b8a70`). Reconstructed in [`reconstruction/crypto/asymmetric/`](reconstruction/crypto/asymmetric/).
-  - **AS2 Container Asymmetric Mode**: Container-based per-ECU keys (e.g. for `GKE191` in `SGIDC.as2`) utilize 512-bit RSA public keys (136-byte / `0x88` structure: 64-byte $N$, 64-byte $E$, word count `0x10`). Reconstructed in [`reconstruction/security.py`](reconstruction/security.py).
-* **Simple Mode** (`FUN_004ba080`): A lightweight 8-byte permutation and key-mixing routine used on legacy control units. Reconstructed in [`reconstruction/crypto/simple/`](reconstruction/crypto/simple/).
+### 4.1 DiagnosticTransport Protocol Contract
 
-### 4.2 Key Storage & AS2 Container Parsing
-* Runtime keys are read from 3DES-encrypted flat files (`SGIDC.as2`, `SGIDD.as2`) via `GetAuthKey` (`FUN_004b8fe0`).
-* The encryption utilizes 3DES in ECB mode with a hardcoded static key.
-* Records follow fixed column alignment: `$K <ecu_name:20><ident:4><field6:6><hex_payload>`. Reconstructed in [`reconstruction/as2_keys.py`](reconstruction/as2_keys.py).
+The communication boundary is defined in `reconstruction/ediabas/transport.py` as a pure byte-level Python Protocol:
 
-### 4.3 VDLE Flash Protocol & Block Framing
-* **Sequence**: `INIT_VDLE` $\rightarrow$ `LOADTABLE` $\rightarrow$ `REQUEST_SEGMENTINFO` $\rightarrow$ `SEND_SEGMENT` $\rightarrow$ `FLASH_SCHREIBEN_STATUS`.
-* **Block Framing**: Differential execution under Unicorn proved that `FLASH_SCHREIBEN` blocks are formatted with a strict **21-byte header**, followed by the chunk payload and a `0x03` terminator byte:
-  ```text
-  01 01 00 00 | 00 00 00 00 | 00 FF 00 00 | 00 | [len LE16] | [len LE16] | [addr LE32] | [payload...] | 03
-  ```
-  *(Notice: The payload length is stored twice as LE16, and the target address is little-endian).*
-* **XXL Threshold**: Blocks with size $> 254$ bytes dynamically switch to the `FLASH_SCHREIBEN_XXL` job. Reconstructed in [`reconstruction/vdle/core.py`](reconstruction/vdle/core.py).
+```python
+class DiagnosticTransport(Protocol):
+    """Pure byte-level transport protocol for DS2 diagnostic communication."""
 
-### 4.4 EDIABAS Interface & OBD IFH Driver
-* `OBD32.dll` implements diagnostic telegram transport over serial K-Line and D-CAN interfaces.
-* Reconstructs port initialization, 9600 8E1 (DS2) and 115200 8N1 (KWP) communication, P4 inter-message gaps, telegram framing, and longitudinal redundancy XOR checksum validation. Reconstructed in [`reconstruction/obd_ifh.py`](reconstruction/obd_ifh.py).
+    def transceive_ds2(self, wire_frame: bytes, timeout: float = 1.0) -> bytes:
+        """Transmit a canonical DS2 wire frame and receive raw DS2 response frame."""
+        ...
+```
 
-### 4.5 Safety Gates & Hard-Gated Interlocks
-Flash execution is hard-gated by the `SafetyContext` and provenance-tracked `Limits` structure:
-* Refuses execution without a valid limits policy file bound by SHA-256 digest.
-* Continuously checks battery voltage ($V_{bat}$), ignition status, programming voltage flags, and ZB number assembly match before sending the first byte to the ECU. Reconstructed in [`reconstruction/safety/hypotheses.py`](reconstruction/safety/hypotheses.py).
+* **Separation of Concerns**:
+  - `DiagnosticTransport` knows **nothing** about WinKFP jobs (`IDENT`, `AIF_LESEN`), SGBD bytecode routines, result field names, or evidence classifications.
+  - It receives a complete physical DS2 wire request frame (including trailing checksum) and returns the raw physical DS2 response frame (including trailing checksum).
+  - Physical serial communication (`SerialKdcanTransport`) remains strictly isolated in `reconstruction.transport.kdcan.serial` and is never imported or instantiated during offline replay.
+
+### 4.2 Offline Transport Implementations
+
+1. **`FixtureTransport`**: Replays canonical responses from immutable physical trace fixtures (`traces/hardware/*.json`), raw hex strings, or trace dictionaries. Supports `strict_tx_match=True` to verify that the outgoing request generated by the pipeline matches the recorded trace bit-for-bit, and maintains a complete audit trail in `transport.history`.
+2. **`MockTransport`**: Provides deterministic synthetic responses, request-to-response mapping tables, timeout injection (`always_timeout=True`), dynamic callback handlers, and transport error injection for testing fail-closed execution paths.
+
+### 4.3 Protocol Representations: Logical Telegram vs Wire Frame
+
+The architecture strictly distinguishes between two independent protocol representations:
+- **`logical_request`** (`EdiabasTelegram.raw_buffer`): The logical telegram buffer as managed by the EDIABAS kernel (`_TEL_AUFTRAG`), containing the header and payload, but **without** the trailing physical transport checksum byte.
+- **`canonical_ds2_request`** (`EdiabasTelegram.to_wire_frame()`): The complete physical DS2 wire frame including the trailing additive 8-bit checksum appended by the bus driver.
+
+### 4.4 CanonicalPipeline & EdiabasJobReplayEngine
+
+- **`CanonicalPipeline`** (`reconstruction/ediabas/pipeline.py`): Unifies job metadata lookup, request building, transport dispatch, fail-closed validation, and semantic decoding. Catches `TransportTimeoutError` into `status="ERROR_TIMEOUT"` and `TransportError` into `status="ERROR_TRANSPORT"`.
+- **`EdiabasJobReplayEngine`** (`reconstruction/ediabas/replay.py`): Top-level EDIABAS-compatible execution engine reproducing SGBD job flows, modeling canonical arguments (e.g. `AIF_NUMMER: int = 0`), and enforcing target address provenance.
 
 ---
 
-## 5. Evidence and Validation Model
+## 5. Evidence Taxonomy & Ground Truth
+
+### 5.1 Evidence Domains (`EvidenceDomain`)
+
+The replay engine strictly isolates execution evidence across three non-overlapping domains:
+1. **`PHYSICAL_EGS_FIXTURE`**: Immutable physical bench traces recorded from physical ZF 6HP EGS hardware. Canonical target address is strictly `0x18`.
+2. **`FACTORY_TRACE`**: Historical factory session trace recorded from an official WinKFP/EDIABAS flashing session (`traces/sanitized/sanitized_flash_session.trc`). Canonical target address is strictly `0x78`. Replay strictly forbids silently rewriting target `0x78` to `0x18` or confusing factory observations with physical EGS execution.
+3. **`SYNTHETIC_OFFLINE`**: Synthetic test fixtures and mock transports used for unit testing and negative path validation.
+
+### 5.2 Four Orthogonal Truth Axes
+
+Every job execution result (`SgbdJobResult` and `EdiabasJobResult`) tracks four independent boolean truth axes:
+* **`sgbd_supported`**: Defined as a supported routine in the `10FLASH.prg` SGBD driver.
+* **`factory_trace_observed`**: Directly observed in historical factory flash session traces.
+* **`physical_trace_exists`**: Verified against an immutable physical bench hardware trace.
+* **`directly_resolved`**: Verified direct identification routine on target hardware.
+
+### 5.3 Ground Truth vs UNKNOWN Matrix
+
+| Job Name | IPO Procedure | SGBD Routine | Diagnostic Service | Subfunction / Common ID | Request Frame (DS2 to 0x18) | Expected Response SID | Wire Ground Truth | Evidence Classification |
+|---|---|---|:---:|:---:|:---:|:---:|:---:|---|
+| **`IDENT`** | `Ident` | `IDENT` (`0x00453A`) | `$1A` | `$80` | `82 18 F1 1A 80 25` | `5A 80` | Physical EGS 0x18 | `DIRECTLY_RESOLVED` |
+| **`PHYSIKALISCHE_HW_NR_LESEN`** | `PhysHwNrLesen` | `PHYSIKALISCHE_HW_NR_LESEN` (`0x012E45`) | `$1A` | `$87` (fallback: `$80`) | `82 18 F1 1A 87 2C` | `5A 87` | Physical EGS 0x18 | `DIRECTLY_RESOLVED` |
+| **`AIF_READ_BENCH_ALIAS`** | *(Reconstruction)* | *(Direct primitive)* | `$1A` | `$86` | `82 18 F1 1A 86 2B` | `5A 86` | Physical EGS 0x18 | `OBSERVED_WIRE / RECONSTRUCTION_ALIAS` |
+| **`TESTER_PRESENT`** | *(Keepalive)* | *(Primitive)* | `$3E` | `$00` | `82 18 F1 3E 00 C9` | `7F 3E 12` | Physical EGS 0x18 | `OBSERVED_WIRE` (NRC 0x12) |
+| **`SERIENNUMMER_LESEN`** | `SgSerienNr` | `SERIENNUMMER_LESEN` (`0x00D172`) | `$1A` | `$89` (fallback: `$80`) | `82 18 F1 1A 89 2E` | `5A 89` | Factory trace line 28 | `DIRECT_SGBD_MAPPING` + `UNKNOWN[target=0479S90T641Z]` |
+| **`AIF_LESEN`** | `AifLesen` | `AIF_LESEN` (`0x028DDE`) | `$23` | *(MemAddress + Len)* | `86 18 F1 23 00 00 00 07 12 CB` | `63` | Factory trace line 11960 | `DIRECT_SGBD_MAPPING` + `UNKNOWN[target=0479S90T641Z]` |
+| **`ZIF_LESEN`** | `ZifLesen` | `ZIF_LESEN` (`0x00E60F`) | `$22` | `$2503` (fallback: `$1A $91`, `$80`) | `83 18 F1 22 25 03 D6` | `62 25 03` | Factory trace line 11661 | `DIRECT_SGBD_MAPPING` + `UNKNOWN[target=0479S90T641Z]` |
+| **`ZIF_BACKUP_LESEN`** | `ZifBackupLesen` | `ZIF_BACKUP_LESEN` (`0x01126C`) | `$22` | `$2500` (fallback: `$1A $80`) | `83 18 F1 22 25 00 D3` | `62 25 00` | Factory trace line 11706 | `DIRECT_SGBD_MAPPING` + `UNKNOWN[target=0479S90T641Z]` |
+| **`HARDWARE_REFERENZ_LESEN`** | `HwReferenzLesen` | `HARDWARE_REFERENZ_LESEN` (`0x0143FA`) | `$22` | `$2502` (fallback: `$1A $80`) | `83 18 F1 22 25 02 D5` | `62 25 02` | Factory trace line 11620 | `DIRECT_SGBD_MAPPING` + `UNKNOWN[target=0479S90T641Z]` |
+| **`DATEN_REFERENZ_LESEN`** | `DatenReferenzLesen` | `DATEN_REFERENZ_LESEN` (`0x015A66`) | `$22` | `$2504` | `83 18 F1 22 25 04 D7` | `62 25 04` | Factory trace line 11588 | `DIRECT_SGBD_MAPPING` + `UNKNOWN[target=0479S90T641Z]` |
+
+> [!NOTE]
+> **AIF Service Separation**: Official SGBD `AIF_LESEN` strictly utilizes KWP2000 service `0x23` (`ReadMemoryByAddress`), whereas bench probe `0x1A 0x86` is categorized as `AIF_READ_BENCH_ALIAS`. Passing a `1A 86` response into `AIF_LESEN` fails closed with `ERROR_SGBD_USES_SERVICE_0x23_NOT_0x1A86`.
+
+---
+
+## 6. Evidence and Validation Model
 
 The project tracks experimental rigor across the canonical eight-tier taxonomy defined in [`docs/EVIDENCE.md`](docs/EVIDENCE.md):
 
@@ -130,18 +177,55 @@ The project tracks experimental rigor across the canonical eight-tier taxonomy d
 | **L0** | Static observation | Raw strings, symbol names, table entries in disassembled binaries | Validated (45 functions) |
 | **L1** | Decompiled / disassembled behavior | Control flow and data structures analyzed via Ghidra/IDA decompiler output | Validated (45 C files in `analysis/`) |
 | **L2** | Independent reconstruction | Python reimplementation of algorithms and protocols | Validated (`reconstruction/`) |
-| **L3** | Known-answer / execution validation | Deterministic KAT unit tests comparing against known test vectors | Validated (15 KAT + 10 Golden tests) |
-| **L4** | Differential trace validation | Execution of original OEM machine code under Unicorn x86 compared against reconstruction | Validated (8 differential test suites) |
-| **L5** | Real EDIABAS integration | Reconstructed engine interacting with EDIABAS API or parsing historical EDIABAS traces | Validated (`traces/sanitized/`, `tools/bench_diff/`) |
+| **L3** | Known-answer / execution validation | Deterministic KAT unit tests comparing against known test vectors | Validated (63 KAT tests) |
+| **L4** | Differential trace validation | Execution of original OEM machine code under Unicorn x86 compared against reconstruction | Validated (16 differential test suites) |
+| **L5** | Real EDIABAS integration | Reconstructed engine interacting with EDIABAS API or parsing historical EDIABAS traces | Validated (`traces/sanitized/`, `traces/hardware/`) |
 | **L6** | Real ECU contact | Diagnostic handshake (ID, auth negotiation, session status) on physical ECU | Not validated |
 | **L7** | Real ECU programming | Complete flashing of ECU firmware block on a physical vehicle or hardware bench | Not validated |
 
 > [!CAUTION]
-> **No Physical In-Vehicle Flashing**: Writing to automotive flash memory carries severe bricking and safety risks. Physical ECU contact (**L6**) and ECU programming (**L7**) have **NOT** been validated on physical hardware. Controlled/write-free bench test harnesses (`tools/bench_diff/bench_scenario.py`) exist for diagnostic exploration, but physical ECU validation remains unperformed.
+> **No Physical In-Vehicle Flashing**: Writing to automotive flash memory carries severe bricking and safety risks. Physical ECU contact (**L6**) and ECU programming (**L7**) have **NOT** been validated on physical hardware. Read-only identification queries on bench hardware do not constitute proof of programming state machines.
 
 ---
 
-## 6. Repository Layout
+## 7. Cryptographic Algorithms & Reverse-Engineered Protocols
+
+Detailed technical specifications are located in [`docs/reverse-engineering/`](docs/reverse-engineering/):
+
+### 7.1 KrApi Cryptographic Algorithms
+WinKFP implements distinct challenge-response authentication algorithms:
+* **Symmetric MD5 Mode** (`FUN_004b9f50`): Uses an 8-byte ECU seed, a 4-byte tester nonce, a 4-byte ECU serial, and a 16-byte shared key (`T_SMA`, `T_SMB`, or `T_SMC`). Produces a 16-byte response key (`SG-Schluessel`). Reconstructed in [`reconstruction/crypto/symmetric/`](reconstruction/crypto/symmetric/).
+* **Asymmetric Authentication (RSA-1024 vs RSA-512)**:
+  - **KrApi Static Asymmetric Mode** (`FUN_004b9e30`): Computes `MD5(nonce + serial[:4] + seed)`, converts the digest into an integer, and calculates raw modular exponentiation $S = m^e \pmod n$ using static 1024-bit RSA public keys (`RSA_KEYS` slots 3, 4, 5). Post-processes the result through a 32-bit per-dword byteswap (`FUN_004b8a70`). Reconstructed in [`reconstruction/crypto/asymmetric/`](reconstruction/crypto/asymmetric/).
+  - **AS2 Container Asymmetric Mode**: Container-based per-ECU keys (e.g. for `GKE191` in `SGIDC.as2`) utilize 512-bit RSA public keys (136-byte / `0x88` structure: 64-byte $N$, 64-byte $E$, word count `0x10`). Reconstructed in [`reconstruction/security.py`](reconstruction/security.py).
+* **Simple Mode** (`FUN_004ba080`): A lightweight 8-byte permutation and key-mixing routine used on legacy control units. Reconstructed in [`reconstruction/crypto/simple/`](reconstruction/crypto/simple/).
+
+### 7.2 Key Storage & AS2 Container Parsing
+* Runtime keys are read from 3DES-encrypted flat files (`SGIDC.as2`, `SGIDD.as2`) via `GetAuthKey` (`FUN_004b8fe0`).
+* The encryption utilizes 3DES in ECB mode with a hardcoded static key.
+* Records follow fixed column alignment: `$K <ecu_name:20><ident:4><field6:6><hex_payload>`. Reconstructed in [`reconstruction/as2_keys.py`](reconstruction/as2_keys.py).
+
+### 7.3 VDLE Flash Protocol & Block Framing
+* **Sequence**: `INIT_VDLE` $\rightarrow$ `LOADTABLE` $\rightarrow$ `REQUEST_SEGMENTINFO` $\rightarrow$ `SEND_SEGMENT` $\rightarrow$ `FLASH_SCHREIBEN_STATUS`.
+* **Block Framing**: Differential execution under Unicorn proved that `FLASH_SCHREIBEN` blocks are formatted with a strict **21-byte header**, followed by the chunk payload and a `0x03` terminator byte:
+  ```text
+  01 01 00 00 | 00 00 00 00 | 00 FF 00 00 | 00 | [len LE16] | [len LE16] | [addr LE32] | [payload...] | 03
+  ```
+  *(Notice: The payload length is stored twice as LE16, and the target address is little-endian).*
+* **XXL Threshold**: Blocks with size $> 254$ bytes dynamically switch to the `FLASH_SCHREIBEN_XXL` job. Reconstructed in [`reconstruction/vdle/core.py`](reconstruction/vdle/core.py).
+
+### 7.4 EDIABAS Interface & OBD IFH Driver
+* `OBD32.dll` implements diagnostic telegram transport over serial K-Line and D-CAN interfaces.
+* Reconstructs port initialization, 9600 8E1 (DS2) and 115200 8N1 (KWP) communication, P4 inter-message gaps, telegram framing, and longitudinal redundancy XOR checksum validation. Reconstructed in [`reconstruction/obd_ifh.py`](reconstruction/obd_ifh.py).
+
+### 7.5 Safety Gates & Hard-Gated Interlocks
+Flash execution is hard-gated by the `SafetyContext` and provenance-tracked `Limits` structure:
+* Refuses execution without a valid limits policy file bound by SHA-256 digest.
+* Continuously checks battery voltage ($V_{bat}$), ignition status, programming voltage flags, and ZB number assembly match before sending the first byte to the ECU. Reconstructed in [`reconstruction/safety/hypotheses.py`](reconstruction/safety/hypotheses.py).
+
+---
+
+## 8. Repository Layout
 
 ```text
 winkfp-research/
@@ -152,6 +236,7 @@ winkfp-research/
 │   ├── PROPRIETARY_MATERIAL.md     # Policy on excluded OEM assets
 │   ├── QUARANTINE.md               # Audit history & asset filtering
 │   ├── research-source-map.md      # Mapping to historical source workspace
+│   ├── evidence/                   # Forensic milestone evidence artifacts (5.0–5.12)
 │   ├── history/                    # Historical research progression (Rev 1–18.1)
 │   └── reverse-engineering/        # In-depth subsystem specifications
 ├── analysis/                       # Ghidra decompilation artifacts (45 C files)
@@ -164,22 +249,24 @@ winkfp-research/
 │   ├── crypto/                     # Symmetric MD5, RSA-1024, Simple XOR
 │   ├── auth/                       # AS2 3DES parser, key store, retry chain
 │   ├── vdle/                       # VDLE flash engine, block builder, OPPS setup
-│   ├── ediabas/                    # MockBus, EDIABAS ctypes API adapter
-│   ├── transport/                  # OBD IFH driver, telegram framing, timings
+│   ├── ediabas/                    # CanonicalPipeline, ReplayEngine, SGBD decoders, Transport
+│   ├── transport/                  # K+DCAN framing, serial transport, trace capture
 │   ├── safety/                     # SafetyContext, Limits policy, interlocks
 │   └── runner.py                   # Master FlashRunner orchestration engine
 ├── tests/                          # Automated verification suites
-│   ├── kat/                        # Known-answer tests (crypto, auth, keys)
-│   ├── golden/                     # Protocol state machine golden tests
-│   ├── differential/               # Unicorn x86 differential runners
+│   ├── kat/                        # Known-answer tests (crypto, auth, keys, probe)
+│   ├── golden/                     # Golden tests (state machine, pipeline, replay, transport)
+│   ├── differential/               # Differential suites (Unicorn x86, SGBD parity)
 │   ├── fixtures/                   # Synthetic containers, limits, and images
-│   └── run_tests.py                # Master test runner
-├── tools/                          # Analysis, diffing, and sanitization tools
+│   └── run_tests.py                # Master test runner (153 tests)
+├── tools/                          # Analysis, diffing, and probe tools
+│   ├── kdcan_hardware_probe.py     # Safe read-only physical hardware probe
 │   ├── bench_diff/                 # L1/L2 event log differential runner
 │   ├── trace_parser/               # EDIABAS *.trc parser and VIN sanitizer
 │   └── analysis/                   # Master password decoder & SP-Daten scanner
-├── traces/                         # Sanitized and expected event logs
-│   ├── sanitized/                  # Privacy-sanitized EDIABAS traces
+├── traces/                         # Sanitized and physical event logs
+│   ├── sanitized/                  # Privacy-sanitized EDIABAS factory traces
+│   ├── hardware/                   # Immutable physical bench traces (SHA-256 bound)
 │   └── expected/                   # Standardized benchmark JSONL logs
 └── examples/                       # Runnable demonstration scripts
     ├── synthetic_auth/             # Key derivation demo with synthetic vectors
@@ -189,22 +276,31 @@ winkfp-research/
 
 ---
 
-## 7. Reproducibility & Getting Started
+## 9. Reproducibility & Test Execution
 
 ### Prerequisites
 - Python 3.10 or newer (tested through Python 3.14).
 - *Optional for differential execution*: `unicorn` and `pefile` (`pip install unicorn pefile`).
 
 ### Running the Test Suite
-The repository includes a unified master test runner:
+The repository includes a unified master test runner executing all verification tiers:
 
 ```bash
 # Run all verification suites (KAT, Golden, Differential):
-python3 tests/run_tests.py
+.venv/bin/python3 tests/run_tests.py
+```
 
-# In a minimal environment without Unicorn or OEM binaries:
-# (KAT and Golden tests pass; Differential tests skip cleanly)
-python3 tests/run_tests.py
+Current test execution summary:
+```text
+======================================================================
+  VERIFICATION SUMMARY
+======================================================================
+  KAT             :  63 run,  63 passed,   0 skipped,   0 failed  [PASSED]
+  GOLDEN          :  74 run,  74 passed,   0 skipped,   0 failed  [PASSED]
+  DIFFERENTIAL    :  16 run,  16 passed,   0 skipped,   0 failed  [PASSED]
+----------------------------------------------------------------------
+TOTAL: 153 tests in ~4.3s | 153 passed | 0 skipped | 0 failed
+======================================================================
 ```
 
 ### Running Runnable Examples
@@ -212,27 +308,18 @@ All examples operate fully independently using synthetic data fixtures:
 
 ```bash
 # 1. Cryptographic Authentication Demo:
-python3 examples/synthetic_auth/demo_auth.py
+.venv/bin/python3 examples/synthetic_auth/demo_auth.py
 
 # 2. VDLE Flash Engine & Block Framing Demo:
-python3 examples/vdle/demo_vdle.py
+.venv/bin/python3 examples/vdle/demo_vdle.py
 
 # 3. Differential Event Log Comparison Demo:
-python3 examples/differential/demo_diff.py
-```
-
-### Running Differential Tests Against Original Binaries (Lab Environment)
-If you possess the original binaries in your local research lab, specify their path to execute instruction-level differential verification:
-
-```bash
-export WINKFPT_EXE="/path/to/winkfpt.exe"
-export OBD32_DLL="/path/to/OBD32.dll"
-python3 tests/run_tests.py --tier differential
+.venv/bin/python3 examples/differential/demo_diff.py
 ```
 
 ---
 
-## 8. Responsible Disclosure & Security
+## 10. Responsible Disclosure & Security
 
 Automotive control systems operate safety-critical vehicle dynamics. Flashing untrusted code or corrupting non-volatile flash memory can render a vehicle inoperable or unsafe.
 - Review [`SECURITY.md`](SECURITY.md) for vulnerability reporting guidelines and safety policies.
@@ -240,7 +327,7 @@ Automotive control systems operate safety-critical vehicle dynamics. Flashing un
 
 ---
 
-## 9. Citation & Academic Attribution
+## 11. Citation & Academic Attribution
 
 If you utilize this research, reverse-engineering methodology, or reconstructed protocol stack in academic work or software engineering projects, please cite:
 
@@ -257,7 +344,7 @@ See [`CITATION.cff`](CITATION.cff) for full machine-readable metadata.
 
 ---
 
-## 10. License & Legal Notice
+## 12. License & Legal Notice
 
 This project is licensed under the **MIT License** — see [`LICENSE`](LICENSE) for details.
 
