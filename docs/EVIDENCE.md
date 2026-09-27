@@ -41,14 +41,14 @@ The following table documents the **highest proven evidence level** achieved in 
 | **OBD32 / IFH K-Line Driver** | **L4** | `VALIDATED` | Original `OBD32.dll` machine code running in Unicorn driving virtual serial port matches `reconstruction/obd_ifh.py`. |
 | **EDIABAS API Layer** | **L5** | `VALIDATED` | Parsing and diffing real production `api.trc` (2.4 MB flash session) using `tools/bench_diff/`. |
 | **Safety Interlocks (`ID_CHECK`)** | **L2** | `INFERRED` | Binary conditions parsed; parameter thresholds are documented as engineering hypotheses (`Limits`). |
-| **Physical ECU Contact** | **L6** | **Not validated** | Hardware bench harness implemented in `tools/bench_diff/bench_scenario.py`, but physical bench execution has not been validated on real hardware. |
-| **Physical ECU Reprogramming** | **L7** | **Not validated** | No physical vehicle or bench ECU flashing has been performed. Physical flashing is strictly not validated. |
+| **Physical ECU Contact (Read-Only)** | **L6** | `VALIDATED` | Read-only diagnostic identification query set executed on physical ZF 6HP EGS bench (target `0x18`) via K+DCAN (`115200 8N1`). Verified by immutable trace fixtures in `traces/hardware/`: `20260926_174811_egs_ident.json` (`IDENT`), `20260926_175924_egs_physical_hw_nr.json` (`PHYSIKALISCHE_HW_NR_LESEN`), `20260926_173201_egs_aif.json` (`AIF_READ_BENCH_ALIAS`), `20260926_174033_egs_tester_present.json` (`TESTER_PRESENT`). |
+| **Physical ECU Reprogramming** | **L7** | **Not validated** | Complete flashing of an ECU firmware block on a physical vehicle or hardware bench. No physical vehicle or bench ECU flashing, erase, reset, or flash writing has been performed. Strictly not validated. |
 
 ---
 
 ## 3. Explicit Hardware Scope Disclaimer
 
 > [!WARNING]
-> While software differential tests against original BMW machine code achieve **L4** and trace parsers achieve **L5**, **no physical ECU contact (L6) or ECU programming (L7) has been validated on physical hardware in this repository**.
+> While software differential tests against original BMW machine code achieve **L4**, trace parsers achieve **L5**, and read-only diagnostic identification queries on physical bench hardware achieve **L6**, **physical ECU reprogramming (L7) has NOT been validated on physical hardware in this repository**.
 >
-> All test results documented herein reflect software emulation, pure-Python execution, and differential comparisons against captured trace files. Reconstructed code should be treated as reverse-engineering prototypes, NOT production flasher software.
+> All write, flash block download (`0x34`, `0x36`, `0x37`), memory erase (`0x31 0x01` / `0x31 0x02`), ECU reset (`0x11`), session transition (`0x10`), and security access / routine authentication (`0x27`, `0x31 0x07`, `0x31 0x08`) operations remain **STRICTLY EXCLUDED** from the runtime and are blocked fail-closed before any dispatch. Reconstructed code should be treated as reverse-engineering prototypes, NOT production flasher software.

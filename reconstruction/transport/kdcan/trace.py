@@ -174,3 +174,26 @@ class TracedKdcanTransport(KdcanTransport):
             duration_ms = (time.monotonic() - start) * 1000.0
             self.tracer.log_error(f"send_job_raw failed after {duration_ms:.1f}ms: {exc}")
             raise
+
+    def transceive_raw(
+        self,
+        wire_frame: bytes,
+        timeout: Optional[float] = None,
+    ) -> bytes:
+        """Transmit raw DS2 wire frame, log transaction, and return raw response frame."""
+        parsed_tx = framing.parse(wire_frame)
+        self.tracer.log_tx(parsed_tx.dst, parsed_tx.src, parsed_tx.payload, raw_frame=wire_frame)
+        start = time.monotonic()
+        try:
+            raw_rx = self.inner.transceive_raw(wire_frame, timeout=timeout)
+            duration_ms = (time.monotonic() - start) * 1000.0
+            try:
+                parsed_rx = framing.parse(raw_rx)
+                self.tracer.log_rx(parsed_rx.src, parsed_rx.dst, parsed_rx.payload, raw_frame=raw_rx, duration_ms=duration_ms)
+            except Exception:
+                self.tracer.log_rx(parsed_tx.src, parsed_tx.dst, b"", raw_frame=raw_rx, duration_ms=duration_ms)
+            return raw_rx
+        except Exception as exc:
+            duration_ms = (time.monotonic() - start) * 1000.0
+            self.tracer.log_error(f"transceive_raw failed after {duration_ms:.1f}ms: {exc}")
+            raise

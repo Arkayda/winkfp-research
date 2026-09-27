@@ -2,9 +2,9 @@
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Verification: L4/L5 Proven](https://img.shields.io/badge/Verification-L4%2FL5%20Proven-success.svg)](docs/EVIDENCE.md)
+[![Verification: L4/L5/L6 (Read-Only) Proven](https://img.shields.io/badge/Verification-L4%2FL5%2FL6%20(Read--Only)%20Proven-success.svg)](docs/EVIDENCE.md)
 [![Safety Interlock: Hard-Gated](https://img.shields.io/badge/Safety-Hard--Gated-critical.svg)](docs/ARCHITECTURE.md)
-[![Test Suite: 153 Passed](https://img.shields.io/badge/Tests-153%20Passed-brightgreen.svg)](tests/)
+[![Test Suite: 168 Passed](https://img.shields.io/badge/Tests-168%20Passed-brightgreen.svg)](tests/)
 
 This repository contains the reverse-engineering analysis, technical documentation, clean-room protocol reconstructions, differential validation suites, and offline diagnostic replay layers for the BMW WinKFP automotive ECU flashing software and its associated EDIABAS subsystem, focused on the BMW E60 ZF 6HP EGS (`GKE195` / `10FLASH.prg`).
 
@@ -17,8 +17,8 @@ Modern automotive control units (ECUs) rely on complex vendor-specific diagnosti
 The goal of this research project is to:
 1. **Deconstruct the internal protocol stack** of WinKFP (`winkfpt.exe`, `ebas32.dll`, `api32.dll`, `OBD32.dll`, `nfs.exe`) and SGBD diagnostic scripts (`10FLASH.prg`, `03GKE195.ipo`) using static binary analysis (Ghidra).
 2. **Reconstruct clean-room Python implementations** for cryptographic authentication (`KrApi`), key storage (`AS2` 3DES containers), flash transport orchestration (`VDLE`), and diagnostic bus interfacing (`EDIABAS`/`IFH`).
-3. **Establish a canonical, decoupled read-only diagnostic runtime and replay layer** (`CanonicalPipeline`, `EdiabasJobReplayEngine`, `DiagnosticTransport`) for querying ECU identification records offline with fail-closed validation.
-4. **Differentially validate the reconstructions** against original x86 machine code via hardware-free instruction-level emulation (Unicorn x86), known-answer test (KAT) suites, and immutable hardware trace fixtures.
+3. **Establish a canonical, decoupled read-only diagnostic runtime and replay layer** (`CanonicalPipeline`, `EdiabasJobReplayEngine`, `DiagnosticTransport`, `KdcanDiagnosticAdapter`) for querying ECU identification records offline with fail-closed validation.
+4. **Differentially validate the reconstructions** against original x86 machine code via hardware-free instruction-level emulation (Unicorn x86), known-answer test (KAT) suites, immutable hardware trace fixtures, and scripted transport backends.
 5. **Formalize safety interlocks** preventing unauthorized or dangerous vehicle execution without rigorous precondition verification.
 
 ---
@@ -28,10 +28,14 @@ The goal of this research project is to:
 > [!IMPORTANT]
 > **Independent Research Repository**: `winkfp-research` is a standalone public research archive. It is **NOT** a submodule, branch, package, or component of `open6hp` or any active flashing tool. It does not import, depend on, or modify `open6hp`.
 
-* **No Physical ECU Flashing**: This repository is an analytical research archive and testbed. Physical in-vehicle ECU reprogramming and flashing have **NOT** been validated on physical hardware (see [Evidence Model](#6-evidence-and-validation-model)).
+* **Physical Read-Only K+DCAN Validation (L6)**: Read-only diagnostic identification queries have been validated against physical ZF 6HP EGS hardware (target `0x18`) via K+DCAN (`115200 8N1`), recorded into immutable hardware traces in `traces/hardware/*.json`.
+* **No Physical ECU Flashing (L7)**: Physical in-vehicle or bench ECU reprogramming, firmware flashing, and bootloader manipulation have **NOT** been validated on physical hardware (see [Evidence Model](#6-evidence-and-validation-model)).
 * **Strict Read-Only Runtime Scope**:
   - The runtime execution layer is restricted strictly to read-only diagnostic identification jobs (`IDENT`, `PHYSIKALISCHE_HW_NR_LESEN`, `SERIENNUMMER_LESEN`, `AIF_LESEN`, `AIF_READ_BENCH_ALIAS`, `ZIF_LESEN`, `ZIF_BACKUP_LESEN`, `HARDWARE_REFERENZ_LESEN`, `DATEN_REFERENZ_LESEN`).
   - Write operations, flash memory erasing (`0x31 0x01` / `0x31 0x02`), flash block downloading (`0x34`, `0x36`, `0x37`), ECU reset (`0x11`), diagnostic session transitions (`0x10`), and security access / routine authentication (`0x27`, `0x31 0x07`, `0x31 0x08`) remain **STRICTLY EXCLUDED** from the read-only runtime and are blocked fail-closed before any dispatch.
+* **Hardware Quarantine for Diagnostic Adapters**:
+  - The K+DCAN transport adapter (`KdcanDiagnosticAdapter`) is validated offline using in-memory scripted simulation (`ScriptedKdcanBackend`).
+  - Physical serial communication is hardware-quarantined by default with `auto_open: bool = False`. No serial port (e.g. `/dev/cu.usbserial-A50285BI`) is opened automatically during transceive operations.
 * **Artifact Separation & Redistribution Policy**:
   - **No Original Proprietary Binaries**: No original proprietary OEM binaries (`.exe`, `.dll`, `.prg`, `.ipo`, `.0da`), BMW SP-Daten archives, proprietary ECU firmware images, or production key containers (`SGIDC.as2`, `SGIDD.as2`) are distributed in this repository.
   - **Reverse-Engineering Analysis (`analysis/`)**: Contains behavioral reverse-engineering observations, decompiler-derived C pseudocode, and structural annotations derived from proprietary binaries for research and interoperability analysis.
@@ -67,7 +71,7 @@ The WinKFP research stack models diagnostic orchestration and protocol execution
 +-------------------------------------------------------------------------+
 |              Stage 3: Diagnostic Transport Boundary                     |
 |        transceive_ds2(wire_frame: bytes, timeout: float) -> bytes       |
-|    [FixtureTransport (Immutable Traces) | MockTransport (Synthetic)]    |
+|  [FixtureTransport | MockTransport | KdcanDiagnosticAdapter (Offline)]  |
 +-------------------------------------------------------------------------+
                                     |
                                     v
@@ -91,13 +95,13 @@ The WinKFP research stack models diagnostic orchestration and protocol execution
 
 ---
 
-## 4. Canonical EDIABAS Replay & Diagnostic Transport Boundary
+## 4. Canonical EDIABAS Replay, Diagnostic Transport & K+DCAN Adapter
 
-Milestone 5.12 established a decoupled, offline-first transport architecture separating high-level SGBD diagnostic logic from wire communication.
+Milestones 5.12 and 5.13 established a decoupled, offline-first transport architecture separating high-level SGBD diagnostic logic from wire communication.
 
 ### 4.1 DiagnosticTransport Protocol Contract
 
-The communication boundary is defined in `reconstruction/ediabas/transport.py` as a pure byte-level Python Protocol:
+The communication boundary is defined in `reconstruction/ediabas/transport.py` as a pure byte-level Python Protocol (`@runtime_checkable`):
 
 ```python
 class DiagnosticTransport(Protocol):
@@ -115,19 +119,35 @@ class DiagnosticTransport(Protocol):
 
 ### 4.2 Offline Transport Implementations
 
-1. **`FixtureTransport`**: Replays canonical responses from immutable physical trace fixtures (`traces/hardware/*.json`), raw hex strings, or trace dictionaries. Supports `strict_tx_match=True` to verify that the outgoing request generated by the pipeline matches the recorded trace bit-for-bit, and maintains a complete audit trail in `transport.history`.
-2. **`MockTransport`**: Provides deterministic synthetic responses, request-to-response mapping tables, timeout injection (`always_timeout=True`), dynamic callback handlers, and transport error injection for testing fail-closed execution paths.
+1. **`FixtureTransport`** (`reconstruction/ediabas/transport.py`): Replays canonical responses from immutable physical trace fixtures (`traces/hardware/*.json`), raw hex strings, or trace dictionaries. Supports `strict_tx_match=True` to verify that the outgoing request generated by the pipeline matches the recorded trace bit-for-bit, and maintains a complete audit trail in `transport.history`.
+2. **`MockTransport`** (`reconstruction/ediabas/transport.py`): Provides deterministic synthetic responses, request-to-response mapping tables, timeout injection (`always_timeout=True`), dynamic callback handlers, and transport error injection for testing fail-closed execution paths.
 
-### 4.3 Protocol Representations: Logical Telegram vs Wire Frame
+### 4.3 K+DCAN DiagnosticTransport Adapter & Scripted Backend
+
+Milestone 5.13 introduces the bridge between native K+DCAN transport primitives and the canonical `DiagnosticTransport` boundary:
+
+1. **`KdcanDiagnosticAdapter`** (`reconstruction/transport/kdcan/adapter.py`):
+   - Adapts any `KdcanTransport` backend into a `DiagnosticTransport`.
+   - **Pure Byte-Level Boundary**: Passes `wire_frame: bytes` directly to `backend.transceive_raw()` and returns raw response bytes without modification or re-encoding.
+   - **Zero Job Knowledge**: The adapter contains zero SGBD job logic, zero catalog queries, and no awareness of WinKFP commands.
+   - **Hardware Quarantine**: Initialized with `auto_open: bool = False` by default. It never automatically opens OS serial ports unless explicitly instructed.
+   - **Exception Translation**: Cleanly translates backend `TimeoutError` and `KdcanError("timeout")` into `TransportTimeoutError`, and framing/bus failures into `TransportError`.
+2. **`ScriptedKdcanBackend`** (`reconstruction/transport/kdcan/adapter.py`):
+   - Offline scriptable `KdcanTransport` subclass enabling deterministic in-memory wire simulation without physical serial ports.
+3. **Direct Wire Primitive (`transceive_raw`)**:
+   - Added to `KdcanTransport`, `SerialKdcanTransport`, and `TracedKdcanTransport` to ensure byte-exact transmission without implicit payload re-encoding.
+
+### 4.4 Protocol Representations: Logical Telegram vs Wire Frame
 
 The architecture strictly distinguishes between two independent protocol representations:
 - **`logical_request`** (`EdiabasTelegram.raw_buffer`): The logical telegram buffer as managed by the EDIABAS kernel (`_TEL_AUFTRAG`), containing the header and payload, but **without** the trailing physical transport checksum byte.
 - **`canonical_ds2_request`** (`EdiabasTelegram.to_wire_frame()`): The complete physical DS2 wire frame including the trailing additive 8-bit checksum appended by the bus driver.
 
-### 4.4 CanonicalPipeline & EdiabasJobReplayEngine
+### 4.5 CanonicalPipeline & EdiabasJobReplayEngine
 
 - **`CanonicalPipeline`** (`reconstruction/ediabas/pipeline.py`): Unifies job metadata lookup, request building, transport dispatch, fail-closed validation, and semantic decoding. Catches `TransportTimeoutError` into `status="ERROR_TIMEOUT"` and `TransportError` into `status="ERROR_TRANSPORT"`.
 - **`EdiabasJobReplayEngine`** (`reconstruction/ediabas/replay.py`): Top-level EDIABAS-compatible execution engine reproducing SGBD job flows, modeling canonical arguments (e.g. `AIF_NUMMER: int = 0`), and enforcing target address provenance.
+- **Upstream Safety Rejection**: Unsupported or dangerous jobs (e.g. `FLASH_PROGRAMMIEREN`) are rejected strictly upstream by the catalog resolver before transport dispatch. Automated tests confirm `transport.transceive_ds2()` is **never reached** (0 frames dispatched).
 
 ---
 
@@ -180,11 +200,11 @@ The project tracks experimental rigor across the canonical eight-tier taxonomy d
 | **L3** | Known-answer / execution validation | Deterministic KAT unit tests comparing against known test vectors | Validated (63 KAT tests) |
 | **L4** | Differential trace validation | Execution of original OEM machine code under Unicorn x86 compared against reconstruction | Validated (16 differential test suites) |
 | **L5** | Real EDIABAS integration | Reconstructed engine interacting with EDIABAS API or parsing historical EDIABAS traces | Validated (`traces/sanitized/`, `traces/hardware/`) |
-| **L6** | Real ECU contact | Diagnostic handshake (ID, auth negotiation, session status) on physical ECU | Not validated |
+| **L6** | Real ECU contact (Read-Only) | Read-only diagnostic identification query set executed on physical ZF 6HP EGS bench (target `0x18`) via K+DCAN (`115200 8N1`) | Validated (4 hardware trace fixtures) |
 | **L7** | Real ECU programming | Complete flashing of ECU firmware block on a physical vehicle or hardware bench | Not validated |
 
 > [!CAUTION]
-> **No Physical In-Vehicle Flashing**: Writing to automotive flash memory carries severe bricking and safety risks. Physical ECU contact (**L6**) and ECU programming (**L7**) have **NOT** been validated on physical hardware. Read-only identification queries on bench hardware do not constitute proof of programming state machines.
+> **No Physical In-Vehicle Flashing**: Writing to automotive flash memory carries severe bricking and safety risks. While read-only diagnostic identification queries on physical bench hardware achieve **L6**, **no physical ECU programming (L7)** has been validated on physical hardware in this repository. All write operations, flash block downloading (`0x34`, `0x36`, `0x37`), memory erasing (`0x31 0x01` / `0x31 0x02`), ECU reset (`0x11`), session transitions (`0x10`), and security access / routine authentication (`0x27`, `0x31 0x07`, `0x31 0x08`) remain **STRICTLY EXCLUDED** from the runtime and are blocked fail-closed before any dispatch.
 
 ---
 
@@ -236,7 +256,7 @@ winkfp-research/
 │   ├── PROPRIETARY_MATERIAL.md     # Policy on excluded OEM assets
 │   ├── QUARANTINE.md               # Audit history & asset filtering
 │   ├── research-source-map.md      # Mapping to historical source workspace
-│   ├── evidence/                   # Forensic milestone evidence artifacts (5.0–5.12)
+│   ├── evidence/                   # Forensic milestone evidence artifacts (5.0–5.13)
 │   ├── history/                    # Historical research progression (Rev 1–18.1)
 │   └── reverse-engineering/        # In-depth subsystem specifications
 ├── analysis/                       # Ghidra decompilation artifacts (45 C files)
@@ -250,7 +270,7 @@ winkfp-research/
 │   ├── auth/                       # AS2 3DES parser, key store, retry chain
 │   ├── vdle/                       # VDLE flash engine, block builder, OPPS setup
 │   ├── ediabas/                    # CanonicalPipeline, ReplayEngine, SGBD decoders, Transport
-│   ├── transport/                  # K+DCAN framing, serial transport, trace capture
+│   ├── transport/                  # K+DCAN framing, serial transport, adapter, mock backend
 │   ├── safety/                     # SafetyContext, Limits policy, interlocks
 │   └── runner.py                   # Master FlashRunner orchestration engine
 ├── tests/                          # Automated verification suites
@@ -258,7 +278,7 @@ winkfp-research/
 │   ├── golden/                     # Golden tests (state machine, pipeline, replay, transport)
 │   ├── differential/               # Differential suites (Unicorn x86, SGBD parity)
 │   ├── fixtures/                   # Synthetic containers, limits, and images
-│   └── run_tests.py                # Master test runner (153 tests)
+│   └── run_tests.py                # Master test runner (168 tests)
 ├── tools/                          # Analysis, diffing, and probe tools
 │   ├── kdcan_hardware_probe.py     # Safe read-only physical hardware probe
 │   ├── bench_diff/                 # L1/L2 event log differential runner
@@ -296,10 +316,10 @@ Current test execution summary:
   VERIFICATION SUMMARY
 ======================================================================
   KAT             :  63 run,  63 passed,   0 skipped,   0 failed  [PASSED]
-  GOLDEN          :  74 run,  74 passed,   0 skipped,   0 failed  [PASSED]
+  GOLDEN          :  89 run,  89 passed,   0 skipped,   0 failed  [PASSED]
   DIFFERENTIAL    :  16 run,  16 passed,   0 skipped,   0 failed  [PASSED]
 ----------------------------------------------------------------------
-TOTAL: 153 tests in ~4.3s | 153 passed | 0 skipped | 0 failed
+TOTAL: 168 tests in ~4.3s | 168 passed | 0 skipped | 0 failed
 ======================================================================
 ```
 

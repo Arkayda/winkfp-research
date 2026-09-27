@@ -17,7 +17,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any, Callable, Dict, List, Optional, Protocol, Set, Tuple, Union
+from typing import Any, Callable, Dict, List, Optional, Protocol, Set, Tuple, Union, runtime_checkable
 
 from .trace_loader import TraceFixture, load_trace_fixture
 
@@ -32,6 +32,7 @@ class TransportTimeoutError(TransportError):
     pass
 
 
+@runtime_checkable
 class DiagnosticTransport(Protocol):
     """Pure byte-level transport protocol for DS2 diagnostic communication."""
 

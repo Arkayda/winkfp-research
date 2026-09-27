@@ -193,6 +193,44 @@ class SerialKdcanTransport(KdcanTransport):
         )
         return parsed_payload
 
+    def transceive_raw(
+        self,
+        wire_frame: bytes,
+        timeout: Optional[float] = None,
+    ) -> bytes:
+        """Transmit exact DS2 wire frame and return raw response frame without re-encoding."""
+        with self._lock:
+            if self._ser is None:
+                self.open()
+            if self._ser is None:
+                raise KdcanError(
+                    f"K+DCAN adapter not connected ({self.port or 'waiting for device'})"
+                )
+            self._wait_regen()
+            eff_timeout = self.response_timeout if timeout is None else timeout
+            try:
+                self._ser.reset_input_buffer()
+                self._ser.write(wire_frame)
+                self._ser.flush()
+                if self.adapter_echo:
+                    self._read_echo(wire_frame)
+                response = self._read_telegram(eff_timeout)
+                self._last_response_at = time.monotonic()
+                if response == wire_frame:
+                    self.adapter_echo = True
+                    response = self._read_telegram(eff_timeout)
+                    self._last_response_at = time.monotonic()
+                return response
+            except Exception:
+                try:
+                    if self._ser is not None:
+                        self._ser.reset_input_buffer()
+                except Exception:
+                    pass
+                raise
+            finally:
+                self._last_response_at = time.monotonic()
+
     def _wait_regen(self) -> None:
         elapsed = time.monotonic() - self._last_response_at
         if elapsed < self.regen_delay:

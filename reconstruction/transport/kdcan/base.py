@@ -62,3 +62,15 @@ class KdcanTransport(ABC):
         rtt_ms = (time.perf_counter() - t0) * 1000.0
         raw_rx = framing.build(src, dst, resp_payload)
         return raw_tx, raw_rx, resp_payload, rtt_ms
+
+    def transceive_raw(
+        self,
+        wire_frame: bytes,
+        timeout: Optional[float] = None,
+    ) -> bytes:
+        """Transmit raw DS2 wire frame and return raw DS2 response frame.
+
+        Direct raw-wire primitive: exact bytes supplied must reach the backend
+        without alteration.
+        """
+        raise NotImplementedError("Direct raw-wire transceive not implemented by this backend")

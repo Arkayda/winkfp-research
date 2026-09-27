@@ -4,6 +4,7 @@ Adapted from open6hp (https://github.com/Arkayda/open6hp) transport implementati
 Copyright (c) open6hp contributors. Licensed under the MIT License.
 """
 
+from .adapter import KdcanDiagnosticAdapter, ScriptedKdcanBackend
 from .base import KdcanError, KdcanTransport
 from .bus import DirectKdcanBus
 from .framing import (
@@ -36,8 +37,10 @@ from .trace import SessionTracer, TracedKdcanTransport
 
 __all__ = [
     "DirectKdcanBus",
+    "KdcanDiagnosticAdapter",
     "KdcanError",
     "KdcanTransport",
+    "ScriptedKdcanBackend",
     "SerialKdcanTransport",
     "SessionTracer",
     "TracedKdcanTransport",
