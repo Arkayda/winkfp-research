@@ -1,0 +1,29 @@
+{
+  "timestamp_utc": "2026-09-28T14:35:40.997558+00:00",
+  "milestone": "5.15",
+  "job_name": "PHYSIKALISCHE_HW_NR_LESEN",
+  "service": "0x1A",
+  "subfunction": "0x87",
+  "port": "/dev/cu.usbserial-A50285BI",
+  "baud": 115200,
+  "tx_count": 1,
+  "rx_count": 1,
+  "retries_count": 0,
+  "prohibited_operations_count": 0,
+  "tx_wire_hex": "82 18 F1 1A 87 2C",
+  "rx_wire_hex": "94 F1 18 5A 87 00 00 07 56 99 80 00 00 07 56 99 80 00 00 07 56 99 80 E0",
+  "pure_serial_rtt_ms": 55.44235900742933,
+  "wire_status": "EXACT_MATCH",
+  "wire_exact_byte_match": true,
+  "expected_semantic_key": "PHYSIKALISCHE_HW_NR",
+  "expected_semantic_value": "7569980",
+  "observed_semantic_value": "7569980",
+  "semantic_match": true,
+  "decoded_fields": {
+    "PHYSIKALISCHE_HW_NR": "7569980",
+    "_BLOCK_COUNT": 3,
+    "_BLOCK_MATCH": true,
+    "_RAW_BLOCK_HEX": "000007569980"
+  },
+  "canonical_fixture_sha256": "6ce9ec99783696052da1361bfe94f576574d970a8b9bb5227a3d63d7e7109b15"
+}
