@@ -191,7 +191,7 @@ Every job execution result (`SgbdJobResult` and `EdiabasJobResult`) tracks four 
 | **`AIF_READ_BENCH_ALIAS`** | *(Reconstruction)* | *(Direct primitive)* | `$1A` | `$86` | `82 18 F1 1A 86 2B` | `5A 86` | Physical EGS 0x18 | `OBSERVED_WIRE / RECONSTRUCTION_ALIAS` |
 | **`TESTER_PRESENT`** | *(Keepalive)* | *(Primitive)* | `$3E` | `$00` | `82 18 F1 3E 00 C9` | `7F 3E 12` | Physical EGS 0x18 | `OBSERVED_WIRE` (NRC 0x12) |
 | **`SERIENNUMMER_LESEN`** | `SgSerienNr` | `SERIENNUMMER_LESEN` (`0x00D172`) | `$1A` | `$89` (fallback: `$80`) | `82 18 F1 1A 89 2E` | `5A 89` | Factory trace line 28 | `DIRECT_SGBD_MAPPING` + `UNKNOWN[target=0479S90T641Z]` |
-| **`AIF_LESEN`** | `AifLesen` | `AIF_LESEN` (`0x028DDE`) | `$23` | *(MemAddress + Len)* | `86 18 F1 23 00 00 00 07 12 CB` | `63` | Factory trace line 11960 | `DIRECT_SGBD_MAPPING` + `UNKNOWN[target=0479S90T641Z]` |
+| **`AIF_LESEN`** | `AifLesen` | `AIF_LESEN` (`0x028DDE`) | `$23` | *(MemAddress + Len)* | `86 18 F1 23 00 00 00 07 12 CB` | `63` | Physical EGS 0x18 (Milestone 5.16) | `DIRECTLY_RESOLVED` |
 | **`ZIF_LESEN`** | `ZifLesen` | `ZIF_LESEN` (`0x00E60F`) | `$22` | `$2503` (fallback: `$1A $91`, `$80`) | `83 18 F1 22 25 03 D6` | `62 25 03` | Factory trace line 11661 | `DIRECT_SGBD_MAPPING` + `UNKNOWN[target=0479S90T641Z]` |
 | **`ZIF_BACKUP_LESEN`** | `ZifBackupLesen` | `ZIF_BACKUP_LESEN` (`0x01126C`) | `$22` | `$2500` (fallback: `$1A $80`) | `83 18 F1 22 25 00 D3` | `62 25 00` | Factory trace line 11706 | `DIRECT_SGBD_MAPPING` + `UNKNOWN[target=0479S90T641Z]` |
 | **`HARDWARE_REFERENZ_LESEN`** | `HwReferenzLesen` | `HARDWARE_REFERENZ_LESEN` (`0x0143FA`) | `$22` | `$2502` (fallback: `$1A $80`) | `83 18 F1 22 25 02 D5` | `62 25 02` | Factory trace line 11620 | `DIRECT_SGBD_MAPPING` + `UNKNOWN[target=0479S90T641Z]` |
@@ -199,9 +199,9 @@ Every job execution result (`SgbdJobResult` and `EdiabasJobResult`) tracks four 
 
 > [!NOTE]
 > **AIF Provenance & Service Separation**:
-> - **`AIF_LESEN`**: Confirmed by SGBD disassembly (`10FLASH.prg` routine `0x028DDE`) to use KWP2000 service `$23 00 00 00 07 12` (`ReadMemoryByAddress`). Observed in historical factory trace; physical validation on target hardware is **NOT YET CONFIRMED**.
+> - **`AIF_LESEN`**: Confirmed by SGBD disassembly (`10FLASH.prg` routine `0x028DDE`) to use KWP2000 service `$23 00 00 00 07 12` (`ReadMemoryByAddress`). Physically confirmed on ZF 6HP EGS bench in Milestone 5.16 (positive response SID `$63`, `AIF_ZB_NR = 7592132`, `AIF_DATUM = 04.12.2008`).
 > - **`AIF_READ_BENCH_ALIAS`**: Direct bench diagnostic probe using KWP2000 service `$1A 0x86` (`ReadECUIdentification`). Physically observed on real ZF 6HP EGS hardware and byte-for-byte fixture validated (`20260926_173201_egs_aif.json`).
-> - The two services are strictly separated: passing a `1A 86` response into `AIF_LESEN` fails closed with `ERROR_SGBD_USES_SERVICE_0x23_NOT_0x1A86`.
+> - The two services are strictly separated: passing a `1A 86` response into `AIF_LESEN` fails closed with `ERROR_SGBD_USES_SERVICE_0x23_NOT_0x1A86`. Official AIF_LESEN and AIF_READ_BENCH_ALIAS are NOT the same evidence line.
 
 ---
 

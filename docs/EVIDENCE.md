@@ -41,7 +41,7 @@ The following table documents the **highest proven evidence level** achieved in 
 | **OBD32 / IFH K-Line Driver** | **L4** | `VALIDATED` | Original `OBD32.dll` machine code running in Unicorn driving virtual serial port matches `reconstruction/obd_ifh.py`. |
 | **EDIABAS API Layer** | **L5** | `VALIDATED` | Parsing and diffing real production `api.trc` (2.4 MB flash session) using `tools/bench_diff/`. |
 | **Safety Interlocks (`ID_CHECK`)** | **L2** | `INFERRED` | Binary conditions parsed; parameter thresholds are documented as engineering hypotheses (`Limits`). |
-| **Physical ECU Contact (Read-Only)** | **L6** | `VALIDATED` | Read-only diagnostic identification query set executed on physical ZF 6HP EGS bench (target `0x18`) via K+DCAN (`115200 8N1`). Verified by immutable trace fixtures in `traces/hardware/`: `20260926_174811_egs_ident.json` (`IDENT`), `20260926_175924_egs_physical_hw_nr.json` (`PHYSIKALISCHE_HW_NR_LESEN`), `20260926_173201_egs_aif.json` (`AIF_READ_BENCH_ALIAS`), `20260926_174033_egs_tester_present.json` (`TESTER_PRESENT`). |
+| **Physical ECU Contact (Read-Only)** | **L6** | `VALIDATED` | Read-only diagnostic identification query set executed on physical ZF 6HP EGS bench (target `0x18`) via K+DCAN (`115200 8N1`). Verified by immutable trace fixtures in `traces/hardware/`: `20260926_174811_egs_ident.json` (`IDENT`), `20260926_175924_egs_physical_hw_nr.json` (`PHYSIKALISCHE_HW_NR_LESEN`), `20260926_173201_egs_aif.json` (`AIF_READ_BENCH_ALIAS`), `20260926_174033_egs_tester_present.json` (`TESTER_PRESENT`), and Milestone 5.16 physical correlation of official `AIF_LESEN` (`0x23`). |
 | **Physical ECU Reprogramming** | **L7** | **Not validated** | Complete flashing of an ECU firmware block on a physical vehicle or hardware bench. No physical vehicle or bench ECU flashing, erase, reset, or flash writing has been performed. Strictly not validated. |
 
 ---
@@ -54,10 +54,10 @@ The repository establishes an explicit provenance and operational boundary betwe
 - **Evidence Level**: **L6** (Physical bench proven) & **L5** (Historical trace replay).
 - **Subsystems**: `CanonicalPipeline`, `EdiabasJobReplayEngine`, `DiagnosticTransport`, `KdcanDiagnosticAdapter`, `SerialKdcanTransport`.
 - **Hardware Contact**: Validated on physical ZF 6HP EGS bench (target `0x18`) over K+DCAN (`115200 8N1`).
-- **Permitted Operations (Physical L6 Scope)**: Strictly read-only identification queries confirmed on physical hardware: `IDENT` (`1A 80`), `PHYSIKALISCHE_HW_NR_LESEN` (`1A 87`), `AIF_READ_BENCH_ALIAS` (`1A 86`), and `TESTER_PRESENT` observation (`3E 00`).
+- **Permitted Operations (Physical L6 Scope)**: Strictly read-only identification queries confirmed on physical hardware: `IDENT` (`1A 80`), `PHYSIKALISCHE_HW_NR_LESEN` (`1A 87`), official `AIF_LESEN` (`0x23`), `AIF_READ_BENCH_ALIAS` (`1A 86`), and `TESTER_PRESENT` observation (`3E 00`).
 - **AIF Job Disambiguation**:
-  - `AIF_LESEN`: Official SGBD routine utilizing KWP2000 service `$23 00 00 00 07 12` (`ReadMemoryByAddress`). Confirmed via SGBD disassembly; physical validation on target hardware is **NOT YET CONFIRMED**.
-  - `AIF_READ_BENCH_ALIAS`: Physical bench query utilizing service `$1A 0x86` (`ReadECUIdentification`). Observed and byte-for-byte fixture-validated against physical ZF 6HP EGS bench hardware.
+  - `AIF_LESEN`: Official SGBD routine utilizing KWP2000 service `$23 00 00 00 07 12` (`ReadMemoryByAddress`). Confirmed via SGBD disassembly and physically validated on target hardware in Milestone 5.16 (SID `$63`, ZB `7592132`, Date `04.12.2008`).
+  - `AIF_READ_BENCH_ALIAS`: Physical bench query utilizing service `$1A 0x86` (`ReadECUIdentification`). Observed and byte-for-byte fixture-validated against physical ZF 6HP EGS bench hardware (`20260926_173201_egs_aif.json`). Not equivalent to official SGBD `AIF_LESEN`.
 - **Safety Interlocks**: Serial ports quarantined (`auto_open=False` default); explicit `--confirm-readonly-hardware` required; single-transaction enforcement (TX=1, RX=1, retries=0); fail-closed on unevidenced targets or unmapped jobs.
 
 ### 3.2 Reconstructed Flash Orchestration Model (`reconstruction/runner.py`, `reconstruction/vdle/`, `reconstruction/auth/`)
