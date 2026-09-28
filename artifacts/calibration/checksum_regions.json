@@ -1,0 +1,160 @@
+{
+  "provenance_policy": "Strict provenance: [C]=Directly Confirmed, [O]=Observed Structure.",
+  "regions": [
+    {
+      "checksum_algorithm": "CARB_CVN_16BIT",
+      "checksum_location": {
+        "address": "0x000500EE",
+        "byte_order": "little_endian",
+        "expected_value": "0x0000F41E",
+        "size_bytes": 2
+      },
+      "confidence": "HIGH_CONFIRMED [C]",
+      "covered_range": {
+        "description": "Primary calibration dataset covered by OBD-II CARB CVN calculation",
+        "end": "0x000714F0",
+        "start": "0x000500A0"
+      },
+      "region": "CARB_MODE_09_CVN_CALIBRATION",
+      "source_evidence": ";$CARB_MODE_9_CVN directive in .0da header confirmed at binary offset 0x000500EE"
+    },
+    {
+      "checksum_algorithm": "EDIABAS_ADD16_HEX",
+      "checksum_location": {
+        "address": "FILE_HEADER_DIRECTIVE",
+        "byte_order": "hex_ascii",
+        "expected_value": "0x2352",
+        "size_bytes": 2
+      },
+      "confidence": "HIGH_CONFIRMED [C]",
+      "covered_range": {
+        "description": "Entire calibration payload covered by EDIABAS package checksum",
+        "end": "0x0007FF70",
+        "start": "0x000500A0"
+      },
+      "region": "EDIABAS_HEADER_CHECKSUM",
+      "source_evidence": ";$CHECKSUMME directive in Intel Hex footer"
+    },
+    {
+      "checksum_algorithm": "RSA1024_SHA1_PKCS1_V1_5",
+      "checksum_location": {
+        "address": "0x00050000",
+        "byte_order": "big_endian",
+        "expected_value": "0x0000002000DAB57F79291CC3CE16CEEB...",
+        "size_bytes": 128
+      },
+      "confidence": "HIGH_CONFIRMED [C]",
+      "covered_range": {
+        "description": "Complete calibration payload verified by bootloader cryptographic gate",
+        "end": "0x0007FF70",
+        "start": "0x000500A0"
+      },
+      "region": "FLASH_CALIBRATION_RSA_SIGNATURE",
+      "source_evidence": "1024-bit RSA signature block preceding calibration data block"
+    },
+    {
+      "checksum_algorithm": "BMW_BLOCK_TRAILER_CHECKSUM",
+      "checksum_location": {
+        "address": "0x00050080",
+        "byte_order": "big_endian",
+        "expected_value": "0x744D6907",
+        "size_bytes": 4
+      },
+      "confidence": "OBSERVED_STRUCTURE [O]",
+      "covered_range": {
+        "description": "EDIABAS block boundary trailer checksum",
+        "end": "0x00050080",
+        "start": "BLOCK_START"
+      },
+      "region": "INTEL_HEX_BLOCK_TRAILER_0x00050080",
+      "source_evidence": "Type 0x10 Intel Hex record trailer"
+    },
+    {
+      "checksum_algorithm": "BMW_BLOCK_TRAILER_CHECKSUM",
+      "checksum_location": {
+        "address": "0x0005FFF0",
+        "byte_order": "big_endian",
+        "expected_value": "0x00C800C8000207D00FA000C800C80002",
+        "size_bytes": 16
+      },
+      "confidence": "OBSERVED_STRUCTURE [O]",
+      "covered_range": {
+        "description": "EDIABAS block boundary trailer checksum",
+        "end": "0x0005FFF0",
+        "start": "BLOCK_START"
+      },
+      "region": "INTEL_HEX_BLOCK_TRAILER_0x0005FFF0",
+      "source_evidence": "Type 0x10 Intel Hex record trailer"
+    },
+    {
+      "checksum_algorithm": "BMW_BLOCK_TRAILER_CHECKSUM",
+      "checksum_location": {
+        "address": "0x0006FFF0",
+        "byte_order": "big_endian",
+        "expected_value": "0x074007400836094F0D490D6C0FC11167",
+        "size_bytes": 16
+      },
+      "confidence": "OBSERVED_STRUCTURE [O]",
+      "covered_range": {
+        "description": "EDIABAS block boundary trailer checksum",
+        "end": "0x0006FFF0",
+        "start": "BLOCK_START"
+      },
+      "region": "INTEL_HEX_BLOCK_TRAILER_0x0006FFF0",
+      "source_evidence": "Type 0x10 Intel Hex record trailer"
+    },
+    {
+      "checksum_algorithm": "BMW_BLOCK_TRAILER_CHECKSUM",
+      "checksum_location": {
+        "address": "0x000714F0",
+        "byte_order": "big_endian",
+        "expected_value": "0x34FFFF00FFFFFFFFFFFFFFFFFFFFFFFF",
+        "size_bytes": 16
+      },
+      "confidence": "OBSERVED_STRUCTURE [O]",
+      "covered_range": {
+        "description": "EDIABAS block boundary trailer checksum",
+        "end": "0x000714F0",
+        "start": "BLOCK_START"
+      },
+      "region": "INTEL_HEX_BLOCK_TRAILER_0x000714F0",
+      "source_evidence": "Type 0x10 Intel Hex record trailer"
+    },
+    {
+      "checksum_algorithm": "BMW_BLOCK_TRAILER_CHECKSUM",
+      "checksum_location": {
+        "address": "0x0007EF60",
+        "byte_order": "big_endian",
+        "expected_value": "0x00000000FFFFFFFFFFFFFFFFFFFFFFFF",
+        "size_bytes": 16
+      },
+      "confidence": "OBSERVED_STRUCTURE [O]",
+      "covered_range": {
+        "description": "EDIABAS block boundary trailer checksum",
+        "end": "0x0007EF60",
+        "start": "BLOCK_START"
+      },
+      "region": "INTEL_HEX_BLOCK_TRAILER_0x0007EF60",
+      "source_evidence": "Type 0x10 Intel Hex record trailer"
+    },
+    {
+      "checksum_algorithm": "BMW_BLOCK_TRAILER_CHECKSUM",
+      "checksum_location": {
+        "address": "0x0007FF70",
+        "byte_order": "big_endian",
+        "expected_value": "0xFFFFFFFFFFFFFFFFFFFFFFFF028C4946",
+        "size_bytes": 16
+      },
+      "confidence": "OBSERVED_STRUCTURE [O]",
+      "covered_range": {
+        "description": "EDIABAS block boundary trailer checksum",
+        "end": "0x0007FF70",
+        "start": "BLOCK_START"
+      },
+      "region": "INTEL_HEX_BLOCK_TRAILER_0x0007FF70",
+      "source_evidence": "Type 0x10 Intel Hex record trailer"
+    }
+  ],
+  "title": "BMW E60 GKE195 Checksum, CVN, and Cryptographic Signature Regions",
+  "total_regions": 9
+}

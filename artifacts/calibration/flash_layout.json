@@ -1,0 +1,280 @@
+{
+  "images": {
+    "7591971A.0pa": {
+      "segments": [
+        {
+          "classification": "code",
+          "description": "Firmware program routines, communication stacks, and operating system logic",
+          "end_address": "0x00038AA0",
+          "end_int": 232096,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 35488,
+          "start_address": "0x00030000",
+          "start_int": 196608
+        },
+        {
+          "classification": "code",
+          "description": "Firmware program routines, communication stacks, and operating system logic",
+          "end_address": "0x0003FFF0",
+          "end_int": 262128,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 9680,
+          "start_address": "0x0003DA20",
+          "start_int": 252448
+        },
+        {
+          "classification": "code",
+          "description": "Firmware program routines, communication stacks, and operating system logic",
+          "end_address": "0x00045450",
+          "end_int": 283728,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 21584,
+          "start_address": "0x00040000",
+          "start_int": 262144
+        },
+        {
+          "classification": "code",
+          "description": "Firmware program routines, communication stacks, and operating system logic",
+          "end_address": "0x000454D0",
+          "end_int": 283856,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 48,
+          "start_address": "0x000454A0",
+          "start_int": 283808
+        },
+        {
+          "classification": "code",
+          "description": "Firmware program routines, communication stacks, and operating system logic",
+          "end_address": "0x0004FB10",
+          "end_int": 326416,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 42368,
+          "start_address": "0x00045590",
+          "start_int": 284048
+        },
+        {
+          "classification": "code",
+          "description": "Firmware program routines, communication stacks, and operating system logic",
+          "end_address": "0x0004FFF0",
+          "end_int": 327664,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 32,
+          "start_address": "0x0004FFD0",
+          "start_int": 327632
+        },
+        {
+          "classification": "constants",
+          "description": "Program flash constants and default calibration values",
+          "end_address": "0x0006B6B0",
+          "end_int": 439984,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 46640,
+          "start_address": "0x00060080",
+          "start_int": 393344
+        },
+        {
+          "classification": "constants",
+          "description": "Program flash constants and default calibration values",
+          "end_address": "0x0006FED0",
+          "end_int": 458448,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 15136,
+          "start_address": "0x0006C3B0",
+          "start_int": 443312
+        },
+        {
+          "classification": "constants",
+          "description": "Program flash constants and default calibration values",
+          "end_address": "0x0008FFF0",
+          "end_int": 589808,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 65520,
+          "start_address": "0x00080000",
+          "start_int": 524288
+        },
+        {
+          "classification": "constants",
+          "description": "Program flash constants and default calibration values",
+          "end_address": "0x0009FFF0",
+          "end_int": 655344,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 65520,
+          "start_address": "0x00090000",
+          "start_int": 589824
+        },
+        {
+          "classification": "constants",
+          "description": "Program flash constants and default calibration values",
+          "end_address": "0x000AFFF0",
+          "end_int": 720880,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 65520,
+          "start_address": "0x000A0000",
+          "start_int": 655360
+        },
+        {
+          "classification": "constants",
+          "description": "Program flash constants and default calibration values",
+          "end_address": "0x000BFFF0",
+          "end_int": 786416,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 65520,
+          "start_address": "0x000B0000",
+          "start_int": 720896
+        },
+        {
+          "classification": "constants",
+          "description": "Program flash constants and default calibration values",
+          "end_address": "0x000CFFF0",
+          "end_int": 851952,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 65520,
+          "start_address": "0x000C0000",
+          "start_int": 786432
+        },
+        {
+          "classification": "constants",
+          "description": "Program flash constants and default calibration values",
+          "end_address": "0x000DFFF0",
+          "end_int": 917488,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 65520,
+          "start_address": "0x000D0000",
+          "start_int": 851968
+        },
+        {
+          "classification": "constants",
+          "description": "Program flash constants and default calibration values",
+          "end_address": "0x000EFFF0",
+          "end_int": 983024,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 65520,
+          "start_address": "0x000E0000",
+          "start_int": 917504
+        },
+        {
+          "classification": "constants",
+          "description": "Program flash constants and default calibration values",
+          "end_address": "0x000FE8F0",
+          "end_int": 1042672,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 59632,
+          "start_address": "0x000F0000",
+          "start_int": 983040
+        },
+        {
+          "classification": "constants",
+          "description": "Program flash constants and default calibration values",
+          "end_address": "0x000FFED0",
+          "end_int": 1048272,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 80,
+          "start_address": "0x000FFE80",
+          "start_int": 1048192
+        },
+        {
+          "classification": "constants",
+          "description": "Program flash constants and default calibration values",
+          "end_address": "0x000FFF60",
+          "end_int": 1048416,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 128,
+          "start_address": "0x000FFEE0",
+          "start_int": 1048288
+        }
+      ],
+      "total_payload_bytes": 689456,
+      "total_segments": 18
+    },
+    "A7592133.0da": {
+      "segments": [
+        {
+          "classification": "rsa_signature",
+          "description": "RSA cryptographic signature / header block for calibration payload",
+          "end_address": "0x00050080",
+          "end_int": 327808,
+          "endianness": "big_endian",
+          "evidence_class": "[C]",
+          "size_bytes": 128,
+          "start_address": "0x00050000",
+          "start_int": 327680
+        },
+        {
+          "classification": "calibration_data",
+          "description": "Primary calibration dataset: lookup tables, monotonic axes, and characteristic maps",
+          "end_address": "0x0005FFF0",
+          "end_int": 393200,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 65360,
+          "start_address": "0x000500A0",
+          "start_int": 327840
+        },
+        {
+          "classification": "calibration_data",
+          "description": "Primary calibration dataset: lookup tables, monotonic axes, and characteristic maps",
+          "end_address": "0x0006FFF0",
+          "end_int": 458736,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 65520,
+          "start_address": "0x00060000",
+          "start_int": 393216
+        },
+        {
+          "classification": "calibration_data",
+          "description": "Primary calibration dataset: lookup tables, monotonic axes, and characteristic maps",
+          "end_address": "0x000714F0",
+          "end_int": 464112,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 5360,
+          "start_address": "0x00070000",
+          "start_int": 458752
+        },
+        {
+          "classification": "calibration_data",
+          "description": "Secondary calibration dataset: shift characteristics and application curves",
+          "end_address": "0x0007EF60",
+          "end_int": 520032,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 36704,
+          "start_address": "0x00076000",
+          "start_int": 483328
+        },
+        {
+          "classification": "trailer",
+          "description": "Calibration trailer block: segment end descriptors and block checksums",
+          "end_address": "0x0007FF70",
+          "end_int": 524144,
+          "endianness": "little_endian",
+          "evidence_class": "[O]",
+          "size_bytes": 16,
+          "start_address": "0x0007FF60",
+          "start_int": 524128
+        }
+      ],
+      "total_payload_bytes": 173088,
+      "total_segments": 6
+    }
+  }
+}

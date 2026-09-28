@@ -1,0 +1,191 @@
+{
+  "artifacts": [
+    {
+      "artifact_type": "calibration",
+      "ecu_family": "GKE195",
+      "filename": "A7592133.0da",
+      "format": "intel_hex_bmw",
+      "provenance": "[C]",
+      "references": [
+        "0479S90T641Z1ZY02",
+        "E60 M57D30TU2",
+        "HW 7591972",
+        "SW 7592133DA",
+        "ZB 7592132"
+      ],
+      "sha256": "45b473d1ee8cc2542a1eb3ecb77bf446f357f81827a464e6c3489257312a0112",
+      "size_bytes": 489258
+    },
+    {
+      "artifact_type": "program",
+      "ecu_family": "GKE215/GKE195",
+      "filename": "7591971A.0pa",
+      "format": "intel_hex_bmw",
+      "provenance": "[C]",
+      "references": [
+        "0479SA0T641Z",
+        "GS19.11 6HP19/T\u00dc",
+        "SW 7591971A"
+      ],
+      "sha256": "63b204d2edbdaa0945d9b0241d55df7c6859b41d3376d9f35e93cc6c82ecfcc3",
+      "size_bytes": 1942502
+    },
+    {
+      "artifact_type": "assembly_table",
+      "ecu_family": "GKE195",
+      "filename": "GKE195.DAT",
+      "format": "text_dat",
+      "provenance": "[C]",
+      "references": [
+        "ZB 7592132 -> HW 7591972 + SW 7592133DA"
+      ],
+      "sha256": "6e88abf482c0cfe63ce302297b3721d2b00d47032593c477ee79ba6838daea98",
+      "size_bytes": 998
+    },
+    {
+      "artifact_type": "synthetic",
+      "ecu_family": "SYNTHETIC",
+      "filename": "synthetic_image.bin",
+      "format": "raw_binary",
+      "provenance": "[R]",
+      "references": [
+        "test_synthetic_fixture"
+      ],
+      "sha256": "02b9acea5c54c260cfaa58286dbcf4e918efc7a9b3a8a1b97e3ba29a5c9902e7",
+      "size_bytes": 272
+    },
+    {
+      "artifact_type": "calibration",
+      "ecu_family": "GKE195",
+      "filename": "A7583974.0da",
+      "format": "intel_hex_bmw",
+      "provenance": "[C]",
+      "references": [],
+      "sha256": "419b5c133c9a20a470f35fff4edbf83a0cf01aae1df20fe7c5cb46bd84943f4c",
+      "size_bytes": 487475
+    },
+    {
+      "artifact_type": "calibration",
+      "ecu_family": "GKE195",
+      "filename": "A7592131.0da",
+      "format": "intel_hex_bmw",
+      "provenance": "[C]",
+      "references": [],
+      "sha256": "5f1154045ed17420797887b798deac400a2572aad48636499020b03edde317e5",
+      "size_bytes": 489277
+    },
+    {
+      "artifact_type": "calibration",
+      "ecu_family": "GKE195",
+      "filename": "A7592135.0da",
+      "format": "intel_hex_bmw",
+      "provenance": "[C]",
+      "references": [],
+      "sha256": "543f1a968101f8e9270a2cb0c7ccb358ff598818b864e1a1269dc32be27708b3",
+      "size_bytes": 489283
+    },
+    {
+      "artifact_type": "calibration",
+      "ecu_family": "GKE195",
+      "filename": "A7592137.0da",
+      "format": "intel_hex_bmw",
+      "provenance": "[C]",
+      "references": [],
+      "sha256": "a8f6df8664e2894cb5fab6fad148660591fae4d70af3d952a4ba73ae14c11903",
+      "size_bytes": 489265
+    },
+    {
+      "artifact_type": "calibration",
+      "ecu_family": "GKE195",
+      "filename": "A7592139.0da",
+      "format": "intel_hex_bmw",
+      "provenance": "[C]",
+      "references": [],
+      "sha256": "a2299db1a0988ce3478298a7b7a2e7e805e430ad349603c5131538472745b298",
+      "size_bytes": 489260
+    },
+    {
+      "artifact_type": "calibration",
+      "ecu_family": "GKE195",
+      "filename": "A7592141.0da",
+      "format": "intel_hex_bmw",
+      "provenance": "[C]",
+      "references": [],
+      "sha256": "6643897036e23ca4f7386913d9b59cfd7879c6dbdba3006ec1e36afd4ecbcc2b",
+      "size_bytes": 489278
+    },
+    {
+      "artifact_type": "calibration",
+      "ecu_family": "GKE195",
+      "filename": "A7592143.0da",
+      "format": "intel_hex_bmw",
+      "provenance": "[C]",
+      "references": [],
+      "sha256": "6cad4f6762ffe73277b99a286ea6ca60945806edb3d95c3b314fe007dbd38b38",
+      "size_bytes": 489275
+    },
+    {
+      "artifact_type": "calibration",
+      "ecu_family": "GKE195",
+      "filename": "A7592145.0da",
+      "format": "intel_hex_bmw",
+      "provenance": "[C]",
+      "references": [],
+      "sha256": "583bad578d520304c9b6c8324554f9cce89f4a7c9068bffc5d9f9d54e0d2a769",
+      "size_bytes": 489260
+    },
+    {
+      "artifact_type": "calibration",
+      "ecu_family": "GKE195",
+      "filename": "A7592147.0da",
+      "format": "intel_hex_bmw",
+      "provenance": "[C]",
+      "references": [],
+      "sha256": "3ef7986f8de3dbbf87b3848b31a517c85f24eef6377ccdd6d9b266aa78abcafb",
+      "size_bytes": 489257
+    },
+    {
+      "artifact_type": "calibration",
+      "ecu_family": "GKE195",
+      "filename": "A7592149.0da",
+      "format": "intel_hex_bmw",
+      "provenance": "[C]",
+      "references": [],
+      "sha256": "e4fbd055cbd5bb77042c60c75c1d4ae382fc8e5fcf6b8f13161c6cbed6690f43",
+      "size_bytes": 489301
+    },
+    {
+      "artifact_type": "calibration",
+      "ecu_family": "GKE195",
+      "filename": "A7592151.0da",
+      "format": "intel_hex_bmw",
+      "provenance": "[C]",
+      "references": [],
+      "sha256": "e106a26e2fc288088e942f54ac3435eb5e79fae4b8fabb200e4029913c854a6d",
+      "size_bytes": 489296
+    },
+    {
+      "artifact_type": "calibration",
+      "ecu_family": "GKE195",
+      "filename": "A7592153.0da",
+      "format": "intel_hex_bmw",
+      "provenance": "[C]",
+      "references": [],
+      "sha256": "1087814923296acd310becc5ebd4bd3d7470761f962fa65ffb3d1d2dc12a3964",
+      "size_bytes": 489293
+    },
+    {
+      "artifact_type": "calibration",
+      "ecu_family": "GKE195",
+      "filename": "A7592155.0da",
+      "format": "intel_hex_bmw",
+      "provenance": "[C]",
+      "references": [],
+      "sha256": "5755c54317dd3f7e7c018b53c43b2c982c6bebc559054a4aef3469e406f79ffd",
+      "size_bytes": 489293
+    }
+  ],
+  "provenance_policy": "Strict provenance: [C]=Directly Established, [O]=Observed Binary, [R]=Reconstructed, [U]=Unknown",
+  "title": "BMW E60 GKE195 Flash Image and Calibration Inventory",
+  "total_analyzed": 17
+}

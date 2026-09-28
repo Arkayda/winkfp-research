@@ -1,0 +1,105 @@
+{
+  "analysis_scope": "BMW E60 / E61 Transmission Family & SGBD Matrix (6HP19 vs 6HP26 vs 6HP28)",
+  "binary_lineage_distinction": {
+    "6hp19tu_vs_6hp28": "GS19.11 executive architecture is shared/related where directly supported by the analyzed artifacts (shared base program 7591971A.0pa lineage and common XXFLKP protocol). However, exact calibration data, torque parameters, and solenoid characteristics are variant-specific.",
+    "6hp26_vs_6hp28": "No shared binary code was established from the currently analyzed corpus. 6HP26 is 1st-generation with mechanical cable linkage (GKE191/GKE194), while 6HP28 is 2nd-generation with electronic joystick GWS and GS19.11 mechatronic.",
+    "evidence_class": "[C]"
+  },
+  "gke196_refutation": {
+    "evidence_class": "[C]",
+    "kmm_count": 0,
+    "spdaten_count": 0,
+    "status": "NON_EXISTENT",
+    "verdict": "No GKE196 occurrence was found in the scanned SP-Daten / EDIABAS / KMM corpus. References in public forums are typographical errors for GKE195 or GKE215."
+  },
+  "mechatronic_platform_gs19_11": {
+    "description": "2nd generation 6HP mechatronic control unit platform designed by ZF and utilized across all LCI electronic gear selector (GWS) vehicles.",
+    "evidence_class": "[C]",
+    "generation": "6HP 'T\u00dc'",
+    "shared_base_program": "7591971A.0pa (project FM, T641H852_uns.hex)",
+    "shared_protocol": "XXFLKP (service 0x22 / 0x23 / 0x34 / 0x36 / 0x37 / 0x31 / 0x3E / 0x1A)",
+    "sub_families": {
+      "high_torque_6hp28": "GKE195 (500 to 750 Nm rating, M57TU2 / N62TU / Alpina)",
+      "medium_torque_6hp21": "GKE215 (300 to 450 Nm rating, N43 / N47 / N52 / N53 / N54)"
+    }
+  },
+  "transmission_families": [
+    {
+      "application_scope": "E60 Pre-LCI petrol models (520i M54, 525i M54, 530i M54)",
+      "confidence": "HIGH",
+      "ecu_address": "0x18",
+      "evidence_class": "[C]",
+      "generation": "1st Gen 6HP (Pre-LCI)",
+      "gke_type": "GKE214",
+      "max_torque_nm": 300,
+      "platform": "E60",
+      "prg_file": "05FLASH.prg",
+      "sgbd": "GKE214",
+      "shifter_type": "Mechanical cable linkage",
+      "transmission_variant": "ZF 6HP19 (GA6HP19Z)"
+    },
+    {
+      "application_scope": "E60 Pre-LCI early magnesium N52 & M47TU2 models (523i, 525i, 530i, 520d)",
+      "confidence": "HIGH",
+      "ecu_address": "0x18",
+      "evidence_class": "[C]",
+      "generation": "1st Gen 6HP (Pre-LCI)",
+      "gke_type": "GKE211",
+      "max_torque_nm": 300,
+      "platform": "E60",
+      "prg_file": "05FLASH.prg",
+      "sgbd": "GKE211",
+      "shifter_type": "Mechanical cable linkage",
+      "transmission_variant": "ZF 6HP19 (GA6HP19Z)"
+    },
+    {
+      "application_scope": "E60 Pre-LCI diesel and V8 models (525d M57, 530d M57TU, 535d M57TU, 545i N62, 550i N62)",
+      "confidence": "HIGH",
+      "ecu_address": "0x18",
+      "evidence_class": "[C]",
+      "generation": "1st Gen 6HP (Pre-LCI)",
+      "gke_type": "GKE191 / GKE194",
+      "max_torque_nm": 600,
+      "platform": "E60",
+      "prg_file": "05FLASH.prg / 08FLASH.prg",
+      "sgbd": "GKE191 / GKE194",
+      "shifter_type": "Mechanical cable linkage",
+      "transmission_variant": "ZF 6HP26 (GA6HP26Z)"
+    },
+    {
+      "application_scope": "E60 LCI 4-cylinder and 6-cylinder petrol/entry diesel (520i N43/N46, 520d N47, 523i N53, 525i N53, 530i N53, 535i N54, 525d M57_UL)",
+      "confidence": "HIGH",
+      "ecu_address": "0x18",
+      "evidence_class": "[C]",
+      "generation": "2nd Gen 6HP (LCI / 'T\u00dc')",
+      "gke_type": "GKE215",
+      "ipo_file": "11GKE215.ipo",
+      "max_torque_nm": 450,
+      "mechatronic_hardware_typical": "7568222 (unprogrammed) / 7591971 (programmed)",
+      "platform": "E60 / E61",
+      "prg_file": "10FLASH.prg",
+      "sgbd": "GKE215",
+      "shifter_type": "Electronic joystick shifter (GWS)",
+      "transmission_variant": "ZF 6HP19TU / ZF 6HP21 (GA6HP19Z TU / GA6HP21Z)"
+    },
+    {
+      "application_scope": "E60 LCI high-torque diesel and V8 models (530d M57D30TU2, 535d M57D30TU2TOP, 540i N62B40TU, 550i N62B48TU, Alpina B5 supercharged)",
+      "calibration_file_target": "A7592133.0da",
+      "confidence": "HIGH_DEFINITIVE",
+      "ecu_address": "0x18",
+      "evidence_class": "[C]",
+      "generation": "2nd Gen 6HP (LCI / 'T\u00dc')",
+      "gke_type": "GKE195",
+      "ipo_file": "03GKE195.ipo",
+      "max_torque_nm": 750,
+      "mechatronic_hardware_typical": "7569980 (unprogrammed) / 7591972 (programmed)",
+      "platform": "E60 / E61 / E63 / E64",
+      "prg_file": "10FLASH.prg",
+      "sgbd": "GKE195",
+      "shifter_type": "Electronic joystick shifter (GWS)",
+      "target_match": true,
+      "transmission_variant": "ZF 6HP28 (GA6HP26Z TU / GA6HP28Z)",
+      "zb_target": "7592132"
+    }
+  ]
+}

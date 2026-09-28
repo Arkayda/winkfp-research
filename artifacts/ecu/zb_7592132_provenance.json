@@ -1,0 +1,218 @@
+{
+  "analysis_scope": "Milestone 5.19 Forensic Provenance Resolution of ZB 7592132",
+  "assembly_number": {
+    "canonical_name": "ZB-Nummer",
+    "evidence_class": "[C]",
+    "german_designation": "Zusammenbaunummer",
+    "is_serial_number": false,
+    "serial_number_distinction": "Serial number is an individual manufacturing UID read via service 0x1A 0x89 (SERIENNUMMER_LESEN), whereas ZB 7592132 is the software assembly part number (ZUSB) identifying the composite program + calibration flash package.",
+    "value": "7592132",
+    "winkfp_term": "ZUSB"
+  },
+  "bench_anchor_correlation": {
+    "aif_datum": {
+      "bench_observed": "04.12.2008",
+      "evidence_class": "[O]",
+      "status": "EXACT_MATCH"
+    },
+    "aif_fg_nr": {
+      "bench_observed": "CS68294",
+      "evidence_class": "[O]",
+      "status": "EXACT_MATCH"
+    },
+    "aif_sw_nr": {
+      "bench_observed": "7592133",
+      "evidence_class": "[O]",
+      "spdaten_mapped": "7592133",
+      "status": "EXACT_MATCH"
+    },
+    "aif_zb_nr": {
+      "bench_observed": "7592132",
+      "evidence_class": "[O]",
+      "spdaten_mapped": "7592132",
+      "status": "EXACT_MATCH"
+    },
+    "ecu_address": {
+      "bench_observed": "0x18",
+      "evidence_class": "[O]",
+      "kfconf_mapped": "0x18",
+      "status": "EXACT_MATCH"
+    },
+    "ident_fsv": {
+      "bench_observed": "195.64.1",
+      "evidence_class": "[O]",
+      "sgbd_prefix": "GKE195",
+      "status": "EXACT_MATCH"
+    },
+    "ident_hwnr": {
+      "bench_observed": "7591972",
+      "evidence_class": "[O]",
+      "source_service": "IDENT (0x1A 0x80)",
+      "spdaten_mapped": "7591972",
+      "status": "EXACT_MATCH"
+    },
+    "phys_hw_nr": {
+      "bench_observed": "7569980",
+      "evidence_class": "[O]",
+      "kmm_mapped": "7569980",
+      "status": "EXACT_MATCH"
+    },
+    "zif_reference": {
+      "bench_observed": "0479S90T641Z",
+      "da_embedded": "0479S90T641Z1ZY02",
+      "evidence_class": "[O]",
+      "status": "PREFIX_MATCH_12_OF_12_CHARS"
+    }
+  },
+  "calibration_artifact": {
+    "checksum_algorithm": "EDIABAS_ADD16_HEX + CARB_CVN_16BIT + RSA1024_SHA1",
+    "cvn_mode9": "0000F41E",
+    "ediabas_checksum": "2352 H",
+    "evidence_class": "[C]",
+    "file_name": "A7592133.0da",
+    "header_application": "E60 M57D30TU2",
+    "header_date_bmw": "08.05.2008",
+    "header_date_zf": "22.04.2008",
+    "header_file_zf": "T641ZY02_uns.hex",
+    "header_project": "ZY",
+    "header_release": "ZY02",
+    "header_system": "GS19.11.0",
+    "header_usage": "Datenstand fuer E60 M57D30TU2",
+    "lineage_role": "TARGET_CALIBRATION_DATA",
+    "referenz_string": "0479S90T641Z1ZY02",
+    "relative_path": "spdaten_gke/E60/data/GKE195/A7592133.0da",
+    "sha256": "45b473d1ee8cc2542a1eb3ecb77bf446f357f81827a464e6c3489257312a0112",
+    "software_number": "7592133DA"
+  },
+  "classification_verdict": {
+    "confidence": "HIGH_DEFINITIVE",
+    "determination": "TARGET_EGS_6HP28",
+    "evidence_class": "[C]",
+    "rationale": "ZB 7592132 is the official factory assembly part number for the analyzed E60 530d LCI vehicle applications (NX71, NX72, NX75, NY71, PX71, PX72, PY71) with Option 205 (Automatic Transmission). All primary SP-Daten sources (kmm_ATSH.txt, kmm_SG.txt, GKE195.DAT, HWNR.DA2, KFCONF10.DA2) unambiguously map ZB 7592132 to GKE195, HW 7591972, SW 7592133, and physical HW 7569980, achieving a 100% bit-for-bit and semantic match with the physical bench EGS."
+  },
+  "diagnostic_and_tooling_chain": {
+    "assembly_dat_entry": "7592132,0000000,7591972,A,7592133DA,0FFFFFFFFFD,000,1 7",
+    "assembly_dat_file": "GKE195.DAT:16",
+    "ecu_address_hex": "0x18",
+    "evidence_class": "[C]",
+    "flash_algo": "XXFLKP",
+    "flash_index": "01",
+    "group_file": "d_egs.grp",
+    "hardware_history_entry": "kmm_HO.txt:912 (#18:EGS_SMG:GKE195 Auslauf Typen E60/E61 -> EG;7592132;1006502-)",
+    "ipo_script": "03GKE195.ipo",
+    "kfconf_entry": "ME SL 18 01 GKE195 03GKE195.ipo 10FLASH.prg XXFLKP GKE195.HIS GKE195.DAT A GKE195D.DIR GKE195.HWH",
+    "kfconf_file": "KFCONF10.DA2:292",
+    "prg_file": "10FLASH.prg",
+    "sgbd_family": "GKE195"
+  },
+  "hardware_numbers": {
+    "ersatzteil_etm": {
+      "citation": "kmm_ETM.txt:469",
+      "description": "Exchange mechatronic assembly part number (Ersatzteil-Management)",
+      "evidence_class": "[C]",
+      "value": "7571248"
+    },
+    "programmed_hardware": {
+      "citation": "GKE195.DAT:16, kmm_SG.txt:6290, HWNR.DA2:7085",
+      "description": "Programmed mechatronic hardware / Grund-HW (ID_BMW_NR, read via IDENT 0x1A 0x80)",
+      "evidence_class": "[C]",
+      "value": "7591972"
+    },
+    "unprogrammed_hardware": {
+      "citation": "kmm_SG.txt:6290, HWNR.DA2:7076",
+      "description": "Unprogrammed raw mechatronic physical hardware (PHYS_HW_NR)",
+      "evidence_class": "[C]",
+      "value": "7569980"
+    }
+  },
+  "operating_program_artifact": {
+    "comment_gearbox_string": "6HP19/T\u00dc",
+    "evidence_class": "[C]",
+    "file_name": "7591971A.0pa",
+    "header_application": "Grundprogramm fuer GS19.11",
+    "header_date_bmw": "13.05.2008",
+    "header_date_zf": "23.04.2008",
+    "header_file_zf": "T641H852_uns.hex",
+    "header_project": "FM",
+    "header_release": "0000",
+    "header_system": "GS19.11.0",
+    "internal_pointers": [
+      "0x00050000",
+      "0x000500A0",
+      "0x000500E4",
+      "0x0007FF60"
+    ],
+    "lineage_role": "RELATED_BASE_PROGRAM_GS19_11",
+    "referenz_string": "0479SA0T641Z",
+    "relationship_summary": "7591971A.0pa is the shared executive operating system program for the ZF GS19.11 platform. Although its header comment mentions 6HP19/T\u00dc from its development project, it represents the shared/base GS19.11 executive program lineage paired with HW 7591971/7591972 across the GS19.11 mechatronic generation.",
+    "relative_path": "spdaten_gke/E60/data/GKE215/7591971A.0pa",
+    "sha256": "63b204d2edbdaa0945d9b0241d55df7c6859b41d3376d9f35e93cc6c82ecfcc3",
+    "software_number": "7591971A"
+  },
+  "secondary_web_evidence": [
+    {
+      "claim": "BMW enthusiast and coding forums report ZB 7592132 as the latest factory WinKFP update for E60 530d LCI (M57 235hp) automatic transmission.",
+      "context": "WinKFP Comfort Mode flashing threads, 530d LCI EGS update discussions",
+      "date_context": "2013-2022",
+      "evidence_class": "[W]",
+      "reliability": "CORROBORATING_SECONDARY_ONLY",
+      "source_type": "Public automotive enthusiast forums (Bimmerfest, E90Post, BMW-Klub)",
+      "verification_status": "Independently proven by primary BMW KMM and SP-Daten files."
+    },
+    {
+      "claim": "Forum members distinguish GKE195 (6HP28 for high-torque 530d/535d/540i/550i) from GKE215 (6HP21 for 520d/525i/530i).",
+      "context": "Discussion of transmission swaps, paddle retrofits, and flashing",
+      "date_context": "2015-2021",
+      "evidence_class": "[W]",
+      "reliability": "CORROBORATING_SECONDARY_ONLY",
+      "source_type": "Technical BMW tuning forum discussions",
+      "verification_status": "Independently confirmed by kmm_SG.txt and GKE195.DAT vs GKE215.DAT."
+    },
+    {
+      "claim": "Occasional forum references cite 'GKE196' as an EGS family.",
+      "context": "User questions about transmission PRG files",
+      "date_context": "2016",
+      "evidence_class": "[W]",
+      "reliability": "REFUTED_EXTERNAL_TYPO",
+      "source_type": "Forum user post",
+      "verification_status": "REFUTED: No GKE196 occurrence was found in the scanned SP-Daten / EDIABAS / KMM corpus."
+    }
+  ],
+  "vehicle_and_powertrain_applicability": {
+    "engine": {
+      "displacement": "2993 cc",
+      "evidence_class": "[C]",
+      "family": "M57",
+      "generation": "M57D30TU2 (M57TU2)",
+      "option_code": "D30",
+      "power_output": "173 kW (235 PS / 231 bhp)",
+      "torque_rating": "500 Nm"
+    },
+    "integration_levels_i_stufe": [
+      "E060-08-09-500 through E060-10-03-501",
+      "E060-09-03-410 through E060-10-03-450"
+    ],
+    "models_supported": [
+      "E60 530d LCI Sedan ECE LHD (NX71)",
+      "E60 530d LCI Sedan ECE RHD (NX72)",
+      "E60 530d LCI Sedan CKD (NX75)",
+      "E60 530xd LCI Sedan ECE LHD (NY71)",
+      "E61 530d LCI Touring ECE LHD (PX71)",
+      "E61 530d LCI Touring ECE RHD (PX72)",
+      "E61 530xd LCI Touring ECE LHD (PY71)"
+    ],
+    "options": {
+      "primary": "Option 205 (Automatic Transmission / Steptronic)",
+      "sport_automatic_distinction": "Option 2TB (Sport Automatic Transmission with SAT paddles) uses sibling calibration A7592131.0da / ZB 7592130 / ZB 7592148."
+    },
+    "transmission": {
+      "bmw_designation": "GA6HP26Z TU / GA6HP28Z",
+      "electronic_shifter_gws": true,
+      "evidence_class": "[C]",
+      "generation": "2nd Generation 6HP (6HP 'T\u00dc')",
+      "max_input_torque": "750 Nm",
+      "mechatronic_platform": "GS19.11 (Infineon TriCore / C167 architecture)",
+      "zf_model": "ZF 6HP28"
+    }
+  }
+}

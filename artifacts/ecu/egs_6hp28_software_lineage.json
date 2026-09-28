@@ -1,0 +1,202 @@
+{
+  "analysis_scope": "E60 M57D30TU2 / ZF 6HP28 Software Evolution Lineage",
+  "current_production_target": {
+    "calibration_file": "A7592133.0da",
+    "evidence_class": "[C]",
+    "integration_level": "E060-08-09-500 through E060-10-03-501",
+    "kmm_marker": "* (Current / Latest Assembly Part Number)",
+    "programmed_hardware": "7591972",
+    "software_version": "7592133",
+    "unprogrammed_hardware": "7569980",
+    "zb_number": "7592132"
+  },
+  "hardware_progression": [
+    {
+      "generation": "Early LCI Launch",
+      "mechatronic_hw": "7564894",
+      "status": "SUPERSEDED",
+      "zb_examples": [
+        "7567029"
+      ]
+    },
+    {
+      "generation": "Mid LCI Phase 1",
+      "mechatronic_hw": "7569980",
+      "status": "PHYSICAL_BENCH_UNPROGRAMMED_HW",
+      "zb_examples": [
+        "7571704"
+      ]
+    },
+    {
+      "generation": "Mid LCI Phase 2",
+      "mechatronic_hw": "7572472",
+      "status": "SUPERSEDED",
+      "zb_examples": [
+        "7573356",
+        "7575071"
+      ]
+    },
+    {
+      "generation": "Mid LCI Phase 3",
+      "mechatronic_hw": "7575795",
+      "status": "SUPERSEDED",
+      "zb_examples": [
+        "7576791",
+        "7581032"
+      ]
+    },
+    {
+      "generation": "Late LCI Phase 4",
+      "mechatronic_hw": "7572988",
+      "status": "SUPERSEDED",
+      "zb_examples": [
+        "7582464"
+      ]
+    },
+    {
+      "generation": "Final LCI Production",
+      "mechatronic_hw": "7591972",
+      "status": "CURRENT_PROGRAMMED_HW",
+      "zb_examples": [
+        "7592132"
+      ]
+    }
+  ],
+  "kmm_lineage_chronology": [
+    {
+      "citation": "kmm_ATSH.txt:9712",
+      "evidence_class": "[C]",
+      "order": 1,
+      "role": "Initial LCI calibration release",
+      "zb_number": "7562396"
+    },
+    {
+      "citation": "kmm_ATSH.txt:9713",
+      "evidence_class": "[C]",
+      "order": 2,
+      "role": "Superseding release",
+      "zb_number": "7567029"
+    },
+    {
+      "citation": "kmm_ATSH.txt:9714",
+      "evidence_class": "[C]",
+      "order": 3,
+      "role": "Superseding release",
+      "zb_number": "7571704"
+    },
+    {
+      "citation": "kmm_ATSH.txt:9715",
+      "evidence_class": "[C]",
+      "order": 4,
+      "role": "Superseding release",
+      "zb_number": "7573356"
+    },
+    {
+      "citation": "kmm_ATSH.txt:9716",
+      "evidence_class": "[C]",
+      "order": 5,
+      "role": "Superseding release",
+      "zb_number": "7575071"
+    },
+    {
+      "citation": "kmm_ATSH.txt:9717",
+      "evidence_class": "[C]",
+      "order": 6,
+      "role": "Superseding release",
+      "zb_number": "7576791"
+    },
+    {
+      "citation": "kmm_ATSH.txt:9718",
+      "evidence_class": "[C]",
+      "order": 7,
+      "role": "Superseding release",
+      "zb_number": "7581032"
+    },
+    {
+      "citation": "kmm_ATSH.txt:9719",
+      "evidence_class": "[C]",
+      "order": 8,
+      "role": "Superseding release",
+      "zb_number": "7582464"
+    },
+    {
+      "citation": "kmm_ATSH.txt:9720",
+      "evidence_class": "[C]",
+      "order": 9,
+      "role": "Latest factory replacement (* marked in KMM)",
+      "zb_number": "7592132"
+    }
+  ],
+  "sibling_calibrations_in_gke195": [
+    {
+      "calibration_file": "A7592131.0da",
+      "engine_application": "E60 Sport M57D30TU2",
+      "option": "Option 2TB Sport Automatic (SAT)",
+      "software_number": "7592131DA",
+      "zb_number": "7592130"
+    },
+    {
+      "calibration_file": "A7592133.0da",
+      "engine_application": "E60 M57D30TU2",
+      "option": "Option 205 Steptronic Automatic (Standard)",
+      "software_number": "7592133DA",
+      "zb_number": "7592132"
+    },
+    {
+      "calibration_file": "A7592135.0da",
+      "engine_application": "E60 Sport M57D30TU2TOP (535d)",
+      "option": "Option 2TB Sport Automatic (SAT)",
+      "software_number": "7592135DA",
+      "zb_number": "7592134"
+    },
+    {
+      "calibration_file": "A7592137.0da",
+      "engine_application": "E60 M57D30TU2TOP (535d)",
+      "option": "Option 205 Steptronic Automatic (Standard)",
+      "software_number": "7592137DA",
+      "zb_number": "7592136"
+    },
+    {
+      "calibration_file": "A7592139.0da",
+      "engine_application": "E60 N62B40TU ECE (540i V8)",
+      "option": "Option 205 Steptronic Automatic",
+      "software_number": "7592139DA",
+      "zb_number": "7592138"
+    },
+    {
+      "calibration_file": "A7592141.0da",
+      "engine_application": "E60 Sport N62B48TU ECE (550i V8)",
+      "option": "Option 2TB Sport Automatic",
+      "software_number": "7592141DA",
+      "zb_number": "7592140"
+    },
+    {
+      "calibration_file": "A7592145.0da",
+      "engine_application": "E60 N62B48TU ECE (550i V8)",
+      "option": "Option 205 Steptronic Automatic",
+      "software_number": "7592145DA",
+      "zb_number": "7592144"
+    },
+    {
+      "calibration_file": "A7592149.0da",
+      "engine_application": "E63 / E64 Sport M57D30TU2TOP (635d)",
+      "option": "Option 2TB Sport Automatic",
+      "software_number": "7592149DA",
+      "zb_number": "7592148"
+    },
+    {
+      "calibration_file": "A7592151.0da",
+      "engine_application": "E63 / E64 Sport N62B48TU ECE (650i V8)",
+      "option": "Option 2TB Sport Automatic",
+      "software_number": "7592151DA",
+      "zb_number": "7592150"
+    },
+    {
+      "calibration_file": "A7592155.0da",
+      "engine_application": "Alpina B5 Sport N62B44 ECE",
+      "option": "Alpina Switch-Tronic",
+      "software_number": "7592155DA",
+      "zb_number": "7592154"
+    }
+  ]
+}

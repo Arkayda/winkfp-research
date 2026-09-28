@@ -67,6 +67,12 @@ The repository establishes an explicit provenance and operational boundary betwe
 - **Role**: Clean-room offline research and interoperability model of proprietary WinKFP flashing algorithms.
 - **Safety Boundary**: Prohibited from dispatching against physical hardware; flash write jobs (`FLASH_SCHREIBEN`, `FLASH_LOESCHEN`, `SEND_SEGMENT`) are blocked fail-closed before wire transmission.
 
+### 3.3 EGS 6HP28 Target Provenance vs Shared GS19.11 Base Lineage (Milestones 5.18 & 5.19)
+- **Target ECU Provenance**: BMW E60 530d LCI (M57D30TU2, GA6HP28Z, 750 Nm rating, Option 205 Steptronic). Target assembly part number: `ZB 7592132` (`ZUSB` / `Zusammenbaunummer`), accompanied by programmed HW `7591972` (IDENT `0x1A 0x80`), physical mechatronic HW `7569980` (`0x1A 0x87`), and software `7592133DA`.
+- **Target Calibration Artifact**: `A7592133.0da` is definitively proven as the target calibration data for `E60 M57D30TU2`, verified against the physical bench EGS AIF, IDENT, and ZIF (`0479S90T641Z`).
+- **Associated/Shared GS19.11 Base Executive Lineage**: `7591971A.0pa` is classified as `RELATED_BASE_PROGRAM_GS19_11` / `DONOR_REFERENCE`. It represents the shared ZF GS19.11 mechatronic executive architecture; its internal descriptor tables point directly to the calibration segments of `A7592133.0da`. Its presence in the repository does not imply the target vehicle has a 6HP19 transmission.
+- **SGBD Families**: `GKE195` (heavy-torque 6HP28) vs `GKE215` (medium-torque 6HP19TU/21). An exhaustive search across the BMW SP-Daten, EDIABAS, and KMM corpus found zero occurrences of `GKE196`.
+
 ---
 
 ## 4. Explicit Hardware Scope Disclaimer

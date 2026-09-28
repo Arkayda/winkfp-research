@@ -260,6 +260,22 @@ Flash execution is hard-gated by the `SafetyContext` and provenance-tracked `Lim
 * Refuses execution without a valid limits policy file bound by SHA-256 digest.
 * Continuously checks battery voltage ($V_{bat}$), ignition status, programming voltage flags, and ZB number assembly match before sending the first byte to the ECU. Reconstructed in [`reconstruction/safety/hypotheses.py`](reconstruction/safety/hypotheses.py).
 
+### 7.6 Offline Flash Image & Calibration Reconnaissance (Milestone 5.18)
+* **Scope**: Pure offline structural reconnaissance of BMW E60 / GKE195 flash artifacts (`A7592133.0da`, `7591971A.0pa`, `GKE195.DAT`). Zero hardware I/O; zero source file mutation.
+* **Intel Hex Dual Addressing**: Parsed standard records (`00`, `01`, `02`, `04`) and BMW custom block trailers (`0x10`), mapping 173,088 payload bytes across 6 calibration segments.
+* **Structural Candidates**: Discovered 2,952 monotonic axis candidates (16-bit little-endian) and 7,786 candidate 1D/2D calibration tables.
+* **Distinction**: All detected tables are classified as **STRUCTURAL MAP CANDIDATES** with provenance `[R]`; none are promoted to SEMANTICALLY IDENTIFIED MAPS. Engineering units remain strictly `UNKNOWN` `[U]` pending external A2L/ASAP2 calibration definitions.
+* **Checksum & CVN Verification**: Confirmed CARB Mode $09 CVN `0000F41E` at binary offset `0x000500EE` `[C]`, file addition checksum `$CHECKSUMME 2352 H` `[C]`, and RSA-1024 bootloader signature at `0x00050000` `[C]`.
+* Reconstructed in [`reconstruction/calibration/`](reconstruction/calibration/) and documented in [`docs/evidence/flash_image_calibration_reconnaissance_milestone_5_18.md`](docs/evidence/flash_image_calibration_reconnaissance_milestone_5_18.md).
+
+### 7.7 Forensic Provenance Resolution of ZB 7592132 & Software Lineage (Milestone 5.19)
+* **Scope**: Pure offline forensic resolution of BMW E60 530d LCI (M57D30TU2 / ZF 6HP28) EGS software lineage and flash artifacts. Zero hardware access; zero source mutation.
+* **Assembly ZB 7592132**: Verified as BMW Software Assembly Part Number (`ZB-Nummer` / `ZUSB` / `Zusammenbaunummer`), NOT a serial number. Mapped to SGBD `GKE195` (address `0x18`), programmed HW `7591972` (IDENT `0x1A 0x80`), physical mechatronic HW `7569980` (`0x1A 0x87`), and software `7592133DA`.
+* **Target Calibration Artifact**: `A7592133.0da` is definitively proven as the target calibration image for `E60 M57D30TU2` (Option 205 Steptronic), matching physical bench AIF (`ZB 7592132`, `SW 7592133`), IDENT (`1A 80`), and ZIF (`0479S90T641Z`).
+* **Associated Base Executive Lineage**: `7591971A.0pa` is classified as `RELATED_BASE_PROGRAM_GS19_11` / `DONOR_REFERENCE`. It represents the shared ZF GS19.11 mechatronic executive architecture; its internal descriptor tables point directly to the calibration segments of `A7592133.0da`. Its presence in the repository does not imply the vehicle uses a 6HP19 transmission.
+* **SGBD Corpus Analysis**: Confirms `GKE195` for heavy-torque ZF 6HP28 (750 Nm) and `GKE215` for medium-torque 6HP19TU/21 (450 Nm). An exhaustive search across the BMW SP-Daten, EDIABAS, and KMM corpus found zero occurrences of `GKE196`.
+* Reconstructed in [`reconstruction/ecu/`](reconstruction/ecu/) and documented in [`docs/evidence/zb_7592132_egs_software_lineage_milestone_5_19.md`](docs/evidence/zb_7592132_egs_software_lineage_milestone_5_19.md).
+
 ---
 
 ## 8. Repository Layout
