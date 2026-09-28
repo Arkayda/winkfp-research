@@ -1,0 +1,162 @@
+{
+  "epistemic_law": "SEMANTIC HYPOTHESIS != FACT. UNKNOWN REMAINS UNKNOWN.",
+  "execution_mode": "100% OFFLINE ONLY \u2014 ZERO HARDWARE I/O",
+  "metadata": {
+    "donor_reference_program": "/Users/blogman/bmw_flash_re/spdaten_gke/E60/data/GKE215/7591971A.0pa",
+    "milestone": "5.21",
+    "sgbd": "GKE195 (address 0x18)",
+    "target_calibration": "/Users/blogman/bmw_flash_re/spdaten_gke/E60/data/GKE195/A7592133.0da",
+    "target_vehicle": "BMW E60 / M57D30TU2 / ZF 6HP28 / GS19.11"
+  },
+  "methodology": "STRUCTURE FIRST -> REFERENCE SECOND -> EXECUTION ROLE THIRD -> SEMANTICS LAST",
+  "summary": {
+    "deterministic": true,
+    "total_indexed_artifacts": 20,
+    "total_v520_artifacts": 8,
+    "total_v521_artifacts": 12
+  },
+  "v520_artifacts": [
+    {
+      "description": "Candidate monotonic breakpoint axes (1D arrays)",
+      "filename": "axis_candidates_v520.json",
+      "milestone": "5.20",
+      "sha256": "f6a0eb8b88a2b54633014606546fd055fce0c69da2c3b80d88ea100e3ec08fca",
+      "size_bytes": 176712
+    },
+    {
+      "description": "Structural linkage between axes and table candidates",
+      "filename": "axis_table_links_v520.json",
+      "milestone": "5.20",
+      "sha256": "48772321696b7223572af0bccbad4a8d59155bbbbfab53bc1768f5548fc8910e",
+      "size_bytes": 354398
+    },
+    {
+      "description": "Checksum and integrity regions identified in calibration segments",
+      "filename": "checksum_regions_v520.json",
+      "milestone": "5.20",
+      "sha256": "357fcef1d4031b34f67df780eacee440ac8b3ec28ee6866b7dc2cb6cfe791059",
+      "size_bytes": 2678
+    },
+    {
+      "description": "Complete inventory of flash segments and address boundaries",
+      "filename": "flash_inventory_v520.json",
+      "milestone": "5.20",
+      "sha256": "be5284eb950a8e9080e51e38bd6eb7e9dc1bd35785a123d67fd010aa8212a48b",
+      "size_bytes": 3728
+    },
+    {
+      "description": "Initial semantic candidates and structural classifications",
+      "filename": "map_semantics_v520.json",
+      "milestone": "5.20",
+      "sha256": "1ff6a3a2cc6e2e7666a4a6513b36755d71f117d09afdfef12483419125c3aefe",
+      "size_bytes": 3199
+    },
+    {
+      "description": "Cross-reference graph of pointers and targets",
+      "filename": "reference_graph_v520.json",
+      "milestone": "5.20",
+      "sha256": "6017640c271f1f4addf3dec6ae9152ed906723b2e1ae021f09c4bf5ea2ad0ea0",
+      "size_bytes": 17879
+    },
+    {
+      "description": "Detailed layout and memory mapping of segments 1-4",
+      "filename": "segment_layout_v520.json",
+      "milestone": "5.20",
+      "sha256": "4df66cc31b7886e7bf2383a632d3c295f3790ea6af3e1fcc0afcb3d18fd90e13",
+      "size_bytes": 1909
+    },
+    {
+      "description": "Candidate 2D table arrays and payload sizes",
+      "filename": "table_candidates_v520.json",
+      "milestone": "5.20",
+      "sha256": "56ec0f9b8346762b30f37806c9e8f5d4fff0cd78667d21e1de5b07d8937d6236",
+      "size_bytes": 1500316
+    }
+  ],
+  "v521_artifacts": [
+    {
+      "description": "Axis-to-table ownership hierarchy separating descriptors from heuristics",
+      "filename": "axis_ownership_v521.json",
+      "milestone": "5.21",
+      "sha256": "70f433e5297043e73f2b1a59992b1b58a3d823944e4bac34fe355f92a787a286",
+      "size_bytes": 31854
+    },
+    {
+      "description": "Validated monotonic breakpoint axes with bounded UNKNOWN semantics",
+      "filename": "axis_validation_v521.json",
+      "milestone": "5.21",
+      "sha256": "2da78de9809058f4bd5daa0fd1237f50521aef88a4ad0fac8fc963502bbc19e1",
+      "size_bytes": 198287
+    },
+    {
+      "description": "Traceable record of refinements, extensions, and corrections from 5.20",
+      "filename": "change_log_v521.json",
+      "milestone": "5.21",
+      "sha256": "98039446fec6db6a81d68fccbe6fb67e30eaddf9891853d878d973a2dcada384",
+      "size_bytes": 7438
+    },
+    {
+      "description": "Reconstructed 7-stage execution pipeline with per-transition evidence",
+      "filename": "execution_roles_v521.json",
+      "milestone": "5.21",
+      "sha256": "e3fbe65fc6f1559a8bbf8620963260651d96a17c6c413a513cc32f32b5b9d71d",
+      "size_bytes": 6023
+    },
+    {
+      "description": "Normalized taxonomic distribution across object classes",
+      "filename": "object_families_v521.json",
+      "milestone": "5.21",
+      "sha256": "8a6c123cf7576db5a3178138f0b96ef9cd1c68a2618b862f7499d83c85037dfc",
+      "size_bytes": 212
+    },
+    {
+      "description": "Full canonical index of 9,176 Segment 4 objects with accounting identities",
+      "filename": "object_index_v521.json",
+      "milestone": "5.21",
+      "sha256": "9097959893e6cfce8b1d64737376a3155c886ed1c026158af00bb00b6e4e98cc",
+      "size_bytes": 22880421
+    },
+    {
+      "description": "Recovered code and structural references partitioned by taxonomy",
+      "filename": "object_references_v521.json",
+      "milestone": "5.21",
+      "sha256": "b52eb9a70aeeec1734a2298cba0c00fe5d0f713a2b6a364bb77392c38edc3644",
+      "size_bytes": 406034
+    },
+    {
+      "description": "Validation status, metrics, and evidence for every reference",
+      "filename": "reference_validation_v521.json",
+      "milestone": "5.21",
+      "sha256": "c54b560866d5b569260298f51952cb6a3d70c09620a7efd913e876dbcbfa3596",
+      "size_bytes": 406938
+    },
+    {
+      "description": "Preserved negative evidence and false-positive rejections",
+      "filename": "rejected_candidates_v521.json",
+      "milestone": "5.21",
+      "sha256": "8927a8ff973ba72c735925d9c9a887da3588de40f28a9eb9d24efa48224fb01d",
+      "size_bytes": 2037
+    },
+    {
+      "description": "Numeric constants (750, 500, 6800) with 3-layer evidence separation",
+      "filename": "scaling_candidates_v521.json",
+      "milestone": "5.21",
+      "sha256": "b766f1e8f824e87614c75fe57ede0fcbc3e46bfb1e5f414e69d248a94fc249d8",
+      "size_bytes": 7629
+    },
+    {
+      "description": "Evidence-bounded semantic hypotheses adhering to confidence ceilings",
+      "filename": "semantic_candidates_v521.json",
+      "milestone": "5.21",
+      "sha256": "907a0867ccd536d73c10f92abc3460d5361433980af459b7170e08c9526f6675",
+      "size_bytes": 1795
+    },
+    {
+      "description": "Topological models: dimensions, layouts, strides, clamp behaviors",
+      "filename": "table_topology_v521.json",
+      "milestone": "5.21",
+      "sha256": "021ad95e242e148f7f9e78cfe80cac0c3c904c4300e7de41e3289c7000fcb590",
+      "size_bytes": 9132
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "map_class_distribution": {
+    "1D_CURVE": 1922,
+    "2D_MAP": 699,
+    "BREAKPOINT_AXIS": 217,
+    "DATA_BLOCK": 4397,
+    "SCALAR_CONSTANT": 1936
+  },
+  "methodology_rule": "STRUCTURE FIRST. SEMANTICS SECOND. SEMANTIC HYPOTHESIS != FACT. Confidence ratings are strictly bounded.",
+  "semantic_hypotheses": [
+    {
+      "address": "0x000505BA",
+      "candidate_id": "SCALAR_0x000505BA",
+      "confidence": "LOW",
+      "hypothesis": "possibly transmission maximum input torque rating (750 Nm for ZF 6HP28 / GA6HP26Z TU)",
+      "reasoning": "Exact numerical match to ZF 6HP28 factory mechanical torque capacity (750 Nm) in calibration header block",
+      "structure": "uint16 big-endian, value = 0x02EE (750 decimal)",
+      "unresolved_questions": [
+        "Does firmware enforce this as a hard software torque limiter or use it only for diagnostic reporting?"
+      ]
+    },
+    {
+      "address": "0x000505BC",
+      "candidate_id": "SCALAR_0x000505BC",
+      "confidence": "LOW",
+      "hypothesis": "possibly nominal engine maximum torque rating (500 Nm for BMW M57D30TU2 235 PS)",
+      "reasoning": "Exact numerical match to BMW M57D30TU2 engine torque specification (500 Nm at 2,000-2,750 rpm)",
+      "structure": "uint16 big-endian, value = 0x01F4 (500 decimal)",
+      "unresolved_questions": [
+        "Is this used by EGS for shift pressure adaptation scaling?"
+      ]
+    },
+    {
+      "address": "0x000505BE",
+      "candidate_id": "SCALAR_0x000505BE",
+      "confidence": "LOW",
+      "hypothesis": "possibly maximum engine speed limit / overspeed threshold (6800 RPM)",
+      "reasoning": "Value 6800 rpm in calibration block header located immediately after torque limits",
+      "structure": "uint16 big-endian, value = 0x1A90 (6800 decimal)",
+      "unresolved_questions": [
+        "Is 6800 rpm an absolute safety cutout speed for turbine shaft?"
+      ]
+    },
+    {
+      "address": "Multiple addresses in Segment 3 (len 260 bytes)",
+      "candidate_id": "TABLES_GRID_10x13",
+      "confidence": "UNCONFIRMED",
+      "hypothesis": "possibly shift schedule maps (e.g. 10 throttle pedal positions vs 13 output shaft speeds) or line pressure maps",
+      "reasoning": "Grid dimensions 10x13 exactly match 10-element pedal axes and 13-element speed axes; 61 identical-sized instances exist",
+      "structure": "2D table grid, 10 rows x 13 columns, 16-bit big-endian words",
+      "unresolved_questions": [
+        "Which instances correspond to upshifts (1->2, 2->3, etc.) vs downshifts?",
+        "Which instances correspond to D, S, or Manual drive modes?"
+      ]
+    },
+    {
+      "address": "Multiple addresses in Segment 3 (len 72 bytes)",
+      "candidate_id": "TABLES_GRID_6x6",
+      "confidence": "UNCONFIRMED",
+      "hypothesis": "possibly gear-to-gear transition matrices (6 forward gears x 6 forward gears)",
+      "reasoning": "Dimensions 6x6 match the 6 forward gear states of ZF 6HP transmission",
+      "structure": "2D table grid, 6 rows x 6 columns, 16-bit big-endian words",
+      "unresolved_questions": [
+        "Are diagonal elements (1->1, 2->2) neutral/identity or transition timings?"
+      ]
+    }
+  ],
+  "total_hypotheses_count": 5
+}

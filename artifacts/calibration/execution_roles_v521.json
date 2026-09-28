@@ -1,0 +1,127 @@
+{
+  "roles": [
+    {
+      "axis_x_lookup": "0x00063AD6",
+      "axis_y_lookup": "0x00063AF0",
+      "confidence": "SUPPORTED",
+      "evidence": [
+        "descriptor_table_at_0x000454A0_groups_inputs_and_data",
+        "axis_x_signed_monotonic_12_points",
+        "axis_y_unsigned_monotonic_8_points",
+        "structural_pipeline_strongly_supported_runtime_unconfirmed"
+      ],
+      "execution_pipeline": {
+        "index_calculation": "Binary search / interval index search along monotonic axes",
+        "input_description": "Input 1 (Axis X lookup) and Input 2 (Axis Y lookup)",
+        "interpolation": "Bilinear weighting across 4 nearest corner points (runtime routine UNCONFIRMED)",
+        "output_description": "Interpolated control parameter passed to actuator task",
+        "pipeline_definition": "PROVEN",
+        "pipeline_type": "7-stage execution pipeline",
+        "runtime_execution_pipeline": "UNCONFIRMED",
+        "stages": [
+          "INPUT",
+          "INDEX",
+          "AXIS LOOKUP",
+          "TABLE ACCESS",
+          "INTERPOLATION",
+          "SCALE/OFFSET",
+          "OUTPUT"
+        ],
+        "structural_pipeline": "STRONGLY_SUPPORTED",
+        "table_access": "Address calculation: Base + (Index_Y * RowStride) + (Index_X * ElemSize)"
+      },
+      "interpolation_type": "2D_BILINEAR_INTERPOLATION",
+      "output_role": "CALIBRATED_CONTROL_TARGET",
+      "pipeline_evidence_chain": [
+        {
+          "binary_evidence": [
+            "Descriptor block at 0x000454A0 in base program 7591971A.0pa",
+            "Paired pointers: 0x000454A8 (0x00063AD6), 0x000454B0 (0x00063AF0), 0x000454B8 (0x0006418A)"
+          ],
+          "description": "Multi-axis map descriptor record containing paired 32-bit start/end pointers",
+          "evidence_level": "PROVEN",
+          "stage_name": "CODE_OR_DESCRIPTOR",
+          "target_object_or_location": "0x000454A0 (7591971A.0pa)"
+        },
+        {
+          "binary_evidence": [
+            "Descriptor start pointer at 0x000454A8 = 0x00063AD6",
+            "Descriptor end pointer at 0x000454AC = 0x00063AEF (26 bytes span)",
+            "Signed 16-bit monotonic sequence verified in calibration binary"
+          ],
+          "description": "Axis X 12-point signed 16-bit monotonic breakpoint array [-10, 50, ..., 700]",
+          "evidence_level": "PROVEN",
+          "stage_name": "AXIS_X",
+          "target_object_or_location": "0x00063AD6 (A7592133.0da)"
+        },
+        {
+          "binary_evidence": [
+            "Descriptor start pointer at 0x000454B0 = 0x00063AF0",
+            "Descriptor end pointer at 0x000454B4 = 0x00063B01 (18 bytes span)",
+            "Unsigned 16-bit monotonic sequence verified in calibration binary"
+          ],
+          "description": "Axis Y 8-point unsigned 16-bit monotonic breakpoint array [100, 1500, ..., 5500]",
+          "evidence_level": "PROVEN",
+          "stage_name": "AXIS_Y",
+          "target_object_or_location": "0x00063AF0 (A7592133.0da)"
+        },
+        {
+          "binary_evidence": [
+            "Paired start/end bounding addresses in descriptor structure enforce search intervals",
+            "Strict monotonicity of Axis X and Axis Y enables binary/interval search",
+            "Bilinear weighting across 12x8 rectangular grid points is structurally supported",
+            "Runtime execution opcode sequence for interpolation routine remains UNCONFIRMED"
+          ],
+          "description": "Monotonic breakpoint interval search and 2D bilinear interpolation across 4 grid points (structural compatibility SUPPORTED; runtime execution routine UNCONFIRMED without execution trace)",
+          "evidence_level": "UNCONFIRMED",
+          "runtime_interpolation_status": "UNCONFIRMED",
+          "stage_name": "INDEX_AND_INTERPOLATION",
+          "structural_interpolation_compatibility": "SUPPORTED",
+          "target_object_or_location": "Runtime 2D Bilinear Interpolation Algorithm"
+        },
+        {
+          "binary_evidence": [
+            "Descriptor start pointer at 0x000454B8 = 0x0006418A",
+            "Descriptor end pointer at 0x000454BC = 0x000641A3",
+            "Row stride: 12 elements * 2 bytes = 24 bytes per row; 8 rows * 24 = 192 bytes"
+          ],
+          "description": "Table 2D payload: 96 words (192 bytes) organized as 12 columns x 8 rows",
+          "evidence_level": "PROVEN",
+          "stage_name": "TABLE",
+          "target_object_or_location": "0x0006418A (A7592133.0da)"
+        },
+        {
+          "binary_evidence": [
+            "No physical engineering unit multipliers in descriptor block itself",
+            "Physical constants observed in calibration header (0x02EE=750, 0x01F4=500), but specific link unconfirmed"
+          ],
+          "description": "Scaling and offset conversion to physical units (torque / pressure)",
+          "evidence_level": "UNCONFIRMED",
+          "stage_name": "SCALE_AND_OFFSET",
+          "target_object_or_location": "Engineering Unit Scaling Layer"
+        },
+        {
+          "binary_evidence": [
+            "Static binary analysis without execution trace cannot confirm exact downstream register or task"
+          ],
+          "description": "Consumer of calibrated target value (shift valve pressure or torque reduction)",
+          "evidence_level": "UNCONFIRMED",
+          "stage_name": "OUTPUT_AND_CONSUMER",
+          "target_object_or_location": "Mechatronics Actuator / Controller Task"
+        }
+      ],
+      "runtime_interpolation_status": "UNCONFIRMED",
+      "scale_offset_mechanism": "UNKNOWN",
+      "structural_interpolation_compatibility": "SUPPORTED",
+      "table_access_mode": "ROW_STRIDE_POINTER_OFFSET",
+      "table_address": "0x0006418A",
+      "table_id": "MAP_DESC_0001",
+      "unresolved_links": [
+        "Exact physical scaling divisor applied to output register",
+        "Exact sensor inputs feeding Axis X vs Axis Y",
+        "Runtime execution opcode sequence for bilinear interpolation"
+      ]
+    }
+  ],
+  "total_roles": 1
+}

@@ -32,6 +32,7 @@ This document defines the architectural relationship between original BMW factor
 | winkfp-research (This Repository: Research & Reconstruction)          |
 |                                                                       |
 |  Reconstruction Layer (`reconstruction/`):                            |
+|  ├── calibration/ (Hex parser, canonical index, axis validation, semantic recon) |
 |  ├── crypto/    (Symmetric MD5, Simple cipher, RSA modexp, MSVC RNG) |
 |  ├── auth/      (AS2 3DES parser, GetAuthKey, retry chain)            |
 |  ├── vdle/      (INIT_VDLE, segment table, 21-byte block framing)     |
@@ -40,7 +41,9 @@ This document defines the architectural relationship between original BMW factor
 |                                                                       |
 |  Validation & Research Tooling (`tools/`, `tests/`):                  |
 |  ├── tests/kat/         (Known-Answer Tests, byte-exact vectors)      |
+|  ├── tests/golden/      (Golden state machine, calibration validation)|
 |  ├── tests/differential/(Unicorn emulator vs reconstruction)          |
+|  ├── tools/             (Calibration CLIs, hardware probe, diff)       |
 |  ├── tools/bench_diff/  (EDIABAS api.trc parser & semantic diff)      |
 |  └── tools/analysis/    (SP-Daten scanner, SECUR decoder)             |
 +─────────────────────────┬─────────────────────────────────────────────+

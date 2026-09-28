@@ -1,0 +1,12 @@
+{
+  "distribution": {
+    "AXIS": 229,
+    "CURVE_1D": 1663,
+    "DATA_BLOCK": 4334,
+    "GAP_REFERENCE": 5,
+    "INDIRECT_DESCRIPTOR": 720,
+    "SCALAR": 1760,
+    "TABLE_2D": 465
+  },
+  "total_objects": 9176
+}

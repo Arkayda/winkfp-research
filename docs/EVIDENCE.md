@@ -42,6 +42,7 @@ The following table documents the **highest proven evidence level** achieved in 
 | **EDIABAS API Layer** | **L5** | `VALIDATED` | Parsing and diffing real production `api.trc` (2.4 MB flash session) using `tools/bench_diff/`. |
 | **Safety Interlocks (`ID_CHECK`)** | **L2** | `INFERRED` | Binary conditions parsed; parameter thresholds are documented as engineering hypotheses (`Limits`). |
 | **Physical ECU Contact (Read-Only)** | **L6** | `VALIDATED` | Read-only diagnostic identification query set executed on physical ZF 6HP EGS bench (target `0x18`) via K+DCAN (`115200 8N1`). Verified by immutable trace fixtures in `traces/hardware/`: `20260926_174811_egs_ident.json` (`IDENT`), `20260926_175924_egs_physical_hw_nr.json` (`PHYSIKALISCHE_HW_NR_LESEN`), `20260926_173201_egs_aif.json` (`AIF_READ_BENCH_ALIAS`), `20260926_174033_egs_tester_present.json` (`TESTER_PRESENT`), Milestone 5.16 physical correlation of official `AIF_LESEN` (`0x23`), and Milestone 5.17 physical correlation batch (`SERIENNUMMER_LESEN`, `ZIF_LESEN`, `ZIF_BACKUP_LESEN`). |
+| **Calibration Object Validation (5.20/5.21)** | **L2** (Code) / **L3** (KAT/Golden) | `VALIDATED (OFFLINE)` | Pure offline reconstruction of 9,176 Segment 4 objects, multi-axis descriptor at `0x000454A0`, 7-stage execution pipeline, and tri-layer scaling in `reconstruction/calibration/`. Zero hardware I/O. |
 | **Physical ECU Reprogramming** | **L7** | **Not validated** | Complete flashing of an ECU firmware block on a physical vehicle or hardware bench. No physical vehicle or bench ECU flashing, erase, reset, or flash writing has been performed. Strictly not validated. |
 
 ---
@@ -72,6 +73,15 @@ The repository establishes an explicit provenance and operational boundary betwe
 - **Target Calibration Artifact**: `A7592133.0da` is definitively proven as the target calibration data for `E60 M57D30TU2`, verified against the physical bench EGS AIF, IDENT, and ZIF (`0479S90T641Z`).
 - **Associated/Shared GS19.11 Base Executive Lineage**: `7591971A.0pa` is classified as `RELATED_BASE_PROGRAM_GS19_11` / `DONOR_REFERENCE`. It represents the shared ZF GS19.11 mechatronic executive architecture; its internal descriptor tables point directly to the calibration segments of `A7592133.0da`. Its presence in the repository does not imply the target vehicle has a 6HP19 transmission.
 - **SGBD Families**: `GKE195` (heavy-torque 6HP28) vs `GKE215` (medium-torque 6HP19TU/21). An exhaustive search across the BMW SP-Daten, EDIABAS, and KMM corpus found zero occurrences of `GKE196`.
+
+### 3.4 Calibration Object Validation & Semantic Reconstruction (Milestones 5.20 & 5.21)
+- **Target Calibration Artifact**: `spdaten_gke/E60/data/GKE195/A7592133.0da` (SHA-256: `45b473d1ee8cc2542a1eb3ecb77bf446f357f81827a464e6c3489257312a0112`).
+- **Associated Base Executive Reference**: `spdaten_gke/E60/data/GKE215/7591971A.0pa` strictly as `RELATED_BASE_PROGRAM_GS19_11 / DONOR_REFERENCE`.
+- **Segment 4 Pointer Directory**: Load address canonically proven as `0x00076000 - 0x0007EF60` (36,704 bytes, 9,176 entries). Exact accounting: $9,176 = 6,017\text{ unique} + 3,159\text{ aliases} = 8,451\text{ payload} + 720\text{ indirect directory} + 5\text{ gap pointers}$.
+- **Multi-Axis Map Descriptor**: Block at `0x000454A0` in base program binds Axis X (`0x00063AD6`, 12-pt signed), Axis Y (`0x00063AF0`, 8-pt unsigned), and Table (`0x0006418A`, 12x8 elements, 96 words).
+- **7-Stage Runtime Execution Pipeline**: $\text{INPUT} \rightarrow \text{INDEX} \rightarrow \text{AXIS LOOKUP} \rightarrow \text{TABLE ACCESS} \rightarrow \text{INTERPOLATION} \rightarrow \text{SCALE/OFFSET} \rightarrow \text{OUTPUT}$. Partitioned confidence: `pipeline_definition: PROVEN`, `structural_pipeline: STRONGLY_SUPPORTED`, `runtime_execution_pipeline: UNCONFIRMED`, `overall_role: SUPPORTED`.
+- **Tri-Layer Scaling Separation**: Layer A (Binary Evidence), Layer B (External Corroboration), Layer C (Semantic Hypothesis). Constant 6800 Layer C is strictly `UNKNOWN` (`UNCONFIRMED`); external turbine overspeed discussions relegated to Layer B.
+- **Epistemic Discipline**: $10 \times 13$ tables remain `UNCONFIRMED` dimensional matches; boundary gap pointers (`0x0005FFF4`, `0x0005FFFE`) and false monotonic strings are cataloged as `REJECTED`. 100% offline, zero hardware I/O.
 
 ---
 

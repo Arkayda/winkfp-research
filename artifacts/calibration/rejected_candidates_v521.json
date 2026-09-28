@@ -1,0 +1,41 @@
+{
+  "rejected": [
+    {
+      "alternative_interpretation": "Unused alignment padding or compiler placeholder pointer",
+      "candidate_id": "GAP_PTR_0x0005FFF4",
+      "evidence": [
+        "Segment 1 ends at 0x0005FFF0; Segment 2 begins at 0x00060000; address 0x0005FFF4 resides in padding"
+      ],
+      "failed_test": "Segment payload bounds test: 0x0005FFF4 not within any loaded Intel HEX segment",
+      "rejection_reason": "Pointer targets unmapped 16-byte flash boundary gap between Segments 1 and 2"
+    },
+    {
+      "alternative_interpretation": "Unused alignment padding or compiler placeholder pointer",
+      "candidate_id": "GAP_PTR_0x0005FFFE",
+      "evidence": [
+        "Segment 1 ends at 0x0005FFF0; Segment 2 begins at 0x00060000; address 0x0005FFFE resides in padding"
+      ],
+      "failed_test": "Segment payload bounds test: 0x0005FFFE not within any loaded Intel HEX segment",
+      "rejection_reason": "Pointer targets unmapped 16-byte flash boundary gap between Segments 1 and 2"
+    },
+    {
+      "alternative_interpretation": "Software assembly logistics identifier string",
+      "candidate_id": "MONOTONIC_SEQ_0x000500A0",
+      "evidence": [
+        "String values are ASCII characters 0x30, 0x34, 0x37... not calibration breakpoints"
+      ],
+      "failed_test": "Semantic validity test: byte sequence represents ASCII characters '0479S90T641Z1ZY02'",
+      "rejection_reason": "Ascii text sequence misclassified by purely numeric monotonicity test"
+    },
+    {
+      "alternative_interpretation": "Internal state table, diagnostic error threshold, or configuration vector",
+      "candidate_id": "AXIS_WITHOUT_CONSUMERS",
+      "evidence": [
+        "Array has arbitrary length (e.g. 7 words) with no corresponding 7-element tables in binary"
+      ],
+      "failed_test": "Consumer linkage test: no table or descriptor requires this cardinality",
+      "rejection_reason": "Candidate monotonic sequence has zero matching table dimensions or code references"
+    }
+  ],
+  "total_rejected": 4
+}

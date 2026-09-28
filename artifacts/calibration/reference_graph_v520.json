@@ -1,0 +1,498 @@
+{
+  "base_program_linkages": [
+    {
+      "description": "Base executive pointer to calibration CARB Mode $09 CVN block",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x000301D4",
+      "source_file": "7591971A.0pa",
+      "target_address": "0x000500E4",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000500E4"
+    },
+    {
+      "description": "Base executive pointer to calibration trailer integrity block",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x000301D8",
+      "source_file": "7591971A.0pa",
+      "target_address": "0x0007FF60",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "0007FF60"
+    },
+    {
+      "description": "Base executive pointer to calibration logistics header (ZIF string)",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x000301DC",
+      "source_file": "7591971A.0pa",
+      "target_address": "0x000500A0",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000500A0"
+    },
+    {
+      "description": "Base executive pointer to calibration base / RSA-1024 signature",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x000301E0",
+      "source_file": "7591971A.0pa",
+      "target_address": "0x00050000",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "00050000"
+    }
+  ],
+  "directory_pointer_references_count": 9176,
+  "directory_references_sample": [
+    {
+      "description": "Master pointer table entry 0 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076000",
+      "source_file": "A7592133.0da",
+      "target_address": "0x0005069E",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "0005069E"
+    },
+    {
+      "description": "Master pointer table entry 1 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076004",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506AC",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506AC"
+    },
+    {
+      "description": "Master pointer table entry 2 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076008",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506BA",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506BA"
+    },
+    {
+      "description": "Master pointer table entry 3 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x0007600C",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506BC",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506BC"
+    },
+    {
+      "description": "Master pointer table entry 4 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076010",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506BE",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506BE"
+    },
+    {
+      "description": "Master pointer table entry 5 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076014",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506BF",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506BF"
+    },
+    {
+      "description": "Master pointer table entry 6 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076018",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506C0",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506C0"
+    },
+    {
+      "description": "Master pointer table entry 7 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x0007601C",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506C1",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506C1"
+    },
+    {
+      "description": "Master pointer table entry 8 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076020",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506CB",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506CB"
+    },
+    {
+      "description": "Master pointer table entry 9 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076024",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506CC",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506CC"
+    },
+    {
+      "description": "Master pointer table entry 10 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076028",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506CD",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506CD"
+    },
+    {
+      "description": "Master pointer table entry 11 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x0007602C",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506CE",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506CE"
+    },
+    {
+      "description": "Master pointer table entry 12 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076030",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506CF",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506CF"
+    },
+    {
+      "description": "Master pointer table entry 13 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076034",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506D0",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506D0"
+    },
+    {
+      "description": "Master pointer table entry 14 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076038",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506D1",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506D1"
+    },
+    {
+      "description": "Master pointer table entry 15 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x0007603C",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506D2",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506D2"
+    },
+    {
+      "description": "Master pointer table entry 16 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076040",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506D4",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506D4"
+    },
+    {
+      "description": "Master pointer table entry 17 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076044",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506D6",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506D6"
+    },
+    {
+      "description": "Master pointer table entry 18 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076048",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506D8",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506D8"
+    },
+    {
+      "description": "Master pointer table entry 19 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x0007604C",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506DA",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506DA"
+    },
+    {
+      "description": "Master pointer table entry 20 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076050",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506DB",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506DB"
+    },
+    {
+      "description": "Master pointer table entry 21 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076054",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506DC",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506DC"
+    },
+    {
+      "description": "Master pointer table entry 22 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076058",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506DD",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506DD"
+    },
+    {
+      "description": "Master pointer table entry 23 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x0007605C",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506DE",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506DE"
+    },
+    {
+      "description": "Master pointer table entry 24 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076060",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506DF",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506DF"
+    },
+    {
+      "description": "Master pointer table entry 25 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076064",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506E0",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506E0"
+    },
+    {
+      "description": "Master pointer table entry 26 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076068",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506E2",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506E2"
+    },
+    {
+      "description": "Master pointer table entry 27 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x0007606C",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506E4",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506E4"
+    },
+    {
+      "description": "Master pointer table entry 28 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076070",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506EE",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506EE"
+    },
+    {
+      "description": "Master pointer table entry 29 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076074",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506F8",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506F8"
+    },
+    {
+      "description": "Master pointer table entry 30 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076078",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506FA",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506FA"
+    },
+    {
+      "description": "Master pointer table entry 31 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x0007607C",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506FC",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506FC"
+    },
+    {
+      "description": "Master pointer table entry 32 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076080",
+      "source_file": "A7592133.0da",
+      "target_address": "0x000506FE",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "000506FE"
+    },
+    {
+      "description": "Master pointer table entry 33 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076084",
+      "source_file": "A7592133.0da",
+      "target_address": "0x00050700",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "00050700"
+    },
+    {
+      "description": "Master pointer table entry 34 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076088",
+      "source_file": "A7592133.0da",
+      "target_address": "0x00050702",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "00050702"
+    },
+    {
+      "description": "Master pointer table entry 35 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x0007608C",
+      "source_file": "A7592133.0da",
+      "target_address": "0x00050704",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "00050704"
+    },
+    {
+      "description": "Master pointer table entry 36 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076090",
+      "source_file": "A7592133.0da",
+      "target_address": "0x00050706",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "00050706"
+    },
+    {
+      "description": "Master pointer table entry 37 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076094",
+      "source_file": "A7592133.0da",
+      "target_address": "0x00050714",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "00050714"
+    },
+    {
+      "description": "Master pointer table entry 38 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x00076098",
+      "source_file": "A7592133.0da",
+      "target_address": "0x00050722",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "00050722"
+    },
+    {
+      "description": "Master pointer table entry 39 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x0007609C",
+      "source_file": "A7592133.0da",
+      "target_address": "0x00050724",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "00050724"
+    },
+    {
+      "description": "Master pointer table entry 40 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x000760A0",
+      "source_file": "A7592133.0da",
+      "target_address": "0x00050726",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "00050726"
+    },
+    {
+      "description": "Master pointer table entry 41 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x000760A4",
+      "source_file": "A7592133.0da",
+      "target_address": "0x00050728",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "00050728"
+    },
+    {
+      "description": "Master pointer table entry 42 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x000760A8",
+      "source_file": "A7592133.0da",
+      "target_address": "0x00050729",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "00050729"
+    },
+    {
+      "description": "Master pointer table entry 43 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x000760AC",
+      "source_file": "A7592133.0da",
+      "target_address": "0x0005072A",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "0005072A"
+    },
+    {
+      "description": "Master pointer table entry 44 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x000760B0",
+      "source_file": "A7592133.0da",
+      "target_address": "0x0005072C",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "0005072C"
+    },
+    {
+      "description": "Master pointer table entry 45 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x000760B4",
+      "source_file": "A7592133.0da",
+      "target_address": "0x0005072E",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "0005072E"
+    },
+    {
+      "description": "Master pointer table entry 46 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x000760B8",
+      "source_file": "A7592133.0da",
+      "target_address": "0x0005072F",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "0005072F"
+    },
+    {
+      "description": "Master pointer table entry 47 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x000760BC",
+      "source_file": "A7592133.0da",
+      "target_address": "0x00050730",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "00050730"
+    },
+    {
+      "description": "Master pointer table entry 48 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x000760C0",
+      "source_file": "A7592133.0da",
+      "target_address": "0x00050780",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "00050780"
+    },
+    {
+      "description": "Master pointer table entry 49 to calibration object",
+      "reference_type": "DIRECT_REFERENCE",
+      "source_address": "0x000760C4",
+      "source_file": "A7592133.0da",
+      "target_address": "0x00050781",
+      "target_file": "A7592133.0da",
+      "verified_binary_bytes": "00050781"
+    }
+  ],
+  "evidence_classes": {
+    "base_pointers_at_0x000301D0": "DIRECT_REFERENCE",
+    "master_directory_entries": "DIRECT_REFERENCE"
+  },
+  "total_direct_references": 9180
+}

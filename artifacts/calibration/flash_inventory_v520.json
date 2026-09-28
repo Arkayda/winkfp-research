@@ -1,0 +1,132 @@
+{
+  "ascii_regions": [
+    {
+      "address": "0x000500A0",
+      "classification": "FACT",
+      "description": "ZIF reference / software assembly string",
+      "length": 17,
+      "string": "0479S90T641Z1ZY02"
+    },
+    {
+      "address": "0x000500E8",
+      "classification": "FACT",
+      "description": "Calibration project / dataset variant ID",
+      "length": 8,
+      "string": "DAV54764"
+    },
+    {
+      "address": "0x000505A0",
+      "classification": "FACT",
+      "description": "Calibration segment block marker",
+      "length": 2,
+      "string": "SL"
+    },
+    {
+      "address": "0x000505A4",
+      "classification": "FACT",
+      "description": "Dataset file ID",
+      "length": 8,
+      "string": "T641ZY02"
+    }
+  ],
+  "evidence_classes": {
+    "file_hash_and_size": "FACT",
+    "intel_hex_segment_boundaries": "FACT",
+    "master_directory_pointer_count": "FACT",
+    "segment_functional_roles": "INFERENCE",
+    "unreferenced_gap_analysis": "FACT"
+  },
+  "file_name": "A7592133.0da",
+  "file_sha256": "45b473d1ee8cc2542a1eb3ecb77bf446f357f81827a464e6c3489257312a0112",
+  "file_size_bytes": 489258,
+  "gaps": [
+    {
+      "end_address": "0x000500A0",
+      "gap_index": 0,
+      "length_bytes": 32,
+      "start_address": "0x00050080"
+    },
+    {
+      "end_address": "0x00060000",
+      "gap_index": 1,
+      "length_bytes": 16,
+      "start_address": "0x0005FFF0"
+    },
+    {
+      "end_address": "0x00070000",
+      "gap_index": 2,
+      "length_bytes": 16,
+      "start_address": "0x0006FFF0"
+    },
+    {
+      "end_address": "0x00076000",
+      "gap_index": 3,
+      "length_bytes": 19216,
+      "start_address": "0x000714F0"
+    },
+    {
+      "end_address": "0x0007FF60",
+      "gap_index": 4,
+      "length_bytes": 4096,
+      "start_address": "0x0007EF60"
+    }
+  ],
+  "segment_count": 6,
+  "segments": [
+    {
+      "alignment_bytes": 16,
+      "byte_length": 128,
+      "classification": "RSA1024_SIGNATURE_BLOCK",
+      "end_address": "0x00050080",
+      "segment_index": 0,
+      "sha256": "ce1085941c8838cb0b46a787bf87014f47967794a97edcdab70e874e14eb58b3",
+      "start_address": "0x00050000"
+    },
+    {
+      "alignment_bytes": 16,
+      "byte_length": 65360,
+      "classification": "HEADER_LOGISTICS_CVN_CALIBRATION_PART1",
+      "end_address": "0x0005FFF0",
+      "segment_index": 1,
+      "sha256": "7f99030a0016c180e68c42e90567dd8cd56233f0a5415e20ecafbedd8af9106c",
+      "start_address": "0x000500A0"
+    },
+    {
+      "alignment_bytes": 16,
+      "byte_length": 65520,
+      "classification": "MAIN_CALIBRATION_PAYLOAD_PART2",
+      "end_address": "0x0006FFF0",
+      "segment_index": 2,
+      "sha256": "38a406a0111bd8da69aac600c1d05f484ef8f555e3b536b08937d2b4fd5b40a9",
+      "start_address": "0x00060000"
+    },
+    {
+      "alignment_bytes": 16,
+      "byte_length": 5360,
+      "classification": "MAIN_CALIBRATION_PAYLOAD_PART3",
+      "end_address": "0x000714F0",
+      "segment_index": 3,
+      "sha256": "f2f87a688aa2131eb5b2063ea81657630aba202e0957832f4916319e1a9ff7b1",
+      "start_address": "0x00070000"
+    },
+    {
+      "alignment_bytes": 16,
+      "byte_length": 36704,
+      "classification": "MASTER_POINTER_DIRECTORY",
+      "end_address": "0x0007EF60",
+      "segment_index": 4,
+      "sha256": "0695b6ca84cf29a8eee9c16c931a4894610cb519392b956f380a39eba3445c94",
+      "start_address": "0x00076000"
+    },
+    {
+      "alignment_bytes": 16,
+      "byte_length": 16,
+      "classification": "CALIBRATION_TRAILER_INTEGRITY",
+      "end_address": "0x0007FF70",
+      "segment_index": 5,
+      "sha256": "8cd9a7b7ad6009a55b04b526178d3f14d7bcc48c88a3f6292759f77e32c46ede",
+      "start_address": "0x0007FF60"
+    }
+  ],
+  "total_payload_bytes": 173088
+}

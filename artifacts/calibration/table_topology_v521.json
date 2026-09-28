@@ -1,0 +1,315 @@
+{
+  "topologies": [
+    {
+      "address": "0x0006418A",
+      "axis_x_address": "0x00063AD6",
+      "axis_y_address": "0x00063AF0",
+      "clamp_behavior": "SATURATE_AT_ENDPOINTS",
+      "code_relation": "REFERENCED_IN_BASE_PROGRAM_SEG3",
+      "confidence": "STRONGLY_SUPPORTED",
+      "descriptor_relation": "DESCRIPTOR_RECORD_AT_0x000454A0",
+      "dimensions": [
+        12,
+        8
+      ],
+      "endianness": "big",
+      "evidence": [
+        "descriptor_binding_at_0x000454A0",
+        "axis_x_12_points_axis_y_8_points",
+        "exact_96_word_payload_stride",
+        "structural_interpolation_compatibility: SUPPORTED",
+        "runtime_interpolation_status: UNCONFIRMED (requires opcode trace)"
+      ],
+      "interpolation_topology": "2D_BILINEAR_SURFACE",
+      "is_contiguous": true,
+      "layout": "ROW_MAJOR",
+      "runtime_interpolation_status": "UNCONFIRMED",
+      "signed": false,
+      "stride_bytes": 24,
+      "structural_interpolation_compatibility": "SUPPORTED",
+      "table_id": "MAP_DESC_0001",
+      "width_bits": 16
+    },
+    {
+      "address": "0x0005B3B2",
+      "axis_x_address": null,
+      "axis_y_address": null,
+      "clamp_behavior": "UNKNOWN",
+      "code_relation": null,
+      "confidence": "SUPPORTED",
+      "descriptor_relation": null,
+      "dimensions": [
+        10,
+        13
+      ],
+      "endianness": "big",
+      "evidence": [
+        "directory_entry_exact_size_260bytes",
+        "mathematical_factorization_10x13x2",
+        "uniform_word_stride"
+      ],
+      "interpolation_topology": "2D_RECTANGULAR_GRID",
+      "is_contiguous": true,
+      "layout": "ROW_MAJOR",
+      "runtime_interpolation_status": "UNCONFIRMED",
+      "signed": false,
+      "stride_bytes": 26,
+      "structural_interpolation_compatibility": "SUPPORTED",
+      "table_id": "MAP_10x13_0001",
+      "width_bits": 16
+    },
+    {
+      "address": "0x0005B9B0",
+      "axis_x_address": null,
+      "axis_y_address": null,
+      "clamp_behavior": "UNKNOWN",
+      "code_relation": null,
+      "confidence": "SUPPORTED",
+      "descriptor_relation": null,
+      "dimensions": [
+        10,
+        13
+      ],
+      "endianness": "big",
+      "evidence": [
+        "directory_entry_exact_size_260bytes",
+        "mathematical_factorization_10x13x2",
+        "uniform_word_stride"
+      ],
+      "interpolation_topology": "2D_RECTANGULAR_GRID",
+      "is_contiguous": true,
+      "layout": "ROW_MAJOR",
+      "runtime_interpolation_status": "UNCONFIRMED",
+      "signed": false,
+      "stride_bytes": 26,
+      "structural_interpolation_compatibility": "SUPPORTED",
+      "table_id": "MAP_10x13_0002",
+      "width_bits": 16
+    },
+    {
+      "address": "0x0005B3CC",
+      "axis_x_address": null,
+      "axis_y_address": null,
+      "clamp_behavior": "UNKNOWN",
+      "code_relation": null,
+      "confidence": "SUPPORTED",
+      "descriptor_relation": null,
+      "dimensions": [
+        10,
+        13
+      ],
+      "endianness": "big",
+      "evidence": [
+        "directory_entry_exact_size_260bytes",
+        "mathematical_factorization_10x13x2",
+        "uniform_word_stride"
+      ],
+      "interpolation_topology": "2D_RECTANGULAR_GRID",
+      "is_contiguous": true,
+      "layout": "ROW_MAJOR",
+      "runtime_interpolation_status": "UNCONFIRMED",
+      "signed": false,
+      "stride_bytes": 26,
+      "structural_interpolation_compatibility": "SUPPORTED",
+      "table_id": "MAP_10x13_0003",
+      "width_bits": 16
+    },
+    {
+      "address": "0x0005B9CA",
+      "axis_x_address": null,
+      "axis_y_address": null,
+      "clamp_behavior": "UNKNOWN",
+      "code_relation": null,
+      "confidence": "SUPPORTED",
+      "descriptor_relation": null,
+      "dimensions": [
+        10,
+        13
+      ],
+      "endianness": "big",
+      "evidence": [
+        "directory_entry_exact_size_260bytes",
+        "mathematical_factorization_10x13x2",
+        "uniform_word_stride"
+      ],
+      "interpolation_topology": "2D_RECTANGULAR_GRID",
+      "is_contiguous": true,
+      "layout": "ROW_MAJOR",
+      "runtime_interpolation_status": "UNCONFIRMED",
+      "signed": false,
+      "stride_bytes": 26,
+      "structural_interpolation_compatibility": "SUPPORTED",
+      "table_id": "MAP_10x13_0004",
+      "width_bits": 16
+    },
+    {
+      "address": "0x0005B3E6",
+      "axis_x_address": null,
+      "axis_y_address": null,
+      "clamp_behavior": "UNKNOWN",
+      "code_relation": null,
+      "confidence": "SUPPORTED",
+      "descriptor_relation": null,
+      "dimensions": [
+        10,
+        13
+      ],
+      "endianness": "big",
+      "evidence": [
+        "directory_entry_exact_size_260bytes",
+        "mathematical_factorization_10x13x2",
+        "uniform_word_stride"
+      ],
+      "interpolation_topology": "2D_RECTANGULAR_GRID",
+      "is_contiguous": true,
+      "layout": "ROW_MAJOR",
+      "runtime_interpolation_status": "UNCONFIRMED",
+      "signed": false,
+      "stride_bytes": 26,
+      "structural_interpolation_compatibility": "SUPPORTED",
+      "table_id": "MAP_10x13_0005",
+      "width_bits": 16
+    },
+    {
+      "address": "0x0005B9E4",
+      "axis_x_address": null,
+      "axis_y_address": null,
+      "clamp_behavior": "UNKNOWN",
+      "code_relation": null,
+      "confidence": "SUPPORTED",
+      "descriptor_relation": null,
+      "dimensions": [
+        10,
+        13
+      ],
+      "endianness": "big",
+      "evidence": [
+        "directory_entry_exact_size_260bytes",
+        "mathematical_factorization_10x13x2",
+        "uniform_word_stride"
+      ],
+      "interpolation_topology": "2D_RECTANGULAR_GRID",
+      "is_contiguous": true,
+      "layout": "ROW_MAJOR",
+      "runtime_interpolation_status": "UNCONFIRMED",
+      "signed": false,
+      "stride_bytes": 26,
+      "structural_interpolation_compatibility": "SUPPORTED",
+      "table_id": "MAP_10x13_0006",
+      "width_bits": 16
+    },
+    {
+      "address": "0x0005B400",
+      "axis_x_address": null,
+      "axis_y_address": null,
+      "clamp_behavior": "UNKNOWN",
+      "code_relation": null,
+      "confidence": "SUPPORTED",
+      "descriptor_relation": null,
+      "dimensions": [
+        10,
+        13
+      ],
+      "endianness": "big",
+      "evidence": [
+        "directory_entry_exact_size_260bytes",
+        "mathematical_factorization_10x13x2",
+        "uniform_word_stride"
+      ],
+      "interpolation_topology": "2D_RECTANGULAR_GRID",
+      "is_contiguous": true,
+      "layout": "ROW_MAJOR",
+      "runtime_interpolation_status": "UNCONFIRMED",
+      "signed": false,
+      "stride_bytes": 26,
+      "structural_interpolation_compatibility": "SUPPORTED",
+      "table_id": "MAP_10x13_0007",
+      "width_bits": 16
+    },
+    {
+      "address": "0x0005B9FE",
+      "axis_x_address": null,
+      "axis_y_address": null,
+      "clamp_behavior": "UNKNOWN",
+      "code_relation": null,
+      "confidence": "SUPPORTED",
+      "descriptor_relation": null,
+      "dimensions": [
+        10,
+        13
+      ],
+      "endianness": "big",
+      "evidence": [
+        "directory_entry_exact_size_260bytes",
+        "mathematical_factorization_10x13x2",
+        "uniform_word_stride"
+      ],
+      "interpolation_topology": "2D_RECTANGULAR_GRID",
+      "is_contiguous": true,
+      "layout": "ROW_MAJOR",
+      "runtime_interpolation_status": "UNCONFIRMED",
+      "signed": false,
+      "stride_bytes": 26,
+      "structural_interpolation_compatibility": "SUPPORTED",
+      "table_id": "MAP_10x13_0008",
+      "width_bits": 16
+    },
+    {
+      "address": "0x0005B41A",
+      "axis_x_address": null,
+      "axis_y_address": null,
+      "clamp_behavior": "UNKNOWN",
+      "code_relation": null,
+      "confidence": "SUPPORTED",
+      "descriptor_relation": null,
+      "dimensions": [
+        10,
+        13
+      ],
+      "endianness": "big",
+      "evidence": [
+        "directory_entry_exact_size_260bytes",
+        "mathematical_factorization_10x13x2",
+        "uniform_word_stride"
+      ],
+      "interpolation_topology": "2D_RECTANGULAR_GRID",
+      "is_contiguous": true,
+      "layout": "ROW_MAJOR",
+      "runtime_interpolation_status": "UNCONFIRMED",
+      "signed": false,
+      "stride_bytes": 26,
+      "structural_interpolation_compatibility": "SUPPORTED",
+      "table_id": "MAP_10x13_0009",
+      "width_bits": 16
+    },
+    {
+      "address": "0x0005BA18",
+      "axis_x_address": null,
+      "axis_y_address": null,
+      "clamp_behavior": "UNKNOWN",
+      "code_relation": null,
+      "confidence": "SUPPORTED",
+      "descriptor_relation": null,
+      "dimensions": [
+        10,
+        13
+      ],
+      "endianness": "big",
+      "evidence": [
+        "directory_entry_exact_size_260bytes",
+        "mathematical_factorization_10x13x2",
+        "uniform_word_stride"
+      ],
+      "interpolation_topology": "2D_RECTANGULAR_GRID",
+      "is_contiguous": true,
+      "layout": "ROW_MAJOR",
+      "runtime_interpolation_status": "UNCONFIRMED",
+      "signed": false,
+      "stride_bytes": 26,
+      "structural_interpolation_compatibility": "SUPPORTED",
+      "table_id": "MAP_10x13_0010",
+      "width_bits": 16
+    }
+  ],
+  "total_topologies": 11
+}

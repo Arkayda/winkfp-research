@@ -1,0 +1,73 @@
+{
+  "architecture": "Infineon C167 / ST10 / TriCore TC1766",
+  "calibration_address_range": {
+    "end": "0x0007FFE0",
+    "span_bytes": 196576,
+    "start": "0x00050000"
+  },
+  "endianness": "big",
+  "memory_type": "FLASH_CALIBRATION",
+  "segments": [
+    {
+      "byte_length": 128,
+      "contains_code": false,
+      "contains_pointers": false,
+      "end_address": "0x00050080",
+      "functional_role": "HEADER_AND_AUTHENTICATION",
+      "object_count": 0,
+      "segment_index": 0,
+      "start_address": "0x00050000"
+    },
+    {
+      "byte_length": 65360,
+      "contains_code": false,
+      "contains_pointers": false,
+      "end_address": "0x0005FFF0",
+      "functional_role": "DATA",
+      "object_count": 4175,
+      "segment_index": 1,
+      "start_address": "0x000500A0"
+    },
+    {
+      "byte_length": 65520,
+      "contains_code": false,
+      "contains_pointers": false,
+      "end_address": "0x0006FFF0",
+      "functional_role": "DATA",
+      "object_count": 4004,
+      "segment_index": 2,
+      "start_address": "0x00060000"
+    },
+    {
+      "byte_length": 5360,
+      "contains_code": false,
+      "contains_pointers": false,
+      "end_address": "0x000714F0",
+      "functional_role": "DATA",
+      "object_count": 272,
+      "segment_index": 3,
+      "start_address": "0x00070000"
+    },
+    {
+      "byte_length": 36704,
+      "contains_code": false,
+      "contains_pointers": true,
+      "end_address": "0x0007EF60",
+      "functional_role": "POINTER_DIRECTORY",
+      "object_count": 720,
+      "segment_index": 4,
+      "start_address": "0x00076000"
+    },
+    {
+      "byte_length": 16,
+      "contains_code": false,
+      "contains_pointers": false,
+      "end_address": "0x0007FF70",
+      "functional_role": "TRAILER_AND_INTEGRITY",
+      "object_count": 0,
+      "segment_index": 5,
+      "start_address": "0x0007FF60"
+    }
+  ],
+  "total_calibration_objects": 9171
+}

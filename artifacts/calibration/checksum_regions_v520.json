@@ -1,0 +1,71 @@
+{
+  "checksum_algorithm_notes": "BMW GS19.11 utilizes two layers: 1) Hardware/Bootloader RSA-1024 with SHA-1 digest covering segments 0..5; 2) Diagnostic/OBD-II CARB Mode $09 CVN reporting 0000F41E.",
+  "evidence_class": "FACT",
+  "excluded_regions": [
+    {
+      "address": "0x00050000 - 0x00050080",
+      "reason": "RSA-1024 signature block cannot sign its own storage location"
+    },
+    {
+      "address": "0x0007FFDE - 0x0007FFE0",
+      "reason": "Trailer block checksum location"
+    }
+  ],
+  "regions": [
+    {
+      "algorithm": "RSA-1024 / SHA-1",
+      "description": "RSA-1024 digital signature block verified by bootloader before flashing",
+      "end_address": "0x00050080",
+      "evidence_class": "FACT",
+      "length_bytes": 128,
+      "region_id": "INT_0001_RSA1024_SIGNATURE",
+      "region_type": "RSA_SIGNATURE",
+      "start_address": "0x00050000",
+      "stored_value": "RSA-1024 signature block (128 bytes)"
+    },
+    {
+      "algorithm": "CRC-32 / Mode $09 CVN",
+      "description": "CARB Mode $09 Calibration Verification Number referenced at 0x000301D4 in base program",
+      "end_address": "0x000500E8",
+      "evidence_class": "FACT",
+      "length_bytes": 4,
+      "region_id": "INT_0002_CARB_MODE09_CVN",
+      "region_type": "CARB_CVN",
+      "start_address": "0x000500E4",
+      "stored_value": "0000F41E"
+    },
+    {
+      "algorithm": "CRC-16 / Block Checksum",
+      "description": "Calibration trailer integrity block referenced at 0x000301D8 in base program",
+      "end_address": "0x0007FF70",
+      "evidence_class": "FACT",
+      "length_bytes": 16,
+      "region_id": "INT_0003_CALIBRATION_TRAILER",
+      "region_type": "TRAILER_BLOCK",
+      "start_address": "0x0007FF60",
+      "stored_value": "Calibration block trailer record (16 bytes)"
+    },
+    {
+      "algorithm": "Covered by RSA-1024 signature and trailer checksum",
+      "description": "Calibrated maps, axes, and scalar parameters subject to integrity verification",
+      "end_address": "0x000714F0",
+      "evidence_class": "FACT",
+      "length_bytes": 136240,
+      "region_id": "INT_0004_MAIN_CALIBRATION_PAYLOAD",
+      "region_type": "SEGMENT_PAYLOAD",
+      "start_address": "0x000500A0",
+      "stored_value": "N/A"
+    },
+    {
+      "algorithm": "Covered by RSA-1024 signature and trailer checksum",
+      "description": "Master calibration pointer directory table (9,176 entries)",
+      "end_address": "0x0007EF60",
+      "evidence_class": "FACT",
+      "length_bytes": 36704,
+      "region_id": "INT_0005_MASTER_POINTER_DIRECTORY",
+      "region_type": "SEGMENT_PAYLOAD",
+      "start_address": "0x00076000",
+      "stored_value": "N/A"
+    }
+  ]
+}

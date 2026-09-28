@@ -1,0 +1,128 @@
+{
+  "baseline_milestone": "5.20",
+  "changes": [
+    {
+      "change_type": "REFINEMENT",
+      "evidence": "Binary auditing of Segment 4 pointer addresses against loaded Intel HEX segments",
+      "item": "SEGMENT_4_POINTER_DIRECTORY",
+      "new_confidence": "PROVEN",
+      "new_value": "8,451 direct data payload pointers + 720 indirect directory pointers + 5 gap pointers",
+      "object_id": "SEGMENT_4_POINTER_DIRECTORY",
+      "old_value": "9,176 direct calibration data payload pointers",
+      "previous_confidence": "SUPPORTED",
+      "reason": "Discovery of 720 nested indirect directory pointers and 5 alignment gap targets"
+    },
+    {
+      "change_type": "EXTENSION",
+      "evidence": "Descriptor block at 0x000454A0 in base program 7591971A.0pa",
+      "item": "MAP_DESC_0001_BINDING",
+      "new_confidence": "STRONGLY_SUPPORTED",
+      "new_value": "Direct descriptor record binding Axis X (0x00063AD6, 12 points), Axis Y (0x00063AF0, 8 points), and Table (0x0006418A, 12x8 elements)",
+      "object_id": "MAP_DESC_0001_BINDING",
+      "old_value": "Heuristic cardinality matching for map and axes",
+      "previous_confidence": "UNCONFIRMED",
+      "reason": "Discovered multi-axis descriptor record in donor base program"
+    },
+    {
+      "change_type": "REFINEMENT",
+      "evidence": "Zero descriptor records linking 10x13 tables directly to pedal/speed axes",
+      "item": "MAPS_10x13_GROUP",
+      "new_confidence": "UNCONFIRMED",
+      "new_value": "Dimensional match only without direct descriptor link; semantic hypothesis UNKNOWN",
+      "object_id": "MAPS_10x13_GROUP",
+      "old_value": "Possibly shift schedule maps (LOW / UNCONFIRMED)",
+      "previous_confidence": "LOW",
+      "reason": "Epistemic tightening to prevent unproven semantic promotion without execution evidence"
+    },
+    {
+      "change_type": "CORRECTION",
+      "evidence": "Intel HEX records in A7592133.0da: lines 8614-10907, base 0x00070000, start offset 0x6000, 36,704 bytes (0x8F60), end 0x0007EF60, exactly 9,176 32-bit entries",
+      "item": "SEGMENT_4_ADDRESS_RANGE",
+      "new_confidence": "PROVEN",
+      "new_value": "0x00076000 - 0x0007EF60 (canonical Intel HEX Segment 4 load address)",
+      "object_id": "SEGMENT_4_ADDRESS_RANGE",
+      "old_value": "0x50000 - 0x58F7F (inadvertent report summary address)",
+      "previous_confidence": "FACT",
+      "reason": "Resolve report address discrepancy against raw binary source"
+    },
+    {
+      "change_type": "REFINEMENT",
+      "evidence": "Directory entry accounting identities vs cross-image code reference catalogs",
+      "item": "REFERENCE_COUNT_MODEL",
+      "new_confidence": "PROVEN",
+      "new_value": "Explicit separation between ENTRY METRICS (9,176 entries: 6,017 unique, 3,159 aliases, 8,451 payload, 720 indirect, 5 gap) and REFERENCE CATEGORIES (736 recovered code/structural references)",
+      "object_id": "REFERENCE_COUNT_MODEL",
+      "old_value": "Unpartitioned scalar counts mixing directory entry metrics with code reference taxonomy",
+      "previous_confidence": "SUPPORTED",
+      "reason": "Prevent conflation of orthogonal measurement dimensions and enforce strict taxonomy"
+    },
+    {
+      "change_type": "CORRECTION",
+      "evidence": "GKE195 SGBD PRG inspection (Milestone 5.9 canonical pipeline) vs physical bench wire trace",
+      "item": "AIF_SERVICE_IDENTIFIER",
+      "new_confidence": "PROVEN",
+      "new_value": "Official AIF_LESEN ($23); 0x1A 0x86 preserved strictly as AIF_READ_BENCH_ALIAS",
+      "object_id": "AIF_SERVICE_IDENTIFIER",
+      "old_value": "AIF (0x1A 0x86) presented as official SGBD read path",
+      "previous_confidence": "FACT",
+      "reason": "Distinguish official EDIABAS/SGBD diagnostic service ($23) from physical K+DCAN bench alias (0x1A 0x86)"
+    },
+    {
+      "change_type": "CORRECTION",
+      "evidence": "Enumeration of all 7 runtime pipeline stages with concrete binary evidence chain at 0x000454A0",
+      "item": "EXECUTION_PIPELINE_STAGES",
+      "new_confidence": "PROVEN",
+      "new_value": "7-stage execution pipeline (INPUT -> INDEX -> AXIS LOOKUP -> TABLE ACCESS -> INTERPOLATION -> SCALE/OFFSET -> OUTPUT)",
+      "object_id": "EXECUTION_PIPELINE_STAGES",
+      "old_value": "6-stage execution pipeline",
+      "previous_confidence": "STRONGLY_SUPPORTED",
+      "reason": "Correct arithmetic misnomer in pipeline stage count and provide per-transition evidence levels"
+    },
+    {
+      "change_type": "REFINEMENT",
+      "evidence": "Binary constants at 0x000505BA (0x02EE=750), 0x000505BC (0x01F4=500), 0x000505BE (0x1A90=6800) vs vehicle physical specifications",
+      "item": "SCALING_EVIDENCE_LAYERING",
+      "new_confidence": "SUPPORTED",
+      "new_value": "Tri-layer separation: Layer A (Binary Evidence), Layer B (External Corroboration), Layer C (Semantic Hypothesis)",
+      "object_id": "SCALING_EVIDENCE_LAYERING",
+      "old_value": "Unified scalar candidate records combining binary constants with vehicle ratings",
+      "previous_confidence": "SUPPORTED",
+      "reason": "Prevent unproven physical engineering units from being asserted as binary facts"
+    },
+    {
+      "change_type": "REFINEMENT",
+      "evidence": "Monotonic breakpoint geometry provides structural compatibility for 2D surface interpolation, but opcode trace of execution routine is absent in offline analysis",
+      "item": "INDEX_AND_INTERPOLATION_EVIDENCE_LEVEL",
+      "new_confidence": "UNCONFIRMED",
+      "new_value": "Runtime interpolation status UNCONFIRMED; structural_interpolation_compatibility remains SUPPORTED",
+      "object_id": "INDEX_AND_INTERPOLATION_EVIDENCE_LEVEL",
+      "old_value": "Runtime interpolation labeled STRONGLY_SUPPORTED",
+      "previous_confidence": "STRONGLY_SUPPORTED",
+      "reason": "Prevent overclaiming runtime execution status without dynamic opcode trace while preserving structural compatibility"
+    },
+    {
+      "change_type": "REFINEMENT",
+      "evidence": "Downstream pipeline stages 4 (interpolation), 6 (scale/offset), and 7 (output consumer) are UNCONFIRMED in offline static analysis",
+      "item": "EXECUTION_PIPELINE_CONFIDENCE",
+      "new_confidence": "SUPPORTED",
+      "new_value": "Partitioned pipeline confidence: pipeline_definition=PROVEN, structural_pipeline=STRONGLY_SUPPORTED, runtime_execution_pipeline=UNCONFIRMED; overall execution role=SUPPORTED",
+      "object_id": "EXECUTION_PIPELINE_CONFIDENCE",
+      "old_value": "Overall execution role labeled STRONGLY_SUPPORTED",
+      "previous_confidence": "STRONGLY_SUPPORTED",
+      "reason": "Overall execution role cannot exceed the confidence of its unconfirmed runtime stages"
+    },
+    {
+      "change_type": "CORRECTION",
+      "evidence": "Binary constant 0x1A90 (6800) in Segment 1 header lacks execution comparisons or arithmetic in base program",
+      "item": "SCALAR_6800_SEMANTIC_HYPOTHESIS",
+      "new_confidence": "UNCONFIRMED",
+      "new_value": "Layer C semantic_hypothesis=UNKNOWN, candidate_unit=UNKNOWN, confidence=UNCONFIRMED; external overspeed discussions relegated strictly to Layer B",
+      "object_id": "SCALAR_6800_SEMANTIC_HYPOTHESIS",
+      "old_value": "Layer C semantic_hypothesis=turbine_overspeed_safety_ceiling",
+      "previous_confidence": "UNCONFIRMED",
+      "reason": "Eliminate speculative semantic preference without binary execution evidence"
+    }
+  ],
+  "target_milestone": "5.21",
+  "total_changes": 11
+}

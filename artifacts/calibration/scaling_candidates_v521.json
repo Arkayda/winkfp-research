@@ -1,0 +1,163 @@
+{
+  "candidates": [
+    {
+      "address": "0x000505BA",
+      "candidate_id": "SCALE_CONST_750",
+      "candidate_unit": "Nm (Newton-meters) candidate",
+      "confidence": "SUPPORTED",
+      "contradicting_evidence": [
+        "No direct execution code found in base program subtracting or comparing 0x02EE as a runtime limit"
+      ],
+      "conversion_factor": "1.0 (Nm / LSB) or 0.5 (Nm / LSB)",
+      "data_type": "uint16_big_endian",
+      "layer_a_binary_evidence": {
+        "arithmetic_use": "UNKNOWN (No arithmetic instructions using 0x02EE verified in base program)",
+        "comparisons": "UNKNOWN (No comparison instructions against 0x02EE verified in base program)",
+        "consumers": "UNKNOWN (No confirmed runtime consumer register in offline trace)",
+        "decoded_value": 750,
+        "endianness": "big",
+        "raw_address": "0x000505BA",
+        "raw_bytes_hex": "02EE",
+        "references": [
+          "Segment 1 calibration block header at 0x000505BA",
+          "Repeated sequence 0x02EE across 5 consecutive words"
+        ],
+        "width_bits": 16
+      },
+      "layer_b_external_corroboration": {
+        "relevance_note": "Independent external transmission specification exactly matches 750; however, binary contains no engineering unit string",
+        "source": "ZF Getriebe GmbH 6HP28 technical documentation / BMW E60 530d LCI vehicle documentation",
+        "specification_match": "ZF 6HP28 / GA6HP26Z TU factory nominal maximum torque capacity (750 Nm)"
+      },
+      "layer_c_semantic_hypothesis": {
+        "candidate_unit": "Nm (Newton-meters)",
+        "confidence": "SUPPORTED",
+        "conversion_factor": "1.0 (Nm / LSB) or 0.5 (Nm / LSB)",
+        "semantic_hypothesis": "transmission_torque_related",
+        "supporting_arguments": [
+          "Exact numerical match to 750 Nm mechanical rating",
+          "Sequence of 5 occurrences matches the 5 shift elements (clutches/brakes A, B, C, D, E) of ZF 6HP",
+          "Placed in logistics header prior to main map arrays"
+        ],
+        "unresolved_questions": [
+          "Is 750 Nm used for diagnostic reporting or hard software torque clamping in runtime code?"
+        ]
+      },
+      "raw_hex": "02EE",
+      "raw_value_decimal": 750,
+      "semantic_hypothesis": "possibly maximum transmission input torque rating for ZF 6HP28 / GA6HP26Z TU",
+      "supporting_evidence": [
+        "Exact numeric match to ZF 6HP28 factory mechanical capacity (750 Nm)",
+        "Placed in calibration block header (Segment 1)",
+        "Repeated 5 times (0x02EE x 5), matching the 5 clutches/brakes (A, B, C, D, E) of ZF 6HP"
+      ],
+      "unresolved_questions": [
+        "Is 750 Nm used for diagnostic reporting or hard software torque clamping?"
+      ]
+    },
+    {
+      "address": "0x000505BC",
+      "candidate_id": "SCALE_CONST_500",
+      "candidate_unit": "Nm (Newton-meters) candidate",
+      "confidence": "SUPPORTED",
+      "contradicting_evidence": [
+        "Could be a percentage (50.0% or 500\u2030) in alternative transmission scaling schemes"
+      ],
+      "conversion_factor": "1.0 (Nm / LSB)",
+      "data_type": "uint16_big_endian",
+      "layer_a_binary_evidence": {
+        "arithmetic_use": "UNKNOWN (No arithmetic instructions using 0x01F4 verified in base program)",
+        "comparisons": "UNKNOWN (No comparison instructions against 0x01F4 verified in base program)",
+        "consumers": "UNKNOWN (No confirmed runtime consumer register in offline trace)",
+        "decoded_value": 500,
+        "endianness": "big",
+        "raw_address": "0x000505BC",
+        "raw_bytes_hex": "01F4",
+        "references": [
+          "Segment 1 calibration block header at 0x000505BC"
+        ],
+        "width_bits": 16
+      },
+      "layer_b_external_corroboration": {
+        "relevance_note": "Independent external engine specification exactly matches 500; binary does not directly encode Nm unit string",
+        "source": "BMW AG M57D30TU2 technical specification (Option D30, 235 PS / 500 Nm)",
+        "specification_match": "BMW M57D30TU2 nominal maximum engine torque output (500 Nm at 2,000-2,750 rpm)"
+      },
+      "layer_c_semantic_hypothesis": {
+        "candidate_unit": "Nm (Newton-meters)",
+        "confidence": "SUPPORTED",
+        "conversion_factor": "1.0 (Nm / LSB)",
+        "semantic_hypothesis": "engine_torque_related",
+        "supporting_arguments": [
+          "Exact numerical match to BMW factory engine torque specification (500 Nm)",
+          "Placed immediately adjacent to transmission torque parameter block in header"
+        ],
+        "unresolved_questions": [
+          "Does EGS use 500 Nm as the normalization base for shift pressure adaptation or CAN bus engine torque monitoring?"
+        ]
+      },
+      "raw_hex": "01F4",
+      "raw_value_decimal": 500,
+      "semantic_hypothesis": "possibly nominal engine maximum torque rating for BMW M57D30TU2 (235 PS / 500 Nm)",
+      "supporting_evidence": [
+        "Exact numeric match to BMW factory engine torque specification (500 Nm at 2,000-2,750 rpm)",
+        "Located immediately following transmission torque ratings in calibration block header"
+      ],
+      "unresolved_questions": [
+        "Does EGS use 500 Nm as the normalization base for shift pressure adaptation?"
+      ]
+    },
+    {
+      "address": "0x000505BE",
+      "candidate_id": "SCALE_CONST_6800",
+      "candidate_unit": "UNKNOWN",
+      "confidence": "UNCONFIRMED",
+      "contradicting_evidence": [
+        "Diesel M57D30TU2 redline is 4,750-5,000 RPM; value 6800 has no confirmed runtime arithmetic or comparison instruction in base program"
+      ],
+      "conversion_factor": "UNKNOWN",
+      "data_type": "uint16_big_endian",
+      "layer_a_binary_evidence": {
+        "arithmetic_use": "UNKNOWN",
+        "comparisons": "UNKNOWN",
+        "consumers": "UNKNOWN",
+        "decoded_value": 6800,
+        "endianness": "big",
+        "raw_address": "0x000505BE",
+        "raw_bytes_hex": "1A90",
+        "references": [
+          "Segment 1 calibration block header at 0x000505BE"
+        ],
+        "width_bits": 16
+      },
+      "layer_b_external_corroboration": {
+        "relevance_note": "External transmission platform documentation notes 6800 as potential gas-engine limit or turbine overspeed ceiling, but no binary instruction links this to 0x000505BE",
+        "source": "GS19.11 platform shared mezzanine limits (diesel M57 redline is 4,750-5,000 rpm)",
+        "specification_match": "Gas-engine speed ceiling or turbine shaft physical overspeed safety ceiling (external context only)"
+      },
+      "layer_c_semantic_hypothesis": {
+        "candidate_unit": "UNKNOWN",
+        "confidence": "UNCONFIRMED",
+        "conversion_factor": "UNKNOWN",
+        "semantic_hypothesis": "UNKNOWN",
+        "supporting_arguments": [
+          "Constant 0x1A90 (6800) is present in Segment 1 header at 0x000505BE"
+        ],
+        "unresolved_questions": [
+          "Without binary opcode comparisons or references in execution code, semantic role cannot be determined and remains UNKNOWN"
+        ]
+      },
+      "raw_hex": "1A90",
+      "raw_value_decimal": 6800,
+      "semantic_hypothesis": "UNKNOWN (candidate scalar constant without confirmed execution use)",
+      "supporting_evidence": [
+        "Placed in calibration block header (Segment 1) at 0x000505BE",
+        "Decodes as big-endian uint16 value 6800 (0x1A90)"
+      ],
+      "unresolved_questions": [
+        "What is the functional role and physical unit of constant 6800 in GS19.11 mechatronics software?"
+      ]
+    }
+  ],
+  "total_candidates": 3
+}

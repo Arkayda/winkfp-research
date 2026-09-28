@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Verification: L4/L5/L6 (Read-Only) Proven](https://img.shields.io/badge/Verification-L4%2FL5%2FL6%20(Read--Only)%20Proven-success.svg)](docs/EVIDENCE.md)
 [![Safety Interlock: Hard-Gated](https://img.shields.io/badge/Safety-Hard--Gated-critical.svg)](docs/ARCHITECTURE.md)
-[![Test Suite: 168 Passed](https://img.shields.io/badge/Tests-168%20Passed-brightgreen.svg)](tests/)
+[![Test Suite: 257 Passed](https://img.shields.io/badge/Tests-257%20Passed-brightgreen.svg)](tests/)
 
 This repository contains the reverse-engineering analysis, technical documentation, clean-room protocol reconstructions, differential validation suites, and offline diagnostic replay layers for the BMW WinKFP automotive ECU flashing software and its associated EDIABAS subsystem, focused on the BMW E60 ZF 6HP EGS (`GKE195` / `10FLASH.prg`).
 
@@ -276,12 +276,45 @@ Flash execution is hard-gated by the `SafetyContext` and provenance-tracked `Lim
 * **SGBD Corpus Analysis**: Confirms `GKE195` for heavy-torque ZF 6HP28 (750 Nm) and `GKE215` for medium-torque 6HP19TU/21 (450 Nm). An exhaustive search across the BMW SP-Daten, EDIABAS, and KMM corpus found zero occurrences of `GKE196`.
 * Reconstructed in [`reconstruction/ecu/`](reconstruction/ecu/) and documented in [`docs/evidence/zb_7592132_egs_software_lineage_milestone_5_19.md`](docs/evidence/zb_7592132_egs_software_lineage_milestone_5_19.md).
 
+### 7.8 EGS 6HP28 Calibration Map Reconstruction (Milestone 5.20)
+* **Scope**: Offline structural calibration map reconstruction for target BMW E60 / M57D30TU2 / ZF 6HP28 (`GKE195`). Zero hardware I/O.
+* **Segment 4 Pointer Directory**: Audited the canonical 36,704-byte table (`0x00076000 - 0x0007EF60`), establishing 9,176 Big-Endian 32-bit entries indexing calibration payload objects across Segments 1, 2, and 3.
+* **Structural Map and Axis Categorization**: Recovered 7,786 structural table candidates and 2,952 monotonic breakpoint sequences, defining candidate axis-table associations.
+* Reconstructed in [`reconstruction/calibration/recon_v520.py`](reconstruction/calibration/recon_v520.py) and documented in [`docs/evidence/calibration_map_reconstruction_milestone_5_20.md`](docs/evidence/calibration_map_reconstruction_milestone_5_20.md).
+
+### 7.9 Calibration Object Validation & Semantic Reconstruction (Milestone 5.21)
+* **Scope**: Pure offline validation of calibration objects, code/descriptor references, axis ownership, runtime execution roles, and scaling constants. Zero hardware access; zero source mutation.
+* **Segment 4 Accounting Identities**: Replaced heuristics with exact mathematical identities:
+  $$\text{directory\_entries (9,176)} = \text{unique\_target\_addresses (6,017)} + \text{alias\_entries (3,159)}$$
+  $$\text{directory\_entries (9,176)} = \text{payload\_pointers (8,451)} + \text{indirect\_directory\_pointers (720)} + \text{gap\_pointers (5)}$$
+* **Map Descriptor Block Discovered at `0x000454A0`**: In base program `7591971A.0pa`, a formal multi-axis descriptor block binds:
+  - **Axis X:** `0x00063AD6` (12-point signed monotonic array `[-10, 50, ..., 700]`) [PROVEN]
+  - **Axis Y:** `0x00063AF0` (8-point unsigned monotonic array `[100, 1500, ..., 5500]`) [PROVEN]
+  - **Table Payload:** `0x0006418A` ($12 \times 8 = 96$ word 2D table, 24 bytes/row stride) [PROVEN]
+* **7-Stage Runtime Execution Pipeline**: Reconstructed the end-to-end execution chain with partitioned confidence:
+  $$\text{INPUT} \longrightarrow \text{INDEX} \longrightarrow \text{AXIS LOOKUP} \longrightarrow \text{TABLE ACCESS} \longrightarrow \text{INTERPOLATION} \longrightarrow \text{SCALE/OFFSET} \longrightarrow \text{OUTPUT}$$
+  - `pipeline_definition`: **`PROVEN`** (Mathematically and structurally verified).
+  - `structural_pipeline`: **`STRONGLY_SUPPORTED`** (Descriptor bindings and geometry).
+  - `runtime_execution_pipeline`: **`UNCONFIRMED`** (Stages 4, 6, 7 lack dynamic instruction traces).
+  - Overall Execution Role: **`SUPPORTED`**.
+* **Tri-Layer Scaling Constants Separation**: Strict segregation of numeric constants into Layer A (Binary Evidence), Layer B (External Corroboration), and Layer C (Semantic Hypothesis):
+  - `0x02EE` (750): Layer A binary uint16; Layer B ZF 6HP28 750 Nm capacity (5x occurrences match 5 shift elements); Layer C `transmission_torque_related` [SUPPORTED].
+  - `0x01F4` (500): Layer A binary uint16; Layer B BMW M57D30TU2 500 Nm rating; Layer C `engine_torque_related` [SUPPORTED].
+  - `0x1A90` (6800): Layer A binary uint16; Layer B external gas-engine/turbine overspeed context; Layer C strictly **`UNKNOWN`** [UNCONFIRMED].
+* **Strict Epistemic Ceilings & Negative Evidence**:
+  - $10 \times 13$ tables (260 bytes @ 16-bit) remain strictly **`UNCONFIRMED`** dimensional matches without speculative "shift map" claims.
+  - Flash boundary gap pointers (`0x0005FFF4`, `0x0005FFFE`) and false monotonic ASCII strings are explicitly preserved as **`REJECTED`**.
+  - All 12 mandatory JSON artifacts plus comprehensive manifest [artifact_manifest_v521.json](file:///Users/blogman/winkfp-research/artifacts/calibration/artifact_manifest_v521.json) generated deterministically.
+* Reconstructed in [`reconstruction/calibration/recon_v521.py`](reconstruction/calibration/recon_v521.py) and documented in [`docs/evidence/calibration_object_validation_milestone_5_21.md`](docs/evidence/calibration_object_validation_milestone_5_21.md).
+
 ---
 
 ## 8. Repository Layout
 
 ```text
 winkfp-research/
+├── artifacts/                      # Reconstructed deterministic JSON artifacts
+│   └── calibration/                # Milestone 5.20 and 5.21 calibration catalogs & manifests
 ├── docs/                           # Technical documentation & RE reports
 │   ├── ARCHITECTURE.md             # End-to-end system architecture
 │   ├── EVIDENCE.md                 # L0–L7 experimental validation framework
@@ -289,7 +322,7 @@ winkfp-research/
 │   ├── PROPRIETARY_MATERIAL.md     # Policy on excluded OEM assets
 │   ├── QUARANTINE.md               # Audit history & asset filtering
 │   ├── research-source-map.md      # Mapping to historical source workspace
-│   ├── evidence/                   # Forensic milestone evidence artifacts (5.0–5.13)
+│   ├── evidence/                   # Forensic milestone evidence artifacts (5.0–5.21)
 │   ├── history/                    # Historical research progression (Rev 1–18.1)
 │   └── reverse-engineering/        # In-depth subsystem specifications
 ├── analysis/                       # Ghidra decompilation artifacts (45 C files)
@@ -299,6 +332,7 @@ winkfp-research/
 │   ├── ediabas/                    # EDIABAS runtime and API handlers
 │   └── obd32/                      # OBD32.dll IFH serial driver
 ├── reconstruction/                 # Clean-room Python protocol implementations
+│   ├── calibration/                # Hex parser, canonical index, axis validation, semantic recon
 │   ├── crypto/                     # Symmetric MD5, RSA-1024, Simple XOR
 │   ├── auth/                       # AS2 3DES parser, key store, retry chain
 │   ├── vdle/                       # VDLE flash engine, block builder, OPPS setup
@@ -308,12 +342,14 @@ winkfp-research/
 │   └── runner.py                   # Master FlashRunner orchestration engine
 ├── tests/                          # Automated verification suites
 │   ├── kat/                        # Known-answer tests (crypto, auth, keys, probe)
-│   ├── golden/                     # Golden tests (state machine, pipeline, replay, transport)
+│   ├── golden/                     # Golden tests (state machine, pipeline, replay, calibration)
 │   ├── differential/               # Differential suites (Unicorn x86, SGBD parity)
 │   ├── fixtures/                   # Synthetic containers, limits, and images
-│   └── run_tests.py                # Master test runner (168 tests)
+│   └── run_tests.py                # Master test runner (256 tests)
 ├── tools/                          # Analysis, diffing, and probe tools
 │   ├── kdcan_hardware_probe.py     # Safe read-only physical hardware probe
+│   ├── run_calibration_reconstruction_v520.py # Milestone 5.20 calibration reconstruction CLI
+│   ├── run_calibration_validation_v521.py     # Milestone 5.21 validation CLI
 │   ├── bench_diff/                 # L1/L2 event log differential runner
 │   ├── trace_parser/               # EDIABAS *.trc parser and VIN sanitizer
 │   └── analysis/                   # Master password decoder & SP-Daten scanner
@@ -349,10 +385,10 @@ Current test execution summary:
   VERIFICATION SUMMARY
 ======================================================================
   KAT             :  63 run,  63 passed,   0 skipped,   0 failed  [PASSED]
-  GOLDEN          :  89 run,  89 passed,   0 skipped,   0 failed  [PASSED]
+  GOLDEN          : 178 run, 178 passed,   0 skipped,   0 failed  [PASSED]
   DIFFERENTIAL    :  16 run,  16 passed,   0 skipped,   0 failed  [PASSED]
 ----------------------------------------------------------------------
-TOTAL: 168 tests in ~4.3s | 168 passed | 0 skipped | 0 failed
+TOTAL: 257 tests in ~54s | 257 passed | 0 skipped | 0 failed
 ======================================================================
 ```
 

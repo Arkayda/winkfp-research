@@ -1,0 +1,53 @@
+{
+  "candidates": [
+    {
+      "axis_linkage": "AXIS_X_0x00063AD6_AXIS_Y_0x00063AF0",
+      "candidate_meaning": "possibly main pressure adaptation or line pressure surface lookup",
+      "confidence": "SUPPORTED",
+      "contradicting_evidence": [
+        "Physical units of output table values are unconfirmed"
+      ],
+      "dimensions": [
+        12,
+        8
+      ],
+      "execution_role": "2D_BILINEAR_SURFACE_INTERPOLATION",
+      "object_address": "0x0006418A",
+      "object_id": "MAP_DESC_0001",
+      "references": [
+        "DESCRIPTOR_RECORD_0x000454A0"
+      ],
+      "structural_type": "TABLE_2D",
+      "supporting_evidence": [
+        "Descriptor table bindings in base program",
+        "Signed 12-point axis (-10 to 700) matching torque/temperature range",
+        "Unsigned 8-point axis (100 to 5500) matching engine/shaft speed range"
+      ]
+    },
+    {
+      "axis_linkage": "DIMENSIONAL_MATCH_ONLY",
+      "candidate_meaning": "possibly shift schedule maps (pedal position vs vehicle speed) across drive modes",
+      "confidence": "UNCONFIRMED",
+      "contradicting_evidence": [
+        "Zero descriptor records linking them directly; linkage is dimensional only"
+      ],
+      "dimensions": [
+        10,
+        13
+      ],
+      "execution_role": "UNKNOWN",
+      "object_address": "Multiple in Segment 3 (len 260 bytes)",
+      "object_id": "MAPS_10x13_GROUP",
+      "references": [
+        "SEGMENT_4_DIRECTORY_ENTRIES"
+      ],
+      "structural_type": "TABLE_2D",
+      "supporting_evidence": [
+        "61 instances matching number of shift transitions across D, S, and M modes",
+        "10-element axis candidates match 10% pedal steps",
+        "13-element axis candidates match vehicle speed breakpoints"
+      ]
+    }
+  ],
+  "total_candidates": 2
+}
