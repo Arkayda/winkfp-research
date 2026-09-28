@@ -112,7 +112,9 @@ The three physical probe runs establish **`OBSERVED_WIRE` ONLY**. Direct SGBD ex
 | `AUTHENTISIERUNG` | KWP2000 ReadAuthCapabilities | **NO** | No EGS auth wire trace | **UNKNOWN[target=0479S90T641Z]** | Not validated on wire; **FAIL-CLOSED** (`NotImplementedError`). |
 | `AUTHENTISIERUNG_ZUFALLSZAHL_LESEN` | RoutineControl `0x31 0x07` (Seed) | **NO** | `OBSERVED_JOB_MAPPING[target=10FLASH]` (`31 07`) | **UNKNOWN[target=0479S90T641Z]** | Not validated on EGS wire; **FAIL-CLOSED** (`NotImplementedError`). |
 | `NG_AUTHENTISIERUNG_START` | RoutineControl `0x31 0x08` (Key) | **NO** | `OBSERVED_JOB_MAPPING[target=10FLASH]` (`31 08`) | **UNKNOWN[target=0479S90T641Z]** | Not validated on EGS wire; **FAIL-CLOSED** (`NotImplementedError`). |
-| `SERIENNUMMER_LESEN` | `0x1A 0x89` serial record | **NO** | `OBSERVED_JOB_MAPPING[target=10FLASH]` (`1A 89`) | **UNKNOWN[target=0479S90T641Z]** | Not validated on EGS wire; **FAIL-CLOSED** (`NotImplementedError`). |
+| `SERIENNUMMER_LESEN` | `0x1A 0x89` serial record | **YES** | Physically confirmed on EGS `0x18` (Milestone 5.17: SID `0x5A`) | **DIRECTLY_RESOLVED** | Handled via `CanonicalPipeline` / `SERIENNUMMER_LESEN`. |
+| `ZIF_LESEN` | `0x22 0x2503` program reference | **YES** | Physically confirmed on EGS `0x18` (Milestone 5.17: SID `0x62`) | **DIRECTLY_RESOLVED** | Handled via `CanonicalPipeline` / `ZIF_LESEN`. |
+| `ZIF_BACKUP_LESEN` | `0x22 0x2500` backup reference | **YES** | Physically confirmed on EGS `0x18` (Milestone 5.17: SID `0x62`) | **DIRECTLY_RESOLVED** | Handled via `CanonicalPipeline` / `ZIF_BACKUP_LESEN`. |
 | `FLASH_PARAMETER_SETZEN` | Session / Baud / Window Setup | **NO** | SGBD configuration | **UNKNOWN[target=0479S90T641Z]** | Not mapped; **FAIL-CLOSED** (`NotImplementedError`). |
 | `INIT_VDLE` | VDLE Virtual Dispatcher Setup | N/A | WinKFP internal GUI callback | **VIRTUAL** | Callback job within WinKFP GUI, no wire equivalent; **FAIL-CLOSED**. |
 | `FLASH_SCHREIBEN` | Flash Block Write Transfer | Prohibited | Hard safety interlock | **FORBIDDEN** | Flash writing disabled by hard gate; raises `KdcanError`. |

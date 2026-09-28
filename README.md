@@ -190,10 +190,10 @@ Every job execution result (`SgbdJobResult` and `EdiabasJobResult`) tracks four 
 | **`PHYSIKALISCHE_HW_NR_LESEN`** | `PhysHwNrLesen` | `PHYSIKALISCHE_HW_NR_LESEN` (`0x012E45`) | `$1A` | `$87` (fallback: `$80`) | `82 18 F1 1A 87 2C` | `5A 87` | Physical EGS 0x18 | `DIRECTLY_RESOLVED` |
 | **`AIF_READ_BENCH_ALIAS`** | *(Reconstruction)* | *(Direct primitive)* | `$1A` | `$86` | `82 18 F1 1A 86 2B` | `5A 86` | Physical EGS 0x18 | `OBSERVED_WIRE / RECONSTRUCTION_ALIAS` |
 | **`TESTER_PRESENT`** | *(Keepalive)* | *(Primitive)* | `$3E` | `$00` | `82 18 F1 3E 00 C9` | `7F 3E 12` | Physical EGS 0x18 | `OBSERVED_WIRE` (NRC 0x12) |
-| **`SERIENNUMMER_LESEN`** | `SgSerienNr` | `SERIENNUMMER_LESEN` (`0x00D172`) | `$1A` | `$89` (fallback: `$80`) | `82 18 F1 1A 89 2E` | `5A 89` | Factory trace line 28 | `DIRECT_SGBD_MAPPING` + `UNKNOWN[target=0479S90T641Z]` |
+| **`SERIENNUMMER_LESEN`** | `SgSerienNr` | `SERIENNUMMER_LESEN` (`0x00D172`) | `$1A` | `$89` (fallback: `$80`) | `82 18 F1 1A 89 2E` | `5A 89` | Physical EGS 0x18 (Milestone 5.17) | `DIRECTLY_RESOLVED` |
 | **`AIF_LESEN`** | `AifLesen` | `AIF_LESEN` (`0x028DDE`) | `$23` | *(MemAddress + Len)* | `86 18 F1 23 00 00 00 07 12 CB` | `63` | Physical EGS 0x18 (Milestone 5.16) | `DIRECTLY_RESOLVED` |
-| **`ZIF_LESEN`** | `ZifLesen` | `ZIF_LESEN` (`0x00E60F`) | `$22` | `$2503` (fallback: `$1A $91`, `$80`) | `83 18 F1 22 25 03 D6` | `62 25 03` | Factory trace line 11661 | `DIRECT_SGBD_MAPPING` + `UNKNOWN[target=0479S90T641Z]` |
-| **`ZIF_BACKUP_LESEN`** | `ZifBackupLesen` | `ZIF_BACKUP_LESEN` (`0x01126C`) | `$22` | `$2500` (fallback: `$1A $80`) | `83 18 F1 22 25 00 D3` | `62 25 00` | Factory trace line 11706 | `DIRECT_SGBD_MAPPING` + `UNKNOWN[target=0479S90T641Z]` |
+| **`ZIF_LESEN`** | `ZifLesen` | `ZIF_LESEN` (`0x00E60F`) | `$22` | `$2503` (fallback: `$1A $91`, `$80`) | `83 18 F1 22 25 03 D6` | `62 25 03` | Physical EGS 0x18 (Milestone 5.17) | `DIRECTLY_RESOLVED` |
+| **`ZIF_BACKUP_LESEN`** | `ZifBackupLesen` | `ZIF_BACKUP_LESEN` (`0x01126C`) | `$22` | `$2500` (fallback: `$1A $80`) | `83 18 F1 22 25 00 D3` | `62 25 00` | Physical EGS 0x18 (Milestone 5.17) | `DIRECTLY_RESOLVED` |
 | **`HARDWARE_REFERENZ_LESEN`** | `HwReferenzLesen` | `HARDWARE_REFERENZ_LESEN` (`0x0143FA`) | `$22` | `$2502` (fallback: `$1A $80`) | `83 18 F1 22 25 02 D5` | `62 25 02` | Factory trace line 11620 | `DIRECT_SGBD_MAPPING` + `UNKNOWN[target=0479S90T641Z]` |
 | **`DATEN_REFERENZ_LESEN`** | `DatenReferenzLesen` | `DATEN_REFERENZ_LESEN` (`0x015A66`) | `$22` | `$2504` | `83 18 F1 22 25 04 D7` | `62 25 04` | Factory trace line 11588 | `DIRECT_SGBD_MAPPING` + `UNKNOWN[target=0479S90T641Z]` |
 

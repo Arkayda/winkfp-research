@@ -1,0 +1,79 @@
+{
+  "timestamp_utc": "2026-09-28T15:08:13.218744+00:00",
+  "milestone": "5.17",
+  "port": "/dev/cu.usbserial-A50285BI",
+  "baud": 115200,
+  "total_tx_count": 3,
+  "total_rx_count": 3,
+  "total_retries_count": 0,
+  "total_fallback_count": 0,
+  "prohibited_operations_count": 0,
+  "physical_transport_closed": true,
+  "transactions": [
+    {
+      "index": 1,
+      "job_name": "SERIENNUMMER_LESEN",
+      "service": "0x1A",
+      "subfunction": "0x89",
+      "tx_count": 1,
+      "rx_count": 1,
+      "tx_wire_hex": "82 18 F1 1A 89 2E",
+      "rx_wire_hex": "8B F1 18 5A 89 39 30 30 34 30 35 39 33 38 4D",
+      "pure_serial_rtt_ms": 35.67667095921934,
+      "classification": "POSITIVE_PHYSICAL_CONFIRMATION",
+      "nrc": null,
+      "validator_status": "OKAY",
+      "decoded_fields": {
+        "SERIENNUMMER": "900405938",
+        "_RAW_SERIAL_HEX": "393030343035393338"
+      },
+      "errors": []
+    },
+    {
+      "index": 2,
+      "job_name": "ZIF_LESEN",
+      "service": "0x22",
+      "subfunction": "0x2503",
+      "tx_count": 1,
+      "rx_count": 1,
+      "tx_wire_hex": "83 18 F1 22 25 03 D6",
+      "rx_wire_hex": "A7 F1 18 62 25 03 30 34 37 39 53 39 30 54 36 34 31 5A 30 34 37 39 53 39 30 54 36 34 31 5A 30 34 37 39 53 39 30 54 36 34 31 5A C5",
+      "pure_serial_rtt_ms": 79.9031860078685,
+      "classification": "POSITIVE_PHYSICAL_CONFIRMATION",
+      "nrc": null,
+      "validator_status": "OKAY",
+      "decoded_fields": {
+        "ZIF_PROGRAMM_REFERENZ": "0479S90T641Z",
+        "ZIF_SG_KENNUNG": "047",
+        "ZIF_PROJEKT": "9S9",
+        "ZIF_PROGRAMM_STAND": "0T64",
+        "ZIF_STATUS": "0",
+        "ZIF_BMW_HW": ""
+      },
+      "errors": []
+    },
+    {
+      "index": 3,
+      "job_name": "ZIF_BACKUP_LESEN",
+      "service": "0x22",
+      "subfunction": "0x2500",
+      "tx_count": 1,
+      "rx_count": 1,
+      "tx_wire_hex": "83 18 F1 22 25 00 D3",
+      "rx_wire_hex": "B9 F1 18 62 25 00 30 34 37 39 53 39 30 54 36 34 31 5A 30 34 37 39 53 39 30 54 36 34 31 5A 30 34 37 39 53 39 30 54 36 34 31 5A 00 00 07 59 19 72 00 00 07 59 19 72 00 00 07 59 19 72 95",
+      "pure_serial_rtt_ms": 95.57211201172322,
+      "classification": "POSITIVE_PHYSICAL_CONFIRMATION",
+      "nrc": null,
+      "validator_status": "OKAY",
+      "decoded_fields": {
+        "ZIF_BACKUP_PROGRAMM_REFERENZ": "0479S90T641Z",
+        "ZIF_BACKUP_SG_KENNUNG": "047",
+        "ZIF_BACKUP_PROJEKT": "9S9",
+        "ZIF_BACKUP_PROGRAMM_STAND": "0T64",
+        "ZIF_BACKUP_STATUS": "0",
+        "ZIF_BACKUP_BMW_HW": ""
+      },
+      "errors": []
+    }
+  ]
+}
