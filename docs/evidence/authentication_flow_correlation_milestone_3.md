@@ -552,7 +552,7 @@ TOTAL: 54 tests in 4.110s | 54 passed | 0 skipped | 0 failed
 3. **Intellectual Property & Secrets**:
    - Zero proprietary OEM binaries (`.prg`, `.ipo`, `.dll`) added.
    - Zero raw recovered OEM authentication keys embedded in public artifacts. All recovered keys are sanitized and represented by cryptographic digest (SHA-256) only.
-   - All vehicle VINs in documentation are properly sanitized (`WBANX71040[REDACTED]`).
+   - All vehicle VINs in documentation are properly sanitized (`[REDACTED_VIN]`).
    - Existing physical traces (`logs/kdcan_probe_*.log`) remain unaltered.
 
 ---

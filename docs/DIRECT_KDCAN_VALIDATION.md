@@ -61,8 +61,8 @@ The diagnostic probe (`tools/kdcan_probe.py`) was executed against the physical 
        RAW: 82 18 F1 1A 86 2B
        PAY: 1A 86 | ..
 [10:43:48.690] RX dst=0xF1 src=0x18 len=66 rtt=102.8ms
-       RAW: 80 F1 18 42 5A 86 40 43 53 36 38 32 39 34 20 08 12 04 00 00 07 59 21 32 00 00 07 59 21 33 00 00 00 00 00 00 00 02 40 4E 46 53 30 31 00 30 34 37 39 53 39 30 54 36 34 31 5A 57 42 41 4E 58 37 31 30 34 30 FF FF FF 0F
-       PAY: 5A 86 40 43 53 36 38 32 39 34 20 08 12 04 00 00 07 59 21 32 00 00 07 59 21 33 00 00 00 00 00 00 00 02 40 4E 46 53 30 31 00 30 34 37 39 53 39 30 54 36 34 31 5A 57 42 41 4E 58 37 31 30 34 30 FF FF FF | Z.@CS68294 ......Y!2...Y!3........@NFS01.0479S90T641ZWBANX71040...
+       RAW: 80 F1 18 42 5A 86 40 [XX XX XX XX XX XX XX] 20 08 12 04 00 00 07 59 21 32 00 00 07 59 21 33 00 00 00 00 00 00 00 02 40 4E 46 53 30 31 00 30 34 37 39 53 39 30 54 36 34 31 5A [XX XX XX XX XX XX XX XX XX XX] FF FF FF [CS]
+       PAY: 5A 86 40 [REDACTED_SHORT_VIN] 20 08 12 04 00 00 07 59 21 32 00 00 07 59 21 33 00 00 00 00 00 00 00 02 40 4E 46 53 30 31 00 30 34 37 39 53 39 30 54 36 34 31 5A [REDACTED_CHASSIS_VIN] FF FF FF | Z.@[REDACTED] ......Y!2...Y!3........@NFS01.0479S90T641Z[REDACTED]...
 # === Session Ended: 2026-09-26T10:43:49.194813 ===
 ```
 
@@ -77,13 +77,13 @@ The diagnostic probe (`tools/kdcan_probe.py`) was executed against the physical 
    - Received in 102.8 ms: 66-byte positive response `5A 86 40 ...`
    - Initial Session State: Accepted immediately from the initial ECU state observed at the start of each probe session without requiring a preceding `0x10` (`StartDiagnosticSession`). The exact session identifier of this initial state is **UNKNOWN** (whether `0x81`, `0x01`, or an ECU-specific default).
    - Decoded ECU Identity parameters:
-     - **Short VIN**: `CS68294`
+     - **Short VIN**: `[REDACTED]` (sanitized)
      - **Programming Date**: `2008.12.04`
      - **Assembly (ZB) Number**: `7592132`
      - **Software (SW) Number**: `7592133`
      - **SGBD File Identifier**: `0479S90T641Z`
      - **Flash Tool Stamp**: `NFS01` (genuine factory WinKFP/NFS flash stamp)
-     - **Chassis VIN**: `WBANX71040...` (sanitized in evidence reports)
+     - **Chassis VIN**: `[REDACTED]` (sanitized in evidence reports)
 
 ---
 

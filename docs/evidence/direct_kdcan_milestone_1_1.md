@@ -36,7 +36,7 @@ The diagnostic probe script (`tools/kdcan_probe.py`) was executed three consecut
   * **RX**: `83 F1 18 7F 3E 12 5B` (`7F 3E 12`, RTT = 34.7 ms)
 * **Transaction 2 (ReadECUIdentification - AIF)**:
   * **TX**: `82 18 F1 1A 86 2B` (`1A 86`)
-  * **RX**: `80 F1 18 42 5A 86 40 43 53 36 38 32 39 34 20 08 12 04 00 00 07 59 21 32 00 00 07 59 21 33 00 00 00 00 00 00 00 02 40 4E 46 53 30 31 00 30 34 37 39 53 39 30 54 36 34 31 5A 57 42 41 4E 58 37 31 30 34 30 FF FF FF 0F` (66 payload bytes, 71 total bytes, RTT = 102.1 ms)
+  * **RX**: `80 F1 18 42 5A 86 40 [XX XX XX XX XX XX XX] 20 08 12 04 00 00 07 59 21 32 00 00 07 59 21 33 00 00 00 00 00 00 00 02 40 4E 46 53 30 31 00 30 34 37 39 53 39 30 54 36 34 31 5A [XX XX XX XX XX XX XX XX XX XX] FF FF FF [CS]` (66 payload bytes, 71 total bytes, RTT = 102.1 ms)
 
 ### Run 2 Trace (`logs/kdcan_m1_1_run2.log`)
 * **Session Start**: `2026-09-26T10:51:57.618914` (+7.58 s)
@@ -45,7 +45,7 @@ The diagnostic probe script (`tools/kdcan_probe.py`) was executed three consecut
   * **RX**: `83 F1 18 7F 3E 12 5B` (`7F 3E 12`, RTT = 34.6 ms)
 * **Transaction 2 (ReadECUIdentification - AIF)**:
   * **TX**: `82 18 F1 1A 86 2B` (`1A 86`)
-  * **RX**: `80 F1 18 42 5A 86 40 43 53 36 38 32 39 34 20 08 12 04 00 00 07 59 21 32 00 00 07 59 21 33 00 00 00 00 00 00 00 02 40 4E 46 53 30 31 00 30 34 37 39 53 39 30 54 36 34 31 5A 57 42 41 4E 58 37 31 30 34 30 FF FF FF 0F` (66 payload bytes, 71 total bytes, RTT = 111.7 ms)
+  * **RX**: `80 F1 18 42 5A 86 40 [XX XX XX XX XX XX XX] 20 08 12 04 00 00 07 59 21 32 00 00 07 59 21 33 00 00 00 00 00 00 00 02 40 4E 46 53 30 31 00 30 34 37 39 53 39 30 54 36 34 31 5A [XX XX XX XX XX XX XX XX XX XX] FF FF FF [CS]` (66 payload bytes, 71 total bytes, RTT = 111.7 ms)
 
 ### Run 3 Trace (`logs/kdcan_m1_1_run3.log`)
 * **Session Start**: `2026-09-26T10:52:05.361842` (+7.74 s)
@@ -54,7 +54,7 @@ The diagnostic probe script (`tools/kdcan_probe.py`) was executed three consecut
   * **RX**: `83 F1 18 7F 3E 12 5B` (`7F 3E 12`, RTT = 38.2 ms)
 * **Transaction 2 (ReadECUIdentification - AIF)**:
   * **TX**: `82 18 F1 1A 86 2B` (`1A 86`)
-  * **RX**: `80 F1 18 42 5A 86 40 43 53 36 38 32 39 34 20 08 12 04 00 00 07 59 21 32 00 00 07 59 21 33 00 00 00 00 00 00 00 02 40 4E 46 53 30 31 00 30 34 37 39 53 39 30 54 36 34 31 5A 57 42 41 4E 58 37 31 30 34 30 FF FF FF 0F` (66 payload bytes, 71 total bytes, RTT = 100.1 ms)
+  * **RX**: `80 F1 18 42 5A 86 40 [XX XX XX XX XX XX XX] 20 08 12 04 00 00 07 59 21 32 00 00 07 59 21 33 00 00 00 00 00 00 00 02 40 4E 46 53 30 31 00 30 34 37 39 53 39 30 54 36 34 31 5A [XX XX XX XX XX XX XX XX XX XX] FF FF FF [CS]` (66 payload bytes, 71 total bytes, RTT = 100.1 ms)
 
 ---
 
@@ -168,8 +168,8 @@ The 66-byte AIF payload returned by the physical ZF 6HP EGS mechatronic decoded 
 
 | Parameter | Decoded Value | Significance |
 |---|---|---|
-| **Short VIN** | `CS68294` | Standard BMW 7-character vehicle identifier |
-| **Chassis VIN** | `WBANX71040[REDACTED]` | Sanitized 17-character vehicle identification number |
+| **Short VIN** | `[REDACTED]` | Standard BMW 7-character vehicle identifier (sanitized) |
+| **Chassis VIN** | `[REDACTED]` | Sanitized 17-character vehicle identification number |
 | **ZB-Nummer (Assembly No.)** | `7592132` | Hardware assembly part number stored in AIF |
 | **SW-Nummer (Software No.)** | `7592133` | Operating software part number stored in AIF |
 | **SGBD File Identifier** | `0479S90T641Z` | EDIABAS SGBD (BEST/1) diagnostic descriptor file |

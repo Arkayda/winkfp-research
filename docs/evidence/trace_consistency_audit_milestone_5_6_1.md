@@ -68,7 +68,7 @@ The canonical physical wire observations on BMW E60 ZF 6HP EGS (address `0x18`) 
 
 | Milestone / Primitive | Probe Name | Exact Physical TX Wire (Hex) | Exact Physical RX Wire (Hex) | Total Frame (Bytes) | Payload (Bytes) | Checksum (Hex) & Status | RTT (ms) | Golden Status | Evidence Classification |
 |---|---|---|---|---|---|---|---|---|---|
-| **M5.0 (AIF)** | `aif` | `82 18 f1 1a 86 2b` | `80 f1 18 42 5a 86 40 43 53 36 38 32 39 34 20 08 12 04 00 00 07 59 21 32 00 00 07 59 21 33 00 00 00 00 00 00 00 02 40 4e 46 53 30 31 00 30 34 37 39 53 39 30 54 36 34 31 5a 57 42 41 4e 58 37 31 30 34 30 ff ff ff 0f` | 71 | 66 | `0x0F` (VALID) | 85.01 | `EXACT_BYTE_MATCH` | **`OBSERVED_WIRE`** |
+| **M5.0 (AIF)** | `aif` | `82 18 f1 1a 86 2b` | `80 f1 18 42 5a 86 40 [XX XX XX XX XX XX XX] 20 08 12 04 00 00 07 59 21 32 00 00 07 59 21 33 00 00 00 00 00 00 00 02 40 4e 46 53 30 31 00 30 34 37 39 53 39 30 54 36 34 31 5a [XX XX XX XX XX XX XX XX XX XX] ff ff ff 0f` | 71 | 66 | `0x0F` (VALID) | 85.01 | `EXACT_BYTE_MATCH` | **`OBSERVED_WIRE`** |
 | **M5.1 (TesterPresent)** | `tester_present` | `82 18 f1 3e 00 c9` | `83 f1 18 7f 3e 12 5b` | 7 | 3 | `0x5B` (VALID) | 31.96 | `EXACT_BYTE_MATCH` | **`OBSERVED_WIRE`** |
 | **M5.2 (Ident)** | `ident` | `82 18 f1 1a 80 25` | `bc f1 18 5a 80 00 00 07 59 19 72 10 05 02 04 53 4c 20 08 10 30 08 00 1d 45 c3 40 01 02 03 0a 00 00 00 00 00 07 56 99 80 00 40 59 38 30 34 37 39 53 39 30 30 34 37 39 53 39 30 54 36 34 31 5a d9` | 64 | 60 | `0xD9` (VALID) | 80.01 | `UNKNOWN` | **`OBSERVED_WIRE`** |
 | **M5.3 (Physical HW)** | `physical_hw_nr` | `82 18 f1 1a 87 2c` | `94 f1 18 5a 87 00 00 07 56 99 80 00 00 07 56 99 80 00 00 07 56 99 80 e0` | 24 | 20 | `0xE0` (VALID) | 48.29 | `UNKNOWN` | **`OBSERVED_WIRE`** |

@@ -13,7 +13,7 @@
   - Diagnostic Address: `0x18`
   - SGBD File Identifier: `0479S90T641Z`
   - Diagnostic Protocol: KWP2000 over BMW-FAST / DS2 / K+DCAN (500 kbaud)
-  - Physical Identifiers (from verified bench AIF): ZB `7592132`, ZB change `7592133`, VIN `WBANX71040...`
+  - Physical Identifiers (from verified bench AIF): ZB `7592132`, ZB change `7592133`, VIN `[REDACTED]`
   - SGBD Family: `GS19`
   - SP-Daten Key Container: `SGIDC.as2` (index 3), entry `GKE192` (record `2L18`)
 - **Factory Reference Target (Separate Scope)**:
@@ -231,12 +231,12 @@ During Milestone 1.1 validation, three independent bench runs were executed agai
    - Behavior: 100% reproducible across 3 runs.
 2. **Transaction 2: `0x1A 0x86` (ReadDataByIdentifier: AIF)**:
    - Request: `82 18 F1 1A 86 2B`
-   - Response: `80 F1 18 42 5A 86 40 43 53 36 38 32 39 34 20 ... 0F` (66 bytes payload, 71 total bytes)
+   - Response: `80 F1 18 42 5A 86 40 [XX XX XX XX XX XX XX] 20 ... 0F` (66 bytes payload, 71 total bytes)
    - Extracted Identifiers:
      - SGBD: `0479S90T641Z`
      - ZB-Number: `7592132` (Current), `7592133` (Target/Change)
      - Software Date: `12.04.2008`
-     - VIN: `WBANX71040...`
+     - VIN: `[REDACTED]`
    - Behavior: 100% reproducible across 3 runs.
 
 ---
