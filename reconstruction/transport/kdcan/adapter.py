@@ -56,6 +56,7 @@ class KdcanDiagnosticAdapter:
         self.backend = backend
         self.auto_open = auto_open
         self.history: List[Tuple[bytes, float]] = []
+        self.response_history: List[bytes] = []
 
     def transceive_ds2(
         self,
@@ -81,7 +82,9 @@ class KdcanDiagnosticAdapter:
         self.history.append((wire_frame, timeout))
 
         try:
-            return self.backend.transceive_raw(wire_frame, timeout=timeout)
+            resp = self.backend.transceive_raw(wire_frame, timeout=timeout)
+            self.response_history.append(resp)
+            return resp
         except (TransportTimeoutError, TransportError):
             raise
         except TimeoutError as exc:

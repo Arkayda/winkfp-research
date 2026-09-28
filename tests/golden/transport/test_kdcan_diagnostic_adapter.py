@@ -98,6 +98,7 @@ class TestKdcanDiagnosticAdapter(unittest.TestCase):
         response = adapter.transceive_ds2(raw_tx)
 
         self.assertEqual(response, raw_rx)
+        self.assertEqual(adapter.response_history, [raw_rx])
 
     # ------------------------------------------------------------------------
     # Test 4: Timeout Translation
@@ -235,6 +236,8 @@ class TestKdcanDiagnosticAdapter(unittest.TestCase):
 
         self.assertEqual(len(adapter.history), 1)
         self.assertEqual(adapter.history[0][0], fixture.raw_tx)
+        self.assertEqual(len(adapter.response_history), 1)
+        self.assertEqual(adapter.response_history[0], fixture.raw_rx)
 
     # ------------------------------------------------------------------------
     # Test 12: EdiabasJobReplayEngine Integration (PHYSIKALISCHE_HW_NR_LESEN)
