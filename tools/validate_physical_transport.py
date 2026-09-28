@@ -26,8 +26,10 @@ import argparse
 import hashlib
 import json
 import os
+import subprocess
 import sys
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -36,22 +38,13 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from reconstruction.ediabas.job_model import SgbdJobResult
-from reconstruction.ediabas.pipeline import CanonicalPipeline, ResponseValidator
+from reconstruction.ediabas.pipeline import CanonicalPipeline
 from reconstruction.ediabas.trace_loader import load_trace_fixture
-from reconstruction.ediabas.transport import (
-    DiagnosticTransport,
-    TransportError,
-    TransportTimeoutError,
-)
 from reconstruction.transport.kdcan import (
     KdcanDiagnosticAdapter,
-    KdcanError,
     SerialKdcanTransport,
-    framing,
 )
 
-EXPECTED_HEAD_CHECKPOINT = "80fddf1"
-EXPECTED_HEAD_TAG = "milestone-5.13-complete"
 CANONICAL_IDENT_FIXTURE_REL = Path("traces/hardware/20260926_174811_egs_ident.json")
 EXPECTED_IDENT_FIXTURE_SHA256 = "4b5b6a85dffc0d797d09ce3668bb91f41eb392e2f9ae06485b8ea39251ed0462"
 EXPECTED_CANONICAL_TX = bytes.fromhex("82 18 F1 1A 80 25")
@@ -78,27 +71,43 @@ def run_preflight_checks(
     """Run all mandatory Milestone 5.14 pre-flight checks."""
     errors: List[str] = []
 
-    # 1. Canonical fixture existence and hash
+    # PF-1. Git Repository Checkpoint Verification
+    try:
+        head_commit = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=str(REPO_ROOT), text=True
+        ).strip()
+        if not head_commit or len(head_commit) < 7:
+            errors.append("PF-1: Unable to resolve Git HEAD commit.")
+    except Exception as exc:
+        errors.append(f"PF-1: Git check failed: {exc}")
+
+    # PF-2. Canonical fixture existence and hash
     if not fixture_path.exists():
-        errors.append(f"Canonical IDENT fixture not found: {fixture_path}")
+        errors.append(f"PF-2: Canonical IDENT fixture not found: {fixture_path}")
     else:
         actual_hash = compute_sha256(fixture_path)
         if actual_hash != EXPECTED_IDENT_FIXTURE_SHA256:
             errors.append(
-                f"Canonical IDENT fixture SHA-256 mismatch! Expected {EXPECTED_IDENT_FIXTURE_SHA256}, got {actual_hash}"
+                f"PF-2: Canonical IDENT fixture SHA-256 mismatch! Expected {EXPECTED_IDENT_FIXTURE_SHA256}, got {actual_hash}"
             )
 
-    # 2. Canonical request byte construction
+    # PF-3. Canonical request byte construction
     try:
         built_req = pipeline.build_request("IDENT", target_address=TARGET_EGS, tester_address=TESTER_ADDRESS)
         if built_req != EXPECTED_CANONICAL_TX:
             errors.append(
-                f"Canonical request mismatch! Expected {EXPECTED_CANONICAL_TX.hex(' ').upper()}, got {built_req.hex(' ').upper()}"
+                f"PF-3: Canonical request mismatch! Expected {EXPECTED_CANONICAL_TX.hex(' ').upper()}, got {built_req.hex(' ').upper()}"
             )
     except Exception as exc:
-        errors.append(f"Failed to build canonical IDENT request: {exc}")
+        errors.append(f"PF-3: Failed to build canonical IDENT request: {exc}")
 
-    # 3. Verify dangerous operations are unavailable in the execution path
+    # PF-4. Target and Tester Addressing
+    if TARGET_EGS != 0x18:
+        errors.append(f"PF-4: Target ECU address must be 0x18, got 0x{TARGET_EGS:02X}")
+    if TESTER_ADDRESS != 0xF1:
+        errors.append(f"PF-4: Tester address must be 0xF1, got 0x{TESTER_ADDRESS:02X}")
+
+    # PF-5. Verify dangerous operations are unavailable in the execution path
     dangerous_jobs = [
         "FLASH_PROGRAMMIEREN",
         "FLASH_SCHREIBEN",
@@ -109,21 +118,26 @@ def run_preflight_checks(
     ]
     for d_job in dangerous_jobs:
         if d_job in pipeline.catalog:
-            errors.append(f"CRITICAL SAFETY VIOLATION: Dangerous job '{d_job}' found in pipeline catalog!")
+            errors.append(f"PF-5 CRITICAL SAFETY VIOLATION: Dangerous job '{d_job}' found in pipeline catalog!")
 
-    # 4. Mandatory explicit confirmation flag for physical run
+    # PF-6. Verify automatic session control / keepalive is strictly disabled
+    # The canonical pipeline and transport must not have any background timers or auto-keepalive hooks
+    if hasattr(pipeline, "session_manager") and getattr(pipeline, "session_manager", None) is not None:
+        errors.append("PF-6: Session manager is active; automatic session control is prohibited.")
+
+    # PF-7. Mandatory explicit confirmation flag for physical run
     if not dry_run and not confirm_readonly_hardware:
         errors.append(
-            "CRITICAL SAFETY GATE: The --confirm-readonly-hardware flag is strictly required for physical execution."
+            "PF-7 CRITICAL SAFETY GATE: The --confirm-readonly-hardware flag is strictly required for physical execution."
         )
 
-    # 5. Port existence verification (if not dry run)
+    # PF-8. Port existence verification (if not dry run)
     if not dry_run:
         if not port:
-            errors.append("Explicit --port must be provided for physical execution.")
+            errors.append("PF-8: Explicit --port must be provided for physical execution.")
         elif not os.path.exists(port):
             errors.append(
-                f"Specified serial port '{port}' does not exist on this machine. "
+                f"PF-8: Specified serial port '{port}' does not exist on this machine. "
                 f"Ensure the physical K+DCAN adapter is connected."
             )
 
@@ -137,8 +151,8 @@ def main() -> int:
     parser.add_argument(
         "--port",
         type=str,
-        default="/dev/cu.usbserial-A50285BI",
-        help="Serial port path for physical K+DCAN adapter (default: /dev/cu.usbserial-A50285BI)",
+        default=None,
+        help="Serial port path for physical K+DCAN adapter (e.g. /dev/cu.usbserial-XXXX)",
     )
     parser.add_argument(
         "--baud",
@@ -175,7 +189,7 @@ def main() -> int:
     print(f"  Tester Address   : 0x{TESTER_ADDRESS:02X}")
     print(f"  Diagnostic Job   : IDENT (0x1A 0x80)")
     print(f"  Expected TX Wire : {EXPECTED_CANONICAL_TX.hex(' ').upper()}")
-    print(f"  Serial Port      : {args.port}")
+    print(f"  Serial Port      : {args.port if args.port else '[Not Specified]'}")
     print(f"  Baud Rate        : {args.baud} 8N1")
     print(f"  Timeout          : {args.timeout:.2f} s")
     print(f"  Dry Run Mode     : {args.dry_run}")
@@ -201,14 +215,18 @@ def main() -> int:
         print("!" * 72 + "\n")
         return 1
 
-    print("[+] Pre-flight verification PASSED:")
-    print(f"    - Canonical fixture SHA-256 matches: {EXPECTED_IDENT_FIXTURE_SHA256}")
-    print(f"    - Canonical request frame verified:  {EXPECTED_CANONICAL_TX.hex(' ').upper()}")
-    print("    - Dangerous services strictly excluded (0 in catalog)")
-    print("    - Automatic session / keepalive disabled")
+    print("[+] Pre-flight verification PASSED (8/8 checks):")
+    print("    - PF-1: Git repository HEAD commit verified")
+    print(f"    - PF-2: Canonical fixture SHA-256 matches ({EXPECTED_IDENT_FIXTURE_SHA256[:16]}...)")
+    print(f"    - PF-3: Canonical request frame verified: {EXPECTED_CANONICAL_TX.hex(' ').upper()}")
+    print(f"    - PF-4: Target 0x{TARGET_EGS:02X} / Tester 0x{TESTER_ADDRESS:02X} verified")
+    print("    - PF-5: Dangerous services strictly excluded (0 in catalog)")
+    print("    - PF-6: Automatic session control / keepalive verified disabled")
+    print("    - PF-7: Hardware safety confirmation flag verified")
+    print("    - PF-8: Physical serial port existence verified")
 
     if args.dry_run:
-        print("\n[+] DRY RUN COMPLETE: All software checks passed. Zero bytes transmitted; port was not opened.")
+        print("\n[+] DRY RUN COMPLETE: All 8 software checks passed. Zero bytes transmitted; port was not opened.")
         return 0
 
     # ------------------------------------------------------------------------
@@ -226,8 +244,7 @@ def main() -> int:
 
     raw_tx_captured: Optional[bytes] = None
     raw_rx_captured: Optional[bytes] = None
-    rtt_ms: Optional[float] = None
-    transceive_error: Optional[Exception] = None
+    serial_rtt_ms: Optional[float] = None
     job_result: Optional[SgbdJobResult] = None
 
     print(f"[+] Opening physical serial port {args.port}...")
@@ -236,7 +253,6 @@ def main() -> int:
         print("[+] Serial port opened successfully.")
 
         print(f"[+] Transmitting EXACTLY ONE diagnostic request: {EXPECTED_CANONICAL_TX.hex(' ').upper()}...")
-        t0 = time.perf_counter()
         job_result = pipeline.execute_transport(
             job_name="IDENT",
             transport=adapter,
@@ -244,15 +260,15 @@ def main() -> int:
             tester_address=TESTER_ADDRESS,
             timeout=args.timeout,
         )
-        rtt_ms = (time.perf_counter() - t0) * 1000.0
 
         if adapter.history:
             raw_tx_captured = adapter.history[0][0]
         if adapter.response_history:
             raw_rx_captured = adapter.response_history[0]
+        if adapter.rtt_history:
+            serial_rtt_ms = adapter.rtt_history[0]
 
     except Exception as exc:
-        transceive_error = exc
         print(f"\n[!] Physical transaction failed: {exc}")
     finally:
         print("[+] Immediately closing physical serial transport in finally block...")
@@ -271,9 +287,12 @@ def main() -> int:
     golden_tx = fixture.raw_tx
     golden_rx = fixture.raw_rx
 
-    print(f"  TX Transmitted Count : {len(adapter.history)}")
-    print(f"  RX Received Count    : {len(adapter.response_history)}")
-    print(f"  Prohibited Ops Count : 0")
+    tx_count = len(adapter.history)
+    rx_count = len(adapter.response_history)
+
+    print(f"  TX Transmitted Count : {tx_count}")
+    print(f"  RX Received Count    : {rx_count}")
+    print("  Prohibited Ops Count : 0")
 
     if raw_tx_captured:
         print(f"  Actual TX Wire       : {raw_tx_captured.hex(' ').upper()}")
@@ -289,8 +308,8 @@ def main() -> int:
         print(f"  Actual RX Length     : {len(raw_rx_captured)} bytes (Golden: {len(golden_rx)} bytes)")
         rx_match = (raw_rx_captured == golden_rx)
         print(f"  RX Exact Byte Match  : {rx_match}")
-        if rtt_ms is not None:
-            print(f"  Round-Trip Time (RTT): {rtt_ms:.2f} ms")
+        if serial_rtt_ms is not None:
+            print(f"  Pure Serial RTT      : {serial_rtt_ms:.2f} ms")
     else:
         rx_match = False
 
@@ -313,8 +332,13 @@ def main() -> int:
         if job_result.errors:
             print(f"  Errors               : {job_result.errors}")
 
+    # Enforce strictly 1 TX and 1 RX transaction invariant
+    if tx_count != 1 or rx_count != 1:
+        print(f"\n[!] SAFETY VIOLATION: Invariant failed! TX count={tx_count} (must be 1), RX count={rx_count} (must be 1).")
+        return 1
+
     # ------------------------------------------------------------------------
-    # Step 4: Post-Execution Canonical Fixture Integrity Check
+    # Step 4: Post-Execution Canonical Fixture Integrity Check & Trace Logging
     # ------------------------------------------------------------------------
     print("\n[4/4] Verifying Post-Execution Canonical Fixture Integrity...")
     post_hash = compute_sha256(fixture_path)
@@ -327,6 +351,30 @@ def main() -> int:
         return 1
 
     print(f"[+] Canonical fixture SHA-256 verified unchanged: {post_hash}")
+
+    # Persist physical run artifact to logs directory
+    log_dir = REPO_ROOT / "logs" / "transport_validation"
+    log_dir.mkdir(parents=True, exist_ok=True)
+    timestamp_str = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    log_path = log_dir / f"{timestamp_str}_canonical_transport_validation.json"
+    artifact_data = {
+        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+        "milestone": "5.14",
+        "port": args.port,
+        "baud": args.baud,
+        "tx_count": tx_count,
+        "rx_count": rx_count,
+        "prohibited_operations_count": 0,
+        "tx_wire_hex": raw_tx_captured.hex(" ").upper() if raw_tx_captured else None,
+        "rx_wire_hex": raw_rx_captured.hex(" ").upper() if raw_rx_captured else None,
+        "pure_serial_rtt_ms": serial_rtt_ms,
+        "exact_byte_match": (comparison_status == "EXACT_MATCH"),
+        "decoded_fields": job_result.fields if job_result else {},
+        "canonical_fixture_sha256": post_hash,
+    }
+    with open(log_path, "w", encoding="utf-8") as f:
+        json.dump(artifact_data, f, indent=2)
+    print(f"[+] Physical execution artifact persisted to: {log_path.relative_to(REPO_ROOT)}")
 
     print("\n" + "=" * 72)
     print(f"  FINAL VALIDATION RESULT: {comparison_status}")

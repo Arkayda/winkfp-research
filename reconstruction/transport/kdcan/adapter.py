@@ -19,8 +19,7 @@ STRICT ARCHITECTURAL BOUNDARY:
     * Existing TransportError/TransportTimeoutError re-raised as-is.
 """
 
-from __future__ import annotations
-
+import time
 from typing import Dict, List, Optional, Tuple
 
 from reconstruction.ediabas.transport import (
@@ -57,6 +56,7 @@ class KdcanDiagnosticAdapter:
         self.auto_open = auto_open
         self.history: List[Tuple[bytes, float]] = []
         self.response_history: List[bytes] = []
+        self.rtt_history: List[float] = []
 
     def transceive_ds2(
         self,
@@ -81,9 +81,12 @@ class KdcanDiagnosticAdapter:
 
         self.history.append((wire_frame, timeout))
 
+        t0 = time.perf_counter()
         try:
             resp = self.backend.transceive_raw(wire_frame, timeout=timeout)
+            rtt_ms = (time.perf_counter() - t0) * 1000.0
             self.response_history.append(resp)
+            self.rtt_history.append(rtt_ms)
             return resp
         except (TransportTimeoutError, TransportError):
             raise

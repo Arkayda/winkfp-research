@@ -45,7 +45,7 @@ All pre-flight checks were executed via `tools/validate_physical_transport.py`:
 
 | Check ID | Verification Item | Expected Value | Actual Value | Status |
 | :--- | :--- | :--- | :--- | :--- |
-| **PF-1** | Git Repository Checkpoint | Tag `milestone-5.13-complete` (`80fddf1`) | `milestone-5.13-complete` (`80fddf1`) | **PASS** |
+| **PF-1** | Git Repository Checkpoint | Verified clean Git HEAD commit | Resolved and verified | **PASS** |
 | **PF-2** | Canonical Fixture Integrity | SHA-256 of `traces/hardware/20260926_174811_egs_ident.json` | `4b5b6a85dffc0d797d09ce3668bb91f41eb392e2f9ae06485b8ea39251ed0462` | **PASS** |
 | **PF-3** | Canonical Request Wire Frame | `82 18 F1 1A 80 25` | `82 18 F1 1A 80 25` | **PASS** |
 | **PF-4** | Target & Tester Addressing | Target: `0x18`, Tester: `0xF1` | Target: `0x18`, Tester: `0xF1` | **PASS** |

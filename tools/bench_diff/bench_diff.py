@@ -268,7 +268,7 @@ def verify_auth(events, store=None):
     index the k-th seed-job args, its status the payload event's
     JOB_STATUS when that carries one.
     Returns (ok, note)."""
-    import flash_runner
+    from reconstruction import runner as flash_runner
 
     audits = [e for e in events
               if e.get("op") == "auth_audit" and e.get("attempt")]
