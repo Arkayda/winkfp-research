@@ -102,12 +102,12 @@ The three physical probe runs establish **`OBSERVED_WIRE` ONLY**. Direct SGBD ex
 
 | Diagnostic Operation / Job | Wire Telegram | `OBSERVED_WIRE` | Target-Scoped Evidence | Final Classification | DirectKdcanBus Action |
 |---|---|---|---|---|---|
-| **Wire: AIF Query** | `0x1A 0x86` | **YES** | Bench EGS (`0x18`) | **OBSERVED_WIRE** | Executed via `wire_read_aif()` or `transport.send_job()`. |
+| **Wire: AIF Query (Bench Alias)** | `0x1A 0x86` | **YES** | Bench EGS (`0x18`) | **OBSERVED_WIRE** | Executed via `wire_read_aif()` or `transport.send_job()`. |
 | **Wire: TesterPresent** | `0x3E 0x00` | **YES** | Bench EGS (`0x18`) | **OBSERVED_WIRE** | Executed via `wire_tester_present()` or `transport.send_job()`. |
-| `AIF_LESEN` | Inferred to `0x1A 0x86` | **YES** (`1A 86`) | Trace `10FLASH` uses `0x23`; no EGS trace | **UNKNOWN[target=0479S90T641Z]** | **FAIL-CLOSED** by default (`NotImplementedError`); allowed with `allow_inferred=True`. |
+| `AIF_LESEN` | Official SGBD uses `$23`; wire `1A 86` is bench alias | **NO** (Official is `$23`) | Trace `10FLASH` uses `0x23`; physical `$23` on EGS is **NOT YET CONFIRMED** | **UNKNOWN[target=0479S90T641Z]`** | **FAIL-CLOSED** by default (`NotImplementedError`); allowed with `allow_inferred=True`. |
 | `TESTER_PRESENT` | Inferred to `0x3E 0x00` | **YES** (`3E 00`) | Trace `10FLASH` uses `DIAGNOSE_AUFRECHT -> 3E 02` | **RECONSTRUCTION_ALIAS** / **UNKNOWN[target=0479S90T641Z]** | **FAIL-CLOSED** by default (`NotImplementedError`); allowed with `allow_inferred=True`. |
-| `IDENT_LESEN` | Inferred to `0x1A 0x86` / `0x1A 0x80` | **YES** (`1A 86`) | Factory trace uses `IDENT -> 1A 80` | **RECONSTRUCTION_ALIAS** / **UNKNOWN[target=0479S90T641Z]** | **FAIL-CLOSED** by default (`NotImplementedError`); allowed with `allow_inferred=True`. |
-| `SG_PHYS_HWNR_LESEN` | Inferred to extract ZB from `0x1A 0x86` | **YES** (`1A 86`) | Factory trace uses `PHYSIKALISCHE_HW_NR_LESEN -> 1A 87` | **RECONSTRUCTION_ALIAS** / **UNKNOWN[target=0479S90T641Z]** | **FAIL-CLOSED** by default (`NotImplementedError`); allowed with `allow_inferred=True`. |
+| `IDENT_LESEN` | Inferred to `0x1A 0x80` | **YES** (`1A 80`) | Factory trace uses `IDENT -> 1A 80` | **RECONSTRUCTION_ALIAS** / **UNKNOWN[target=0479S90T641Z]** | **FAIL-CLOSED** by default (`NotImplementedError`); allowed with `allow_inferred=True`. |
+| `SG_PHYS_HWNR_LESEN` | Inferred to `0x1A 0x87` | **YES** (`1A 87`) | Factory trace uses `PHYSIKALISCHE_HW_NR_LESEN -> 1A 87` | **RECONSTRUCTION_ALIAS** / **UNKNOWN[target=0479S90T641Z]** | **FAIL-CLOSED** by default (`NotImplementedError`); allowed with `allow_inferred=True`. |
 | `SG_STATUS_LESEN` | Speculatively assumed `0x3E 0x00` | **NO** | Unevidenced assumption | **UNKNOWN[target=0479S90T641Z]** | **FAIL-CLOSED ALWAYS** (`NotImplementedError` even if `allow_inferred=True`). |
 | `AUTHENTISIERUNG` | KWP2000 ReadAuthCapabilities | **NO** | No EGS auth wire trace | **UNKNOWN[target=0479S90T641Z]** | Not validated on wire; **FAIL-CLOSED** (`NotImplementedError`). |
 | `AUTHENTISIERUNG_ZUFALLSZAHL_LESEN` | RoutineControl `0x31 0x07` (Seed) | **NO** | `OBSERVED_JOB_MAPPING[target=10FLASH]` (`31 07`) | **UNKNOWN[target=0479S90T641Z]** | Not validated on EGS wire; **FAIL-CLOSED** (`NotImplementedError`). |

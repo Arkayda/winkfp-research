@@ -27,12 +27,12 @@ from reconstruction.ediabas.transport import (
     TransportError,
     TransportTimeoutError,
 )
-from .base import KdcanError, KdcanTransport
+from .base import KdcanError, KdcanTransport, RawKdcanTransport
 from . import framing
 
 
 class KdcanDiagnosticAdapter:
-    """Adapts any KdcanTransport backend to the canonical DiagnosticTransport protocol.
+    """Adapts any RawKdcanTransport backend to the canonical DiagnosticTransport protocol.
 
     PURE BYTE-LEVEL PROTOCOL BOUNDARY:
     - Accepts raw DS2 wire frame (bytes)
@@ -42,13 +42,13 @@ class KdcanDiagnosticAdapter:
 
     def __init__(
         self,
-        backend: KdcanTransport,
+        backend: RawKdcanTransport,
         auto_open: bool = False,
     ) -> None:
         """Initialize the adapter.
 
         Args:
-            backend: Underlying KdcanTransport instance.
+            backend: Underlying RawKdcanTransport instance.
             auto_open: If True, automatically call backend.open() on transceive.
                        Defaults to False (hardware-quarantined offline safety).
         """

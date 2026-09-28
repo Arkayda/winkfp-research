@@ -67,17 +67,47 @@ def run_preflight_checks(
     port: Optional[str],
     dry_run: bool,
     confirm_readonly_hardware: bool,
+    expected_tag: Optional[str] = "milestone-5.14-complete",
+    allow_dirty: bool = False,
 ) -> Tuple[bool, List[str]]:
     """Run all mandatory Milestone 5.14 pre-flight checks."""
     errors: List[str] = []
 
-    # PF-1. Git Repository Checkpoint Verification
+    # PF-1. Git Repository Checkpoint Verification & Clean Tree Enforcement
     try:
         head_commit = subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=str(REPO_ROOT), text=True
         ).strip()
         if not head_commit or len(head_commit) < 7:
             errors.append("PF-1: Unable to resolve Git HEAD commit.")
+
+        # Enforce clean working tree
+        status_out = subprocess.check_output(
+            ["git", "status", "--porcelain"], cwd=str(REPO_ROOT), text=True
+        ).strip()
+        if status_out and not allow_dirty:
+            dirty_count = len(status_out.splitlines())
+            errors.append(
+                f"PF-1: Git working tree is dirty ({dirty_count} uncommitted change(s)). "
+                f"Physical validation requires clean tree. Fail-closed."
+            )
+
+        # Enforce HEAD matches expected tag checkpoint
+        if expected_tag:
+            try:
+                tag_commit = subprocess.check_output(
+                    ["git", "rev-parse", f"refs/tags/{expected_tag}^{{commit}}"],
+                    cwd=str(REPO_ROOT),
+                    text=True,
+                    stderr=subprocess.DEVNULL,
+                ).strip()
+                if head_commit != tag_commit:
+                    errors.append(
+                        f"PF-1: Git HEAD ({head_commit[:12]}) does not match expected tag "
+                        f"'{expected_tag}' ({tag_commit[:12]}). Fail-closed."
+                    )
+            except subprocess.CalledProcessError:
+                errors.append(f"PF-1: Expected tag '{expected_tag}' does not exist in repository.")
     except Exception as exc:
         errors.append(f"PF-1: Git check failed: {exc}")
 
@@ -176,7 +206,22 @@ def main() -> int:
         action="store_true",
         help="Execute pre-flight software checks only; do NOT open port or transmit bytes",
     )
+    parser.add_argument(
+        "--expected-tag",
+        type=str,
+        default="milestone-5.14-complete",
+        help="Expected Git tag checkpoint for validation (default: milestone-5.14-complete)",
+    )
+    parser.add_argument(
+        "--allow-dirty",
+        action="store_true",
+        help="Allow dirty working tree for development/dry-run only (strictly forbidden for physical run)",
+    )
     args = parser.parse_args()
+
+    if not args.dry_run and args.allow_dirty:
+        print("\n[!] CRITICAL SAFETY VIOLATION: --allow-dirty is strictly prohibited during physical execution.")
+        return 1
 
     fixture_path = REPO_ROOT / CANONICAL_IDENT_FIXTURE_REL
     pipeline = CanonicalPipeline()
@@ -193,6 +238,7 @@ def main() -> int:
     print(f"  Baud Rate        : {args.baud} 8N1")
     print(f"  Timeout          : {args.timeout:.2f} s")
     print(f"  Dry Run Mode     : {args.dry_run}")
+    print(f"  Expected Tag     : {args.expected_tag}")
     print("=" * 72)
 
     # ------------------------------------------------------------------------
@@ -205,6 +251,8 @@ def main() -> int:
         port=args.port,
         dry_run=args.dry_run,
         confirm_readonly_hardware=args.confirm_readonly_hardware,
+        expected_tag=args.expected_tag,
+        allow_dirty=args.allow_dirty,
     )
 
     if not preflight_ok:

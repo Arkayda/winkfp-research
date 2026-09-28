@@ -93,6 +93,16 @@ class DirectKdcanBus:
         target = dst if dst is not None else self.default_dst
         return self._execute_aif_lesen(target)
 
+    def wire_read_ident(self, dst: Optional[int] = None) -> bool:
+        """Execute physical KWP2000 ReadECUIdentification (0x1A 0x80). [OBSERVED_WIRE]"""
+        target = dst if dst is not None else self.default_dst
+        return self._execute_ident(target)
+
+    def wire_read_phys_hwnr(self, dst: Optional[int] = None) -> bool:
+        """Execute physical KWP2000 ReadECUIdentification (0x1A 0x87). [OBSERVED_WIRE]"""
+        target = dst if dst is not None else self.default_dst
+        return self._execute_phys_hwnr_lesen(target)
+
     def wire_tester_present(self, dst: Optional[int] = None) -> bool:
         """Execute physical KWP2000 TesterPresent (0x3E 0x00). [OBSERVED_WIRE]"""
         target = dst if dst is not None else self.default_dst
@@ -120,12 +130,19 @@ class DirectKdcanBus:
             )
 
         # 3. High-level WinKFP/EDIABAS jobs classified as INFERRED_JOB_MAPPING or RECONSTRUCTION_ALIAS:
-        # Physical wire telegrams (0x1A 0x86 and 0x3E 0x00) are OBSERVED_WIRE on this ECU,
+        # Physical wire telegrams (0x1A 0x80, 0x1A 0x86, 0x1A 0x87, 0x3E 0x00) are OBSERVED_WIRE on this ECU,
         # but their mapping to high-level EDIABAS job names on this ECU (0479S90T641Z)
         # lacks direct SGBD bytecode execution evidence (AIF_LESEN is INFERRED_JOB_MAPPING[target=0479S90T641Z];
-        # IDENT_LESEN, SG_PHYS_HWNR_LESEN, TESTER_PRESENT are RECONSTRUCTION_ALIAS).
+        # IDENT, IDENT_LESEN, PHYSIKALISCHE_HW_NR_LESEN, SG_PHYS_HWNR_LESEN, TESTER_PRESENT are RECONSTRUCTION_ALIAS).
         # Fail-closed unless allow_inferred=True.
-        if name in ("AIF_LESEN", "IDENT_LESEN", "SG_PHYS_HWNR_LESEN", "TESTER_PRESENT"):
+        if name in (
+            "AIF_LESEN",
+            "IDENT",
+            "IDENT_LESEN",
+            "PHYSIKALISCHE_HW_NR_LESEN",
+            "SG_PHYS_HWNR_LESEN",
+            "TESTER_PRESENT",
+        ):
             if not self.allow_inferred:
                 self._last_job_status = "ERROR_JOB_INFERRED_FAIL_CLOSED"
                 self._text_results["JOB_STATUS"] = self._last_job_status
@@ -134,8 +151,12 @@ class DirectKdcanBus:
                     f"(physical wire request is observed, but high-level job mapping lacks direct SGBD execution "
                     f"evidence for this ECU); fail-closed per repository evidence policy. Pass allow_inferred=True to execute."
                 )
-            if name in ("AIF_LESEN", "IDENT_LESEN", "SG_PHYS_HWNR_LESEN"):
+            if name == "AIF_LESEN":
                 return self._execute_aif_lesen(dst)
+            if name in ("IDENT", "IDENT_LESEN"):
+                return self._execute_ident(dst)
+            if name in ("PHYSIKALISCHE_HW_NR_LESEN", "SG_PHYS_HWNR_LESEN"):
+                return self._execute_phys_hwnr_lesen(dst)
             if name == "TESTER_PRESENT":
                 return self._execute_tester_present(dst)
 
@@ -175,7 +196,7 @@ class DirectKdcanBus:
 
             self._last_job_status = "OKAY"
             self._text_results["JOB_STATUS"] = "OKAY"
-            self._binary_results["RAW_IDENT"] = resp
+            self._binary_results["RAW_AIF"] = resp
 
             # Parse standard AIF fields if length allows
             ascii_text = resp.decode("ascii", "ignore")
@@ -192,8 +213,6 @@ class DirectKdcanBus:
                 zb = f"{zb_bytes[0]:02X}{zb_bytes[1]:02X}{zb_bytes[2]:02X}{zb_bytes[3]:02X}".lstrip("0")
                 if zb:
                     self._text_results["ZB_NUMMER"] = zb
-                    self._text_results["SG_PHYS_HWNR"] = zb
-                    self._text_results["HWNR"] = zb
 
             # Extract SW number
             if len(resp) >= 26:
@@ -213,7 +232,61 @@ class DirectKdcanBus:
             self._text_results["JOB_STATUS"] = self._last_job_status
             return False
 
-    _execute_ident_lesen = _execute_aif_lesen
+    def _execute_phys_hwnr_lesen(self, dst: int) -> bool:
+        """Execute KWP2000 physical hardware number query (0x1A 0x87). [OBSERVED ON WIRE]"""
+        try:
+            resp = self.transport.send_job(dst, bytes([0x1A, 0x87]), timeout=1.0)
+            if not resp or resp[0] == 0x7F:
+                self._last_job_status = f"ERROR_NRC_0x{resp[2]:02X}" if resp and len(resp) >= 3 else "NO_RESPONSE"
+                self._text_results["JOB_STATUS"] = self._last_job_status
+                return False
+
+            self._last_job_status = "OKAY"
+            self._text_results["JOB_STATUS"] = "OKAY"
+            self._binary_results["RAW_PHYS_HWNR"] = resp
+
+            # In 0x1A 0x87 response:
+            # bytes 2:8: first 6-byte PECUHN block (e.g. 00 00 07 56 99 80 -> 7569980)
+            if len(resp) >= 8:
+                pecuhn_bytes = resp[2:8]
+                hwnr = "".join(f"{b:02X}" for b in pecuhn_bytes).lstrip("0")
+                if hwnr:
+                    self._text_results["PHYSIKALISCHE_HW_NR"] = hwnr
+                    self._text_results["SG_PHYS_HWNR"] = hwnr
+                    self._text_results["HWNR"] = hwnr
+
+            return True
+        except KdcanError as e:
+            self._last_job_status = f"ERROR_TRANSPORT: {e}"
+            self._text_results["JOB_STATUS"] = self._last_job_status
+            return False
+
+    def _execute_ident(self, dst: int) -> bool:
+        """Execute KWP2000 ECU identification query (0x1A 0x80). [OBSERVED ON WIRE]"""
+        try:
+            resp = self.transport.send_job(dst, bytes([0x1A, 0x80]), timeout=1.0)
+            if not resp or resp[0] == 0x7F:
+                self._last_job_status = f"ERROR_NRC_0x{resp[2]:02X}" if resp and len(resp) >= 3 else "NO_RESPONSE"
+                self._text_results["JOB_STATUS"] = self._last_job_status
+                return False
+
+            self._last_job_status = "OKAY"
+            self._text_results["JOB_STATUS"] = "OKAY"
+            self._binary_results["RAW_IDENT"] = resp
+
+            # In 0x1A 0x80 response:
+            # bytes 2:8: ID_BMW_NR (6 bytes BCD, e.g. 00 00 07 59 19 72 -> 7591972)
+            if len(resp) >= 8:
+                bmw_nr_bytes = resp[2:8]
+                bmw_nr = "".join(f"{b:02X}" for b in bmw_nr_bytes).lstrip("0")
+                if bmw_nr:
+                    self._text_results["ID_BMW_NR"] = bmw_nr
+
+            return True
+        except KdcanError as e:
+            self._last_job_status = f"ERROR_TRANSPORT: {e}"
+            self._text_results["JOB_STATUS"] = self._last_job_status
+            return False
 
     def _execute_tester_present(self, dst: int) -> bool:
         """Execute TesterPresent (0x3E 0x00). [OBSERVED ON WIRE]"""

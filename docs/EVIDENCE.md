@@ -46,7 +46,30 @@ The following table documents the **highest proven evidence level** achieved in 
 
 ---
 
-## 3. Explicit Hardware Scope Disclaimer
+## 3. Subsystem Demarcation: Diagnostic Runtime vs Flash Orchestration Model
+
+The repository establishes an explicit provenance and operational boundary between two fundamentally different codebases:
+
+### 3.1 Canonical Read-Only Diagnostic Runtime (`reconstruction/ediabas/`, `reconstruction/transport/kdcan/`)
+- **Evidence Level**: **L6** (Physical bench proven) & **L5** (Historical trace replay).
+- **Subsystems**: `CanonicalPipeline`, `EdiabasJobReplayEngine`, `DiagnosticTransport`, `KdcanDiagnosticAdapter`, `SerialKdcanTransport`.
+- **Hardware Contact**: Validated on physical ZF 6HP EGS bench (target `0x18`) over K+DCAN (`115200 8N1`).
+- **Permitted Operations (Physical L6 Scope)**: Strictly read-only identification queries confirmed on physical hardware: `IDENT` (`1A 80`), `PHYSIKALISCHE_HW_NR_LESEN` (`1A 87`), `AIF_READ_BENCH_ALIAS` (`1A 86`), and `TESTER_PRESENT` observation (`3E 00`).
+- **AIF Job Disambiguation**:
+  - `AIF_LESEN`: Official SGBD routine utilizing KWP2000 service `$23 00 00 00 07 12` (`ReadMemoryByAddress`). Confirmed via SGBD disassembly; physical validation on target hardware is **NOT YET CONFIRMED**.
+  - `AIF_READ_BENCH_ALIAS`: Physical bench query utilizing service `$1A 0x86` (`ReadECUIdentification`). Observed and byte-for-byte fixture-validated against physical ZF 6HP EGS bench hardware.
+- **Safety Interlocks**: Serial ports quarantined (`auto_open=False` default); explicit `--confirm-readonly-hardware` required; single-transaction enforcement (TX=1, RX=1, retries=0); fail-closed on unevidenced targets or unmapped jobs.
+
+### 3.2 Reconstructed Flash Orchestration Model (`reconstruction/runner.py`, `reconstruction/vdle/`, `reconstruction/auth/`)
+- **Evidence Level**: **L4** (Differential x86 emulation in Unicorn) & **L3** (Deterministic KAT test vectors).
+- **Subsystems**: `FlashRunner`, `VDLE` chunking engine, `KrApi` symmetric/asymmetric authentication, AS2 key parser.
+- **Hardware Contact**: **L7 UNVALIDATED**: Zero physical vehicle or bench ECU flashing, zero erase, zero write.
+- **Role**: Clean-room offline research and interoperability model of proprietary WinKFP flashing algorithms.
+- **Safety Boundary**: Prohibited from dispatching against physical hardware; flash write jobs (`FLASH_SCHREIBEN`, `FLASH_LOESCHEN`, `SEND_SEGMENT`) are blocked fail-closed before wire transmission.
+
+---
+
+## 4. Explicit Hardware Scope Disclaimer
 
 > [!WARNING]
 > While software differential tests against original BMW machine code achieve **L4**, trace parsers achieve **L5**, and read-only diagnostic identification queries on physical bench hardware achieve **L6**, **physical ECU reprogramming (L7) has NOT been validated on physical hardware in this repository**.

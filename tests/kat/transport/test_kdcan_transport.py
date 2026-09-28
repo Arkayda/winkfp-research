@@ -226,7 +226,7 @@ class TestDirectKdcanBus(unittest.TestCase):
         self.assertEqual(bus.read_text("SHORT_VIN"), "CS68294")
         self.assertEqual(bus.read_text("ZB_NUMMER"), "7592132")
         self.assertEqual(bus.read_text("SW_NUMMER"), "7592133")
-        self.assertEqual(bus.read_text("SG_PHYS_HWNR"), "7592132")
+        self.assertEqual(bus.read_text("SG_PHYS_HWNR", ""), "")
         self.assertEqual(bus.read_text("SGBD"), "0479S90T641Z")
 
         mock_transport.send_job.return_value = bytes([0x7E])
@@ -238,7 +238,14 @@ class TestDirectKdcanBus(unittest.TestCase):
         from reconstruction.transport.kdcan import DirectKdcanBus
 
         bus = DirectKdcanBus(transport=mock_transport, default_dst=0x18, trace=False)
-        for job_name in ("AIF_LESEN", "IDENT_LESEN", "SG_PHYS_HWNR_LESEN", "TESTER_PRESENT"):
+        for job_name in (
+            "AIF_LESEN",
+            "IDENT",
+            "IDENT_LESEN",
+            "PHYSIKALISCHE_HW_NR_LESEN",
+            "SG_PHYS_HWNR_LESEN",
+            "TESTER_PRESENT",
+        ):
             with self.subTest(job=job_name):
                 with self.assertRaises(NotImplementedError) as ctx:
                     bus.job("GS19", job_name)

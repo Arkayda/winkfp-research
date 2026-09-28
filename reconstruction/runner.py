@@ -3,7 +3,7 @@
 (CI62F1/CI63F1/CIA0F1/ULF2HI — see WAS_ORCHESTRATION.md) as one Python
 call, built exclusively on reconstruction/*.
 
-    from flash_runner import FlashRunner, SafetyContext
+    from reconstruction.runner import FlashRunner, SafetyContext
     report = FlashRunner(bus, image_bytes, safety=safety_ctx).flash()
     assert report.ok and report.signature_ok
 

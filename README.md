@@ -43,6 +43,20 @@ The goal of this research project is to:
   - **Public RSA Parameters**: The repository contains public RSA parameters ($N, E$) recovered during reverse engineering. No private RSA exponent or private signing key is included.
 * **Privacy Sanitization**: All communication traces and log artifacts have been scrubbed of sensitive identifiers, vehicle identification numbers (VINs), serial numbers, and private key material.
 
+### 2.1 Demarcation of Subsystems: Diagnostic Runtime vs Flash Model
+
+The repository maintains an unambiguous architectural boundary between the physical/offline-validated diagnostic runtime and the offline-only flash orchestration model:
+
+| Architectural Property | Canonical Read-Only Diagnostic Runtime | Reconstructed Flash Orchestration Model |
+|---|---|---|
+| **Primary Packages** | `reconstruction/ediabas/`, `reconstruction/transport/kdcan/` | `reconstruction/runner.py`, `reconstruction/vdle/`, `reconstruction/auth/` |
+| **Proven Evidence Level** | **L6** (Physical bench proven) / **L5** (Trace replay) | **L4** (Differential x86 emulation) / **L3** (KAT test vectors) |
+| **Target Scope** | ZF 6HP EGS (target `0x18`) over K+DCAN (`115200 8N1`) | Theoretical IPO orchestration (`CI62F1`, `10FLASH.prg`) |
+| **Operational Scope** | Read-only identification queries (`IDENT`, `PHYSIKALISCHE_HW_NR_LESEN`, `AIF_READ_BENCH_ALIAS`, `TESTER_PRESENT`) | Flashing state machine (`INIT_VDLE`, `LOADTABLE`, `SEND_SEGMENT`, `SECURITY_ACCESS`, `FLASH_SCHREIBEN`) |
+| **Physical Hardware Status** | Validated on bench hardware; single-transaction execution | **L7 UNVALIDATED**: Zero physical ECU flashing, zero erase, zero write |
+| **Hardware Safety Gate** | Quarantined (`auto_open=False`); explicit confirmation required | Hard-gated: prohibited from physical bus dispatch fail-closed |
+| **Intended Role** | Production-grade verifiable diagnostic query and replay layer | Pure clean-room reverse-engineering and research model |
+
 ---
 
 ## 3. Architecture Overview
@@ -184,7 +198,10 @@ Every job execution result (`SgbdJobResult` and `EdiabasJobResult`) tracks four 
 | **`DATEN_REFERENZ_LESEN`** | `DatenReferenzLesen` | `DATEN_REFERENZ_LESEN` (`0x015A66`) | `$22` | `$2504` | `83 18 F1 22 25 04 D7` | `62 25 04` | Factory trace line 11588 | `DIRECT_SGBD_MAPPING` + `UNKNOWN[target=0479S90T641Z]` |
 
 > [!NOTE]
-> **AIF Service Separation**: Official SGBD `AIF_LESEN` strictly utilizes KWP2000 service `0x23` (`ReadMemoryByAddress`), whereas bench probe `0x1A 0x86` is categorized as `AIF_READ_BENCH_ALIAS`. Passing a `1A 86` response into `AIF_LESEN` fails closed with `ERROR_SGBD_USES_SERVICE_0x23_NOT_0x1A86`.
+> **AIF Provenance & Service Separation**:
+> - **`AIF_LESEN`**: Confirmed by SGBD disassembly (`10FLASH.prg` routine `0x028DDE`) to use KWP2000 service `$23 00 00 00 07 12` (`ReadMemoryByAddress`). Observed in historical factory trace; physical validation on target hardware is **NOT YET CONFIRMED**.
+> - **`AIF_READ_BENCH_ALIAS`**: Direct bench diagnostic probe using KWP2000 service `$1A 0x86` (`ReadECUIdentification`). Physically observed on real ZF 6HP EGS hardware and byte-for-byte fixture validated (`20260926_173201_egs_aif.json`).
+> - The two services are strictly separated: passing a `1A 86` response into `AIF_LESEN` fails closed with `ERROR_SGBD_USES_SERVICE_0x23_NOT_0x1A86`.
 
 ---
 

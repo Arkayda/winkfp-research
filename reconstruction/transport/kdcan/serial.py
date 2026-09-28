@@ -39,10 +39,6 @@ class SerialKdcanTransport(KdcanTransport):
         dtr: Optional[bool] = None,
         rts: Optional[bool] = None,
     ) -> None:
-        if serial is None:
-            raise ImportError(
-                "pyserial is required for K+DCAN physical communication: pip install pyserial"
-            )
         super().__init__()
         self.port = port
         self.baud = baud
@@ -85,6 +81,10 @@ class SerialKdcanTransport(KdcanTransport):
         with self._lock:
             if self._ser is not None:
                 return
+            if serial is None:
+                raise ImportError(
+                    "pyserial is required for K+DCAN physical communication: pip install pyserial"
+                )
             if not self.port:
                 self.port = self.auto_detect_port()
             if not self.port:

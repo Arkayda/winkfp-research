@@ -8,7 +8,7 @@ from ...transport.ediabas_api import (
     APIBREAK,
     APIERROR,
 )
-from ...flash_runner import MockBus
+from ...runner import MockBus
 
 __all__ = [
     "EdiabasApiBus",

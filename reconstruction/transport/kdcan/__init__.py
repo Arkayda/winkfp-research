@@ -5,7 +5,7 @@ Copyright (c) open6hp contributors. Licensed under the MIT License.
 """
 
 from .adapter import KdcanDiagnosticAdapter, ScriptedKdcanBackend
-from .base import KdcanError, KdcanTransport
+from .base import KdcanError, KdcanTransport, RawKdcanTransport
 from .bus import DirectKdcanBus
 from .framing import (
     NRC_BUSY_REPEAT_REQUEST,
@@ -40,6 +40,7 @@ __all__ = [
     "KdcanDiagnosticAdapter",
     "KdcanError",
     "KdcanTransport",
+    "RawKdcanTransport",
     "ScriptedKdcanBackend",
     "SerialKdcanTransport",
     "SessionTracer",

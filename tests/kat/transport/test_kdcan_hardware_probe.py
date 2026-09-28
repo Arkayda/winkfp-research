@@ -76,6 +76,19 @@ class MockSafeKdcanTransport(KdcanTransport):
         _tx, _rx, parsed_payload, _rtt = self.send_job_raw(dst, payload, src=src, timeout=timeout)
         return parsed_payload
 
+    def transceive_raw(
+        self,
+        wire_frame: bytes,
+        timeout: float | None = None,
+    ) -> bytes:
+        if not self.is_open:
+            raise KdcanError("Transport is closed")
+        if self.should_fail:
+            raise KdcanError("Simulated transport bus error")
+        if self.canned_response_frame is None:
+            raise KdcanError("No response configured in mock")
+        return self.canned_response_frame
+
 
 class TestHardwareProbeSafetyInterlocks(unittest.TestCase):
     """Test safety gates and parameter enforcement."""
