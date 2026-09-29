@@ -1,0 +1,11 @@
+{
+  "confidence": "UNCONFIRMED",
+  "consumer_status": "UNCONFIRMED",
+  "downstream_destination": "UNRESOLVED_REGISTER_OR_RAM",
+  "evidence": [
+    "curve_lookup_result_destination_not_provably_linked_to_specific_ram_address",
+    "epistemic_ceiling_retained_at_unconfirmed"
+  ],
+  "state_machine_role": "UNKNOWN",
+  "target_id": "TARGET_3_KL_CURVE_1"
+}

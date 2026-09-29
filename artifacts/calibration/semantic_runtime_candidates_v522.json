@@ -1,0 +1,69 @@
+{
+  "candidates": [
+    {
+      "axis_address": "0x00063AD6",
+      "axis_points": 12,
+      "candidate_id": "SEM_CAND_01_MAP_DESC_0001_TARGET_3",
+      "code_path": "0x00080000 -> 0x000454A0 -> 0x00063AD6 -> 0x0006418A",
+      "confidence": "UNCONFIRMED",
+      "contradictory_evidence": [],
+      "curve_address": "0x0006418A",
+      "curve_points": 12,
+      "curve_type": "1D_CHARACTERISTIC_CURVE",
+      "input_parameter": "Unconfirmed Input Variable (structural: 12-pt signed int16 monotonic axis at 0x00063AD6)",
+      "object_id": "TARGET_3_KL_CURVE_1",
+      "output_role": "Unconfirmed Output Role (structural: 1D characteristic curve at 0x0006418A)",
+      "runtime_confidence_ceiling": "UNCONFIRMED",
+      "scaling_constant": "0x000505BA (750)",
+      "semantic_hypothesis": "Transmission Torque Limit or Shift Pressure Schedule (hypothetical)",
+      "supporting_evidence": [
+        "descriptor_binding_at_0x000454A0_proven",
+        "strictly_monotonic_breakpoints_proven",
+        "12_point_curve_payload_proven"
+      ]
+    },
+    {
+      "axis_address": "0x00063AD6",
+      "axis_points": 12,
+      "candidate_id": "SEM_CAND_02_MAP_DESC_0001_TARGET_4",
+      "code_path": "0x00080000 -> 0x000454A0 -> 0x00063AD6 -> 0x000641A4",
+      "confidence": "UNCONFIRMED",
+      "contradictory_evidence": [],
+      "curve_address": "0x000641A4",
+      "curve_points": 12,
+      "curve_type": "1D_CHARACTERISTIC_CURVE",
+      "input_parameter": "Unconfirmed Input Variable (structural: 12-pt signed int16 monotonic axis at 0x00063AD6)",
+      "object_id": "TARGET_4_KL_CURVE_2",
+      "output_role": "Unconfirmed Alternative Mode Schedule (structural: 1D characteristic curve at 0x000641A4)",
+      "runtime_confidence_ceiling": "UNCONFIRMED",
+      "scaling_constant": "0x000505BA (750)",
+      "semantic_hypothesis": "Alternative Mode Torque Limit or Pressure Schedule (hypothetical)",
+      "supporting_evidence": [
+        "descriptor_binding_at_0x000454A0_proven",
+        "consecutive_descriptor_entry_following_target_3"
+      ]
+    },
+    {
+      "axis_address": "0x00063AF0",
+      "axis_points": 8,
+      "candidate_id": "SEM_CAND_03_MAP_DESC_0001_TARGET_5",
+      "code_path": "0x00080000 -> 0x000454A0 -> 0x00063AF0 -> 0x000641BE",
+      "confidence": "UNCONFIRMED",
+      "contradictory_evidence": [],
+      "curve_address": "0x000641BE",
+      "curve_points": 8,
+      "curve_type": "1D_CHARACTERISTIC_CURVE",
+      "input_parameter": "Unconfirmed Input Variable (structural: 8-pt unsigned uint16 monotonic axis at 0x00063AF0)",
+      "object_id": "TARGET_5_KL_CURVE_3",
+      "output_role": "Unconfirmed Output Role (structural: 1D characteristic curve at 0x000641BE)",
+      "runtime_confidence_ceiling": "UNCONFIRMED",
+      "scaling_constant": "0x000505BC (500)",
+      "semantic_hypothesis": "Speed-Dependent Governor or Lockup Schedule Curve (hypothetical)",
+      "supporting_evidence": [
+        "descriptor_binding_at_0x000454A0_proven",
+        "8_point_monotonic_breakpoints_proven"
+      ]
+    }
+  ],
+  "confidence_ceiling_rule": "Semantic candidate confidence cannot exceed the weakest supporting runtime transition (UNCONFIRMED)."
+}

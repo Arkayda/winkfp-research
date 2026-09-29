@@ -1,0 +1,70 @@
+{
+  "accesses": [
+    {
+      "address_formula": "0x0006418A + 2 + index * 2",
+      "confidence": "PROVEN",
+      "curve_id": "KL_CURVE_1",
+      "element_count": 12,
+      "element_width_bits": 16,
+      "endianness": "BIG_ENDIAN",
+      "evidence": [
+        "header_word_count_equals_12",
+        "12_signed_int16_elements_consecutive",
+        "descriptor_bounds_end_at_0x000641A3"
+      ],
+      "header_offset_bytes": 2,
+      "mathematical_identity": "total_span_bytes (26) = metadata_bytes (2) + element_count (12) * element_width (2)",
+      "metadata_bytes": 2,
+      "payload_bytes": 24,
+      "raw_bytes": "00 0c ff f1 00 32 00 64 00 96 00 c8 00 fa 01 2c 01 5e 01 90 01 f4 02 58 02 bc",
+      "signed": true,
+      "span_bytes": 26,
+      "stride_bytes": 2,
+      "target_address": "0x0006418A"
+    },
+    {
+      "address_formula": "0x000641A4 + 2 + index * 2",
+      "confidence": "PROVEN",
+      "curve_id": "KL_CURVE_2",
+      "element_count": 12,
+      "element_width_bits": 16,
+      "endianness": "BIG_ENDIAN",
+      "evidence": [
+        "header_word_count_equals_12",
+        "12_signed_int16_elements_consecutive",
+        "descriptor_bounds_end_at_0x000641BD"
+      ],
+      "header_offset_bytes": 2,
+      "mathematical_identity": "total_span_bytes (26) = metadata_bytes (2) + element_count (12) * element_width (2)",
+      "metadata_bytes": 2,
+      "payload_bytes": 24,
+      "raw_bytes": "00 0c 00 46 00 4b 00 64 00 96 00 c8 00 fa 01 2c 01 5e 01 90 01 f4 02 58 02 bc",
+      "signed": true,
+      "span_bytes": 26,
+      "stride_bytes": 2,
+      "target_address": "0x000641A4"
+    },
+    {
+      "address_formula": "0x000641BE + 2 + index * 2",
+      "confidence": "PROVEN",
+      "curve_id": "KL_CURVE_3",
+      "element_count": 8,
+      "element_width_bits": 16,
+      "endianness": "BIG_ENDIAN",
+      "evidence": [
+        "header_word_count_equals_8",
+        "8_unsigned_uint16_elements_consecutive",
+        "descriptor_bounds_end_at_0x000641CF"
+      ],
+      "header_offset_bytes": 2,
+      "mathematical_identity": "total_span_bytes (18) = metadata_bytes (2) + element_count (8) * element_width (2)",
+      "metadata_bytes": 2,
+      "payload_bytes": 16,
+      "raw_bytes": "00 08 00 64 05 dc 07 d0 09 c4 0c b2 0f a0 12 8e 15 7c",
+      "signed": false,
+      "span_bytes": 18,
+      "stride_bytes": 2,
+      "target_address": "0x000641BE"
+    }
+  ]
+}

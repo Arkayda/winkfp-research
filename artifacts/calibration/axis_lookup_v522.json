@@ -1,0 +1,52 @@
+{
+  "lookups": [
+    {
+      "clamping_behavior": "SATURATE_AT_BOUNDS",
+      "confidence": "SUPPORTED",
+      "data_type": "int16",
+      "element_count": 12,
+      "endianness": "BIG_ENDIAN",
+      "evidence": [
+        "strictly_increasing_monotonic_sequence",
+        "non_uniform_breakpoint_spacing",
+        "standard_automotive_interval_search_pattern"
+      ],
+      "lower_bound": -10,
+      "mathematical_identity": "total_span_bytes (26) = metadata_bytes (2) + element_count (12) * element_width (2)",
+      "metadata_bytes": 2,
+      "monotonicity": "STRICTLY_INCREASING",
+      "payload_bytes": 24,
+      "raw_bytes": "00 0c ff f6 00 32 00 64 00 96 00 c8 00 fa 01 2c 01 5e 01 90 01 f4 02 58 02 bc",
+      "search_algorithm": "CLAMPED_INTERVAL_SEARCH",
+      "semantic_hypothesis": "UNKNOWN",
+      "semantic_status": "UNCONFIRMED",
+      "span_bytes": 26,
+      "target_axis": "0x00063AD6",
+      "upper_bound": 700
+    },
+    {
+      "clamping_behavior": "SATURATE_AT_BOUNDS",
+      "confidence": "SUPPORTED",
+      "data_type": "uint16",
+      "element_count": 8,
+      "endianness": "BIG_ENDIAN",
+      "evidence": [
+        "strictly_increasing_monotonic_sequence",
+        "non_uniform_breakpoint_spacing",
+        "standard_automotive_interval_search_pattern"
+      ],
+      "lower_bound": 100,
+      "mathematical_identity": "total_span_bytes (18) = metadata_bytes (2) + element_count (8) * element_width (2)",
+      "metadata_bytes": 2,
+      "monotonicity": "STRICTLY_INCREASING",
+      "payload_bytes": 16,
+      "raw_bytes": "00 08 00 64 05 dc 07 d0 09 c4 0c b2 0f a0 12 8e 15 7c",
+      "search_algorithm": "CLAMPED_INTERVAL_SEARCH",
+      "semantic_hypothesis": "UNKNOWN",
+      "semantic_status": "UNCONFIRMED",
+      "span_bytes": 18,
+      "target_axis": "0x00063AF0",
+      "upper_bound": 5500
+    }
+  ]
+}

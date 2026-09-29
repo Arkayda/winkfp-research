@@ -32,7 +32,7 @@ This document defines the architectural relationship between original BMW factor
 | winkfp-research (This Repository: Research & Reconstruction)          |
 |                                                                       |
 |  Reconstruction Layer (`reconstruction/`):                            |
-|  ├── calibration/ (Hex parser, canonical index, axis validation, semantic recon) |
+|  ├── calibration/ (Hex parser, index, axis validation, runtime code-path tracer) |
 |  ├── crypto/    (Symmetric MD5, Simple cipher, RSA modexp, MSVC RNG) |
 |  ├── auth/      (AS2 3DES parser, GetAuthKey, retry chain)            |
 |  ├── vdle/      (INIT_VDLE, segment table, 21-byte block framing)     |
@@ -92,7 +92,7 @@ To preserve technical rigor, components are strictly separated into four categor
 
 4. **Physical Hardware Boundary**:
    - Serial transceivers, OBD cables, microcontrollers, and actual electronic control units.
-   - As documented in [EVIDENCE.md](EVIDENCE.md), the repository establishes validation up to **L4** (differential trace) and **L5** (EDIABAS API trace integration). Physical bench and vehicle testing (**L6/L7**) are explicitly not validated.
+   - As documented in [EVIDENCE.md](EVIDENCE.md), the repository establishes validation up to **L4** (differential trace), **L5** (EDIABAS API trace integration), and **L6** (read-only diagnostic identification on physical bench hardware). Physical ECU reprogramming (**L7**) is strictly not validated.
 
 ---
 

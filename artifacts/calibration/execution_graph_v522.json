@@ -1,0 +1,132 @@
+{
+  "edges": [
+    {
+      "destination": "NODE_02",
+      "edge_id": "EDGE_01",
+      "evidence": "application_firmware_references_descriptor_table",
+      "source": "NODE_01"
+    },
+    {
+      "destination": "NODE_04",
+      "edge_id": "EDGE_02",
+      "evidence": "descriptor_field_2_provides_axis_x_pointer_0x00063AD6",
+      "source": "NODE_02"
+    },
+    {
+      "destination": "NODE_04",
+      "edge_id": "EDGE_03",
+      "evidence": "runtime_parameter_compared_against_axis_breakpoints",
+      "source": "NODE_03"
+    },
+    {
+      "destination": "NODE_05",
+      "edge_id": "EDGE_04",
+      "evidence": "interval_search_yields_index_k_and_offset",
+      "source": "NODE_04"
+    },
+    {
+      "destination": "NODE_06",
+      "edge_id": "EDGE_05",
+      "evidence": "descriptor_field_6_provides_curve_pointer_0x0006418A",
+      "source": "NODE_02"
+    },
+    {
+      "destination": "NODE_07",
+      "edge_id": "EDGE_06",
+      "evidence": "index_k_offsets_into_curve_data_payload",
+      "source": "NODE_05"
+    },
+    {
+      "destination": "NODE_08",
+      "edge_id": "EDGE_07",
+      "evidence": "adjacent_points_passed_to_interpolation_formula",
+      "source": "NODE_07"
+    },
+    {
+      "destination": "NODE_09",
+      "edge_id": "EDGE_08",
+      "evidence": "interpolated_curve_value_bounded_by_scalars",
+      "source": "NODE_08"
+    },
+    {
+      "destination": "NODE_10",
+      "edge_id": "EDGE_09",
+      "evidence": "bounded_output_passed_to_downstream_task",
+      "source": "NODE_09"
+    }
+  ],
+  "graph_id": "EXEC_GRAPH_MAP_DESC_0001",
+  "nodes": [
+    {
+      "address": "0x00080000",
+      "confidence": "PROVEN",
+      "node_id": "NODE_01",
+      "operation": "TriCore Application Execution Context",
+      "role": "ENTRY"
+    },
+    {
+      "address": "0x000454A0",
+      "confidence": "PROVEN",
+      "node_id": "NODE_02",
+      "operation": "MAP_DESC_0001 Pointer Table Resolution",
+      "role": "DESCRIPTOR"
+    },
+    {
+      "address": "RUNTIME_REG_D4",
+      "confidence": "SUPPORTED",
+      "node_id": "NODE_03",
+      "operation": "Runtime Primary Input Parameter X (int16)",
+      "role": "INPUT"
+    },
+    {
+      "address": "0x00063AD6",
+      "confidence": "SUPPORTED",
+      "node_id": "NODE_04",
+      "operation": "Axis X Breakpoint Interval Search [X_k, X_{k+1}]",
+      "role": "AXIS_LOOKUP"
+    },
+    {
+      "address": "RUNTIME_MATH",
+      "confidence": "SUPPORTED",
+      "node_id": "NODE_05",
+      "operation": "Interval Index k and Fractional Weight t Calculation",
+      "role": "INDEX_CALCULATION"
+    },
+    {
+      "address": "0x0006418A",
+      "confidence": "PROVEN",
+      "node_id": "NODE_06",
+      "operation": "Target KL Curve 1 Base Pointer Resolution",
+      "role": "CURVE_ADDRESS"
+    },
+    {
+      "address": "0x0006418A",
+      "confidence": "PROVEN",
+      "node_id": "NODE_07",
+      "operation": "Adjacent Element Fetch Y_k and Y_{k+1} (16-bit signed)",
+      "role": "CELL_READ"
+    },
+    {
+      "address": "RUNTIME_MATH",
+      "confidence": "SUPPORTED",
+      "node_id": "NODE_08",
+      "operation": "1D Linear Piecewise Interpolation / Bound Clamping",
+      "role": "INTERPOLATION"
+    },
+    {
+      "address": "0x000505BA",
+      "confidence": "SUPPORTED",
+      "node_id": "NODE_09",
+      "operation": "Scalar Constant Application (e.g. 750 / 500 limits)",
+      "role": "SCALE_OFFSET"
+    },
+    {
+      "address": "UNRESOLVED_DEST",
+      "confidence": "UNCONFIRMED",
+      "node_id": "NODE_10",
+      "operation": "Transmission Shift/Pressure State Machine Consumer",
+      "role": "OUTPUT_CONSUMER"
+    }
+  ],
+  "target_descriptor": "MAP_DESC_0001"
+}

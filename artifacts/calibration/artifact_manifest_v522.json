@@ -1,0 +1,136 @@
+{
+  "architecture": "Infineon TriCore TC1796 / TC1766",
+  "artifacts": [
+    {
+      "filename": "architecture_validation_v522.json",
+      "path": "artifacts/calibration/architecture_validation_v522.json",
+      "role": "ARCHITECTURE_VALIDATION",
+      "sha256": "b04668604a67eba04c44c03235cff6b7206fbd653365f9e984d058b831bda778",
+      "size_bytes": 11093
+    },
+    {
+      "filename": "code_regions_v522.json",
+      "path": "artifacts/calibration/code_regions_v522.json",
+      "role": "CODE_REGION_INVENTORY",
+      "sha256": "e027ed8ab3c64a9eacf8f062be81a22045c9978654a852058db26ec7adbc5a9b",
+      "size_bytes": 12341
+    },
+    {
+      "filename": "descriptor_traces_v522.json",
+      "path": "artifacts/calibration/descriptor_traces_v522.json",
+      "role": "DESCRIPTOR_TRACE",
+      "sha256": "7a7f4dcb3edd2720e59fd2e2f9cc2b3cae78e26d02edf855136c8074b8eef9ba",
+      "size_bytes": 6762
+    },
+    {
+      "filename": "code_references_v522.json",
+      "path": "artifacts/calibration/code_references_v522.json",
+      "role": "CODE_REFERENCE_CATALOG",
+      "sha256": "5fc41923598dceeaa703b2ed23f36b1fd01fd6d5e2b8c6f9cc456d8ecdfbd2e2",
+      "size_bytes": 447590
+    },
+    {
+      "filename": "axis_lookup_v522.json",
+      "path": "artifacts/calibration/axis_lookup_v522.json",
+      "role": "AXIS_LOOKUP_CATALOG",
+      "sha256": "fe4b933b29e879ea86273fc75b2d77ef69febc4ab4d8d5dedb102c783689a426",
+      "size_bytes": 1835
+    },
+    {
+      "filename": "curve_access_v522.json",
+      "path": "artifacts/calibration/curve_access_v522.json",
+      "role": "CURVE_ACCESS_CATALOG",
+      "sha256": "84ff7534d9b9f4b6595f527d1aa8b6072c1464adcbb221e375a25a427c6cdcb1",
+      "size_bytes": 2389
+    },
+    {
+      "filename": "interpolation_analysis_v522.json",
+      "path": "artifacts/calibration/interpolation_analysis_v522.json",
+      "role": "INTERPOLATION_ANALYSIS",
+      "sha256": "028ba5ecaa292bb4b2f7baff4e0c83b3bd4c055cd19e30956570ed063bd5e3bc",
+      "size_bytes": 458
+    },
+    {
+      "filename": "scaling_runtime_v522.json",
+      "path": "artifacts/calibration/scaling_runtime_v522.json",
+      "role": "SCALING_RUNTIME_EVALUATION",
+      "sha256": "02eb13adc4981e92920c6d145d7dcba7f87a912203cf80fc4c8e03f90e96a9ad",
+      "size_bytes": 1452
+    },
+    {
+      "filename": "output_consumers_v522.json",
+      "path": "artifacts/calibration/output_consumers_v522.json",
+      "role": "OUTPUT_CONSUMER_STATUS",
+      "sha256": "a52d85b19a6dd990fac0d895a34bc9f378c9205dc60c258acf11d7c5e9684f87",
+      "size_bytes": 352
+    },
+    {
+      "filename": "execution_graph_v522.json",
+      "path": "artifacts/calibration/execution_graph_v522.json",
+      "role": "EXECUTION_GRAPH",
+      "sha256": "57e3139a3ab7877ef53f08b952dc90ed4545a6df20d94bb05d0be3018cbbf21b",
+      "size_bytes": 3646
+    },
+    {
+      "filename": "semantic_runtime_candidates_v522.json",
+      "path": "artifacts/calibration/semantic_runtime_candidates_v522.json",
+      "role": "SEMANTIC_RUNTIME_CANDIDATES",
+      "sha256": "d993c4541f18eb21304d1c41e159ae61be1cc24995c00200c4413f6d2127fcbf",
+      "size_bytes": 3168
+    },
+    {
+      "filename": "rejected_runtime_hypotheses_v522.json",
+      "path": "artifacts/calibration/rejected_runtime_hypotheses_v522.json",
+      "role": "REJECTED_RUNTIME_HYPOTHESES",
+      "sha256": "64d9f3f7d940f34f585bbdc73732dd6812ebd575e73f9cd94f5ecbd7fe488104",
+      "size_bytes": 3384
+    },
+    {
+      "filename": "change_log_v522.json",
+      "path": "artifacts/calibration/change_log_v522.json",
+      "role": "FORENSIC_CHANGE_LOG",
+      "sha256": "62b88eca60887af1b2e3a17779ad30f75d73bfa61cd092b49975fe6ad02b8b9a",
+      "size_bytes": 7932
+    }
+  ],
+  "file_inventory": {
+    "artifact_files": 14,
+    "documentation_files": 4,
+    "implementation_files": 4,
+    "modified_tracked_files": 3,
+    "test_files": 4,
+    "tool_files": 1,
+    "total_changed_files": 27,
+    "untracked_files": 24
+  },
+  "inputs": {
+    "primary_target_calibration": {
+      "path": "spdaten_gke/E60/data/GKE195/A7592133.0da",
+      "role": "TARGET_CALIBRATION",
+      "sha256": "45b473d1ee8cc2542a1eb3ecb77bf446f357f81827a464e6c3489257312a0112",
+      "size_bytes": 489258,
+      "verified_from_local_filesystem": true
+    },
+    "secondary_reference_executable": {
+      "path": "spdaten_gke/E60/data/GKE215/7591971A.0pa",
+      "role": "RELATED_BASE_PROGRAM_GS19_11 / DONOR_REFERENCE",
+      "sha256": "63b204d2edbdaa0945d9b0241d55df7c6859b41d3376d9f35e93cc6c82ecfcc3",
+      "size_bytes": 1942502,
+      "verified_from_local_filesystem": true
+    }
+  },
+  "integrity_model": "DETERMINISTIC_ARTIFACT_MANIFEST",
+  "manifest_file": {
+    "filename": "artifact_manifest_v522.json",
+    "path": "artifacts/calibration/artifact_manifest_v522.json",
+    "role": "DETERMINISTIC_ARTIFACT_MANIFEST",
+    "self_hash_policy": "EXCLUDED"
+  },
+  "milestone": "5.22",
+  "reference_executable_sha256": "63b204d2edbdaa0945d9b0241d55df7c6859b41d3376d9f35e93cc6c82ecfcc3",
+  "self_hash_policy": "EXCLUDED",
+  "target_calibration_sha256": "45b473d1ee8cc2542a1eb3ecb77bf446f357f81827a464e6c3489257312a0112",
+  "title": "Milestone 5.22 Deterministic Artifact Manifest \u2014 EGS 6HP28 Runtime / Code-Path Reconstruction",
+  "total_artifacts": 14,
+  "total_indexed_artifacts": 13
+}

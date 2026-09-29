@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Verification: L4/L5/L6 (Read-Only) Proven](https://img.shields.io/badge/Verification-L4%2FL5%2FL6%20(Read--Only)%20Proven-success.svg)](docs/EVIDENCE.md)
 [![Safety Interlock: Hard-Gated](https://img.shields.io/badge/Safety-Hard--Gated-critical.svg)](docs/ARCHITECTURE.md)
-[![Test Suite: 257 Passed](https://img.shields.io/badge/Tests-257%20Passed-brightgreen.svg)](tests/)
+[![Test Suite: 266 Passed](https://img.shields.io/badge/Tests-266%20Passed-brightgreen.svg)](tests/)
 
 This repository contains the reverse-engineering analysis, technical documentation, clean-room protocol reconstructions, differential validation suites, and offline diagnostic replay layers for the BMW WinKFP automotive ECU flashing software and its associated EDIABAS subsystem, focused on the BMW E60 ZF 6HP EGS (`GKE195` / `10FLASH.prg`).
 
@@ -307,6 +307,26 @@ Flash execution is hard-gated by the `SafetyContext` and provenance-tracked `Lim
   - All 12 mandatory JSON artifacts plus comprehensive manifest [artifact_manifest_v521.json](file:///Users/blogman/winkfp-research/artifacts/calibration/artifact_manifest_v521.json) generated deterministically.
 * Reconstructed in [`reconstruction/calibration/recon_v521.py`](reconstruction/calibration/recon_v521.py) and documented in [`docs/evidence/calibration_object_validation_milestone_5_21.md`](docs/evidence/calibration_object_validation_milestone_5_21.md).
 
+### 7.10 EGS 6HP28 Runtime / Code-Path Reconstruction (Milestone 5.22)
+* **Scope**: Static executable code-path and runtime consumption chain reconstruction for structurally validated calibration objects in BMW E60 / M57D30TU2 / ZF 6HP28 (`GKE195`). Zero hardware I/O; zero source mutation.
+* **Processor Architecture & Code Regions**: Application firmware (Segments 8–15 in `7591971A.0pa`, `0x00080000`–`0x000FE8F0`) is proven Infineon TriCore TC1796 / TC1766 machine code. TriCore instruction length rule verified: `b0 & 1 == 0` specifies 16-bit (2-byte) instructions, `b0 & 1 == 1` specifies 32-bit (4-byte) instructions. Instructions are little-endian; data tables and calibration values are big-endian.
+* **Physical Flash Segment Bounds**: Segment table at `0x00044240` maps logical blocks to physical flash: Bootloader (`0x00030000`–`0x0004FFFB`, anchor `0x0004FFFC`), Calibration (`0x000500E8`–`0x00075FFF`, CARB CVN anchor `0x000500E4`), Application (`0x00080000`–`0x000FFEA7`, anchor `0x000FFEA8`).
+* **Reference Graph Deepening & False-Positive Rejections**:
+  - Raw 32-bit byte scans straddling instruction boundaries (`0x000F55A8`, `0x000F4ACE`) are proven instruction-boundary artifacts and rejected as `ALIGNMENT_ARTIFACT`.
+  - Static records at `0x0004381C`, `0x0006D7BC`, and `0x0006D9AC` are classified as `STATIC_ADDRESS_TABLE` / data pointers, not code instructions.
+* **`MAP_DESC_0001` Descriptor Bounds & 1D Curve Topology Refinement**:
+  - Fields 2–11 at `0x000454A0` encode 5 explicit `[START, END]` bounding pairs: Axis X (`0x00063AD6`–`0x00063AEF`, 12-pt signed int16 `[-10, 50, ..., 700]`), Axis Y (`0x00063AF0`–`0x00063B01`, 8-pt unsigned uint16 `[100, 1500, ..., 5500]`), Target 3 (`0x0006418A`–`0x000641A3`, 12-pt signed int16 `[-15, 50, ..., 700]`), Target 4 (`0x000641A4`–`0x000641BD`, 12-pt signed int16 `[70, 75, ..., 700]`), and Target 5 (`0x000641BE`–`0x000641CF`, 8-pt unsigned uint16 `[100, 1500, ..., 5500]`).
+  - Target 3 is refined from the Milestone 5.20 $12 \times 8$ 2D table assumption into a **1D Characteristic Curve (`KL`)** of 12 points, resolving why 2D bilinear interpolation was unconfirmed in 5.21 (logged in `change_log_v522.json`). Targets 4 and 5 are likewise 1D curves.
+* **10-Node Static Execution Graph**:
+  $$\text{ENTRY} \longrightarrow \text{INPUT} \longrightarrow \text{AXIS\_SEARCH} \longrightarrow \text{INDEX\_CALCULATION} \longrightarrow \text{TABLE\_ADDRESS} \longrightarrow \text{CELL\_READ} \longrightarrow \text{INTERPOLATION} \longrightarrow \text{SCALE\_OFFSET} \longrightarrow \text{OUTPUT} \longrightarrow \text{CONSUMER}$$
+* **Strict Epistemic Ceilings & Confidence Partitioning**:
+  - Axis interval search and index arithmetic: `STRONGLY_SUPPORTED`.
+  - 1D linear piecewise interpolation structural support: `SUPPORTED`; runtime opcode execution: `UNCONFIRMED`.
+  - Scaling constants (750, 500, 6800): Layer A binary uint16 verified; Layer C for 6800 remains strictly **`UNKNOWN / UNCONFIRMED`**.
+  - Downstream output consumer: `UNCONFIRMED`.
+  - All 14 deterministic JSON artifacts generated in [`artifacts/calibration/*v522*.json`](artifacts/calibration/artifact_manifest_v522.json).
+* Reconstructed in [`reconstruction/calibration/recon_v522.py`](reconstruction/calibration/recon_v522.py) and documented in [`docs/evidence/runtime_code_path_reconstruction_milestone_5_22.md`](docs/evidence/runtime_code_path_reconstruction_milestone_5_22.md).
+
 ---
 
 ## 8. Repository Layout
@@ -314,7 +334,7 @@ Flash execution is hard-gated by the `SafetyContext` and provenance-tracked `Lim
 ```text
 winkfp-research/
 ├── artifacts/                      # Reconstructed deterministic JSON artifacts
-│   └── calibration/                # Milestone 5.20 and 5.21 calibration catalogs & manifests
+│   └── calibration/                # Milestones 5.20, 5.21, and 5.22 calibration catalogs & manifests
 ├── docs/                           # Technical documentation & RE reports
 │   ├── ARCHITECTURE.md             # End-to-end system architecture
 │   ├── EVIDENCE.md                 # L0–L7 experimental validation framework
@@ -322,7 +342,7 @@ winkfp-research/
 │   ├── PROPRIETARY_MATERIAL.md     # Policy on excluded OEM assets
 │   ├── QUARANTINE.md               # Audit history & asset filtering
 │   ├── research-source-map.md      # Mapping to historical source workspace
-│   ├── evidence/                   # Forensic milestone evidence artifacts (5.0–5.21)
+│   ├── evidence/                   # Forensic milestone evidence artifacts (5.0–5.22)
 │   ├── history/                    # Historical research progression (Rev 1–18.1)
 │   └── reverse-engineering/        # In-depth subsystem specifications
 ├── analysis/                       # Ghidra decompilation artifacts (45 C files)
@@ -332,7 +352,7 @@ winkfp-research/
 │   ├── ediabas/                    # EDIABAS runtime and API handlers
 │   └── obd32/                      # OBD32.dll IFH serial driver
 ├── reconstruction/                 # Clean-room Python protocol implementations
-│   ├── calibration/                # Hex parser, canonical index, axis validation, semantic recon
+│   ├── calibration/                # Hex parser, index, axis validation, runtime code-path tracer
 │   ├── crypto/                     # Symmetric MD5, RSA-1024, Simple XOR
 │   ├── auth/                       # AS2 3DES parser, key store, retry chain
 │   ├── vdle/                       # VDLE flash engine, block builder, OPPS setup
@@ -345,11 +365,12 @@ winkfp-research/
 │   ├── golden/                     # Golden tests (state machine, pipeline, replay, calibration)
 │   ├── differential/               # Differential suites (Unicorn x86, SGBD parity)
 │   ├── fixtures/                   # Synthetic containers, limits, and images
-│   └── run_tests.py                # Master test runner (256 tests)
+│   └── run_tests.py                # Master test runner (267 tests)
 ├── tools/                          # Analysis, diffing, and probe tools
 │   ├── kdcan_hardware_probe.py     # Safe read-only physical hardware probe
 │   ├── run_calibration_reconstruction_v520.py # Milestone 5.20 calibration reconstruction CLI
 │   ├── run_calibration_validation_v521.py     # Milestone 5.21 validation CLI
+│   ├── run_calibration_runtime_v522.py        # Milestone 5.22 runtime code-path CLI
 │   ├── bench_diff/                 # L1/L2 event log differential runner
 │   ├── trace_parser/               # EDIABAS *.trc parser and VIN sanitizer
 │   └── analysis/                   # Master password decoder & SP-Daten scanner
@@ -385,10 +406,10 @@ Current test execution summary:
   VERIFICATION SUMMARY
 ======================================================================
   KAT             :  63 run,  63 passed,   0 skipped,   0 failed  [PASSED]
-  GOLDEN          : 178 run, 178 passed,   0 skipped,   0 failed  [PASSED]
+  GOLDEN          : 188 run, 188 passed,   0 skipped,   0 failed  [PASSED]
   DIFFERENTIAL    :  16 run,  16 passed,   0 skipped,   0 failed  [PASSED]
 ----------------------------------------------------------------------
-TOTAL: 257 tests in ~54s | 257 passed | 0 skipped | 0 failed
+TOTAL: 267 tests in ~16s | 267 passed | 0 skipped | 0 failed
 ======================================================================
 ```
 

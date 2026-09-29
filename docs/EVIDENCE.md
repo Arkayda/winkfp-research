@@ -43,6 +43,7 @@ The following table documents the **highest proven evidence level** achieved in 
 | **Safety Interlocks (`ID_CHECK`)** | **L2** | `INFERRED` | Binary conditions parsed; parameter thresholds are documented as engineering hypotheses (`Limits`). |
 | **Physical ECU Contact (Read-Only)** | **L6** | `VALIDATED` | Read-only diagnostic identification query set executed on physical ZF 6HP EGS bench (target `0x18`) via K+DCAN (`115200 8N1`). Verified by immutable trace fixtures in `traces/hardware/`: `20260926_174811_egs_ident.json` (`IDENT`), `20260926_175924_egs_physical_hw_nr.json` (`PHYSIKALISCHE_HW_NR_LESEN`), `20260926_173201_egs_aif.json` (`AIF_READ_BENCH_ALIAS`), `20260926_174033_egs_tester_present.json` (`TESTER_PRESENT`), Milestone 5.16 physical correlation of official `AIF_LESEN` (`0x23`), and Milestone 5.17 physical correlation batch (`SERIENNUMMER_LESEN`, `ZIF_LESEN`, `ZIF_BACKUP_LESEN`). |
 | **Calibration Object Validation (5.20/5.21)** | **L2** (Code) / **L3** (KAT/Golden) | `VALIDATED (OFFLINE)` | Pure offline reconstruction of 9,176 Segment 4 objects, multi-axis descriptor at `0x000454A0`, 7-stage execution pipeline, and tri-layer scaling in `reconstruction/calibration/`. Zero hardware I/O. |
+| **Calibration Runtime Code-Path (5.22)** | **L2** (Code) / **L3** (Golden) | `VALIDATED (OFFLINE)` | Static executable code-path, TriCore instruction model, 1D curve topology refinement at `0x000454A0`, 10-node execution graph, false-positive filtering in `reconstruction/calibration/`. Zero hardware I/O. |
 | **Physical ECU Reprogramming** | **L7** | **Not validated** | Complete flashing of an ECU firmware block on a physical vehicle or hardware bench. No physical vehicle or bench ECU flashing, erase, reset, or flash writing has been performed. Strictly not validated. |
 
 ---
@@ -82,6 +83,26 @@ The repository establishes an explicit provenance and operational boundary betwe
 - **7-Stage Runtime Execution Pipeline**: $\text{INPUT} \rightarrow \text{INDEX} \rightarrow \text{AXIS LOOKUP} \rightarrow \text{TABLE ACCESS} \rightarrow \text{INTERPOLATION} \rightarrow \text{SCALE/OFFSET} \rightarrow \text{OUTPUT}$. Partitioned confidence: `pipeline_definition: PROVEN`, `structural_pipeline: STRONGLY_SUPPORTED`, `runtime_execution_pipeline: UNCONFIRMED`, `overall_role: SUPPORTED`.
 - **Tri-Layer Scaling Separation**: Layer A (Binary Evidence), Layer B (External Corroboration), Layer C (Semantic Hypothesis). Constant 6800 Layer C is strictly `UNKNOWN` (`UNCONFIRMED`); external turbine overspeed discussions relegated to Layer B.
 - **Epistemic Discipline**: $10 \times 13$ tables remain `UNCONFIRMED` dimensional matches; boundary gap pointers (`0x0005FFF4`, `0x0005FFFE`) and false monotonic strings are cataloged as `REJECTED`. 100% offline, zero hardware I/O.
+
+### 3.5 Calibration Runtime & Code-Path Reconstruction (Milestone 5.22)
+- **Target Calibration Artifact**: `spdaten_gke/E60/data/GKE195/A7592133.0da` (SHA-256: `45b473d1ee8cc2542a1eb3ecb77bf446f357f81827a464e6c3489257312a0112`, 489,258 bytes, verified from local filesystem).
+- **Associated Base Executive Reference**: `spdaten_gke/E60/data/GKE215/7591971A.0pa` (SHA-256: `63b204d2edbdaa0945d9b0241d55df7c6859b41d3376d9f35e93cc6c82ecfcc3`, 1,942,502 bytes, verified from local filesystem) strictly as `RELATED_BASE_PROGRAM_GS19_11 / DONOR_REFERENCE`.
+- **Processor Architecture & Code Regions**: Application firmware (Segments 8–15 in `7591971A.0pa`, `0x00080000`–`0x000FE8F0`) is proven Infineon TriCore TC1796 / TC1766 machine code. TriCore instruction length rule verified: `b0 & 1 == 0` specifies 16-bit (2-byte) instructions, `b0 & 1 == 1` specifies 32-bit (4-byte) instructions. Instructions are little-endian; data tables and calibration values are big-endian.
+- **Physical Flash Segment Bounds**: Flash segment table at `0x00044240` definitively maps logical blocks to physical flash: Bootloader (`0x00030000`–`0x0004FFFB`, anchor `0x0004FFFC`), Calibration (`0x000500E8`–`0x00075FFF`, CARB CVN anchor `0x000500E4`), Application (`0x00080000`–`0x000FFEA7`, anchor `0x000FFEA8`).
+- **Reference Graph Deepening & False-Positive Rejections**:
+  - Raw 32-bit byte scans straddling instruction boundaries (`0x000F55A8`, `0x000F4ACE`) are proven instruction-boundary artifacts and rejected as `ALIGNMENT_ARTIFACT`.
+  - Static records at `0x0004381C`, `0x0006D7BC`, and `0x0006D9AC` are classified as `STATIC_ADDRESS_TABLE` / data pointers, not code instructions.
+- **`MAP_DESC_0001` Descriptor Bounds & 1D Curve Topology Refinement**:
+  - Fields 2–11 at `0x000454A0` encode 5 explicit `[START, END]` bounding pairs with observed target-local object format in `A7592133.0da` ($\text{span} = \text{metadata} (2\text{ bytes}) + N \times 2\text{ bytes}$): Axis X (`0x00063AD6`–`0x00063AEF`, 26 B: 2 B header `0x000C` + 24 B payload = 12-pt signed int16 `[-10, 50, ..., 700]`, semantic status: `UNCONFIRMED`), Axis Y (`0x00063AF0`–`0x00063B01`, 18 B: 2 B header `0x0008` + 16 B payload = 8-pt unsigned uint16 `[100, 1500, ..., 5500]`, semantic status: `UNCONFIRMED`), Target 3 (`0x0006418A`–`0x000641A3`, 26 B: 2 B header `0x000C` + 24 B payload = 12-pt signed int16 `[-15, 50, ..., 700]`), Target 4 (`0x000641A4`–`0x000641BD`, 26 B: 2 B header `0x000C` + 24 B payload = 12-pt signed int16 `[70, 75, ..., 700]`), and Target 5 (`0x000641BE`–`0x000641CF`, 18 B: 2 B header `0x0008` + 16 B payload = 8-pt unsigned uint16 `[100, 1500, ..., 5500]`).
+  - Target 3 is refined from the Milestone 5.20 $12 \times 8$ 2D table assumption into a **1D Characteristic Curve (`KL`)** of 12 points, resolving why 2D bilinear interpolation was unconfirmed in 5.21 (logged in `change_log_v522.json`). Targets 4 and 5 are likewise 1D curves.
+- **10-Node Static Execution Graph**:
+  $$\text{ENTRY} \rightarrow \text{INPUT} \rightarrow \text{AXIS\_SEARCH} \rightarrow \text{INDEX\_CALCULATION} \rightarrow \text{TABLE\_ADDRESS} \rightarrow \text{CELL\_READ} \rightarrow \text{INTERPOLATION} \rightarrow \text{SCALE\_OFFSET} \rightarrow \text{OUTPUT} \rightarrow \text{CONSUMER}$$
+- **Strict Epistemic Ceilings & Confidence Partitioning**:
+  - Axis interval search and index arithmetic: `STRONGLY_SUPPORTED`.
+  - 1D linear piecewise interpolation structural support: `SUPPORTED`; runtime opcode execution: `UNCONFIRMED`.
+  - Scaling constants (750, 500, 6800): Layer A binary uint16 verified; Layer C for 6800 remains strictly **`UNKNOWN / UNCONFIRMED`**.
+  - Downstream output consumer: `UNCONFIRMED`.
+  - 14 deterministic JSON artifacts generated in `artifacts/calibration/*v522*.json`. 100% offline, zero hardware I/O.
 
 ---
 

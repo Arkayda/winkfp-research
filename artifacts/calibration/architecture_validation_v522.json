@@ -1,0 +1,515 @@
+{
+  "architecture": "Infineon TriCore TC1796 / TC1766",
+  "data_endianness": "BIG_ENDIAN",
+  "decoded_samples": [
+    {
+      "address": "0x00030000",
+      "entry_index": 0,
+      "entry_length_bytes": 8,
+      "instruction_count": 3,
+      "instructions": [
+        {
+          "hex": "04 88",
+          "length": 2,
+          "offset": 0
+        },
+        {
+          "hex": "d9 f6 ac e0",
+          "length": 4,
+          "offset": 2
+        },
+        {
+          "hex": "00 00",
+          "length": 2,
+          "offset": 6
+        }
+      ],
+      "raw_hex": "04 88 d9 f6 ac e0 00 00"
+    },
+    {
+      "address": "0x00030008",
+      "entry_index": 1,
+      "entry_length_bytes": 8,
+      "instruction_count": 3,
+      "instructions": [
+        {
+          "hex": "04 88",
+          "length": 2,
+          "offset": 0
+        },
+        {
+          "hex": "d9 f1 6c e0",
+          "length": 4,
+          "offset": 2
+        },
+        {
+          "hex": "00 00",
+          "length": 2,
+          "offset": 6
+        }
+      ],
+      "raw_hex": "04 88 d9 f1 6c e0 00 00"
+    },
+    {
+      "address": "0x00030010",
+      "entry_index": 2,
+      "entry_length_bytes": 8,
+      "instruction_count": 3,
+      "instructions": [
+        {
+          "hex": "04 88",
+          "length": 2,
+          "offset": 0
+        },
+        {
+          "hex": "d9 f1 6c e0",
+          "length": 4,
+          "offset": 2
+        },
+        {
+          "hex": "00 00",
+          "length": 2,
+          "offset": 6
+        }
+      ],
+      "raw_hex": "04 88 d9 f1 6c e0 00 00"
+    },
+    {
+      "address": "0x00030018",
+      "entry_index": 3,
+      "entry_length_bytes": 8,
+      "instruction_count": 3,
+      "instructions": [
+        {
+          "hex": "04 88",
+          "length": 2,
+          "offset": 0
+        },
+        {
+          "hex": "9d ae ac e0",
+          "length": 4,
+          "offset": 2
+        },
+        {
+          "hex": "00 00",
+          "length": 2,
+          "offset": 6
+        }
+      ],
+      "raw_hex": "04 88 9d ae ac e0 00 00"
+    },
+    {
+      "address": "0x00030020",
+      "entry_index": 4,
+      "entry_length_bytes": 8,
+      "instruction_count": 4,
+      "instructions": [
+        {
+          "hex": "04 88",
+          "length": 2,
+          "offset": 0
+        },
+        {
+          "hex": "9e 83",
+          "length": 2,
+          "offset": 2
+        },
+        {
+          "hex": "ac e0",
+          "length": 2,
+          "offset": 4
+        },
+        {
+          "hex": "00 00",
+          "length": 2,
+          "offset": 6
+        }
+      ],
+      "raw_hex": "04 88 9e 83 ac e0 00 00"
+    },
+    {
+      "address": "0x00030028",
+      "entry_index": 5,
+      "entry_length_bytes": 8,
+      "instruction_count": 3,
+      "instructions": [
+        {
+          "hex": "04 88",
+          "length": 2,
+          "offset": 0
+        },
+        {
+          "hex": "9f 5d 2c e0",
+          "length": 4,
+          "offset": 2
+        },
+        {
+          "hex": "00 00",
+          "length": 2,
+          "offset": 6
+        }
+      ],
+      "raw_hex": "04 88 9f 5d 2c e0 00 00"
+    },
+    {
+      "address": "0x00030030",
+      "entry_index": 6,
+      "entry_length_bytes": 8,
+      "instruction_count": 3,
+      "instructions": [
+        {
+          "hex": "04 88",
+          "length": 2,
+          "offset": 0
+        },
+        {
+          "hex": "d9 f1 6c e0",
+          "length": 4,
+          "offset": 2
+        },
+        {
+          "hex": "00 00",
+          "length": 2,
+          "offset": 6
+        }
+      ],
+      "raw_hex": "04 88 d9 f1 6c e0 00 00"
+    },
+    {
+      "address": "0x00030038",
+      "entry_index": 7,
+      "entry_length_bytes": 8,
+      "instruction_count": 3,
+      "instructions": [
+        {
+          "hex": "04 88",
+          "length": 2,
+          "offset": 0
+        },
+        {
+          "hex": "d9 f1 6c e0",
+          "length": 4,
+          "offset": 2
+        },
+        {
+          "hex": "00 00",
+          "length": 2,
+          "offset": 6
+        }
+      ],
+      "raw_hex": "04 88 d9 f1 6c e0 00 00"
+    },
+    {
+      "address": "0x00080000",
+      "entry_index": 0,
+      "entry_length_bytes": 8,
+      "instruction_count": 3,
+      "instructions": [
+        {
+          "hex": "04 88",
+          "length": 2,
+          "offset": 0
+        },
+        {
+          "hex": "d9 b7 ac e0",
+          "length": 4,
+          "offset": 2
+        },
+        {
+          "hex": "00 00",
+          "length": 2,
+          "offset": 6
+        }
+      ],
+      "raw_hex": "04 88 d9 b7 ac e0 00 00"
+    },
+    {
+      "address": "0x00080008",
+      "entry_index": 1,
+      "entry_length_bytes": 8,
+      "instruction_count": 3,
+      "instructions": [
+        {
+          "hex": "04 88",
+          "length": 2,
+          "offset": 0
+        },
+        {
+          "hex": "09 3c 2c e0",
+          "length": 4,
+          "offset": 2
+        },
+        {
+          "hex": "00 00",
+          "length": 2,
+          "offset": 6
+        }
+      ],
+      "raw_hex": "04 88 09 3c 2c e0 00 00"
+    },
+    {
+      "address": "0x00080010",
+      "entry_index": 2,
+      "entry_length_bytes": 8,
+      "instruction_count": 3,
+      "instructions": [
+        {
+          "hex": "04 88",
+          "length": 2,
+          "offset": 0
+        },
+        {
+          "hex": "d9 bd 6c e0",
+          "length": 4,
+          "offset": 2
+        },
+        {
+          "hex": "00 00",
+          "length": 2,
+          "offset": 6
+        }
+      ],
+      "raw_hex": "04 88 d9 bd 6c e0 00 00"
+    },
+    {
+      "address": "0x00080018",
+      "entry_index": 3,
+      "entry_length_bytes": 8,
+      "instruction_count": 3,
+      "instructions": [
+        {
+          "hex": "04 88",
+          "length": 2,
+          "offset": 0
+        },
+        {
+          "hex": "d9 b7 ac e0",
+          "length": 4,
+          "offset": 2
+        },
+        {
+          "hex": "00 00",
+          "length": 2,
+          "offset": 6
+        }
+      ],
+      "raw_hex": "04 88 d9 b7 ac e0 00 00"
+    }
+  ],
+  "evidence": [
+    "instruction_length_bit0_rule_verified (even=16-bit, odd=32-bit)",
+    "vector_table_8byte_alignment_verified_at_0x00030000",
+    "vector_table_8byte_alignment_verified_at_0x00080000",
+    "instruction_format_matches_tricore_tc1796_tc1766",
+    "little_endian_instruction_encoding_verified",
+    "big_endian_calibration_data_format_verified"
+  ],
+  "instruction_boundary_check_passed": true,
+  "instruction_endianness": "LITTLE_ENDIAN",
+  "status": "PROVEN",
+  "target_class": "ZF 6HP28 / GS19.11 Mechatronic Controller",
+  "vector_table_validation": {
+    "base_address": "0x00030000",
+    "entries": [
+      {
+        "address": "0x00030000",
+        "entry_index": 0,
+        "entry_length_bytes": 8,
+        "instruction_count": 3,
+        "instructions": [
+          {
+            "hex": "04 88",
+            "length": 2,
+            "offset": 0
+          },
+          {
+            "hex": "d9 f6 ac e0",
+            "length": 4,
+            "offset": 2
+          },
+          {
+            "hex": "00 00",
+            "length": 2,
+            "offset": 6
+          }
+        ],
+        "raw_hex": "04 88 d9 f6 ac e0 00 00"
+      },
+      {
+        "address": "0x00030008",
+        "entry_index": 1,
+        "entry_length_bytes": 8,
+        "instruction_count": 3,
+        "instructions": [
+          {
+            "hex": "04 88",
+            "length": 2,
+            "offset": 0
+          },
+          {
+            "hex": "d9 f1 6c e0",
+            "length": 4,
+            "offset": 2
+          },
+          {
+            "hex": "00 00",
+            "length": 2,
+            "offset": 6
+          }
+        ],
+        "raw_hex": "04 88 d9 f1 6c e0 00 00"
+      },
+      {
+        "address": "0x00030010",
+        "entry_index": 2,
+        "entry_length_bytes": 8,
+        "instruction_count": 3,
+        "instructions": [
+          {
+            "hex": "04 88",
+            "length": 2,
+            "offset": 0
+          },
+          {
+            "hex": "d9 f1 6c e0",
+            "length": 4,
+            "offset": 2
+          },
+          {
+            "hex": "00 00",
+            "length": 2,
+            "offset": 6
+          }
+        ],
+        "raw_hex": "04 88 d9 f1 6c e0 00 00"
+      },
+      {
+        "address": "0x00030018",
+        "entry_index": 3,
+        "entry_length_bytes": 8,
+        "instruction_count": 3,
+        "instructions": [
+          {
+            "hex": "04 88",
+            "length": 2,
+            "offset": 0
+          },
+          {
+            "hex": "9d ae ac e0",
+            "length": 4,
+            "offset": 2
+          },
+          {
+            "hex": "00 00",
+            "length": 2,
+            "offset": 6
+          }
+        ],
+        "raw_hex": "04 88 9d ae ac e0 00 00"
+      },
+      {
+        "address": "0x00030020",
+        "entry_index": 4,
+        "entry_length_bytes": 8,
+        "instruction_count": 4,
+        "instructions": [
+          {
+            "hex": "04 88",
+            "length": 2,
+            "offset": 0
+          },
+          {
+            "hex": "9e 83",
+            "length": 2,
+            "offset": 2
+          },
+          {
+            "hex": "ac e0",
+            "length": 2,
+            "offset": 4
+          },
+          {
+            "hex": "00 00",
+            "length": 2,
+            "offset": 6
+          }
+        ],
+        "raw_hex": "04 88 9e 83 ac e0 00 00"
+      },
+      {
+        "address": "0x00030028",
+        "entry_index": 5,
+        "entry_length_bytes": 8,
+        "instruction_count": 3,
+        "instructions": [
+          {
+            "hex": "04 88",
+            "length": 2,
+            "offset": 0
+          },
+          {
+            "hex": "9f 5d 2c e0",
+            "length": 4,
+            "offset": 2
+          },
+          {
+            "hex": "00 00",
+            "length": 2,
+            "offset": 6
+          }
+        ],
+        "raw_hex": "04 88 9f 5d 2c e0 00 00"
+      },
+      {
+        "address": "0x00030030",
+        "entry_index": 6,
+        "entry_length_bytes": 8,
+        "instruction_count": 3,
+        "instructions": [
+          {
+            "hex": "04 88",
+            "length": 2,
+            "offset": 0
+          },
+          {
+            "hex": "d9 f1 6c e0",
+            "length": 4,
+            "offset": 2
+          },
+          {
+            "hex": "00 00",
+            "length": 2,
+            "offset": 6
+          }
+        ],
+        "raw_hex": "04 88 d9 f1 6c e0 00 00"
+      },
+      {
+        "address": "0x00030038",
+        "entry_index": 7,
+        "entry_length_bytes": 8,
+        "instruction_count": 3,
+        "instructions": [
+          {
+            "hex": "04 88",
+            "length": 2,
+            "offset": 0
+          },
+          {
+            "hex": "d9 f1 6c e0",
+            "length": 4,
+            "offset": 2
+          },
+          {
+            "hex": "00 00",
+            "length": 2,
+            "offset": 6
+          }
+        ],
+        "raw_hex": "04 88 d9 f1 6c e0 00 00"
+      }
+    ],
+    "entry_size_bytes": 8,
+    "validated_entries": 8
+  }
+}

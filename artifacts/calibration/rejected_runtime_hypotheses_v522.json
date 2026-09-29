@@ -1,0 +1,62 @@
+{
+  "rejected_hypotheses": [
+    {
+      "candidate_object": "MAP_DESC_0001 Target 3",
+      "evidence": [
+        "descriptor_field_7_contains_end_address_0x000641A3",
+        "total_length_equals_26_bytes (2 header bytes + 24 data bytes = 12 points)",
+        "followed_immediately_by_target_4_at_0x000641A4",
+        "2D_grid_stride_refuted_by_explicit_bounds"
+      ],
+      "explanation": "Milestone 5.20 heuristically multiplied adjacent axis dimensions 12*8=96. Exact binary analysis of descriptor field 7 at 0x000454BC establishes an inclusive end at 0x000641A3, proving Target 3 is a 12-element 1D characteristic curve (KL), not a 2D table.",
+      "hypothesis_id": "HYP_REJ_01",
+      "rejected_claim": "MAP_DESC_0001 Target 3 is a 12x8 2D KF table (96 words)",
+      "rejection_reason": "DESCRIPTOR_BOUNDS_PROVE_1D_CURVE"
+    },
+    {
+      "candidate_object": "Runtime Bilinear Interpolation Execution",
+      "evidence": [
+        "target_3_is_1D_curve_not_2D_surface",
+        "no_bilinear_interpolation_opcode_trace_in_firmware"
+      ],
+      "explanation": "Because Target 3 is a 1D characteristic curve rather than a 2D map, 2D bilinear interpolation is structurally inapplicable. 1D linear interpolation is structurally compatible, but execution opcode traces remain unconfirmed.",
+      "hypothesis_id": "HYP_REJ_02",
+      "rejected_claim": "Firmware executes runtime 2D bilinear interpolation across 0x0006418A",
+      "rejection_reason": "INAPPLICABLE_GEOMETRY_AND_UNCONFIRMED_OPCODE"
+    },
+    {
+      "candidate_object": "Code References at 0x000F55A8 and 0x000F4ACE",
+      "evidence": [
+        "instruction_boundary_decoding_under_tricore_rules",
+        "match_at_0x000F55A8_straddles_instruction_boundary_between_0x000F55A6_and_0x000F55AA",
+        "match_at_0x000F4ACE_is_two_sequential_16bit_instructions"
+      ],
+      "explanation": "Raw 32-bit byte scans matching calibration addresses across instruction boundaries are false-positive alignment artifacts. TriCore instruction boundaries strictly separate operands.",
+      "hypothesis_id": "HYP_REJ_03",
+      "rejected_claim": "Raw 32-bit matches (e.g. 57 bc 04 80) represent executed code address dereferences",
+      "rejection_reason": "ALIGNMENT_ARTIFACT"
+    },
+    {
+      "candidate_object": "Executive Records at 0x0004381C and 0x0006D7BC",
+      "evidence": [
+        "addresses_reside_in_structured_data_arrays",
+        "entries_contain_id_prefix_and_pointer_pair"
+      ],
+      "explanation": "Addresses at 0x0004381C and 0x0006D7BC are static data table entries, not machine code instructions.",
+      "hypothesis_id": "HYP_REJ_04",
+      "rejected_claim": "Addresses embedded in Segment 2 and Segment 7 are direct code instructions",
+      "rejection_reason": "DATA_RECORD_MISLABEL"
+    },
+    {
+      "candidate_object": "Constant 6800 (0x000505BE)",
+      "evidence": [
+        "no_executable_cross_reference_proving_speed_cutoff",
+        "forum_conjecture_confined_strictly_to_layer_b"
+      ],
+      "explanation": "Constant 0x1A90 at 0x000505BE has no verified local binary cross-reference or comparator proving it governs engine redline. Layer C remains UNKNOWN.",
+      "hypothesis_id": "HYP_REJ_05",
+      "rejected_claim": "Constant 6800 is proven as engine redline or maximum speed governor cutoff",
+      "rejection_reason": "NO_BINARY_EVIDENCE_FOR_LAYER_C"
+    }
+  ]
+}

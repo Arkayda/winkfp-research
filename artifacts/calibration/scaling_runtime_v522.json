@@ -1,0 +1,43 @@
+{
+  "constants": [
+    {
+      "address": "0x000505BA",
+      "confidence": "SUPPORTED",
+      "decimal_value": 750,
+      "evidence": [
+        "raw_constant_0x02EE_present_in_da_segment_1",
+        "matches_m57d30tu2_powertrain_envelope"
+      ],
+      "layer_a_description": "16-bit unsigned scalar constant at 0x000505BA",
+      "layer_b_external_hypothesis": "ZF 6HP28 maximum torque limit threshold (750 Nm / 0.1 Nm factor)",
+      "layer_c_status": "SUPPORTED",
+      "raw_hex": "02EE"
+    },
+    {
+      "address": "0x000505BC",
+      "confidence": "SUPPORTED",
+      "decimal_value": 500,
+      "evidence": [
+        "raw_constant_0x01F4_present_in_da_segment_1",
+        "matches_vehicle_factory_engine_spec"
+      ],
+      "layer_a_description": "16-bit unsigned scalar constant at 0x000505BC",
+      "layer_b_external_hypothesis": "M57D30TU2 nominal factory torque specification (500 Nm)",
+      "layer_c_status": "SUPPORTED",
+      "raw_hex": "01F4"
+    },
+    {
+      "address": "0x000505BE",
+      "confidence": "UNCONFIRMED",
+      "decimal_value": 6800,
+      "evidence": [
+        "raw_constant_0x1A90_present_in_da_segment_1",
+        "no_local_binary_cross_reference_proving_engine_rpm_cutoff"
+      ],
+      "layer_a_description": "16-bit unsigned scalar constant at 0x000505BE",
+      "layer_b_external_hypothesis": "Tuner forum conjecture of engine max RPM",
+      "layer_c_status": "UNKNOWN",
+      "raw_hex": "1A90"
+    }
+  ]
+}

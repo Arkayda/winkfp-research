@@ -1,0 +1,124 @@
+{
+  "changes": [
+    {
+      "change_type": "CORRECTION",
+      "evidence": "Descriptor field 7 at 0x000454BC specifies end address 0x000641A3; header count word at 0x0006418A is 12.",
+      "item": "MAP_DESC_0001 Target 3 Topology",
+      "new_confidence": "PROVEN",
+      "new_value": "1D Characteristic Curve (KL_CURVE_1: 12 elements, 26 bytes)",
+      "old_value": "2D Map (12x8 = 96 words)",
+      "previous_confidence": "UNCONFIRMED",
+      "reason": "Previous 5.20 heuristic multiplied adjacent axis lengths 12*8=96. Binary descriptor bounds prove Target 3 is a 12-point 1D curve."
+    },
+    {
+      "change_type": "EXTENSION",
+      "evidence": "Descriptor fields 8-11 contain explicit bounds 0x000641A4-0x000641BD and 0x000641BE-0x000641CF.",
+      "item": "MAP_DESC_0001 Target 4 & 5 Topology",
+      "new_confidence": "PROVEN",
+      "new_value": "KL_CURVE_2 (12 points) and KL_CURVE_3 (8 points)",
+      "old_value": "UNRESOLVED / UNVALIDATED",
+      "previous_confidence": "UNCONFIRMED",
+      "reason": "Identified all five target bounding pairs in MAP_DESC_0001."
+    },
+    {
+      "change_type": "REFINEMENT",
+      "evidence": "Instruction boundary decoding under TriCore TC1796/TC1766 rules proves 0x0004381C is in a data table and 0x000F55A8 is an unaligned slice.",
+      "item": "Code Reference Taxonomy & Boundary Discrimination",
+      "new_confidence": "PROVEN",
+      "new_value": "Partitioned into STATIC_ADDRESS_TABLE data records vs REJECTED_ALIGNMENT_ARTIFACT",
+      "old_value": "Broad 4-reference direct code set in 5.21",
+      "previous_confidence": "SUPPORTED",
+      "reason": "Enforced Gate 2 and Gate 3 instruction-boundary and data-vs-code discipline."
+    },
+    {
+      "change_type": "CORRECTION",
+      "evidence": "Target 3 topology proven to be 1D characteristic curve (12 points).",
+      "item": "Interpolation Structural Model",
+      "new_confidence": "SUPPORTED",
+      "new_value": "1D Piecewise Linear Interpolation Compatibility",
+      "old_value": "2D Bilinear Grid Interpolation Compatibility",
+      "previous_confidence": "SUPPORTED",
+      "reason": "1D curve geometry requires 1D linear interpolation rather than 2D bilinear interpolation."
+    },
+    {
+      "change_type": "CORRECTION",
+      "evidence": "Raw binary decode across 0x00063AD6, 0x00063AF0, 0x0006418A, 0x000641A4, 0x000641BE proves offset +0x00 is uint16 count (12 or 8) and offset +0x02 begins payload.",
+      "item": "Object Encoding & Mathematical Identity Resolution",
+      "new_confidence": "PROVEN",
+      "new_value": "Exact identity 'total_span_bytes = metadata_bytes (2) + element_count * element_width (2)' with 16-bit big-endian element count header prefix followed by payload",
+      "old_value": "Prose statement '26 bytes = 12 int16 points' and '18 bytes = 8 uint16 points'",
+      "previous_confidence": "SUPPORTED",
+      "reason": "Reconcile apparent mathematical contradiction where 12 * 2 = 24 != 26 bytes."
+    },
+    {
+      "change_type": "CORRECTION",
+      "evidence": "git status --short audit confirms exactly 27 changed files in working tree.",
+      "item": "Milestone 5.22 File Inventory Count",
+      "new_confidence": "PROVEN",
+      "new_value": "27 total files: 3 modified tracked files (README.md, docs/ARCHITECTURE.md, docs/EVIDENCE.md) + 24 untracked files (14 artifacts, 4 implementation, 4 tests, 1 tool, 1 evidence doc)",
+      "old_value": "24 files (counted only untracked entries, omitting modified tracked files)",
+      "previous_confidence": "SUPPORTED",
+      "reason": "Establish exact measured file accounting across tracked and untracked changes."
+    },
+    {
+      "change_type": "EXTENSION",
+      "evidence": "Direct SHA-256 hash computed over spdaten_gke/E60/data/GKE215/7591971A.0pa.",
+      "item": "Reference Program 7591971A.0pa Cryptographic Hash",
+      "new_confidence": "PROVEN",
+      "new_value": "SHA-256: 63b204d2edbdaa0945d9b0241d55df7c6859b41d3376d9f35e93cc6c82ecfcc3 (1,942,502 bytes)",
+      "old_value": "Unrecorded SHA-256 for 7591971A.0pa",
+      "previous_confidence": "UNCONFIRMED",
+      "reason": "7591971A.0pa is a primary executable input for TriCore architecture, descriptor, and code region analysis in 5.22."
+    },
+    {
+      "change_type": "CORRECTION",
+      "evidence": "Direct filesystem measurement via stat and wc -c on /Users/blogman/bmw_flash_re/spdaten_gke/E60/data/GKE195/A7592133.0da confirms 489,258 bytes; sha256sum confirms 45b473d1ee8cc2542a1eb3ecb77bf446f357f81827a464e6c3489257312a0112. Matches canonical historical records in 5.18 and 5.20.",
+      "item": "A7592133_SIZE_HASH_RECONCILIATION",
+      "new_confidence": "PROVEN",
+      "new_value": "489,258 bytes (SHA-256: 45b473d1ee8cc2542a1eb3ecb77bf446f357f81827a464e6c3489257312a0112, verified from local filesystem)",
+      "old_value": "477,061 bytes (SHA-256: 45b473d1ee8cc2542a1eb3ecb77bf446f357f81827a464e6c3489257312a0112)",
+      "previous_confidence": "SUPPORTED",
+      "reason": "Eliminate hardcoded 477,061 byte transcription error introduced in 5.22 reports and manifests."
+    },
+    {
+      "change_type": "REFINEMENT",
+      "evidence": "No executable code reference in 7591971A.0pa or A7592133.0da demonstrates the engineering role of Axis X.",
+      "item": "AXIS_X_SEMANTIC_STATUS",
+      "new_confidence": "UNCONFIRMED",
+      "new_value": "semantic_hypothesis: UNKNOWN, confidence: UNCONFIRMED; structural description preserved (0x00063AD6\u20130x00063AEF, 26 B, count header 12, 12 signed int16 breakpoints [-10, 50, ..., 700], strictly increasing)",
+      "old_value": "represents normalized input scale",
+      "previous_confidence": "SUPPORTED",
+      "reason": "Epistemic downgrade: structural monotonicity and descriptor bounding do not constitute proof of normalized input scale role."
+    },
+    {
+      "change_type": "REFINEMENT",
+      "evidence": "No executable code reference demonstrates the engineering role of Axis Y.",
+      "item": "AXIS_Y_SEMANTIC_STATUS",
+      "new_confidence": "UNCONFIRMED",
+      "new_value": "semantic_hypothesis: UNKNOWN, confidence: UNCONFIRMED; structural description preserved (0x00063AF0\u20130x00063B01, 18 B, count header 8, 8 unsigned uint16 breakpoints [100, 1500, ..., 5500], strictly increasing)",
+      "old_value": "represents secondary input scale / RPM speed range compatibility",
+      "previous_confidence": "SUPPORTED",
+      "reason": "Epistemic downgrade: numeric range compatibility does not constitute proof of engine RPM or secondary input scale role."
+    },
+    {
+      "change_type": "CORRECTION",
+      "evidence": "Observed across all 5 descriptor targets in MAP_DESC_0001 (0x000454A0) within A7592133.0da; universal multi-vendor claim refrained without cross-supplier evidence.",
+      "item": "OBJECT_FORMAT_DESCRIPTION",
+      "new_confidence": "PROVEN",
+      "new_value": "Observed target-local calibration object format in A7592133.0da: 2-byte Big-Endian count/header followed by N 16-bit Big-Endian payload elements.",
+      "old_value": "standard ZF/Bosch calibration object layout",
+      "previous_confidence": "SUPPORTED",
+      "reason": "Restrict architectural claim to strictly observed target-local binary structure."
+    },
+    {
+      "change_type": "CORRECTION",
+      "evidence": "Eliminated two-pass append-and-rewrite circularity in recon_v522.py. All 13 indexed artifacts verify bit-for-bit against filesystem hashes.",
+      "item": "MANIFEST_INTEGRITY_MODEL",
+      "new_confidence": "PROVEN",
+      "new_value": "Non-circular manifest integrity model with explicit self_hash_policy = 'EXCLUDED' indexing the 13 core artifacts",
+      "old_value": "Circular self-referential manifest entry with pre-serialization digest and stale size",
+      "previous_confidence": "SUPPORTED",
+      "reason": "Prevent circular self-hash contradiction where manifest recorded a hash differing from its own final on-disk byte sequence."
+    }
+  ]
+}

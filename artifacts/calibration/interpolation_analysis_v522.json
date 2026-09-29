@@ -1,0 +1,14 @@
+{
+  "confidence": "SUPPORTED",
+  "evidence": [
+    "1D_characteristic_curve_topology_proven",
+    "strictly_monotonic_axis_breakpoints",
+    "runtime_opcode_execution_unconfirmed"
+  ],
+  "formula": "Y = Y_k + (X - X_k) * (Y_{k+1} - Y_k) / (X_{k+1} - X_k)",
+  "opcode_trace_available": false,
+  "runtime_interpolation_status": "UNCONFIRMED",
+  "structural_model": "1D_LINEAR_PIECEWISE",
+  "target_address": "0x0006418A",
+  "target_id": "TARGET_3_KL_CURVE_1"
+}
