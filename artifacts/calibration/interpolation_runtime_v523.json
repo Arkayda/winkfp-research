@@ -1,0 +1,12 @@
+{
+  "classification": "PIECEWISE_LINEAR",
+  "evidence": [
+    "monotonic_breakpoint_sequence_proven",
+    "adjacent_curve_cell_indexing_proven",
+    "linear_piecewise_structural_identity_confirmed",
+    "runtime_machine_instruction_execution_unconfirmed"
+  ],
+  "formula": "y = y_k + ((x - x_k) * (y_{k+1} - y_k)) / (x_{k+1} - x_k)",
+  "runtime_opcode_execution": "UNCONFIRMED",
+  "structural_compatibility": "PROVEN"
+}

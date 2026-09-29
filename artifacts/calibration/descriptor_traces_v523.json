@@ -1,0 +1,196 @@
+{
+  "address_classes": {
+    "DESCRIPTOR_FIELD_ADDRESS": "Address of field slot within MAP_DESC_0001 in 7591971A.0pa (e.g. 0x000454A8)",
+    "POINTER_TABLE_ADDRESS": "Secondary dispatch candidate table in Segment 4 (0x0004BD00 / 0x0004BD80, 0x00041800)",
+    "POINTER_VALUE": "32-bit big-endian pointer value stored inside descriptor field (e.g. 0x00063AD6)",
+    "REJECTED_SYNTHETIC_ADDRESS": "Non-existent address in unmapped PA memory gap (0x00045500..0x00045558)",
+    "TARGET_CALIBRATION_ADDRESS": "Target-local physical object address in A7592133.0da Segment 6"
+  },
+  "confidence": "PROVEN",
+  "descriptor_id": "MAP_DESC_0001",
+  "evidence": [
+    "descriptor_record_at_0x000454A0_in_pa_segment_3",
+    "explicit_32bit_big_endian_start_end_bounding_pairs",
+    "targets_resolve_to_calibration_segment_6_in_A7592133.0da",
+    "non_existent_0x000455xx_addresses_formally_rejected"
+  ],
+  "field_count": 12,
+  "header_fields": [
+    "0xFFFFFFFF",
+    "0xFFFFFFFF"
+  ],
+  "reconciliation_summary": {
+    "synthetic_0x455xx_candidates": [
+      {
+        "candidate_address": "0x00045500",
+        "dereferenced": false,
+        "evidence_level": "REJECTED",
+        "relation_to_0x63xxx": "Synthetic offset (+0x60 from descriptor); unmapped in PA and absent in DA",
+        "status": "REJECTED_SYNTHETIC_ADDRESS"
+      },
+      {
+        "candidate_address": "0x00045518",
+        "dereferenced": false,
+        "evidence_level": "REJECTED",
+        "relation_to_0x63xxx": "Synthetic offset (+0x78 from descriptor); unmapped in PA and absent in DA",
+        "status": "REJECTED_SYNTHETIC_ADDRESS"
+      },
+      {
+        "candidate_address": "0x00045528",
+        "dereferenced": false,
+        "evidence_level": "REJECTED",
+        "relation_to_0x63xxx": "Synthetic offset (+0x88 from descriptor); unmapped in PA and absent in DA",
+        "status": "REJECTED_SYNTHETIC_ADDRESS"
+      },
+      {
+        "candidate_address": "0x00045540",
+        "dereferenced": false,
+        "evidence_level": "REJECTED",
+        "relation_to_0x63xxx": "Synthetic offset (+0xA0 from descriptor); unmapped in PA and absent in DA",
+        "status": "REJECTED_SYNTHETIC_ADDRESS"
+      },
+      {
+        "candidate_address": "0x00045558",
+        "dereferenced": false,
+        "evidence_level": "REJECTED",
+        "relation_to_0x63xxx": "Synthetic offset (+0xB8 from descriptor); unmapped in PA and absent in DA",
+        "status": "REJECTED_SYNTHETIC_ADDRESS"
+      }
+    ],
+    "targets_in_calibration_segment_6": [
+      {
+        "end_address": "0x00063AEF",
+        "points": 12,
+        "start_address": "0x00063AD6",
+        "target": "TARGET_1_AXIS_X",
+        "type": "int16"
+      },
+      {
+        "end_address": "0x00063B01",
+        "points": 8,
+        "start_address": "0x00063AF0",
+        "target": "TARGET_2_AXIS_Y",
+        "type": "uint16"
+      },
+      {
+        "end_address": "0x000641A3",
+        "points": 12,
+        "start_address": "0x0006418A",
+        "target": "TARGET_3_KL_CURVE_1",
+        "type": "int16"
+      },
+      {
+        "end_address": "0x000641BD",
+        "points": 12,
+        "start_address": "0x000641A4",
+        "target": "TARGET_4_KL_CURVE_2",
+        "type": "int16"
+      },
+      {
+        "end_address": "0x000641CF",
+        "points": 8,
+        "start_address": "0x000641BE",
+        "target": "TARGET_5_KL_CURVE_3",
+        "type": "uint16"
+      }
+    ]
+  },
+  "source_address": "0x000454A0",
+  "source_file": "7591971A.0pa",
+  "source_segment": 3,
+  "targets": [
+    {
+      "address_classification": "TARGET_CALIBRATION_ADDRESS",
+      "confidence": "PROVEN",
+      "element_count": 12,
+      "element_width_bits": 16,
+      "field_end_address": "0x000454AC",
+      "field_start_address": "0x000454A8",
+      "raw_pointer_end": "00 06 3A EF",
+      "raw_pointer_start": "00 06 3A D6",
+      "resolved_target_end": "0x00063AEF",
+      "resolved_target_start": "0x00063AD6",
+      "signed": true,
+      "span_bytes": 26,
+      "structural_class": "AXIS_X",
+      "target_file": "A7592133.0da",
+      "target_id": "TARGET_1_AXIS_X",
+      "target_segment": 2
+    },
+    {
+      "address_classification": "TARGET_CALIBRATION_ADDRESS",
+      "confidence": "PROVEN",
+      "element_count": 8,
+      "element_width_bits": 16,
+      "field_end_address": "0x000454B4",
+      "field_start_address": "0x000454B0",
+      "raw_pointer_end": "00 06 3B 01",
+      "raw_pointer_start": "00 06 3A F0",
+      "resolved_target_end": "0x00063B01",
+      "resolved_target_start": "0x00063AF0",
+      "signed": false,
+      "span_bytes": 18,
+      "structural_class": "AXIS_Y",
+      "target_file": "A7592133.0da",
+      "target_id": "TARGET_2_AXIS_Y",
+      "target_segment": 2
+    },
+    {
+      "address_classification": "TARGET_CALIBRATION_ADDRESS",
+      "associated_axis": "TARGET_1_AXIS_X",
+      "confidence": "PROVEN",
+      "element_count": 12,
+      "element_width_bits": 16,
+      "field_end_address": "0x000454BC",
+      "field_start_address": "0x000454B8",
+      "raw_pointer_end": "00 06 41 A3",
+      "raw_pointer_start": "00 06 41 8A",
+      "resolved_target_end": "0x000641A3",
+      "resolved_target_start": "0x0006418A",
+      "signed": true,
+      "span_bytes": 26,
+      "structural_class": "1D_CHARACTERISTIC_CURVE",
+      "target_file": "A7592133.0da",
+      "target_id": "TARGET_3_KL_CURVE_1",
+      "target_segment": 2
+    },
+    {
+      "address_classification": "TARGET_CALIBRATION_ADDRESS",
+      "associated_axis": "TARGET_1_AXIS_X",
+      "confidence": "PROVEN",
+      "element_count": 12,
+      "element_width_bits": 16,
+      "field_end_address": "0x000454C4",
+      "field_start_address": "0x000454C0",
+      "raw_pointer_end": "00 06 41 BD",
+      "raw_pointer_start": "00 06 41 A4",
+      "resolved_target_end": "0x000641BD",
+      "resolved_target_start": "0x000641A4",
+      "signed": true,
+      "span_bytes": 26,
+      "structural_class": "1D_CHARACTERISTIC_CURVE",
+      "target_file": "A7592133.0da",
+      "target_id": "TARGET_4_KL_CURVE_2",
+      "target_segment": 2
+    },
+    {
+      "address_classification": "TARGET_CALIBRATION_ADDRESS",
+      "associated_axis": "TARGET_2_AXIS_Y",
+      "confidence": "PROVEN",
+      "element_count": 8,
+      "element_width_bits": 16,
+      "field_end_address": "0x000454CC",
+      "field_start_address": "0x000454C8",
+      "raw_pointer_end": "00 06 41 CF",
+      "raw_pointer_start": "00 06 41 BE",
+      "resolved_target_end": "0x000641CF",
+      "resolved_target_start": "0x000641BE",
+      "signed": false,
+      "span_bytes": 18,
+      "structural_class": "1D_CHARACTERISTIC_CURVE",
+      "target_file": "A7592133.0da",
+      "target_id": "TARGET_5_KL_CURVE_3",
+      "target_segment": 2
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "candidate_id": "CALCODE_CANDIDATE_0001",
+  "engineering_unit": "UNKNOWN",
+  "function_id": "CALCODE_CANDIDATE_0001",
+  "rules": [
+    "Units cannot be inferred from numeric magnitude alone",
+    "Constant 750 / 500 units unconfirmed without consumer proof",
+    "Constant 6800 Layer C remains UNKNOWN / UNCONFIRMED"
+  ],
+  "unit_confidence": "UNCONFIRMED"
+}

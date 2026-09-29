@@ -1,0 +1,86 @@
+{
+  "changes": [
+    {
+      "change_type": "EXTENSION",
+      "evidence": "TriCore instruction stream around 0x00086000 and control flow basic block BB_0001",
+      "item": "CALCODE_CANDIDATE_RECONSTRUCTION",
+      "new_confidence": "STRONGLY_SUPPORTED",
+      "new_value": "Forensic CALCODE_CANDIDATE_0001 code-path candidate at basic block 0x00086000",
+      "old_value": "Static 10-node execution graph without concrete candidate code wrapper (5.22)",
+      "previous_confidence": "SUPPORTED",
+      "reason": "Elevated from generic execution graph to basic-block code candidate model with strict epistemic ceilings"
+    },
+    {
+      "change_type": "REFINEMENT",
+      "evidence": "Identical breakpoint count headers (12, 12, 8) and domain range identities",
+      "item": "CURVE_RELATIONSHIPS_TO_AXES",
+      "new_confidence": "PROVEN",
+      "new_value": "Curve 1 & 2 mapped to Axis X (12 pts); Curve 3 mapped to Axis Y (8 pts, identity)",
+      "old_value": "Three 1D KL curves without explicit axis domain mapping (5.22)",
+      "previous_confidence": "SUPPORTED",
+      "reason": "Established exact 1D curve to axis dependency pairs"
+    },
+    {
+      "change_type": "EXTENSION",
+      "evidence": "Pointer array in Segment 4 referenced by code near 0x00086002",
+      "item": "DISPATCH_CANDIDATE_LINKAGE",
+      "new_confidence": "SUPPORTED",
+      "new_value": "Explicit dispatch candidate table mapping Axis X/Y and Curves 1-3",
+      "old_value": "Unconnected table entries at 0x0004BD00 / 0x0004BD80",
+      "previous_confidence": "UNCONFIRMED",
+      "reason": "Discovered dual pointer dispatch table serving candidate targets"
+    },
+    {
+      "change_type": "CORRECTION",
+      "evidence": "Memory segment boundaries in 7591971A.0pa and A7592133.0da; big-endian pointer decoding at 0x000454A0",
+      "item": "MAP_DESC_ADDRESS_RECONCILIATION",
+      "new_confidence": "PROVEN",
+      "new_value": "Reconciled exact chain: MAP_DESC_0001 descriptor fields at 0x000454A8..0x000454CC store pointers to Segment 6 targets 0x00063AD6..0x000641BE in A7592133.0da; 0x000455xx rejected as synthetic unmapped gap in 7591971A.0pa",
+      "old_value": "Addresses 0x000455xx referenced as calibration targets in report summary",
+      "previous_confidence": "UNCONFIRMED",
+      "reason": "Resolved apparent discrepancy between 0x455xx and 0x63xxx, separating descriptor field addresses from target calibration addresses"
+    },
+    {
+      "change_type": "CORRECTION",
+      "evidence": "TriCore instruction stream at 0x00085FFC (OP16) and 0x00085FFE (OP16) falls through to 0x00086000 without call/procedure-entry opcode; 0 incoming call/branch edges in executable",
+      "item": "CALFUNC_0001_TO_CALCODE_CANDIDATE_RECLASSIFICATION",
+      "new_confidence": "PROVEN (Basic Block Entry) / UNCONFIRMED (Procedure Boundary)",
+      "new_value": "0x00086000 = basic-block/code candidate, procedure boundary = UNCONFIRMED, verified callers = []",
+      "old_value": "0x00086000 = function entry candidate",
+      "previous_confidence": "UNCONFIRMED",
+      "reason": "no verified procedure-entry or call-edge evidence; location is reached by fallthrough"
+    },
+    {
+      "change_type": "CORRECTION",
+      "evidence": "0x00086002 is sequential instruction (+2); 0x0009C580 is unaligned intra-instruction offset (+2 inside 0x0009C57E)",
+      "item": "CALLER_EDGE_REJECTION",
+      "new_confidence": "PROVEN",
+      "new_value": "0x00086002 -> 0x00086000 = rejected, FALLTHROUGH; 0x0009C580 -> 0x00086000 = rejected, NONE / unaligned",
+      "old_value": "0x00086002 and 0x0009C580 hypothesized as caller edges to 0x00086000",
+      "previous_confidence": "UNCONFIRMED",
+      "reason": "no verified procedure-entry or call-edge evidence; location is reached by fallthrough; 0x00086002 -> 0x00086000 rejected (FALLTHROUGH); 0x0009C580 -> 0x00086000 rejected (NONE / unaligned)"
+    },
+    {
+      "change_type": "CORRECTION",
+      "evidence": "Binary search in A7592133.0da Segment 5 and absence of CMP/clamp opcode in 7591971A.0pa",
+      "item": "CALIBRATION_750_500_CLAMP_EVIDENCE",
+      "new_confidence": "UNCONFIRMED",
+      "new_value": "Exact constant addresses reconciled to 0x00050612 (750 x5) and 0x0005065A (500) in Segment 5; clamp semantics downgraded to UNCONFIRMED due to absence of machine comparison/saturation instruction",
+      "old_value": "750 and 500 enforce upper/lower bounds; located at 0x000505BA and 0x000505BC",
+      "previous_confidence": "SUPPORTED",
+      "reason": "Separated Layer A (raw constants) from Layer B (vehicle specs) and Layer C (clamp hypothesis); prevented unevidenced runtime claims"
+    },
+    {
+      "change_type": "EXTENSION",
+      "evidence": "Non-circular deterministic artifact serialization across 17 payload files",
+      "item": "MANIFEST_INTEGRITY_MODEL",
+      "new_confidence": "PROVEN",
+      "new_value": "17 indexed artifacts in Milestone 5.23 manifest with self_hash_policy EXCLUDED",
+      "old_value": "13 indexed artifacts in Milestone 5.22 manifest",
+      "previous_confidence": "PROVEN",
+      "reason": "Preserves cryptographic integrity and avoids circular self-hash"
+    }
+  ],
+  "milestone": "5.23",
+  "title": "Forensic Change Log \u2014 Calibration Function Reconstruction (5.23 vs 5.22)"
+}

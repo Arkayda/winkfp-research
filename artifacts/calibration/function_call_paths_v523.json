@@ -1,0 +1,49 @@
+{
+  "caller_validation": {
+    "0x00086002": {
+      "edge_type": "FALLTHROUGH",
+      "reason": "Sequential instruction (+2) within same basic block following 2-byte OP16 at 0x00086000",
+      "status": "REJECTED_AS_CALLER"
+    },
+    "0x0009C580": {
+      "edge_type": "NONE",
+      "reason": "Unaligned intra-instruction offset inside 4-byte conditional branch at 0x0009C57E; does not call 0x00086000",
+      "status": "REJECTED_AS_CALLER"
+    }
+  },
+  "callers": [],
+  "candidate_id": "CALCODE_CANDIDATE_0001",
+  "classification": "BASIC_BLOCK_ENTRY",
+  "code_location": "0x00086000",
+  "entry_address": "0x00086000",
+  "function_entry": "UNCONFIRMED",
+  "function_id": "CALCODE_CANDIDATE_0001",
+  "lookup_steps": [
+    {
+      "confidence": "STRONGLY_SUPPORTED",
+      "description": "Binary or sequential search finding breakpoint interval [x_k, x_{k+1}]",
+      "operation": "AXIS_INTERVAL_SEARCH",
+      "step": 1
+    },
+    {
+      "confidence": "STRONGLY_SUPPORTED",
+      "description": "Compute interval index k and normalized fractional weight w",
+      "operation": "INDEX_CALCULATION",
+      "step": 2
+    },
+    {
+      "confidence": "SUPPORTED",
+      "description": "Branch condition selecting between KL_CURVE_1 and KL_CURVE_2 based on mode state",
+      "operation": "CURVE_SELECTION",
+      "step": 3
+    },
+    {
+      "confidence": "PROVEN",
+      "description": "Read 16-bit big-endian element at curve_base + 2 + k * 2",
+      "operation": "ELEMENT_DEREFERENCE",
+      "step": 4
+    }
+  ],
+  "procedure_identity": "UNCONFIRMED",
+  "verified_callers": []
+}

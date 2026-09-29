@@ -327,6 +327,23 @@ Flash execution is hard-gated by the `SafetyContext` and provenance-tracked `Lim
   - All 14 deterministic JSON artifacts generated in [`artifacts/calibration/*v522*.json`](artifacts/calibration/artifact_manifest_v522.json).
 * Reconstructed in [`reconstruction/calibration/recon_v522.py`](reconstruction/calibration/recon_v522.py) and documented in [`docs/evidence/runtime_code_path_reconstruction_milestone_5_22.md`](docs/evidence/runtime_code_path_reconstruction_milestone_5_22.md).
 
+### 7.11 EGS 6HP28 Calibration Function & Code-Path Reconstruction (Milestone 5.23)
+* **Scope**: Reconstructing concrete calibration code candidates (`CALCODE_CANDIDATE`) consuming `MAP_DESC_0001` (at `0x000454A0`) and secondary dispatch tables (`0x0004BD00` / `0x0004BD80`) in BMW E60 / M57D30TU2 / ZF 6HP28 (`GKE195`). Zero hardware I/O.
+* **Code Candidate Boundary & Callers**: Reconstructed `CALCODE_CANDIDATE_0001_AXIS_CURVE_LOOKUP` at code location `0x00086000` (proven `BASIC_BLOCK_ENTRY` reached by fallthrough from `0x00085FFE`; standalone procedure boundary `UNCONFIRMED`; verified callers list empty `[]` as adjacent instructions `0x00086002` [fallthrough] and `0x0009C580` [unaligned intra-instruction offset] were rejected as callers).
+* **Domain Linkages & Curve Dependencies**:
+  - Target 1 (Axis X, 12 signed int16 points `[-10..700]` at `0x00063AD6`) serves as the input domain for Target 3 (Curve 1, 12 points, negative boundary offset at `0x0006418A`) and Target 4 (Curve 2, 12 points, bounded lower floor at `0x000641A4`).
+  - Target 2 (Axis Y, 8 unsigned uint16 points `[100..5500]` at `0x00063AF0`) serves as the input domain for Target 5 (Curve 3, 8 points, identity transfer at `0x000641BE`).
+  - Descriptor `MAP_DESC_0001` at `0x000454A0` holds exact 32-bit pointers resolving to Segment 6 target objects; synthetic `0x000455xx` addresses rejected as unmapped memory gap.
+* **Machine Arithmetic & Transformation Pipeline**:
+  - TriCore register flow traces input arguments `%d4` and `%d5` into axis search interval calculation.
+  - Piecewise linear interpolation structure supported; machine opcode execution remains strictly `UNCONFIRMED`.
+  - Scalar constants 750 (`0x00050612` repeated 5x) and 500 (`0x0005065A` / `0x0005066C`) verified in Segment 5 (historical labels `0x000505BA`/`0x000505BC` corrected); runtime clamp semantics downgraded to `UNCONFIRMED` due to absence of machine comparison/saturation instruction.
+* **Strict Epistemic Ceilings & Negative Evidence**:
+  - Downstream output consumer and physical engineering units remain strictly **`UNKNOWN / UNCONFIRMED`**.
+  - Negative evidence cataloged in `rejected_semantic_hypotheses_v523.json` (2D KF map assumption, unevidenced RPM/torque labels, constant 6800 as proven turbine ceiling, 0x455xx synthetic targets, 0x86002/0x9C580 caller edges, unproven clamp semantics).
+  - All 18 deterministic JSON artifacts generated in [`artifacts/calibration/*v523*.json`](artifacts/calibration/artifact_manifest_v523.json) under non-circular manifest policy (`self_hash_policy: "EXCLUDED"`).
+* Reconstructed in [`reconstruction/calibration/recon_v523.py`](reconstruction/calibration/recon_v523.py) and documented in [`docs/evidence/calibration_function_reconstruction_milestone_5_23.md`](docs/evidence/calibration_function_reconstruction_milestone_5_23.md).
+
 ---
 
 ## 8. Repository Layout
@@ -334,7 +351,7 @@ Flash execution is hard-gated by the `SafetyContext` and provenance-tracked `Lim
 ```text
 winkfp-research/
 ├── artifacts/                      # Reconstructed deterministic JSON artifacts
-│   └── calibration/                # Milestones 5.20, 5.21, and 5.22 calibration catalogs & manifests
+│   └── calibration/                # Milestones 5.20, 5.21, 5.22, and 5.23 calibration catalogs & manifests
 ├── docs/                           # Technical documentation & RE reports
 │   ├── ARCHITECTURE.md             # End-to-end system architecture
 │   ├── EVIDENCE.md                 # L0–L7 experimental validation framework
@@ -342,7 +359,7 @@ winkfp-research/
 │   ├── PROPRIETARY_MATERIAL.md     # Policy on excluded OEM assets
 │   ├── QUARANTINE.md               # Audit history & asset filtering
 │   ├── research-source-map.md      # Mapping to historical source workspace
-│   ├── evidence/                   # Forensic milestone evidence artifacts (5.0–5.22)
+│   ├── evidence/                   # Forensic milestone evidence artifacts (5.0–5.23)
 │   ├── history/                    # Historical research progression (Rev 1–18.1)
 │   └── reverse-engineering/        # In-depth subsystem specifications
 ├── analysis/                       # Ghidra decompilation artifacts (45 C files)
@@ -352,7 +369,7 @@ winkfp-research/
 │   ├── ediabas/                    # EDIABAS runtime and API handlers
 │   └── obd32/                      # OBD32.dll IFH serial driver
 ├── reconstruction/                 # Clean-room Python protocol implementations
-│   ├── calibration/                # Hex parser, index, axis validation, runtime code-path tracer
+│   ├── calibration/                # Hex parser, index, axis validation, function tracer, arithmetic
 │   ├── crypto/                     # Symmetric MD5, RSA-1024, Simple XOR
 │   ├── auth/                       # AS2 3DES parser, key store, retry chain
 │   ├── vdle/                       # VDLE flash engine, block builder, OPPS setup
@@ -365,12 +382,13 @@ winkfp-research/
 │   ├── golden/                     # Golden tests (state machine, pipeline, replay, calibration)
 │   ├── differential/               # Differential suites (Unicorn x86, SGBD parity)
 │   ├── fixtures/                   # Synthetic containers, limits, and images
-│   └── run_tests.py                # Master test runner (267 tests)
+│   └── run_tests.py                # Master test runner (281 tests)
 ├── tools/                          # Analysis, diffing, and probe tools
 │   ├── kdcan_hardware_probe.py     # Safe read-only physical hardware probe
 │   ├── run_calibration_reconstruction_v520.py # Milestone 5.20 calibration reconstruction CLI
 │   ├── run_calibration_validation_v521.py     # Milestone 5.21 validation CLI
 │   ├── run_calibration_runtime_v522.py        # Milestone 5.22 runtime code-path CLI
+│   ├── run_calibration_function_v523.py       # Milestone 5.23 calibration function CLI
 │   ├── bench_diff/                 # L1/L2 event log differential runner
 │   ├── trace_parser/               # EDIABAS *.trc parser and VIN sanitizer
 │   └── analysis/                   # Master password decoder & SP-Daten scanner
@@ -406,10 +424,10 @@ Current test execution summary:
   VERIFICATION SUMMARY
 ======================================================================
   KAT             :  63 run,  63 passed,   0 skipped,   0 failed  [PASSED]
-  GOLDEN          : 188 run, 188 passed,   0 skipped,   0 failed  [PASSED]
+  GOLDEN          : 202 run, 202 passed,   0 skipped,   0 failed  [PASSED]
   DIFFERENTIAL    :  16 run,  16 passed,   0 skipped,   0 failed  [PASSED]
 ----------------------------------------------------------------------
-TOTAL: 267 tests in ~16s | 267 passed | 0 skipped | 0 failed
+TOTAL: 281 tests in ~25s | 281 passed | 0 skipped | 0 failed
 ======================================================================
 ```
 

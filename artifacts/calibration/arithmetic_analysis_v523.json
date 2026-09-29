@@ -1,0 +1,45 @@
+{
+  "confidence": "STRONGLY_SUPPORTED",
+  "operations": [
+    {
+      "confidence": "STRONGLY_SUPPORTED",
+      "consumer": "Fractional weight calculation",
+      "description": "Calculates input offset from lower interval breakpoint",
+      "instruction_address": "0x00086040",
+      "operands": "%d4, %d15 (input_x - breakpoint_k)",
+      "operation_type": "SUB",
+      "output": "%d2 (delta_x)",
+      "source": "Axis interval search interval lower bound"
+    },
+    {
+      "confidence": "SUPPORTED",
+      "consumer": "Baseline accumulation",
+      "description": "Calculates piecewise linear slope contribution",
+      "instruction_address": "0x00086046",
+      "operands": "%d2, %d6 (delta_x * delta_y)",
+      "operation_type": "MUL",
+      "output": "%d3 (weighted_step)",
+      "source": "Delta X and adjacent curve cell difference"
+    },
+    {
+      "confidence": "SUPPORTED",
+      "consumer": "Scalar bounds comparison",
+      "description": "Accumulates baseline curve value with interpolated step",
+      "instruction_address": "0x0008605C",
+      "operands": "%d3, %d7 (y_k + weighted_step)",
+      "operation_type": "ADD",
+      "output": "%d2 (interpolated_value)",
+      "source": "Lower curve cell y_k and fractional step"
+    },
+    {
+      "confidence": "UNCONFIRMED",
+      "consumer": "Return value register",
+      "description": "Hypothesized scalar clamp; no direct machine comparison (CMP) or saturation instruction evidenced in binary",
+      "instruction_address": "0x0008606C",
+      "operands": "%d2, [500, 750] (HYPOTHETICAL)",
+      "operation_type": "CLAMP",
+      "output": "%d2 (bounded_output)",
+      "source": "Segment 5 header constants at 0x00050612 (750 x5) and 0x0005065A (500); historical 0x000505BA corrected"
+    }
+  ]
+}

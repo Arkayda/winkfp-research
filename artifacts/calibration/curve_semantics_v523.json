@@ -1,0 +1,46 @@
+{
+  "candidate_id": "CALCODE_CANDIDATE_0001",
+  "confidence": "PROVEN_STRUCTURE / UNCONFIRMED_PHYSICAL_SEMANTICS",
+  "curves": [
+    {
+      "address": "0x0006418A",
+      "associated_axis": "TARGET_1_AXIS_X",
+      "confidence": "PROVEN",
+      "curve_type": "1D_CHARACTERISTIC_CURVE",
+      "data_type": "int16",
+      "element_count": 12,
+      "id": "TARGET_3_KL_CURVE_1",
+      "raw_hex": "00 0c ff f1 00 32 00 64 00 96 00 c8 00 fa 01 2c 01 5e 01 90 01 f4 02 58 02 bc",
+      "relationship_to_axis": "DOMAIN_MATCH_12_POINTS_NEGATIVE_BOUND_OFFSET (-15 vs -10)",
+      "signed": true,
+      "span_bytes": 26
+    },
+    {
+      "address": "0x000641A4",
+      "associated_axis": "TARGET_1_AXIS_X",
+      "confidence": "PROVEN",
+      "curve_type": "1D_CHARACTERISTIC_CURVE",
+      "data_type": "int16",
+      "element_count": 12,
+      "id": "TARGET_4_KL_CURVE_2",
+      "raw_hex": "00 0c 00 46 00 4b 00 64 00 96 00 c8 00 fa 01 2c 01 5e 01 90 01 f4 02 58 02 bc",
+      "relationship_to_axis": "DOMAIN_MATCH_12_POINTS_BOUNDED_LOWER_FLOOR (70, 75 at low end)",
+      "signed": true,
+      "span_bytes": 26
+    },
+    {
+      "address": "0x000641BE",
+      "associated_axis": "TARGET_2_AXIS_Y",
+      "confidence": "PROVEN",
+      "curve_type": "1D_CHARACTERISTIC_CURVE",
+      "data_type": "uint16",
+      "element_count": 8,
+      "id": "TARGET_5_KL_CURVE_3",
+      "raw_hex": "00 08 00 64 05 dc 07 d0 09 c4 0c b2 0f a0 12 8e 15 7c",
+      "relationship_to_axis": "DOMAIN_MATCH_8_POINTS_IDENTITY_TRANSFER",
+      "signed": false,
+      "span_bytes": 18
+    }
+  ],
+  "function_id": "CALCODE_CANDIDATE_0001"
+}

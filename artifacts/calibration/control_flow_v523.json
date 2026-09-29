@@ -1,0 +1,2869 @@
+{
+  "blocks": [
+    {
+      "block_id": "BB_0001",
+      "end_address": "0x00086007",
+      "instruction_count": 3,
+      "instructions": [
+        {
+          "address": "0x00086000",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x1064",
+          "raw_hex": "64 10",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086002",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x00BDF759",
+          "raw_hex": "59 f7 bd 00",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086006",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JZ",
+          "operands": "0x0008600C",
+          "raw_hex": "ce 3b",
+          "target_address": "0x0008600C",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086000",
+      "successors": [
+        "0x0008600C",
+        "0x00086008"
+      ]
+    },
+    {
+      "block_id": "BB_0002",
+      "end_address": "0x0008600B",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x00086008",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xF39F9443",
+          "raw_hex": "43 94 9f f3",
+          "target_address": null,
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086008",
+      "successors": [
+        "0x0008600C"
+      ]
+    },
+    {
+      "block_id": "BB_0003",
+      "end_address": "0x0008600D",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x0008600C",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JZ",
+          "operands": "0x00086026",
+          "raw_hex": "8e d9",
+          "target_address": "0x00086026",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x0008600C",
+      "successors": [
+        "0x00086026",
+        "0x0008600E"
+      ]
+    },
+    {
+      "block_id": "BB_0004",
+      "end_address": "0x00086013",
+      "instruction_count": 2,
+      "instructions": [
+        {
+          "address": "0x0008600E",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xB3F18E73",
+          "raw_hex": "73 8e f1 b3",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086012",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JZ",
+          "operands": "0x00086030",
+          "raw_hex": "8e f9",
+          "target_address": "0x00086030",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x0008600E",
+      "successors": [
+        "0x00086030",
+        "0x00086014"
+      ]
+    },
+    {
+      "block_id": "BB_0005",
+      "end_address": "0x00086015",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x00086014",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "J",
+          "operands": "0x000860AE",
+          "raw_hex": "c2 4d",
+          "target_address": "0x000860AE",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086014",
+      "successors": [
+        "0x000860AE"
+      ]
+    },
+    {
+      "block_id": "BB_0006",
+      "end_address": "0x0008601F",
+      "instruction_count": 4,
+      "instructions": [
+        {
+          "address": "0x00086016",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x6FB4",
+          "raw_hex": "b4 6f",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086018",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xC16FB4A3",
+          "raw_hex": "a3 b4 6f c1",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008601C",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x10E4",
+          "raw_hex": "e4 10",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008601E",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JNZ",
+          "operands": "0x0008603A",
+          "raw_hex": "26 e3",
+          "target_address": "0x0008603A",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086016",
+      "successors": [
+        "0x0008603A",
+        "0x00086020"
+      ]
+    },
+    {
+      "block_id": "BB_0007",
+      "end_address": "0x00086021",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x00086020",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JNZ",
+          "operands": "0x0008603A",
+          "raw_hex": "46 da",
+          "target_address": "0x0008603A",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086020",
+      "successors": [
+        "0x0008603A",
+        "0x00086022"
+      ]
+    },
+    {
+      "block_id": "BB_0008",
+      "end_address": "0x00086023",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x00086022",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "J",
+          "operands": "0x000860FE",
+          "raw_hex": "42 6e",
+          "target_address": "0x000860FE",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086022",
+      "successors": [
+        "0x000860FE"
+      ]
+    },
+    {
+      "block_id": "BB_0009",
+      "end_address": "0x00086025",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x00086024",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x6D34",
+          "raw_hex": "34 6d",
+          "target_address": null,
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086024",
+      "successors": [
+        "0x00086026"
+      ]
+    },
+    {
+      "block_id": "BB_0010",
+      "end_address": "0x0008602F",
+      "instruction_count": 3,
+      "instructions": [
+        {
+          "address": "0x00086026",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xC6F77799",
+          "raw_hex": "99 77 f7 c6",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008602A",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x7E9535D9",
+          "raw_hex": "d9 35 95 7e",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008602E",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x62AC",
+          "raw_hex": "ac 62",
+          "target_address": null,
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086026",
+      "successors": [
+        "0x00086030"
+      ]
+    },
+    {
+      "block_id": "BB_0011",
+      "end_address": "0x00086031",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x00086030",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0xADE8",
+          "raw_hex": "e8 ad",
+          "target_address": null,
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086030",
+      "successors": [
+        "0x00086032"
+      ]
+    },
+    {
+      "block_id": "BB_0012",
+      "end_address": "0x00086039",
+      "instruction_count": 2,
+      "instructions": [
+        {
+          "address": "0x00086032",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xE601F5D1",
+          "raw_hex": "d1 f5 01 e6",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086036",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x735501FB",
+          "raw_hex": "fb 01 55 73",
+          "target_address": null,
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086032",
+      "successors": [
+        "0x0008603A"
+      ]
+    },
+    {
+      "block_id": "BB_0013",
+      "end_address": "0x00086055",
+      "instruction_count": 9,
+      "instructions": [
+        {
+          "address": "0x0008603A",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x6FB8",
+          "raw_hex": "b8 6f",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008603C",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x9186B995",
+          "raw_hex": "95 b9 86 91",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086040",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x56B622A9",
+          "raw_hex": "a9 22 b6 56",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086044",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x2654",
+          "raw_hex": "54 26",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086046",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x56F946E3",
+          "raw_hex": "e3 46 f9 56",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008604A",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x820E829B",
+          "raw_hex": "9b 82 0e 82",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008604E",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xB06F34CF",
+          "raw_hex": "cf 34 6f b0",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086052",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0xEB2C",
+          "raw_hex": "2c eb",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086054",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JNZ",
+          "operands": "0x00086072",
+          "raw_hex": "46 fb",
+          "target_address": "0x00086072",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x0008603A",
+      "successors": [
+        "0x00086072",
+        "0x00086056"
+      ]
+    },
+    {
+      "block_id": "BB_0014",
+      "end_address": "0x00086071",
+      "instruction_count": 9,
+      "instructions": [
+        {
+          "address": "0x00086056",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xFC46F98F",
+          "raw_hex": "8f f9 46 fc",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008605A",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x86FA",
+          "raw_hex": "fa 86",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008605C",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x1CA90DD5",
+          "raw_hex": "d5 0d a9 1c",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086060",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x84FC863B",
+          "raw_hex": "3b 86 fc 84",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086064",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x30A8",
+          "raw_hex": "a8 30",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086066",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xF21BE537",
+          "raw_hex": "37 e5 1b f2",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008606A",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0xBC08",
+          "raw_hex": "08 bc",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008606C",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xFE25BFD1",
+          "raw_hex": "d1 bf 25 fe",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086070",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "J",
+          "operands": "0x00086032",
+          "raw_hex": "92 e1",
+          "target_address": "0x00086032",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086056",
+      "successors": [
+        "0x00086032"
+      ]
+    },
+    {
+      "block_id": "BB_0015",
+      "end_address": "0x00086085",
+      "instruction_count": 6,
+      "instructions": [
+        {
+          "address": "0x00086072",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x63A212BB",
+          "raw_hex": "bb 12 a2 63",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086076",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x6DAC",
+          "raw_hex": "ac 6d",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086078",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xBC13C549",
+          "raw_hex": "49 c5 13 bc",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008607C",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xFFB3B96F",
+          "raw_hex": "6f b9 b3 ff",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086080",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x05F21BFD",
+          "raw_hex": "fd 1b f2 05",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086084",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JZ",
+          "operands": "0x0008609C",
+          "raw_hex": "7e c0",
+          "target_address": "0x0008609C",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086072",
+      "successors": [
+        "0x0008609C",
+        "0x00086086"
+      ]
+    },
+    {
+      "block_id": "BB_0016",
+      "end_address": "0x0008608F",
+      "instruction_count": 4,
+      "instructions": [
+        {
+          "address": "0x00086086",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x812EA177",
+          "raw_hex": "77 a1 2e 81",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008608A",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x08C0",
+          "raw_hex": "c0 08",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008608C",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0xD1BC",
+          "raw_hex": "bc d1",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008608E",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JZ",
+          "operands": "0x0008609C",
+          "raw_hex": "be 7e",
+          "target_address": "0x0008609C",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086086",
+      "successors": [
+        "0x0008609C",
+        "0x00086090"
+      ]
+    },
+    {
+      "block_id": "BB_0017",
+      "end_address": "0x0008609B",
+      "instruction_count": 4,
+      "instructions": [
+        {
+          "address": "0x00086090",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x7616BEA1",
+          "raw_hex": "a1 be 16 76",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086094",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x565A",
+          "raw_hex": "5a 56",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086096",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xD76F0C0F",
+          "raw_hex": "0f 0c 6f d7",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008609A",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x8858",
+          "raw_hex": "58 88",
+          "target_address": null,
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086090",
+      "successors": [
+        "0x0008609C"
+      ]
+    },
+    {
+      "block_id": "BB_0018",
+      "end_address": "0x000860A1",
+      "instruction_count": 2,
+      "instructions": [
+        {
+          "address": "0x0008609C",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xD18E08CD",
+          "raw_hex": "cd 08 8e d1",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000860A0",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JNZ",
+          "operands": "0x000860B8",
+          "raw_hex": "b6 cc",
+          "target_address": "0x000860B8",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x0008609C",
+      "successors": [
+        "0x000860B8",
+        "0x000860A2"
+      ]
+    },
+    {
+      "block_id": "BB_0019",
+      "end_address": "0x000860AD",
+      "instruction_count": 3,
+      "instructions": [
+        {
+          "address": "0x000860A2",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xE3DC8BE3",
+          "raw_hex": "e3 8b dc e3",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000860A6",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x1288A589",
+          "raw_hex": "89 a5 88 12",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000860AA",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "J.COND",
+          "operands": "0x00086050",
+          "raw_hex": "ff 5d d3 7f",
+          "target_address": "0x00086050",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000860A2",
+      "successors": [
+        "0x00086050",
+        "0x000860AE"
+      ]
+    },
+    {
+      "block_id": "BB_0020",
+      "end_address": "0x000860B7",
+      "instruction_count": 3,
+      "instructions": [
+        {
+          "address": "0x000860AE",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x4C0FBE41",
+          "raw_hex": "41 be 0f 4c",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000860B2",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x1BCCB36F",
+          "raw_hex": "6f b3 cc 1b",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000860B6",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x5AE8",
+          "raw_hex": "e8 5a",
+          "target_address": null,
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000860AE",
+      "successors": [
+        "0x000860B8"
+      ]
+    },
+    {
+      "block_id": "BB_0021",
+      "end_address": "0x000860BD",
+      "instruction_count": 2,
+      "instructions": [
+        {
+          "address": "0x000860B8",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xFD4BA095",
+          "raw_hex": "95 a0 4b fd",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000860BC",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JNZ",
+          "operands": "0x000860C4",
+          "raw_hex": "76 4d",
+          "target_address": "0x000860C4",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000860B8",
+      "successors": [
+        "0x000860C4",
+        "0x000860BE"
+      ]
+    },
+    {
+      "block_id": "BB_0022",
+      "end_address": "0x000860CF",
+      "instruction_count": 6,
+      "instructions": [
+        {
+          "address": "0x000860BE",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0xFAAC",
+          "raw_hex": "ac fa",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000860C0",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0xBC08",
+          "raw_hex": "08 bc",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000860C2",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x0C1FBED1",
+          "raw_hex": "d1 be 1f 0c",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000860C6",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x8858D76F",
+          "raw_hex": "6f d7 58 88",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000860CA",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xD18E08CD",
+          "raw_hex": "cd 08 8e d1",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000860CE",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JNZ",
+          "operands": "0x000860E6",
+          "raw_hex": "b6 cc",
+          "target_address": "0x000860E6",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000860BE",
+      "successors": [
+        "0x000860E6",
+        "0x000860D0"
+      ]
+    },
+    {
+      "block_id": "BB_0023",
+      "end_address": "0x000860DB",
+      "instruction_count": 3,
+      "instructions": [
+        {
+          "address": "0x000860D0",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xE3DC8BE3",
+          "raw_hex": "e3 8b dc e3",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000860D4",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x1288A589",
+          "raw_hex": "89 a5 88 12",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000860D8",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "J.COND",
+          "operands": "0x0008571E",
+          "raw_hex": "ff 5d 23 7b",
+          "target_address": "0x0008571E",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000860D0",
+      "successors": [
+        "0x0008571E",
+        "0x000860DC"
+      ]
+    },
+    {
+      "block_id": "BB_0024",
+      "end_address": "0x000860DD",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x000860DC",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JNZ",
+          "operands": "0x000860FA",
+          "raw_hex": "86 fc",
+          "target_address": "0x000860FA",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000860DC",
+      "successors": [
+        "0x000860FA",
+        "0x000860DE"
+      ]
+    },
+    {
+      "block_id": "BB_0025",
+      "end_address": "0x000860E5",
+      "instruction_count": 3,
+      "instructions": [
+        {
+          "address": "0x000860DE",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0xB444",
+          "raw_hex": "44 b4",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000860E0",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x2820",
+          "raw_hex": "20 28",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000860E2",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xEF01FB15",
+          "raw_hex": "15 fb 01 ef",
+          "target_address": null,
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000860DE",
+      "successors": [
+        "0x000860E6"
+      ]
+    },
+    {
+      "block_id": "BB_0026",
+      "end_address": "0x000860E9",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x000860E6",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x0103CC33",
+          "raw_hex": "33 cc 03 01",
+          "target_address": null,
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000860E6",
+      "successors": [
+        "0x000860EA"
+      ]
+    },
+    {
+      "block_id": "BB_0027",
+      "end_address": "0x000860EB",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x000860EA",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JNZ",
+          "operands": "0x000860EA",
+          "raw_hex": "f6 01",
+          "target_address": "0x000860EA",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000860EA",
+      "successors": [
+        "0x000860EA",
+        "0x000860EC"
+      ]
+    },
+    {
+      "block_id": "BB_0028",
+      "end_address": "0x000860F9",
+      "instruction_count": 4,
+      "instructions": [
+        {
+          "address": "0x000860EC",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x4284",
+          "raw_hex": "84 42",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000860EE",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x06FD0F2D",
+          "raw_hex": "2d 0f fd 06",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000860F2",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xF92F41FD",
+          "raw_hex": "fd 41 2f f9",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000860F6",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x42E9371B",
+          "raw_hex": "1b 37 e9 42",
+          "target_address": null,
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000860EC",
+      "successors": [
+        "0x000860FA"
+      ]
+    },
+    {
+      "block_id": "BB_0029",
+      "end_address": "0x000860FB",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x000860FA",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JNZ",
+          "operands": "0x000860FA",
+          "raw_hex": "e6 08",
+          "target_address": "0x000860FA",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000860FA",
+      "successors": [
+        "0x000860FA",
+        "0x000860FC"
+      ]
+    },
+    {
+      "block_id": "BB_0030",
+      "end_address": "0x000860FD",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x000860FC",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "J",
+          "operands": "0x0008609E",
+          "raw_hex": "12 d1",
+          "target_address": "0x0008609E",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000860FC",
+      "successors": [
+        "0x0008609E"
+      ]
+    },
+    {
+      "block_id": "BB_0031",
+      "end_address": "0x00086113",
+      "instruction_count": 8,
+      "instructions": [
+        {
+          "address": "0x000860FE",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x697C80BB",
+          "raw_hex": "bb 80 7c 69",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086102",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x5018",
+          "raw_hex": "18 50",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086104",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "BISR",
+          "operands": "135",
+          "raw_hex": "74 88",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086106",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x048A",
+          "raw_hex": "8a 04",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086108",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x1268",
+          "raw_hex": "68 12",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008610A",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xBC11CE91",
+          "raw_hex": "91 ce 11 bc",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008610E",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xB8A261CB",
+          "raw_hex": "cb 61 a2 b8",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086112",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JNZ",
+          "operands": "0x00086124",
+          "raw_hex": "86 9f",
+          "target_address": "0x00086124",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000860FE",
+      "successors": [
+        "0x00086124",
+        "0x00086114"
+      ]
+    },
+    {
+      "block_id": "BB_0032",
+      "end_address": "0x0008611D",
+      "instruction_count": 3,
+      "instructions": [
+        {
+          "address": "0x00086114",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x6FD08F17",
+          "raw_hex": "17 8f d0 6f",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086118",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xEE1BC0D7",
+          "raw_hex": "d7 c0 1b ee",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008611C",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JNZ",
+          "operands": "0x00086120",
+          "raw_hex": "26 20",
+          "target_address": "0x00086120",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086114",
+      "successors": [
+        "0x00086120",
+        "0x0008611E"
+      ]
+    },
+    {
+      "block_id": "BB_0033",
+      "end_address": "0x0008611F",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x0008611E",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x05B4",
+          "raw_hex": "b4 05",
+          "target_address": null,
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x0008611E",
+      "successors": [
+        "0x00086120"
+      ]
+    },
+    {
+      "block_id": "BB_0034",
+      "end_address": "0x00086123",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x00086120",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xE642E973",
+          "raw_hex": "73 e9 42 e6",
+          "target_address": null,
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086120",
+      "successors": [
+        "0x00086124"
+      ]
+    },
+    {
+      "block_id": "BB_0035",
+      "end_address": "0x0008612B",
+      "instruction_count": 2,
+      "instructions": [
+        {
+          "address": "0x00086124",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x01EE46F9",
+          "raw_hex": "f9 46 ee 01",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086128",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "J.COND",
+          "operands": "0x00083162",
+          "raw_hex": "5f b0 1d e8",
+          "target_address": "0x00083162",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086124",
+      "successors": [
+        "0x00083162",
+        "0x0008612C"
+      ]
+    },
+    {
+      "block_id": "BB_0036",
+      "end_address": "0x0008613D",
+      "instruction_count": 6,
+      "instructions": [
+        {
+          "address": "0x0008612C",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x844A",
+          "raw_hex": "4a 84",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008612E",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x9B0BA58F",
+          "raw_hex": "8f a5 0b 9b",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086132",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x70BC1BE5",
+          "raw_hex": "e5 1b bc 70",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086136",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0xE108",
+          "raw_hex": "08 e1",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086138",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x1BEACC1B",
+          "raw_hex": "1b cc ea 1b",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008613C",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "J",
+          "operands": "0x000861A8",
+          "raw_hex": "f2 36",
+          "target_address": "0x000861A8",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x0008612C",
+      "successors": [
+        "0x000861A8"
+      ]
+    },
+    {
+      "block_id": "BB_0037",
+      "end_address": "0x00086145",
+      "instruction_count": 4,
+      "instructions": [
+        {
+          "address": "0x0008613E",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x14BA",
+          "raw_hex": "ba 14",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086140",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0xDF28",
+          "raw_hex": "28 df",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086142",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x6F94",
+          "raw_hex": "94 6f",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086144",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JNZ",
+          "operands": "0x0008615E",
+          "raw_hex": "c6 d8",
+          "target_address": "0x0008615E",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x0008613E",
+      "successors": [
+        "0x0008615E",
+        "0x00086146"
+      ]
+    },
+    {
+      "block_id": "BB_0038",
+      "end_address": "0x00086157",
+      "instruction_count": 5,
+      "instructions": [
+        {
+          "address": "0x00086146",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0xA74C",
+          "raw_hex": "4c a7",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086148",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xBC11FE03",
+          "raw_hex": "03 fe 11 bc",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008614C",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x8D2261CB",
+          "raw_hex": "cb 61 22 8d",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086150",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x41DA46F9",
+          "raw_hex": "f9 46 da 41",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086154",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "J.COND",
+          "operands": "0x0008318E",
+          "raw_hex": "5f ac 1d e8",
+          "target_address": "0x0008318E",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086146",
+      "successors": [
+        "0x0008318E",
+        "0x00086158"
+      ]
+    },
+    {
+      "block_id": "BB_0039",
+      "end_address": "0x0008615D",
+      "instruction_count": 2,
+      "instructions": [
+        {
+          "address": "0x00086158",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0xA1DA",
+          "raw_hex": "da a1",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008615A",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xE642E92B",
+          "raw_hex": "2b e9 42 e6",
+          "target_address": null,
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086158",
+      "successors": [
+        "0x0008615E"
+      ]
+    },
+    {
+      "block_id": "BB_0040",
+      "end_address": "0x00086163",
+      "instruction_count": 2,
+      "instructions": [
+        {
+          "address": "0x0008615E",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x2DEF46F9",
+          "raw_hex": "f9 46 ef 2d",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086162",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JZ",
+          "operands": "0x00086166",
+          "raw_hex": "8e 2f",
+          "target_address": "0x00086166",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x0008615E",
+      "successors": [
+        "0x00086166",
+        "0x00086164"
+      ]
+    },
+    {
+      "block_id": "BB_0041",
+      "end_address": "0x00086165",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x00086164",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JZ",
+          "operands": "0x00086166",
+          "raw_hex": "ee 1b",
+          "target_address": "0x00086166",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086164",
+      "successors": [
+        "0x00086166",
+        "0x00086166"
+      ]
+    },
+    {
+      "block_id": "BB_0042",
+      "end_address": "0x00086167",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x00086166",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JNZ",
+          "operands": "0x00086168",
+          "raw_hex": "e6 12",
+          "target_address": "0x00086168",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086166",
+      "successors": [
+        "0x00086168",
+        "0x00086168"
+      ]
+    },
+    {
+      "block_id": "BB_0043",
+      "end_address": "0x00086193",
+      "instruction_count": 15,
+      "instructions": [
+        {
+          "address": "0x00086168",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x17E8",
+          "raw_hex": "e8 17",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008616A",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0xD804",
+          "raw_hex": "04 d8",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008616C",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x9B6FB88F",
+          "raw_hex": "8f b8 6f 9b",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086170",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0xE8DC",
+          "raw_hex": "dc e8",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086172",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x7F38",
+          "raw_hex": "38 7f",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086174",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x12B0",
+          "raw_hex": "b0 12",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086176",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x42315991",
+          "raw_hex": "91 59 31 42",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008617A",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x7BB72E01",
+          "raw_hex": "01 2e b7 7b",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008617E",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x1FE4",
+          "raw_hex": "e4 1f",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086180",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x1D857AEF",
+          "raw_hex": "ef 7a 85 1d",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086184",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x7CA00011",
+          "raw_hex": "11 00 a0 7c",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086188",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x1E00",
+          "raw_hex": "00 1e",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008618A",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x2062F2F7",
+          "raw_hex": "f7 f2 62 20",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008618E",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x1D7BFD4B",
+          "raw_hex": "4b fd 7b 1d",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x00086192",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JZ",
+          "operands": "0x00086194",
+          "raw_hex": "ee 1b",
+          "target_address": "0x00086194",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086168",
+      "successors": [
+        "0x00086194",
+        "0x00086194"
+      ]
+    },
+    {
+      "block_id": "BB_0044",
+      "end_address": "0x00086195",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x00086194",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "J",
+          "operands": "0x000861B8",
+          "raw_hex": "f2 12",
+          "target_address": "0x000861B8",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086194",
+      "successors": [
+        "0x000861B8"
+      ]
+    },
+    {
+      "block_id": "BB_0045",
+      "end_address": "0x00086197",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x00086196",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "J",
+          "operands": "0x000861C6",
+          "raw_hex": "92 18",
+          "target_address": "0x000861C6",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086196",
+      "successors": [
+        "0x000861C6"
+      ]
+    },
+    {
+      "block_id": "BB_0046",
+      "end_address": "0x000861B1",
+      "instruction_count": 8,
+      "instructions": [
+        {
+          "address": "0x00086198",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xCB6FB48F",
+          "raw_hex": "8f b4 6f cb",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008619C",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x6FB4",
+          "raw_hex": "b4 6f",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x0008619E",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x536DB4C7",
+          "raw_hex": "c7 b4 6d 53",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861A2",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x6DB4",
+          "raw_hex": "b4 6d",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861A4",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x2054",
+          "raw_hex": "54 20",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861A6",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x1AF346FB",
+          "raw_hex": "fb 46 f3 1a",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861AA",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xAA812EF1",
+          "raw_hex": "f1 2e 81 aa",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861AE",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "J.COND",
+          "operands": "0x000875B0",
+          "raw_hex": "5f ee 01 8a",
+          "target_address": "0x000875B0",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x00086198",
+      "successors": [
+        "0x000875B0",
+        "0x000861B2"
+      ]
+    },
+    {
+      "block_id": "BB_0047",
+      "end_address": "0x000861BF",
+      "instruction_count": 5,
+      "instructions": [
+        {
+          "address": "0x000861B2",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x2A4A",
+          "raw_hex": "4a 2a",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861B4",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0xBF28",
+          "raw_hex": "28 bf",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861B6",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xE30CBE41",
+          "raw_hex": "41 be 0c e3",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861BA",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xFC11B989",
+          "raw_hex": "89 b9 11 fc",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861BE",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "J",
+          "operands": "0x000861BC",
+          "raw_hex": "12 ff",
+          "target_address": "0x000861BC",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000861B2",
+      "successors": [
+        "0x000861BC"
+      ]
+    },
+    {
+      "block_id": "BB_0048",
+      "end_address": "0x000861C5",
+      "instruction_count": 2,
+      "instructions": [
+        {
+          "address": "0x000861C0",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0xF28A",
+          "raw_hex": "8a f2",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861C2",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x41BF276B",
+          "raw_hex": "6b 27 bf 41",
+          "target_address": null,
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000861C0",
+      "successors": [
+        "0x000861C6"
+      ]
+    },
+    {
+      "block_id": "BB_0049",
+      "end_address": "0x000861C7",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x000861C6",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "JZ",
+          "operands": "0x000861C6",
+          "raw_hex": "be 0c",
+          "target_address": "0x000861C6",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000861C6",
+      "successors": [
+        "0x000861C6",
+        "0x000861C8"
+      ]
+    },
+    {
+      "block_id": "BB_0050",
+      "end_address": "0x000861CB",
+      "instruction_count": 1,
+      "instructions": [
+        {
+          "address": "0x000861C8",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x11B989E3",
+          "raw_hex": "e3 89 b9 11",
+          "target_address": null,
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000861C8",
+      "successors": [
+        "0x000861CC"
+      ]
+    },
+    {
+      "block_id": "BB_0051",
+      "end_address": "0x000861ED",
+      "instruction_count": 9,
+      "instructions": [
+        {
+          "address": "0x000861CC",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x81566AFD",
+          "raw_hex": "fd 6a 56 81",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861D0",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x3594F52F",
+          "raw_hex": "2f f5 94 35",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861D4",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x6F84C3C1",
+          "raw_hex": "c1 c3 84 6f",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861D8",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x46FF6831",
+          "raw_hex": "31 68 ff 46",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861DC",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xF4DE25FD",
+          "raw_hex": "fd 25 de f4",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861E0",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0xBD80",
+          "raw_hex": "80 bd",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861E2",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x53F8182F",
+          "raw_hex": "2f 18 f8 53",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861E6",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0xBF517E93",
+          "raw_hex": "93 7e 51 bf",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861EA",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "J.COND",
+          "operands": "0x0008C4C8",
+          "raw_hex": "3f 4c 6f b1",
+          "target_address": "0x0008C4C8",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000861CC",
+      "successors": [
+        "0x0008C4C8",
+        "0x000861EE"
+      ]
+    },
+    {
+      "block_id": "BB_0052",
+      "end_address": "0x000861F1",
+      "instruction_count": 2,
+      "instructions": [
+        {
+          "address": "0x000861EE",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0xA174",
+          "raw_hex": "74 a1",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861F0",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "J",
+          "operands": "0x000861CC",
+          "raw_hex": "22 ee",
+          "target_address": "0x000861CC",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000861EE",
+      "successors": [
+        "0x000861CC"
+      ]
+    },
+    {
+      "block_id": "BB_0053",
+      "end_address": "0x000861FF",
+      "instruction_count": 4,
+      "instructions": [
+        {
+          "address": "0x000861F2",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x07E4F01B",
+          "raw_hex": "1b f0 e4 07",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861F6",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 2,
+          "mnemonic": "OP16",
+          "operands": "0x127A",
+          "raw_hex": "7a 12",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861F8",
+          "is_branch": false,
+          "is_call": false,
+          "is_conditional": false,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "OP32",
+          "operands": "0x6FB8DB91",
+          "raw_hex": "91 db b8 6f",
+          "target_address": null,
+          "target_register": null
+        },
+        {
+          "address": "0x000861FC",
+          "is_branch": true,
+          "is_call": false,
+          "is_conditional": true,
+          "is_return": false,
+          "length_bytes": 4,
+          "mnemonic": "J.COND",
+          "operands": "0x00086ADA",
+          "raw_hex": "9f a8 6f 84",
+          "target_address": "0x00086ADA",
+          "target_register": null
+        }
+      ],
+      "predecessors": [],
+      "start_address": "0x000861F2",
+      "successors": [
+        "0x00086ADA",
+        "0x00086200"
+      ]
+    }
+  ],
+  "end_address": "0x00086200",
+  "start_address": "0x00086000",
+  "total_blocks": 53
+}

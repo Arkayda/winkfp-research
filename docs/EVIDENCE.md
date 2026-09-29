@@ -44,6 +44,7 @@ The following table documents the **highest proven evidence level** achieved in 
 | **Physical ECU Contact (Read-Only)** | **L6** | `VALIDATED` | Read-only diagnostic identification query set executed on physical ZF 6HP EGS bench (target `0x18`) via K+DCAN (`115200 8N1`). Verified by immutable trace fixtures in `traces/hardware/`: `20260926_174811_egs_ident.json` (`IDENT`), `20260926_175924_egs_physical_hw_nr.json` (`PHYSIKALISCHE_HW_NR_LESEN`), `20260926_173201_egs_aif.json` (`AIF_READ_BENCH_ALIAS`), `20260926_174033_egs_tester_present.json` (`TESTER_PRESENT`), Milestone 5.16 physical correlation of official `AIF_LESEN` (`0x23`), and Milestone 5.17 physical correlation batch (`SERIENNUMMER_LESEN`, `ZIF_LESEN`, `ZIF_BACKUP_LESEN`). |
 | **Calibration Object Validation (5.20/5.21)** | **L2** (Code) / **L3** (KAT/Golden) | `VALIDATED (OFFLINE)` | Pure offline reconstruction of 9,176 Segment 4 objects, multi-axis descriptor at `0x000454A0`, 7-stage execution pipeline, and tri-layer scaling in `reconstruction/calibration/`. Zero hardware I/O. |
 | **Calibration Runtime Code-Path (5.22)** | **L2** (Code) / **L3** (Golden) | `VALIDATED (OFFLINE)` | Static executable code-path, TriCore instruction model, 1D curve topology refinement at `0x000454A0`, 10-node execution graph, false-positive filtering in `reconstruction/calibration/`. Zero hardware I/O. |
+| **Calibration Function Reconstruction (5.23)** | **L2** (Code) / **L3** (Golden) | `VALIDATED (OFFLINE)` | Calibration code candidate `CALCODE_CANDIDATE_0001`, basic block entry at `0x00086000`, callgraph, register flow, 1D curve-to-axis domain pairing, machine arithmetic, and negative evidence in `reconstruction/calibration/`. Zero hardware I/O. |
 | **Physical ECU Reprogramming** | **L7** | **Not validated** | Complete flashing of an ECU firmware block on a physical vehicle or hardware bench. No physical vehicle or bench ECU flashing, erase, reset, or flash writing has been performed. Strictly not validated. |
 
 ---
@@ -103,6 +104,23 @@ The repository establishes an explicit provenance and operational boundary betwe
   - Scaling constants (750, 500, 6800): Layer A binary uint16 verified; Layer C for 6800 remains strictly **`UNKNOWN / UNCONFIRMED`**.
   - Downstream output consumer: `UNCONFIRMED`.
   - 14 deterministic JSON artifacts generated in `artifacts/calibration/*v522*.json`. 100% offline, zero hardware I/O.
+
+### 3.6 Calibration Function Reconstruction & Engineering Semantics (Milestone 5.23)
+- **Target Calibration Artifact**: `spdaten_gke/E60/data/GKE195/A7592133.0da` (SHA-256: `45b473d1ee8cc2542a1eb3ecb77bf446f357f81827a464e6c3489257312a0112`, 489,258 bytes, verified from local filesystem).
+- **Associated Base Executive Reference**: `spdaten_gke/E60/data/GKE215/7591971A.0pa` (SHA-256: `63b204d2edbdaa0945d9b0241d55df7c6859b41d3376d9f35e93cc6c82ecfcc3`, 1,942,502 bytes, verified from local filesystem) strictly as `RELATED_BASE_PROGRAM_GS19_11 / DONOR_REFERENCE`.
+- **Calibration Candidate Identity & Boundary**: Reconstructed `CALCODE_CANDIDATE_0001_AXIS_CURVE_LOOKUP` at code location `0x00086000` (proven `BASIC_BLOCK_ENTRY` reached by fallthrough from `0x00085FFE`; standalone procedure boundary `UNCONFIRMED`; verified callers list empty `[]` as adjacent instructions `0x00086002` [fallthrough] and `0x0009C580` [unaligned intra-instruction offset] were rejected as callers), consuming `MAP_DESC_0001` at `0x000454A0` and dispatch candidate tables at `0x0004BD00` / `0x0004BD80`.
+- **Domain Linkages & Curve Dependencies**:
+  - Target 1 (Axis X, 12 signed int16 points `[-10..700]` at `0x00063AD6`) serves as the input domain for Target 3 (Curve 1, 12 signed int16 points with negative boundary offset at `0x0006418A`) and Target 4 (Curve 2, 12 signed int16 points with bounded lower floor at `0x000641A4`).
+  - Target 2 (Axis Y, 8 unsigned uint16 points `[100..5500]` at `0x00063AF0`) serves as the input domain for Target 5 (Curve 3, 8 unsigned uint16 points, identity transfer at `0x000641BE`).
+  - Descriptor `MAP_DESC_0001` at `0x000454A0` holds exact 32-bit pointers resolving to Segment 6 target objects; synthetic `0x000455xx` addresses rejected as unmapped memory gap.
+- **Machine Arithmetic & Transformation Pipeline**:
+  - TriCore register flow traces input arguments `%d4` and `%d5` into axis search interval calculation.
+  - Piecewise linear interpolation structure supported; machine opcode execution remains strictly `UNCONFIRMED`.
+  - Scalar constants 750 (`0x00050612` repeated 5x) and 500 (`0x0005065A` / `0x0005066C`) verified in Segment 5 (historical labels `0x000505BA`/`0x000505BC` corrected); runtime clamp semantics downgraded to `UNCONFIRMED` due to absence of machine comparison/saturation instruction.
+- **Strict Epistemic Ceilings & Negative Evidence**:
+  - Downstream output consumer and physical engineering units remain strictly **`UNKNOWN / UNCONFIRMED`**.
+  - Negative evidence cataloged in `rejected_semantic_hypotheses_v523.json` (2D KF map assumption, unevidenced RPM/torque labels, constant 6800 as proven turbine ceiling, 0x455xx synthetic targets, 0x86002/0x9C580 caller edges, unproven clamp semantics).
+  - 18 deterministic JSON artifacts in `artifacts/calibration/*v523*.json` under non-circular manifest policy (`self_hash_policy: "EXCLUDED"`). 100% offline, zero hardware I/O.
 
 ---
 

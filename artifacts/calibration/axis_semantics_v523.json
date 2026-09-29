@@ -1,0 +1,33 @@
+{
+  "axes": [
+    {
+      "address": "0x00063AD6",
+      "confidence": "PROVEN",
+      "data_type": "int16",
+      "element_count": 12,
+      "id": "TARGET_1_AXIS_X",
+      "lower_bound": -10,
+      "monotonicity": "STRICTLY_INCREASING",
+      "raw_hex": "00 0c ff f6 00 32 00 64 00 96 00 c8 00 fa 01 2c 01 5e 01 90 01 f4 02 58 02 bc",
+      "signed": true,
+      "span_bytes": 26,
+      "upper_bound": 700
+    },
+    {
+      "address": "0x00063AF0",
+      "confidence": "PROVEN",
+      "data_type": "uint16",
+      "element_count": 8,
+      "id": "TARGET_2_AXIS_Y",
+      "lower_bound": 100,
+      "monotonicity": "STRICTLY_INCREASING",
+      "raw_hex": "00 08 00 64 05 dc 07 d0 09 c4 0c b2 0f a0 12 8e 15 7c",
+      "signed": false,
+      "span_bytes": 18,
+      "upper_bound": 5500
+    }
+  ],
+  "candidate_id": "CALCODE_CANDIDATE_0001",
+  "confidence": "PROVEN_STRUCTURE / UNCONFIRMED_PHYSICAL_SEMANTICS",
+  "function_id": "CALCODE_CANDIDATE_0001"
+}

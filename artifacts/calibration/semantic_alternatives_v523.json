@@ -1,0 +1,49 @@
+{
+  "candidates": [
+    {
+      "alternatives": [
+        {
+          "alternative": "Hydraulic line pressure regulation curve (bar / mbar) or normalized control variable",
+          "candidate": "Drivetrain torque coordination curve (Nm)",
+          "confidence": "UNCONFIRMED",
+          "contradicting_evidence": [
+            "No direct unit conversion instruction or multiplier evidenced in binary",
+            "Downstream consumer remains unconfirmed; physical units cannot be proven from magnitude"
+          ],
+          "supporting_evidence": [
+            "Numerical range [-10..700] matches automotive torque limits",
+            "Scalar constants [500, 750] present in Segment 5 header match ZF 6HP28 torque figures in Layer B corroboration"
+          ]
+        },
+        {
+          "alternative": "Normalized transmission internal state counter",
+          "candidate": "Engine speed / turbine speed dependent selector",
+          "confidence": "UNCONFIRMED",
+          "contradicting_evidence": [
+            "Executable code does not prove source variable is crankshaft/turbine speed sensor input"
+          ],
+          "supporting_evidence": [
+            "Axis Y range [100..5500] numerically matches engine RPM operating band"
+          ]
+        }
+      ],
+      "arithmetic_evidence": "Piecewise linear interpolation structure supported; post-lookup clamp semantics UNCONFIRMED (raw constants 750/500 verified in Segment 5 Layer A, but executable clamp logic unevidenced)",
+      "axis_evidence": "12-point signed int16 [-10..700] and 8-point unsigned uint16 [100..5500] monotonic breakpoints",
+      "confidence": "UNCONFIRMED",
+      "consumer_evidence": "Destination register %d2 return value; downstream actuator / state machine unconfirmed",
+      "curve_evidence": "12-point characteristic curve with boundary offset (Curve 1) and floor (Curve 2); 8-point identity (Curve 3)",
+      "engineering_unit": "UNKNOWN",
+      "function_id": "CALCODE_CANDIDATE_0001",
+      "input_evidence": "TriCore register %d4 / %d5 argument flow; specific physical sensor source unconfirmed",
+      "object_ids": [
+        "TARGET_1_AXIS_X",
+        "TARGET_2_AXIS_Y",
+        "TARGET_3_KL_CURVE_1",
+        "TARGET_4_KL_CURVE_2",
+        "TARGET_5_KL_CURVE_3"
+      ],
+      "primary_hypothesis": "UNKNOWN (Dynamic torque / pressure transfer candidate)",
+      "unit_confidence": "UNCONFIRMED"
+    }
+  ]
+}

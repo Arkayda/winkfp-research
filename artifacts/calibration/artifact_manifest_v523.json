@@ -1,0 +1,164 @@
+{
+  "architecture": "Infineon TriCore TC1796 / TC1766",
+  "artifacts": [
+    {
+      "filename": "function_inventory_v523.json",
+      "path": "artifacts/calibration/function_inventory_v523.json",
+      "role": "CALIBRATION_FUNCTION_INVENTORY",
+      "sha256": "58064638b00dcef7273f00e6b0e67358cf1d697e59922440fb42bfd2235fe52b",
+      "size_bytes": 8349
+    },
+    {
+      "filename": "callgraph_v523.json",
+      "path": "artifacts/calibration/callgraph_v523.json",
+      "role": "CALLGRAPH_CATALOG",
+      "sha256": "42c681ab13ff250c916c6b07ac116e4e0bf15824851c94462706b6fcfab90ed7",
+      "size_bytes": 72
+    },
+    {
+      "filename": "control_flow_v523.json",
+      "path": "artifacts/calibration/control_flow_v523.json",
+      "role": "CONTROL_FLOW_GRAPH",
+      "sha256": "afabaef00c282e8de576acdf2d380eca62d3c62639bd57bf0affdae5cd61ff73",
+      "size_bytes": 77530
+    },
+    {
+      "filename": "function_call_paths_v523.json",
+      "path": "artifacts/calibration/function_call_paths_v523.json",
+      "role": "FUNCTION_CALL_PATHS",
+      "sha256": "11bf39856117190c688c7ce85d4422deb48d81a73db861b0076073c4317f2b1a",
+      "size_bytes": 1580
+    },
+    {
+      "filename": "descriptor_traces_v523.json",
+      "path": "artifacts/calibration/descriptor_traces_v523.json",
+      "role": "DESCRIPTOR_TRACES_CATALOG",
+      "sha256": "56cef7e33dd983b3c90a04458834ae335e87287396da6b6e3060886f78d77b70",
+      "size_bytes": 6720
+    },
+    {
+      "filename": "input_semantics_v523.json",
+      "path": "artifacts/calibration/input_semantics_v523.json",
+      "role": "INPUT_SEMANTICS_EVALUATION",
+      "sha256": "92c3ca46355b849a19cf748f9debb5c0cdf3d260ce063ff5b2a6590e53fc3742",
+      "size_bytes": 657
+    },
+    {
+      "filename": "axis_semantics_v523.json",
+      "path": "artifacts/calibration/axis_semantics_v523.json",
+      "role": "AXIS_SEMANTICS_CATALOG",
+      "sha256": "8353c4735130900b14189739d4afdcdc032b56b315a3521ff859b3e7a1a732bc",
+      "size_bytes": 952
+    },
+    {
+      "filename": "curve_semantics_v523.json",
+      "path": "artifacts/calibration/curve_semantics_v523.json",
+      "role": "CURVE_SEMANTICS_CATALOG",
+      "sha256": "ebfbfb75f9ce5a3645280f0e539a770fc7e2b41b1598de279235d5614e42ccc3",
+      "size_bytes": 1607
+    },
+    {
+      "filename": "interpolation_runtime_v523.json",
+      "path": "artifacts/calibration/interpolation_runtime_v523.json",
+      "role": "INTERPOLATION_RUNTIME_EVALUATION",
+      "sha256": "e5c07b5d06909d52ed1f4ffdc098dbe9b0658594c4613b8ef5d50a3ba626878f",
+      "size_bytes": 419
+    },
+    {
+      "filename": "arithmetic_analysis_v523.json",
+      "path": "artifacts/calibration/arithmetic_analysis_v523.json",
+      "role": "ARITHMETIC_ANALYSIS_CATALOG",
+      "sha256": "3182cd6fab59aabe95b7f7bebf4e96c5032b0ddedd71d24c3c3c390b9851f821",
+      "size_bytes": 1768
+    },
+    {
+      "filename": "scaling_functions_v523.json",
+      "path": "artifacts/calibration/scaling_functions_v523.json",
+      "role": "SCALING_FUNCTIONS_CATALOG",
+      "sha256": "6efe1ff5d47d03351825da0a1d2f0ef8434027a29741ef3ee6ba336fcb1acbde",
+      "size_bytes": 1114
+    },
+    {
+      "filename": "output_semantics_v523.json",
+      "path": "artifacts/calibration/output_semantics_v523.json",
+      "role": "OUTPUT_SEMANTICS_EVALUATION",
+      "sha256": "4e61af5f3e1849f24913d496c3fff73d3b833faf0b71e12e370dff1be1173dc7",
+      "size_bytes": 343
+    },
+    {
+      "filename": "engineering_units_v523.json",
+      "path": "artifacts/calibration/engineering_units_v523.json",
+      "role": "ENGINEERING_UNITS_EVALUATION",
+      "sha256": "f2de1c1017ce2fa20461d2db999cf03bf69ff8783b79d36def453a845fbc3d9b",
+      "size_bytes": 362
+    },
+    {
+      "filename": "cross_validation_v523.json",
+      "path": "artifacts/calibration/cross_validation_v523.json",
+      "role": "CROSS_VALIDATION_REPORT",
+      "sha256": "4c0b6f693ac98c53d144a512539b747874e8bce01dbccf680a2b415874b964cf",
+      "size_bytes": 398
+    },
+    {
+      "filename": "semantic_alternatives_v523.json",
+      "path": "artifacts/calibration/semantic_alternatives_v523.json",
+      "role": "SEMANTIC_ALTERNATIVES_CATALOG",
+      "sha256": "378c9e60f4a9ca60355fe976db6a81cf59815a69de2f1f080efca3bdcc321f0e",
+      "size_bytes": 2417
+    },
+    {
+      "filename": "rejected_semantic_hypotheses_v523.json",
+      "path": "artifacts/calibration/rejected_semantic_hypotheses_v523.json",
+      "role": "REJECTED_SEMANTIC_HYPOTHESES",
+      "sha256": "c622d964422138a010a586d8c2963dfaf100b422c417103d2bf2b5d9a0414b17",
+      "size_bytes": 5139
+    },
+    {
+      "filename": "change_log_v523.json",
+      "path": "artifacts/calibration/change_log_v523.json",
+      "role": "FORENSIC_CHANGE_LOG",
+      "sha256": "37c99077f64c253b00f6b1dfc1585741175c9bb06923f96a5f6c628b6c6e1bfa",
+      "size_bytes": 5279
+    }
+  ],
+  "file_inventory": {
+    "artifact_files": 18,
+    "documentation_files": 4,
+    "implementation_files": 5,
+    "modified_tracked_files": 3,
+    "test_files": 5,
+    "tool_files": 1,
+    "total_changed_files": 33,
+    "untracked_files": 30
+  },
+  "inputs": {
+    "primary_target_calibration": {
+      "path": "spdaten_gke/E60/data/GKE195/A7592133.0da",
+      "role": "TARGET_CALIBRATION",
+      "sha256": "45b473d1ee8cc2542a1eb3ecb77bf446f357f81827a464e6c3489257312a0112",
+      "size_bytes": 489258,
+      "verified_from_local_filesystem": true
+    },
+    "secondary_reference_executable": {
+      "path": "spdaten_gke/E60/data/GKE215/7591971A.0pa",
+      "role": "RELATED_BASE_PROGRAM_GS19_11 / DONOR_REFERENCE",
+      "sha256": "63b204d2edbdaa0945d9b0241d55df7c6859b41d3376d9f35e93cc6c82ecfcc3",
+      "size_bytes": 1942502,
+      "verified_from_local_filesystem": true
+    }
+  },
+  "integrity_model": "DETERMINISTIC_ARTIFACT_MANIFEST",
+  "manifest_file": {
+    "filename": "artifact_manifest_v523.json",
+    "path": "artifacts/calibration/artifact_manifest_v523.json",
+    "role": "DETERMINISTIC_ARTIFACT_MANIFEST",
+    "self_hash_policy": "EXCLUDED"
+  },
+  "milestone": "5.23",
+  "reference_executable_sha256": "63b204d2edbdaa0945d9b0241d55df7c6859b41d3376d9f35e93cc6c82ecfcc3",
+  "self_hash_policy": "EXCLUDED",
+  "target_calibration_sha256": "45b473d1ee8cc2542a1eb3ecb77bf446f357f81827a464e6c3489257312a0112",
+  "title": "Milestone 5.23 Deterministic Artifact Manifest \u2014 Calibration Function Reconstruction & Engineering Semantics",
+  "total_artifacts": 18,
+  "total_indexed_artifacts": 17
+}

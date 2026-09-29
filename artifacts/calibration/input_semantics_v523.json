@@ -1,0 +1,21 @@
+{
+  "candidate_id": "CALCODE_CANDIDATE_0001",
+  "confidence": "UNCONFIRMED",
+  "function_id": "CALCODE_CANDIDATE_0001",
+  "inputs": [
+    {
+      "expected_type": "signed_int16",
+      "parameter": "INPUT_X",
+      "source_evidence": "TriCore register argument (%d4) passed to axis search routine",
+      "status": "UNCONFIRMED_PHYSICAL_SOURCE",
+      "target_axis": "TARGET_1_AXIS_X"
+    },
+    {
+      "expected_type": "unsigned_uint16",
+      "parameter": "INPUT_Y",
+      "source_evidence": "TriCore register argument (%d5) passed to axis search routine",
+      "status": "UNCONFIRMED_PHYSICAL_SOURCE",
+      "target_axis": "TARGET_2_AXIS_Y"
+    }
+  ]
+}

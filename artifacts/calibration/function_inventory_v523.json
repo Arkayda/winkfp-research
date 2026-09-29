@@ -1,0 +1,231 @@
+{
+  "functions": [
+    {
+      "arithmetic_path": [
+        {
+          "confidence": "SUPPORTED",
+          "evidence": "Structural compatibility proven; opcode execution unconfirmed",
+          "formula": "y = y_k + w * (y_{k+1} - y_k)",
+          "operation": "PIECEWISE_LINEAR_INTERPOLATION"
+        },
+        {
+          "confidence": "UNCONFIRMED",
+          "constants": [
+            {
+              "address": "0x00050612",
+              "notes": "Repeated 5x at 0x00050612..0x0005061B; historical 0x000505BA corrected",
+              "role": "UPPER_BOUND_CANDIDATE",
+              "value": 750
+            },
+            {
+              "address": "0x0005065A",
+              "notes": "Located at 0x0005065A/0x0005066C; historical 0x000505BC corrected",
+              "role": "LOWER_BOUND_CANDIDATE",
+              "value": 500
+            }
+          ],
+          "evidence": "Raw constants exist in Segment 5 calibration header; executable compare-and-clamp logic unconfirmed",
+          "formula": "clamp(y, 500, 750) [HYPOTHESIS]",
+          "operation": "SCALAR_BOUNDING"
+        }
+      ],
+      "axes": [
+        {
+          "address": "0x00063AD6",
+          "confidence": "PROVEN",
+          "data_type": "int16",
+          "element_count": 12,
+          "id": "TARGET_1_AXIS_X",
+          "lower_bound": -10,
+          "monotonicity": "STRICTLY_INCREASING",
+          "raw_hex": "00 0c ff f6 00 32 00 64 00 96 00 c8 00 fa 01 2c 01 5e 01 90 01 f4 02 58 02 bc",
+          "signed": true,
+          "span_bytes": 26,
+          "upper_bound": 700
+        },
+        {
+          "address": "0x00063AF0",
+          "confidence": "PROVEN",
+          "data_type": "uint16",
+          "element_count": 8,
+          "id": "TARGET_2_AXIS_Y",
+          "lower_bound": 100,
+          "monotonicity": "STRICTLY_INCREASING",
+          "raw_hex": "00 08 00 64 05 dc 07 d0 09 c4 0c b2 0f a0 12 8e 15 7c",
+          "signed": false,
+          "span_bytes": 18,
+          "upper_bound": 5500
+        }
+      ],
+      "calibration_objects": [
+        "TARGET_1_AXIS_X",
+        "TARGET_2_AXIS_Y",
+        "TARGET_3_KL_CURVE_1",
+        "TARGET_4_KL_CURVE_2",
+        "TARGET_5_KL_CURVE_3"
+      ],
+      "callers": [],
+      "classification": "BASIC_BLOCK_ENTRY",
+      "code_location": "0x00086000",
+      "confidence": "UNCONFIRMED",
+      "contradicting_evidence": [],
+      "curves": [
+        {
+          "address": "0x0006418A",
+          "associated_axis": "TARGET_1_AXIS_X",
+          "confidence": "PROVEN",
+          "curve_type": "1D_CHARACTERISTIC_CURVE",
+          "data_type": "int16",
+          "element_count": 12,
+          "id": "TARGET_3_KL_CURVE_1",
+          "raw_hex": "00 0c ff f1 00 32 00 64 00 96 00 c8 00 fa 01 2c 01 5e 01 90 01 f4 02 58 02 bc",
+          "relationship_to_axis": "DOMAIN_MATCH_12_POINTS_NEGATIVE_BOUND_OFFSET (-15 vs -10)",
+          "signed": true,
+          "span_bytes": 26
+        },
+        {
+          "address": "0x000641A4",
+          "associated_axis": "TARGET_1_AXIS_X",
+          "confidence": "PROVEN",
+          "curve_type": "1D_CHARACTERISTIC_CURVE",
+          "data_type": "int16",
+          "element_count": 12,
+          "id": "TARGET_4_KL_CURVE_2",
+          "raw_hex": "00 0c 00 46 00 4b 00 64 00 96 00 c8 00 fa 01 2c 01 5e 01 90 01 f4 02 58 02 bc",
+          "relationship_to_axis": "DOMAIN_MATCH_12_POINTS_BOUNDED_LOWER_FLOOR (70, 75 at low end)",
+          "signed": true,
+          "span_bytes": 26
+        },
+        {
+          "address": "0x000641BE",
+          "associated_axis": "TARGET_2_AXIS_Y",
+          "confidence": "PROVEN",
+          "curve_type": "1D_CHARACTERISTIC_CURVE",
+          "data_type": "uint16",
+          "element_count": 8,
+          "id": "TARGET_5_KL_CURVE_3",
+          "raw_hex": "00 08 00 64 05 dc 07 d0 09 c4 0c b2 0f a0 12 8e 15 7c",
+          "relationship_to_axis": "DOMAIN_MATCH_8_POINTS_IDENTITY_TRANSFER",
+          "signed": false,
+          "span_bytes": 18
+        }
+      ],
+      "descriptor": "MAP_DESC_0001",
+      "descriptor_address": "0x000454A0",
+      "dispatch_candidates": [
+        "0x0004BD00",
+        "0x0004BD80"
+      ],
+      "dispatch_status": "DISPATCH_CANDIDATE",
+      "engineering_unit": "UNKNOWN",
+      "entry_address": "0x00086000",
+      "function_entry": "UNCONFIRMED",
+      "id": "CALCODE_CANDIDATE_0001",
+      "input_path": [
+        {
+          "expected_type": "signed_int16",
+          "parameter": "INPUT_X",
+          "source_evidence": "TriCore register argument (%d4) passed to axis search routine",
+          "status": "UNCONFIRMED_PHYSICAL_SOURCE",
+          "target_axis": "TARGET_1_AXIS_X"
+        },
+        {
+          "expected_type": "unsigned_uint16",
+          "parameter": "INPUT_Y",
+          "source_evidence": "TriCore register argument (%d5) passed to axis search routine",
+          "status": "UNCONFIRMED_PHYSICAL_SOURCE",
+          "target_axis": "TARGET_2_AXIS_Y"
+        }
+      ],
+      "interpolation": {
+        "evidence": [
+          "monotonic_1D_axis_breakpoints",
+          "paired_1D_characteristic_curves",
+          "big_endian_16bit_interpolated_scalar_result"
+        ],
+        "machine_opcode_execution": "UNCONFIRMED",
+        "structural_compatibility": "PROVEN",
+        "type": "PIECEWISE_LINEAR"
+      },
+      "lookup_path": [
+        {
+          "confidence": "STRONGLY_SUPPORTED",
+          "description": "Binary or sequential search finding breakpoint interval [x_k, x_{k+1}]",
+          "operation": "AXIS_INTERVAL_SEARCH",
+          "step": 1
+        },
+        {
+          "confidence": "STRONGLY_SUPPORTED",
+          "description": "Compute interval index k and normalized fractional weight w",
+          "operation": "INDEX_CALCULATION",
+          "step": 2
+        },
+        {
+          "confidence": "SUPPORTED",
+          "description": "Branch condition selecting between KL_CURVE_1 and KL_CURVE_2 based on mode state",
+          "operation": "CURVE_SELECTION",
+          "step": 3
+        },
+        {
+          "confidence": "PROVEN",
+          "description": "Read 16-bit big-endian element at curve_base + 2 + k * 2",
+          "operation": "ELEMENT_DEREFERENCE",
+          "step": 4
+        }
+      ],
+      "name": "CALCODE_CANDIDATE_0001_AXIS_CURVE_LOOKUP",
+      "output_path": [
+        {
+          "consumer_status": "UNCONFIRMED",
+          "destination": "REG_D2_RETURN",
+          "evidence": "Output placed in TriCore standard return register %d2",
+          "role": "FUNCTION_RETURN_VALUE"
+        }
+      ],
+      "procedure_identity": "UNCONFIRMED",
+      "scaling": [
+        {
+          "constant_address": "0x00050612",
+          "layer_a_binary": "PROVEN",
+          "layer_b_corroboration": "SUPPORTED",
+          "layer_c_semantics": "UNCONFIRMED",
+          "notes": "Repeated 5x at 0x00050612..0x0005061B in Segment 5; historical label 0x000505BA corrected",
+          "raw_value": 750
+        },
+        {
+          "constant_address": "0x0005065A",
+          "layer_a_binary": "PROVEN",
+          "layer_b_corroboration": "SUPPORTED",
+          "layer_c_semantics": "UNCONFIRMED",
+          "notes": "Located at 0x0005065A and 0x0005066C in Segment 5; historical label 0x000505BC corrected",
+          "raw_value": 500
+        },
+        {
+          "constant_address": "0x00050670",
+          "layer_a_binary": "PROVEN",
+          "layer_b_corroboration": "SUPPORTED",
+          "layer_c_semantics": "UNKNOWN / UNCONFIRMED",
+          "notes": "Located at 0x00050670 in Segment 5; historical label 0x000505BE corrected",
+          "raw_value": 6800
+        }
+      ],
+      "semantic_hypothesis": "UNKNOWN",
+      "supporting_evidence": [
+        "descriptor_bounding_pairs_at_0x000454A0_targeting_0x00063AD6_0x00063AF0_0x0006418A_0x000641A4_0x000641BE",
+        "dispatch_table_references_at_0x0004BD00_and_0x0004BD80",
+        "triCore_instruction_boundary_conformance",
+        "domain_matching_12_points_and_8_points",
+        "code_location_0x00086000_classified_as_basic_block_entry; procedure_boundary_unconfirmed_reached_by_fallthrough"
+      ],
+      "verified_callers": []
+    }
+  ],
+  "metrics": {
+    "dispatch_candidates_evaluated": 2,
+    "total_axes_linked": 2,
+    "total_candidates_reconstructed": 1,
+    "total_curves_linked": 3,
+    "total_functions_reconstructed": 1
+  },
+  "total_functions": 1
+}

@@ -1,0 +1,29 @@
+{
+  "confidence": "PROVEN_BINARY / UNCONFIRMED_SEMANTICS",
+  "constants": [
+    {
+      "constant_address": "0x00050612",
+      "description": "Scalar constant 750 repeated 5x in Segment 5 header (0x00050612..0x0005061B), referenced by pointer table at 0x00041808; historical label 0x000505BA corrected",
+      "layer_a_binary": "PROVEN",
+      "layer_b_corroboration": "SUPPORTED",
+      "layer_c_semantics": "UNCONFIRMED",
+      "raw_value": 750
+    },
+    {
+      "constant_address": "0x0005065A",
+      "description": "Scalar constant 500 located at 0x0005065A and 0x0005066C in Segment 5; historical label 0x000505BC corrected",
+      "layer_a_binary": "PROVEN",
+      "layer_b_corroboration": "SUPPORTED",
+      "layer_c_semantics": "UNCONFIRMED",
+      "raw_value": 500
+    },
+    {
+      "constant_address": "0x00050670",
+      "description": "Scalar constant 6800 located at 0x00050670 in Segment 5; historical label 0x000505BE corrected",
+      "layer_a_binary": "PROVEN",
+      "layer_b_corroboration": "SUPPORTED",
+      "layer_c_semantics": "UNKNOWN / UNCONFIRMED",
+      "raw_value": 6800
+    }
+  ]
+}

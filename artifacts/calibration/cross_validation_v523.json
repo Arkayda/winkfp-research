@@ -1,0 +1,9 @@
+{
+  "function_id": "CALCODE_CANDIDATE_0001",
+  "path_a_code_reference": true,
+  "path_b_scaling": false,
+  "path_c_topology": true,
+  "path_d_consumer_confirmed": false,
+  "path_e_helper_duplication": true,
+  "summary": "Paths A (Code) and C (Topology) confirm structural code candidate; Path B (Scaling/Clamp) and Path D (Consumer) remain unconfirmed, capping overall confidence at UNCONFIRMED."
+}

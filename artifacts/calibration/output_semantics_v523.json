@@ -1,0 +1,13 @@
+{
+  "candidate_id": "CALCODE_CANDIDATE_0001",
+  "confidence": "UNCONFIRMED",
+  "function_id": "CALCODE_CANDIDATE_0001",
+  "outputs": [
+    {
+      "consumer_status": "UNCONFIRMED",
+      "destination": "REG_D2_RETURN",
+      "evidence": "Output placed in TriCore standard return register %d2",
+      "role": "FUNCTION_RETURN_VALUE"
+    }
+  ]
+}
