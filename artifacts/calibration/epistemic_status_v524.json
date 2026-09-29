@@ -1,0 +1,46 @@
+{
+  "address_range_semantics": "[START, END)",
+  "epistemic_classifications": {
+    "ceiling": "PROVEN_STRUCTURE / EXECUTABLE_CONSUMER_NOT_FOUND",
+    "proven": [
+      "MAP_DESC_0001 48-byte record structure at 0x000454A0 in 7591971A.0pa Segment 3",
+      "10 big-endian 32-bit pointers resolving to Segment 2 (0x00060000..0x0006FFF0, range semantics [START, END)) of A7592133.0da (colloquially designated Segment 6 in 5.23)",
+      "5 canonical target objects (TARGET_1_AXIS_X through TARGET_5_KL_CURVE_3)",
+      "Parallel pointer arrays at 0x0004BD00/0x0004BD80 (PA) and 0x0007CA50/0x0007CAC8 (DA) proven as 32-bit big-endian data pointers (pointer_relationship = PROVEN; semantic_role = UNCONFIRMED)",
+      "Normalized address range semantics to [START, END) half-open intervals across segment tables and target traces",
+      "Rejection of unmapped synthetic 0x000455xx addresses",
+      "Rejection of 0x000C1A04 st.b as CONSTANT_COLLISION (RAM offset)",
+      "0x00086000 classification as BASIC_BLOCK_ENTRY reached by fallthrough",
+      "Zero executable consumer found within declared scanner coverage (CASE C)"
+    ],
+    "rejected": [
+      "REJECTED_SYNTHETIC_ADDRESS: 0x00045500..0x00045558",
+      "CONSTANT_COLLISION: 0x000C1A04 st.b RAM structure offset",
+      "UNSUPPORTED_CALLER_EDGE: 0x00086002 (sequential fallthrough)",
+      "UNSUPPORTED_CALLER_EDGE: 0x0009C580 (unaligned intra-instruction offset)",
+      "UNSUPPORTED_CLAIM: 0x00086000 as proven standalone function entry",
+      "UNSUPPORTED_CLAIM: 750/500 proven runtime torque clamp"
+    ],
+    "supported": [
+      "Domain matching (12-pt Axis X with Curves 1 & 2; 8-pt Axis Y with Curve 3)",
+      "Piecewise linear interpolation mathematical suitability for 1D curve data"
+    ],
+    "unconfirmed": [
+      "Runtime interpolation opcode execution",
+      "Downstream consumer / actuator destination",
+      "Procedure boundary / function identity of 0x00086000",
+      "Runtime clamp execution of scalars 750 / 500"
+    ],
+    "unknown": [
+      "Physical engineering unit of Axis X / Axis Y / Curves",
+      "Engineering semantics of scalar constant 6800"
+    ]
+  },
+  "milestone": "5.24",
+  "stop_condition": {
+    "case_result": "CASE_C_NO_EXECUTABLE_CONSUMER",
+    "confidence": "PROVEN_WITHIN_DECLARED_COVERAGE",
+    "explanation": "Exhaustive scanner across executable segments 8..15 in 7591971A.0pa identified zero verified instruction-level references to MAP_DESC_0001 (0x000454A0) or its fields (0x000454A8..0x000454CC). Apparent offset match at 0x000C1A04 (0x54C8) is proven to be a CONSTANT_COLLISION with a RAM structure offset in a ST.B instruction. No synthetic runtime chain created; Case C formally confirmed.",
+    "forensic_status": "EXECUTABLE_CONSUMER_NOT_FOUND"
+  }
+}

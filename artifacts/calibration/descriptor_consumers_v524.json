@@ -1,0 +1,226 @@
+{
+  "address_range_semantics": "[START, END)",
+  "candidates": [
+    {
+      "alignment_status": "ALIGNED",
+      "confidence": "PROVEN",
+      "decoded_form": "POINTER_32_BE -> 0x00063AD6",
+      "evidence_reason": "Explicit 32-bit big-endian pointer within MAP_DESC_0001 descriptor record in PA Segment 3",
+      "raw_bytes_hex": "00063AD6",
+      "reference_kind": "DATA_REFERENCE",
+      "referenced_value": "0x00063AD6",
+      "resolution_status": "RESOLVED",
+      "source_address": "0x000454A8",
+      "source_file": "7591971A.0pa",
+      "source_segment": 3,
+      "subtype": "TARGET_1_AXIS_X_START"
+    },
+    {
+      "alignment_status": "ALIGNED",
+      "confidence": "PROVEN",
+      "decoded_form": "POINTER_32_BE -> 0x00063AEF",
+      "evidence_reason": "Explicit 32-bit big-endian pointer within MAP_DESC_0001 descriptor record in PA Segment 3",
+      "raw_bytes_hex": "00063AEF",
+      "reference_kind": "DATA_REFERENCE",
+      "referenced_value": "0x00063AEF",
+      "resolution_status": "RESOLVED",
+      "source_address": "0x000454AC",
+      "source_file": "7591971A.0pa",
+      "source_segment": 3,
+      "subtype": "TARGET_1_AXIS_X_END"
+    },
+    {
+      "alignment_status": "ALIGNED",
+      "confidence": "PROVEN",
+      "decoded_form": "POINTER_32_BE -> 0x00063AF0",
+      "evidence_reason": "Explicit 32-bit big-endian pointer within MAP_DESC_0001 descriptor record in PA Segment 3",
+      "raw_bytes_hex": "00063AF0",
+      "reference_kind": "DATA_REFERENCE",
+      "referenced_value": "0x00063AF0",
+      "resolution_status": "RESOLVED",
+      "source_address": "0x000454B0",
+      "source_file": "7591971A.0pa",
+      "source_segment": 3,
+      "subtype": "TARGET_2_AXIS_Y_START"
+    },
+    {
+      "alignment_status": "ALIGNED",
+      "confidence": "PROVEN",
+      "decoded_form": "POINTER_32_BE -> 0x00063B01",
+      "evidence_reason": "Explicit 32-bit big-endian pointer within MAP_DESC_0001 descriptor record in PA Segment 3",
+      "raw_bytes_hex": "00063B01",
+      "reference_kind": "DATA_REFERENCE",
+      "referenced_value": "0x00063B01",
+      "resolution_status": "RESOLVED",
+      "source_address": "0x000454B4",
+      "source_file": "7591971A.0pa",
+      "source_segment": 3,
+      "subtype": "TARGET_2_AXIS_Y_END"
+    },
+    {
+      "alignment_status": "ALIGNED",
+      "confidence": "PROVEN",
+      "decoded_form": "POINTER_32_BE -> 0x0006418A",
+      "evidence_reason": "Explicit 32-bit big-endian pointer within MAP_DESC_0001 descriptor record in PA Segment 3",
+      "raw_bytes_hex": "0006418A",
+      "reference_kind": "DATA_REFERENCE",
+      "referenced_value": "0x0006418A",
+      "resolution_status": "RESOLVED",
+      "source_address": "0x000454B8",
+      "source_file": "7591971A.0pa",
+      "source_segment": 3,
+      "subtype": "TARGET_3_KL_CURVE_1_START"
+    },
+    {
+      "alignment_status": "ALIGNED",
+      "confidence": "PROVEN",
+      "decoded_form": "POINTER_32_BE -> 0x000641A3",
+      "evidence_reason": "Explicit 32-bit big-endian pointer within MAP_DESC_0001 descriptor record in PA Segment 3",
+      "raw_bytes_hex": "000641A3",
+      "reference_kind": "DATA_REFERENCE",
+      "referenced_value": "0x000641A3",
+      "resolution_status": "RESOLVED",
+      "source_address": "0x000454BC",
+      "source_file": "7591971A.0pa",
+      "source_segment": 3,
+      "subtype": "TARGET_3_KL_CURVE_1_END"
+    },
+    {
+      "alignment_status": "ALIGNED",
+      "confidence": "PROVEN",
+      "decoded_form": "POINTER_32_BE -> 0x000641A4",
+      "evidence_reason": "Explicit 32-bit big-endian pointer within MAP_DESC_0001 descriptor record in PA Segment 3",
+      "raw_bytes_hex": "000641A4",
+      "reference_kind": "DATA_REFERENCE",
+      "referenced_value": "0x000641A4",
+      "resolution_status": "RESOLVED",
+      "source_address": "0x000454C0",
+      "source_file": "7591971A.0pa",
+      "source_segment": 3,
+      "subtype": "TARGET_4_KL_CURVE_2_START"
+    },
+    {
+      "alignment_status": "ALIGNED",
+      "confidence": "PROVEN",
+      "decoded_form": "POINTER_32_BE -> 0x000641BD",
+      "evidence_reason": "Explicit 32-bit big-endian pointer within MAP_DESC_0001 descriptor record in PA Segment 3",
+      "raw_bytes_hex": "000641BD",
+      "reference_kind": "DATA_REFERENCE",
+      "referenced_value": "0x000641BD",
+      "resolution_status": "RESOLVED",
+      "source_address": "0x000454C4",
+      "source_file": "7591971A.0pa",
+      "source_segment": 3,
+      "subtype": "TARGET_4_KL_CURVE_2_END"
+    },
+    {
+      "alignment_status": "ALIGNED",
+      "confidence": "PROVEN",
+      "decoded_form": "POINTER_32_BE -> 0x000641BE",
+      "evidence_reason": "Explicit 32-bit big-endian pointer within MAP_DESC_0001 descriptor record in PA Segment 3",
+      "raw_bytes_hex": "000641BE",
+      "reference_kind": "DATA_REFERENCE",
+      "referenced_value": "0x000641BE",
+      "resolution_status": "RESOLVED",
+      "source_address": "0x000454C8",
+      "source_file": "7591971A.0pa",
+      "source_segment": 3,
+      "subtype": "TARGET_5_KL_CURVE_3_START"
+    },
+    {
+      "alignment_status": "ALIGNED",
+      "confidence": "PROVEN",
+      "decoded_form": "POINTER_32_BE -> 0x000641CF",
+      "evidence_reason": "Explicit 32-bit big-endian pointer within MAP_DESC_0001 descriptor record in PA Segment 3",
+      "raw_bytes_hex": "000641CF",
+      "reference_kind": "DATA_REFERENCE",
+      "referenced_value": "0x000641CF",
+      "resolution_status": "RESOLVED",
+      "source_address": "0x000454CC",
+      "source_file": "7591971A.0pa",
+      "source_segment": 3,
+      "subtype": "TARGET_5_KL_CURVE_3_END"
+    }
+  ],
+  "consumers_found": 0,
+  "descriptor_id": "MAP_DESC_0001",
+  "milestone": "5.24",
+  "rejected_candidates_count": 6,
+  "secondary_structure_candidates": [
+    {
+      "candidate_address": "0x0004BD00",
+      "confidence": "PROVEN_POINTER_RELATIONSHIP / UNCONFIRMED_SEMANTIC_ROLE",
+      "evidence": [
+        "32-bit big-endian pointer at 0x0004BD00 in PA Segment 4",
+        "points to Axis Y start in DA",
+        "binary pointer presence is PROVEN; functional/dispatch role is UNCONFIRMED"
+      ],
+      "mapped_target": "0x00063AF0 (TARGET_2_AXIS_Y)",
+      "pointer_relationship": "PROVEN",
+      "raw_bytes_hex": "00063AF0",
+      "segment_index": 4,
+      "semantic_role": "UNCONFIRMED",
+      "source_file": "7591971A.0pa",
+      "status": "SECONDARY_STRUCTURE_CANDIDATE",
+      "structural_role": "PARALLEL_CALIBRATION_POINTER_ARRAY_AXIS_Y"
+    },
+    {
+      "candidate_address": "0x0004BD80",
+      "confidence": "PROVEN_POINTER_RELATIONSHIP / UNCONFIRMED_SEMANTIC_ROLE",
+      "evidence": [
+        "32-bit big-endian pointer at 0x0004BD80 in PA Segment 4",
+        "points to Curve 3 start in DA",
+        "binary pointer presence is PROVEN; functional/dispatch role is UNCONFIRMED"
+      ],
+      "mapped_target": "0x000641BE (TARGET_5_KL_CURVE_3)",
+      "pointer_relationship": "PROVEN",
+      "raw_bytes_hex": "000641BE",
+      "segment_index": 4,
+      "semantic_role": "UNCONFIRMED",
+      "source_file": "7591971A.0pa",
+      "status": "SECONDARY_STRUCTURE_CANDIDATE",
+      "structural_role": "PARALLEL_CALIBRATION_POINTER_ARRAY_CURVE_3"
+    },
+    {
+      "candidate_address": "0x0007CA50",
+      "confidence": "PROVEN_POINTER_RELATIONSHIP / UNCONFIRMED_SEMANTIC_ROLE",
+      "evidence": [
+        "32-bit big-endian pointer at 0x0007CA50 in DA Directory Segment 4",
+        "points to Axis Y start in DA",
+        "binary pointer presence is PROVEN; functional/dispatch role is UNCONFIRMED"
+      ],
+      "mapped_target": "0x00063AF0 (TARGET_2_AXIS_Y)",
+      "pointer_relationship": "PROVEN",
+      "raw_bytes_hex": "00063AF0",
+      "segment_index": 4,
+      "semantic_role": "UNCONFIRMED",
+      "source_file": "A7592133.0da",
+      "status": "SECONDARY_STRUCTURE_CANDIDATE",
+      "structural_role": "CALIBRATION_DIRECTORY_POINTER_AXIS_Y"
+    },
+    {
+      "candidate_address": "0x0007CAC8",
+      "confidence": "PROVEN_POINTER_RELATIONSHIP / UNCONFIRMED_SEMANTIC_ROLE",
+      "evidence": [
+        "32-bit big-endian pointer at 0x0007CAC8 in DA Directory Segment 4",
+        "points to Curve 3 start in DA",
+        "binary pointer presence is PROVEN; functional/dispatch role is UNCONFIRMED"
+      ],
+      "mapped_target": "0x000641BE (TARGET_5_KL_CURVE_3)",
+      "pointer_relationship": "PROVEN",
+      "raw_bytes_hex": "000641BE",
+      "segment_index": 4,
+      "semantic_role": "UNCONFIRMED",
+      "source_file": "A7592133.0da",
+      "status": "SECONDARY_STRUCTURE_CANDIDATE",
+      "structural_role": "CALIBRATION_DIRECTORY_POINTER_CURVE_3"
+    }
+  ],
+  "source_address": "0x000454A0",
+  "stop_condition": {
+    "case_result": "CASE_C_NO_EXECUTABLE_CONSUMER",
+    "confidence": "PROVEN_WITHIN_DECLARED_COVERAGE",
+    "explanation": "Exhaustive scanner across executable segments 8..15 in 7591971A.0pa identified zero verified instruction-level references to MAP_DESC_0001 (0x000454A0) or its fields (0x000454A8..0x000454CC). Apparent offset match at 0x000C1A04 (0x54C8) is proven to be a CONSTANT_COLLISION with a RAM structure offset in a ST.B instruction. No synthetic runtime chain created; Case C formally confirmed.",
+    "forensic_status": "EXECUTABLE_CONSUMER_NOT_FOUND"
+  }
+}

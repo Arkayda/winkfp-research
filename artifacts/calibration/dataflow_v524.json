@@ -1,0 +1,7 @@
+{
+  "dataflow_proven": false,
+  "epistemic_ceiling": "PROVEN_STRUCTURE / EXECUTABLE_CONSUMER_NOT_FOUND",
+  "milestone": "5.24",
+  "nodes": [],
+  "trace_boundary": "FIRST_UNCONFIRMED_STAGE"
+}

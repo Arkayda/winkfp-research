@@ -1,0 +1,118 @@
+{
+  "address_range_semantics": "[START, END)",
+  "artifacts": [
+    {
+      "filename": "descriptor_consumers_v524.json",
+      "sha256": "197597206c722f524ffa1d45b4c26e2bec6111edf58143e53b069c3b5fba6075",
+      "size_bytes": 9208
+    },
+    {
+      "filename": "code_references_v524.json",
+      "sha256": "eb5bea61870da8420c75fc7199af6fdab091f5434c9022c79ce13f395e203d06",
+      "size_bytes": 12435
+    },
+    {
+      "filename": "target_access_traces_v524.json",
+      "sha256": "c7a5e076abaeab10688f6924f7460c97a51e6e2467bf5ba443521adfe84e9bc4",
+      "size_bytes": 5167
+    },
+    {
+      "filename": "dataflow_v524.json",
+      "sha256": "d378031ae3dce47402e05896e9fabfb512da2909d178c41fc782ebf1b08a9972",
+      "size_bytes": 191
+    },
+    {
+      "filename": "callgraph_v524.json",
+      "sha256": "52041aab2f5ed874dd950010921d576545add446442238c319634d52ff9ef673",
+      "size_bytes": 1018
+    },
+    {
+      "filename": "epistemic_status_v524.json",
+      "sha256": "bccbc9d90739a77975f6cc20b3888c0be97d7a58deb5629efa5a5f90c97e3f04",
+      "size_bytes": 2771
+    },
+    {
+      "filename": "change_log_v524.json",
+      "sha256": "732902def0f3e5d02d0bfe3d12c8fab2c1105508d188efa96bdc8a2e61850c3b",
+      "size_bytes": 2970
+    }
+  ],
+  "coverage_metadata": {
+    "data_reference_classes": [
+      "DIRECT_POINTER_32_BE",
+      "DIRECT_POINTER_32_LE",
+      "SECONDARY_TABLE_ENTRY",
+      "SEGMENT_HEADER_VECTOR"
+    ],
+    "decoder_capabilities": [
+      "TriCore 16-bit instruction length (bit 0 == 0)",
+      "TriCore 32-bit instruction length (bit 0 == 1)",
+      "RLC format: MOVH.A (0x91), ADDIH.A (0x11), MOV.U (0xbb), MOV (0x3b), ADDI (0x1b), MOV.H (0x7b)",
+      "BOL format: LEA (0xd9), LD.A (0x99), LD.W (0x19), ST.W (0x59), ST.B (0xe9), ST.H (0xf9), LD.B (0x79), LD.BU (0x39), LD.H (0xc9), LD.HU (0xb9)",
+      "BO format: load/store off10 displacements",
+      "ABS format: off18 absolute displacements (0x85, 0x45, 0x65, 0xd5)",
+      "B format: CALL (0x6d), CALLA (0xed), J (0x1d), JA (0x9d), JL (0x5d), JLA (0xdd)",
+      "BRR/BRC format: conditional branches"
+    ],
+    "instruction_reference_classes": [
+      "MOVH_A",
+      "LEA",
+      "ADDIH_A",
+      "ADDI",
+      "BOL_OFF16",
+      "ABS_OFF18",
+      "RLC_CONST16",
+      "MOV_U",
+      "MOV_H",
+      "MOV"
+    ],
+    "scanned_calibration_segments": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "scanned_data_segments": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "scanned_executable_segments": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "unsupported_address_generation_models": [
+      "UNMAPPED_PERIPHERAL_BUS_BRIDGE"
+    ],
+    "unsupported_analysis_patterns": [
+      "DYNAMIC_INDIRECT_JUMP_TABLE",
+      "MULTI_REGISTER_POLYNOMIAL_ARITHMETIC"
+    ],
+    "unsupported_instruction_encodings": []
+  },
+  "generator": "reconstruction.calibration.descriptor_consumer_v524",
+  "milestone": "5.24",
+  "records_summary": {
+    "candidate_references": 10,
+    "canonical_targets": 5,
+    "dataflow_nodes": 0,
+    "rejected_candidates": 6,
+    "secondary_structure_candidates": 4,
+    "target_access_traces": 0
+  },
+  "self_hash_policy": "EXCLUDED",
+  "total_artifacts": 8
+}

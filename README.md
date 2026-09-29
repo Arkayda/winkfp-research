@@ -344,6 +344,25 @@ Flash execution is hard-gated by the `SafetyContext` and provenance-tracked `Lim
   - All 18 deterministic JSON artifacts generated in [`artifacts/calibration/*v523*.json`](artifacts/calibration/artifact_manifest_v523.json) under non-circular manifest policy (`self_hash_policy: "EXCLUDED"`).
 * Reconstructed in [`reconstruction/calibration/recon_v523.py`](reconstruction/calibration/recon_v523.py) and documented in [`docs/evidence/calibration_function_reconstruction_milestone_5_23.md`](docs/evidence/calibration_function_reconstruction_milestone_5_23.md).
 
+### 7.12 EGS 6HP28 Descriptor Consumer Discovery & Executable Consumer Reconstruction (Milestone 5.24)
+* **Scope**: Exhaustive multi-tier forensic scanning across TriCore executable segments 8..15 (`0x00080000..0x000FFFFF`, 511,856 bytes) and data spaces to discover the real executable consumer of `MAP_DESC_0001` (`0x000454A0`) and its 10 fields (`0x000454A8..0x000454CC`). Zero hardware I/O.
+* **Explicit Coverage & Exhaustive Definition**:
+  - Coverage explicitly declared: instruction classes (`MOVH_A`, `LEA`, `ADDIH_A`, `ADDI`, `BOL_OFF16`, `BO_OFF10`, `ABS_OFF18`, `RLC_CONST16`, `MOV_U`, `MOV_H`, `MOV`), data classes (`DIRECT_POINTER_32_BE/LE`, `SECONDARY_TABLE_ENTRY`, `SEGMENT_HEADER_VECTOR`), and segments (PA 0..15, DA 0..5).
+  - Unsupported classes explicitly recorded (`DYNAMIC_INDIRECT_JUMP_TABLE`, `MULTI_REGISTER_POLYNOMIAL_ARITHMETIC`, `UNMAPPED_PERIPHERAL_BUS_BRIDGE`).
+* **Candidate Classification & False-Positive Control**:
+  - 10 descriptor internal fields proven as big-endian pointers (`DATA_REFERENCE`).
+  - Synthetic unmapped addresses `0x00045500..0x00045558` rejected as `REJECTED_SYNTHETIC_ADDRESS`.
+  - Apparent offset `0x54C8` candidate at `0x000C1A04` (`st.b %d4, [%a15 + 0x54c8]`) formally rejected as `CONSTANT_COLLISION` (store into dynamic RAM structure via `%a15`, cannot reference read-only flash descriptor field).
+* **Secondary Structure Candidates**:
+  - Pointer arrays at `0x0004BD00` / `0x0004BD80` (PA Segment 4) and `0x0007CA50` / `0x0007CAC8` (DA Segment 4) verified as parallel target references; classified as `SECONDARY_STRUCTURE_CANDIDATE`.
+* **Preservation of 0x00086000 Status**:
+  - Retained strictly as `BASIC_BLOCK_ENTRY`, `procedure_identity = UNCONFIRMED`, `function_entry = UNCONFIRMED`, `verified_callers = []`.
+* **Stop Condition Outcome: Case C Formally Confirmed**:
+  - Under the declared scanner coverage, zero executable instructions reference `MAP_DESC_0001` or its fields.
+  - Result: `case_result = CASE_C_NO_EXECUTABLE_CONSUMER`, `forensic_status = EXECUTABLE_CONSUMER_NOT_FOUND`.
+  - All 8 deterministic JSON artifacts generated in [`artifacts/calibration/*v524*.json`](artifacts/calibration/artifact_manifest_v524.json).
+* Reconstructed in [`reconstruction/calibration/descriptor_consumer_v524.py`](reconstruction/calibration/descriptor_consumer_v524.py), executed via [`tools/run_calibration_consumer_v524.py`](tools/run_calibration_consumer_v524.py), and documented in [`docs/evidence/calibration_function_reconstruction_milestone_5_24.md`](docs/evidence/calibration_function_reconstruction_milestone_5_24.md).
+
 ---
 
 ## 8. Repository Layout
@@ -351,7 +370,7 @@ Flash execution is hard-gated by the `SafetyContext` and provenance-tracked `Lim
 ```text
 winkfp-research/
 ├── artifacts/                      # Reconstructed deterministic JSON artifacts
-│   └── calibration/                # Milestones 5.20, 5.21, 5.22, and 5.23 calibration catalogs & manifests
+│   └── calibration/                # Milestones 5.20, 5.21, 5.22, 5.23, and 5.24 calibration catalogs & manifests
 ├── docs/                           # Technical documentation & RE reports
 │   ├── ARCHITECTURE.md             # End-to-end system architecture
 │   ├── EVIDENCE.md                 # L0–L7 experimental validation framework
@@ -359,7 +378,7 @@ winkfp-research/
 │   ├── PROPRIETARY_MATERIAL.md     # Policy on excluded OEM assets
 │   ├── QUARANTINE.md               # Audit history & asset filtering
 │   ├── research-source-map.md      # Mapping to historical source workspace
-│   ├── evidence/                   # Forensic milestone evidence artifacts (5.0–5.23)
+│   ├── evidence/                   # Forensic milestone evidence artifacts (5.0–5.24)
 │   ├── history/                    # Historical research progression (Rev 1–18.1)
 │   └── reverse-engineering/        # In-depth subsystem specifications
 ├── analysis/                       # Ghidra decompilation artifacts (45 C files)
@@ -382,13 +401,14 @@ winkfp-research/
 │   ├── golden/                     # Golden tests (state machine, pipeline, replay, calibration)
 │   ├── differential/               # Differential suites (Unicorn x86, SGBD parity)
 │   ├── fixtures/                   # Synthetic containers, limits, and images
-│   └── run_tests.py                # Master test runner (281 tests)
+│   └── run_tests.py                # Master test runner (291 tests)
 ├── tools/                          # Analysis, diffing, and probe tools
 │   ├── kdcan_hardware_probe.py     # Safe read-only physical hardware probe
 │   ├── run_calibration_reconstruction_v520.py # Milestone 5.20 calibration reconstruction CLI
 │   ├── run_calibration_validation_v521.py     # Milestone 5.21 validation CLI
 │   ├── run_calibration_runtime_v522.py        # Milestone 5.22 runtime code-path CLI
 │   ├── run_calibration_function_v523.py       # Milestone 5.23 calibration function CLI
+│   ├── run_calibration_consumer_v524.py       # Milestone 5.24 descriptor consumer CLI
 │   ├── bench_diff/                 # L1/L2 event log differential runner
 │   ├── trace_parser/               # EDIABAS *.trc parser and VIN sanitizer
 │   └── analysis/                   # Master password decoder & SP-Daten scanner

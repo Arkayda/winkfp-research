@@ -45,6 +45,7 @@ The following table documents the **highest proven evidence level** achieved in 
 | **Calibration Object Validation (5.20/5.21)** | **L2** (Code) / **L3** (KAT/Golden) | `VALIDATED (OFFLINE)` | Pure offline reconstruction of 9,176 Segment 4 objects, multi-axis descriptor at `0x000454A0`, 7-stage execution pipeline, and tri-layer scaling in `reconstruction/calibration/`. Zero hardware I/O. |
 | **Calibration Runtime Code-Path (5.22)** | **L2** (Code) / **L3** (Golden) | `VALIDATED (OFFLINE)` | Static executable code-path, TriCore instruction model, 1D curve topology refinement at `0x000454A0`, 10-node execution graph, false-positive filtering in `reconstruction/calibration/`. Zero hardware I/O. |
 | **Calibration Function Reconstruction (5.23)** | **L2** (Code) / **L3** (Golden) | `VALIDATED (OFFLINE)` | Calibration code candidate `CALCODE_CANDIDATE_0001`, basic block entry at `0x00086000`, callgraph, register flow, 1D curve-to-axis domain pairing, machine arithmetic, and negative evidence in `reconstruction/calibration/`. Zero hardware I/O. |
+| **Descriptor Consumer Discovery (5.24)** | **L2** (Code) / **L3** (Golden) | `VALIDATED (OFFLINE)` | Exhaustive TriCore instruction scanner across Segments 8..15, candidate classification, false-positive control, secondary candidate array evaluation, and Stop Condition Case C confirmation in `reconstruction/calibration/`. Zero hardware I/O. |
 | **Physical ECU Reprogramming** | **L7** | **Not validated** | Complete flashing of an ECU firmware block on a physical vehicle or hardware bench. No physical vehicle or bench ECU flashing, erase, reset, or flash writing has been performed. Strictly not validated. |
 
 ---
@@ -121,6 +122,27 @@ The repository establishes an explicit provenance and operational boundary betwe
   - Downstream output consumer and physical engineering units remain strictly **`UNKNOWN / UNCONFIRMED`**.
   - Negative evidence cataloged in `rejected_semantic_hypotheses_v523.json` (2D KF map assumption, unevidenced RPM/torque labels, constant 6800 as proven turbine ceiling, 0x455xx synthetic targets, 0x86002/0x9C580 caller edges, unproven clamp semantics).
   - 18 deterministic JSON artifacts in `artifacts/calibration/*v523*.json` under non-circular manifest policy (`self_hash_policy: "EXCLUDED"`). 100% offline, zero hardware I/O.
+
+### 3.7 Descriptor Consumer Discovery & Executable Consumer Reconstruction (Milestone 5.24)
+- **Target Calibration Artifact**: `spdaten_gke/E60/data/GKE195/A7592133.0da` (SHA-256: `45b473d1ee8cc2542a1eb3ecb77bf446f357f81827a464e6c3489257312a0112`, 489,258 bytes, verified from local filesystem).
+- **Associated Base Executive Reference**: `spdaten_gke/E60/data/GKE215/7591971A.0pa` (SHA-256: `63b204d2edbdaa0945d9b0241d55df7c6859b41d3376d9f35e93cc6c82ecfcc3`, 1,942,502 bytes, verified from local filesystem) strictly as `RELATED_BASE_PROGRAM_GS19_11 / DONOR_REFERENCE`.
+- **Declared Scanner Coverage**:
+  - Full enumeration across explicitly declared reference-encoding classes (`MOVH_A`, `LEA`, `ADDIH_A`, `ADDI`, `BOL_OFF16`, `BO_OFF10`, `ABS_OFF18`, `RLC_CONST16`, `MOV_U`, `MOV_H`, `MOV`) and memory segments (Executable Segments 8–15: 511,856 bytes; Data Segments 0–7 in PA and 0–5 in DA).
+  - Explicit three-category taxonomy: `unsupported_instruction_encodings` (`[]`), `unsupported_analysis_patterns` (`["DYNAMIC_INDIRECT_JUMP_TABLE", "MULTI_REGISTER_POLYNOMIAL_ARITHMETIC"]`), and `unsupported_address_generation_models` (`["UNMAPPED_PERIPHERAL_BUS_BRIDGE"]`).
+- **Segment Numbering Reconciliation**:
+  - Canonical 0-based IntelHexParser segment index is **Segment 2** (`0x00060000..0x0006FFF0`, 65,520 bytes, range semantics `[START, END)`); reconciled against historical 5.23 address-space high-nibble convention (`0x0006xxxx` -> "Segment 6") as a **`NUMBERING_SCHEME_DIFFERENCE`**.
+- **Candidate References & False-Positive Control**:
+  - 10 descriptor internal fields proven as big-endian pointers (`DATA_REFERENCE`).
+  - Synthetic unmapped addresses `0x00045500..0x00045558` rejected as `REJECTED_SYNTHETIC_ADDRESS`.
+  - Apparent offset `0x54C8` candidate at `0x000C1A04` (`st.b %d4, [%a15 + 0x54c8]`) formally rejected as `CONSTANT_COLLISION` (store into dynamic RAM structure via `%a15`, cannot reference read-only flash descriptor field).
+- **Secondary Structure Candidates (Two-Level Epistemic Model)**:
+  - Pointer arrays at `0x0004BD00` / `0x0004BD80` (PA Segment 4) and `0x0007CA50` / `0x0007CAC8` (DA Segment 4) verified under strict two-level model (`pointer_relationship = PROVEN`, `semantic_role = UNCONFIRMED`); classified strictly as `SECONDARY_STRUCTURE_CANDIDATE`.
+- **Preservation of 0x00086000 Status**:
+  - Retained strictly as `BASIC_BLOCK_ENTRY`, `procedure_identity = UNCONFIRMED`, `function_entry = UNCONFIRMED`, `verified_callers = []`.
+- **Stop Condition Outcome: Case C Formally Confirmed**:
+  - Under the declared scanner coverage, zero executable instructions reference `MAP_DESC_0001` or its fields.
+  - Result: `case_result = CASE_C_NO_EXECUTABLE_CONSUMER`, `forensic_status = EXECUTABLE_CONSUMER_NOT_FOUND`.
+  - All 8 deterministic JSON artifacts generated in `artifacts/calibration/*v524*.json`. 100% offline, zero hardware I/O.
 
 ---
 

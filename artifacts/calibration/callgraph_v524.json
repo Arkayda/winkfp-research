@@ -1,0 +1,34 @@
+{
+  "edges": [],
+  "milestone": "5.24",
+  "procedure_boundary_status": "UNCONFIRMED",
+  "target_candidate": {
+    "address": "0x00086000",
+    "classification": "BASIC_BLOCK_ENTRY",
+    "evidence": [
+      "instruction_at_0x00086000_is_OP16 (64 10)",
+      "reached_by_normal_sequential_fallthrough_from_0x00085FFE (bc b0)",
+      "zero_incoming_call_or_branch_edges_in_executable",
+      "zero_pointer_table_references_in_firmware"
+    ],
+    "function_entry": "UNCONFIRMED",
+    "incoming_call_edges_count": 0,
+    "pointer_table_reference_count": 0,
+    "predecessor_transition": "FALLTHROUGH_FROM_0x00085FFE",
+    "procedure_identity": "UNCONFIRMED",
+    "rejected_callers": [
+      {
+        "candidate": "0x00086002",
+        "reason": "FALLTHROUGH_SEQUENTIAL_INSTRUCTION (+2)"
+      },
+      {
+        "candidate": "0x0009C580",
+        "reason": "UNALIGNED_INTRA_INSTRUCTION_OFFSET"
+      }
+    ],
+    "segment_index": 8,
+    "source_file": "7591971A.0pa",
+    "verified_callers": []
+  },
+  "total_edges": 0
+}

@@ -1,0 +1,61 @@
+{
+  "changes": [
+    {
+      "description": "Formally declared explicit coverage for executable segments 8..15 and instruction classes",
+      "item": "SCANNER_COVERAGE_DECLARATION",
+      "status": "PROVEN"
+    },
+    {
+      "description": "Evaluated and rejected 0x000C1A04 st.b %d4, [%a15 + 0x54c8] as CONSTANT_COLLISION",
+      "item": "FALSE_POSITIVE_CONTROL_0x000C1A04",
+      "status": "PROVEN"
+    },
+    {
+      "description": "Classified 0x0004BD00, 0x0004BD80, 0x0007CA50, 0x0007CAC8 as SECONDARY_STRUCTURE_CANDIDATE",
+      "item": "SECONDARY_STRUCTURE_CANDIDATE_CLASSIFICATION",
+      "status": "PROVEN"
+    },
+    {
+      "description": "Formally concluded CASE_C_NO_EXECUTABLE_CONSUMER (EXECUTABLE_CONSUMER_NOT_FOUND)",
+      "item": "STOP_CONDITION_EVALUATION",
+      "status": "PROVEN"
+    },
+    {
+      "description": "Reconciled Segment 2 vs Segment 6 scheme difference in A7592133.0da: Segment 2 is canonical 0-based IntelHex parser index (0x00060000..0x0006FFF0); Segment 6 was historical 5.23 address-space high-nibble colloquial reference",
+      "item": "SEGMENT_NUMBERING_RECONCILIATION",
+      "status": "PROVEN"
+    },
+    {
+      "description": "Enforced strict two-level epistemic model for 0x0004BD00, 0x0004BD80, 0x0007CA50, 0x0007CAC8: pointer_relationship = PROVEN, semantic_role = UNCONFIRMED, status = SECONDARY_STRUCTURE_CANDIDATE",
+      "item": "SECONDARY_STRUCTURE_EPISTEMIC_RECONCILIATION",
+      "status": "PROVEN"
+    },
+    {
+      "description": "Split scanner coverage into 3 explicit categories: unsupported_instruction_encodings ([]), unsupported_analysis_patterns, unsupported_address_generation_models",
+      "item": "COVERAGE_TAXONOMY_SPLIT",
+      "status": "PROVEN"
+    },
+    {
+      "action": "normalized range semantics to [START, END)",
+      "effect": "terminology only; raw addresses and sizes unchanged",
+      "issue": "ambiguous inclusive/exclusive endpoint terminology",
+      "item": "RANGE_SEMANTICS_NORMALIZATION",
+      "status": "PROVEN"
+    },
+    {
+      "change": "GOLDEN test count 211 -> 212",
+      "delta": "+1",
+      "item": "GOLDEN_TEST_DELTA_AUDIT",
+      "new_test_count": 212,
+      "old_test_count": 211,
+      "reason": "Added dedicated test_segment_numbering_reconciliation during Milestone 5.24 final reconciliation pass to verify Segment 2 (0x00060000..0x0006FFF0) as canonical 0-based IntelHex parser index",
+      "regression_protection": "Protects against calibration target segment misattribution and regression back to historical 5.23 high-nibble naming confusion",
+      "status": "PROVEN",
+      "test_file": "tests/golden/calibration/test_descriptor_consumer_v524.py",
+      "test_name": "tests/golden/calibration/test_descriptor_consumer_v524.py::TestDescriptorConsumerV524::test_segment_numbering_reconciliation"
+    }
+  ],
+  "milestone": "5.24",
+  "sealed_baseline_commit": "ede9c94740bbbcc26de0635dfb67ed4012438651",
+  "sealed_baseline_tag": "milestone-5.23-complete"
+}
