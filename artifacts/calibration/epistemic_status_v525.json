@@ -1,0 +1,65 @@
+{
+  "code_candidate_0001": {
+    "address": "0x00086000",
+    "classification": "BASIC_BLOCK_ENTRY",
+    "evidence": [
+      "instruction_at_0x00086000_is_OP16 (64 10)",
+      "reached_by_normal_sequential_fallthrough_from_0x00085FFE (bc b0)",
+      "zero_incoming_call_or_branch_edges_in_executable",
+      "zero_pointer_table_references_in_firmware"
+    ],
+    "function_entry": "UNCONFIRMED",
+    "incoming_call_edges_count": 0,
+    "pointer_table_reference_count": 0,
+    "predecessor_transition": "FALLTHROUGH_FROM_0x00085FFE",
+    "procedure_identity": "UNCONFIRMED",
+    "rejected_callers": [
+      {
+        "candidate": "0x00086002",
+        "reason": "FALLTHROUGH_SEQUENTIAL_INSTRUCTION (+2)"
+      },
+      {
+        "candidate": "0x0009C580",
+        "reason": "INVALID_INSTRUCTION_BOUNDARY (Inside 4-byte instruction 0x0009C57E)"
+      }
+    ],
+    "segment_index": 8,
+    "source_file": "7591971A.0pa",
+    "verified_callers": []
+  },
+  "epistemic_levels": {
+    "PROVEN": [
+      "32-bit big-endian pointers in MAP_DESC_0001 (0x000454A0)",
+      "32-bit big-endian pointers in secondary tables 0x0004BD00, 0x0004BD80, 0x0007CA50, 0x0007CAC8",
+      "Canonical targets 1..5 in A7592133.0da Segment 2 with range semantics [START, END)",
+      "TriCore TC1796/TC1766 instruction discrimination (OP16 vs OP32) via decoder recognition"
+    ],
+    "REJECTED": [
+      "0x00045500..0x00045558 as REJECTED_SYNTHETIC_ADDRESS",
+      "0x000C1A04 as CONSTANT_COLLISION (ST.B to RAM)",
+      "Address parity heuristics for instruction validation",
+      "Target writes as proof of consumer"
+    ],
+    "SUPPORTED": [
+      "Static calibration pointer array structural role for 0x0004BD00 and 0x0007CA50"
+    ],
+    "UNCONFIRMED": [
+      "Executable consumer of MAP_DESC_0001 or canonical targets within declared coverage",
+      "Runtime interpolation / consumption algorithms",
+      "Semantic role of secondary pointer arrays",
+      "Procedure identity and function entry of 0x00086000",
+      "Clamp semantics for scalars 750 / 500"
+    ],
+    "UNKNOWN": [
+      "Semantic meaning of integer 6800",
+      "Runtime dynamic RAM pointer initializations outside static flash image"
+    ]
+  },
+  "milestone": "5.25",
+  "stop_condition": {
+    "case_result": "CASE_C_NO_INDIRECT_CONSUMER",
+    "confidence": "PROVEN_WITHIN_DECLARED_COVERAGE",
+    "explanation": "Exhaustive abstract address-expression scanner across executable segments 8..15 in 7591971A.0pa identified zero verified executable paths, indirect pointer chains, or register-based address expressions referencing MAP_DESC_0001 (0x000454A0), secondary structures, or canonical targets 1..5.",
+    "forensic_status": "INDIRECT_CONSUMER_NOT_FOUND"
+  }
+}

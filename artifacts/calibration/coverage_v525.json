@@ -1,0 +1,91 @@
+{
+  "address_range_semantics": "[START, END)",
+  "coverage_metadata": {
+    "address_expression_classes": [
+      "CONST",
+      "PTR",
+      "BASE_OFFSET",
+      "PTR_OFFSET",
+      "INDEXED",
+      "UNKNOWN"
+    ],
+    "decoder_capabilities": [
+      "TriCore 16-bit instruction length (OP16)",
+      "TriCore 32-bit instruction length (OP32)",
+      "Instruction boundary validated by decoder recognition",
+      "RLC format: MOVH.A (0x91), ADDIH.A (0x11), ADDI (0x1b)",
+      "BOL format: LEA (0xd9), LD.A (0x99), LD.W (0x19), LD.HU (0xb9), ST.W (0x59), ST.B (0xe9)",
+      "RR format: ADD.A (0x01), SUB.A (0x21)"
+    ],
+    "instruction_reference_classes": [
+      "MOVH_A",
+      "LEA",
+      "ADDIH_A",
+      "ADDI",
+      "ADD_A",
+      "SUB_A",
+      "LD_A",
+      "LD_W",
+      "LD_HU",
+      "LD_B",
+      "LD_BU",
+      "ST_W",
+      "ST_H",
+      "ST_B",
+      "BOL_OFF16",
+      "ABS_OFF18",
+      "RLC_CONST16"
+    ],
+    "pointer_reference_classes": [
+      "DIRECT_POINTER_32_BE",
+      "DIRECT_POINTER_32_LE",
+      "SECONDARY_TABLE_ENTRY",
+      "DESCRIPTOR_FIELD_ENTRY"
+    ],
+    "scanned_calibration_segments": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "scanned_data_segments": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "scanned_executable_segments": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "unsupported_address_generation_models": [
+      "UNMAPPED_PERIPHERAL_BUS_BRIDGE"
+    ],
+    "unsupported_analysis_patterns": [
+      "DYNAMIC_INDIRECT_JUMP_TABLE",
+      "MULTI_REGISTER_POLYNOMIAL_ARITHMETIC"
+    ],
+    "unsupported_instruction_encodings": []
+  },
+  "metrics": {
+    "pointer_chains_count": 0,
+    "scanned_data_segments_count": 8,
+    "scanned_executable_segments_count": 8,
+    "total_candidates_evaluated": 26,
+    "verified_pointer_producers_count": 0,
+    "verified_target_access_count": 0
+  },
+  "milestone": "5.25"
+}

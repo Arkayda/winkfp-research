@@ -363,6 +363,23 @@ Flash execution is hard-gated by the `SafetyContext` and provenance-tracked `Lim
   - All 8 deterministic JSON artifacts generated in [`artifacts/calibration/*v524*.json`](artifacts/calibration/artifact_manifest_v524.json).
 * Reconstructed in [`reconstruction/calibration/descriptor_consumer_v524.py`](reconstruction/calibration/descriptor_consumer_v524.py), executed via [`tools/run_calibration_consumer_v524.py`](tools/run_calibration_consumer_v524.py), and documented in [`docs/evidence/calibration_function_reconstruction_milestone_5_24.md`](docs/evidence/calibration_function_reconstruction_milestone_5_24.md).
 
+### 7.13 EGS 6HP28 Indirect Address / Pointer-Chain Forensic Reconstruction (Milestone 5.25)
+* **Scope**: Exhaustive abstract address-expression and pointer-chain reconstruction across TriCore TC1796/TC1766 executable segments 8..15 (`0x00080000..0x000FFFFF`, 511,856 bytes) to determine whether an executable path indirectly references canonical calibration objects (`TARGET_1`..`TARGET_5` in `A7592133.0da` Segment 2) via register-based expressions, displacements, or pointer tables. 100% offline, zero hardware I/O.
+* **Soundness-Corrected Abstract Machine**:
+  - **Instruction Boundary Validation**: Validation derived strictly from decoder recognition and complete format identification (`OP16` | `OP32`), rejecting address parity heuristics and confirming `0x0009C580` intra-instruction boundary rejection.
+  - **Explicit Memory Endianness Architecture**: Decoupled byte retrieval from decoding; static pointer tables (`0x000454A0`, `0x0004BD00/80`, `0x0007CA50/C8`) explicitly parameterize Big-Endian decoding (`STATIC_DATA_ENCODING`), while unclassified/RAM addresses reject implicit assumptions and yield `UNKNOWN`.
+  - **Concrete Pointer Arithmetic Preservation**: Arithmetic on proven pointers (`PTR(source, concrete) + offset`) preserves `CONST(concrete + offset)` with complete provenance, preventing loss of target resolution.
+  - **Target Read vs Write Discrimination**: Memory writes (`ST.W`, `ST.H`, `ST.B`) classified as `TARGET_WRITE` and keep consumer proof `UNCONFIRMED`. Only `TARGET_READ` / `TARGET_POINTER_READ` (`LD.W`, `LD.HU`, `LD.B`, `LD.BU`, `LD.A`) can satisfy consumer proof.
+* **Forensic Reconstruction Findings & Epistemic Ceilings**:
+  - Tier A candidate references: 26 evaluated (10 descriptor fields in PA Seg 3, 10 secondary table entries in PA/DA Seg 4, 5 synthetic 0x455xx rejections, 1 dynamic RAM collision at `0x000C1A04`).
+  - Tier B & C dynamic resolution: 0 pointer producers, 0 pointer chains, 0 target reads, 0 target writes.
+  - Epistemic ceilings strictly maintained: `0x00086000` (`BASIC_BLOCK_ENTRY`, `procedure_identity = UNCONFIRMED`), `0x000455xx` (`REJECTED_SYNTHETIC_ADDRESS`), `0x000C1A04` (`CONSTANT_COLLISION`), `750/500` (`UNCONFIRMED`), `6800` (`UNKNOWN`).
+* **Stop Condition Outcome: Case C Confirmed**:
+  - `case_result = CASE_C_NO_INDIRECT_CONSUMER`, `forensic_status = INDIRECT_CONSUMER_NOT_FOUND`, `confidence = PROVEN_WITHIN_DECLARED_COVERAGE`.
+  - All 10 deterministic JSON artifacts generated in [`artifacts/calibration/*v525*.json`](artifacts/calibration/artifact_manifest_v525.json) with bit-for-bit dual-run determinism confirmed (`RUN_A == RUN_B`).
+  - Standalone pipeline runtime: `17.49s` (`performance_target = <2.0s`, status: `NOT_MET`, correctness impact: `NONE`).
+* Reconstructed in [`reconstruction/calibration/address_expr_v525.py`](reconstruction/calibration/address_expr_v525.py) and [`reconstruction/calibration/indirect_address_v525.py`](reconstruction/calibration/indirect_address_v525.py), executed via [`tools/run_indirect_address_v525.py`](tools/run_indirect_address_v525.py), and documented in [`docs/evidence/calibration_indirect_address_reconstruction_milestone_5_25.md`](docs/evidence/calibration_indirect_address_reconstruction_milestone_5_25.md).
+
 ---
 
 ## 8. Repository Layout
@@ -370,7 +387,7 @@ Flash execution is hard-gated by the `SafetyContext` and provenance-tracked `Lim
 ```text
 winkfp-research/
 ├── artifacts/                      # Reconstructed deterministic JSON artifacts
-│   └── calibration/                # Milestones 5.20, 5.21, 5.22, 5.23, and 5.24 calibration catalogs & manifests
+│   └── calibration/                # Milestones 5.20, 5.21, 5.22, 5.23, 5.24, and 5.25 calibration catalogs & manifests
 ├── docs/                           # Technical documentation & RE reports
 │   ├── ARCHITECTURE.md             # End-to-end system architecture
 │   ├── EVIDENCE.md                 # L0–L7 experimental validation framework
@@ -378,7 +395,7 @@ winkfp-research/
 │   ├── PROPRIETARY_MATERIAL.md     # Policy on excluded OEM assets
 │   ├── QUARANTINE.md               # Audit history & asset filtering
 │   ├── research-source-map.md      # Mapping to historical source workspace
-│   ├── evidence/                   # Forensic milestone evidence artifacts (5.0–5.24)
+│   ├── evidence/                   # Forensic milestone evidence artifacts (5.0–5.25)
 │   ├── history/                    # Historical research progression (Rev 1–18.1)
 │   └── reverse-engineering/        # In-depth subsystem specifications
 ├── analysis/                       # Ghidra decompilation artifacts (45 C files)
@@ -388,7 +405,7 @@ winkfp-research/
 │   ├── ediabas/                    # EDIABAS runtime and API handlers
 │   └── obd32/                      # OBD32.dll IFH serial driver
 ├── reconstruction/                 # Clean-room Python protocol implementations
-│   ├── calibration/                # Hex parser, index, axis validation, function tracer, arithmetic
+│   ├── calibration/                # Hex parser, index, axis validation, address engine, indirect address, arithmetic
 │   ├── crypto/                     # Symmetric MD5, RSA-1024, Simple XOR
 │   ├── auth/                       # AS2 3DES parser, key store, retry chain
 │   ├── vdle/                       # VDLE flash engine, block builder, OPPS setup
@@ -401,7 +418,7 @@ winkfp-research/
 │   ├── golden/                     # Golden tests (state machine, pipeline, replay, calibration)
 │   ├── differential/               # Differential suites (Unicorn x86, SGBD parity)
 │   ├── fixtures/                   # Synthetic containers, limits, and images
-│   └── run_tests.py                # Master test runner (291 tests)
+│   └── run_tests.py                # Master test runner (330 tests)
 ├── tools/                          # Analysis, diffing, and probe tools
 │   ├── kdcan_hardware_probe.py     # Safe read-only physical hardware probe
 │   ├── run_calibration_reconstruction_v520.py # Milestone 5.20 calibration reconstruction CLI
@@ -409,6 +426,7 @@ winkfp-research/
 │   ├── run_calibration_runtime_v522.py        # Milestone 5.22 runtime code-path CLI
 │   ├── run_calibration_function_v523.py       # Milestone 5.23 calibration function CLI
 │   ├── run_calibration_consumer_v524.py       # Milestone 5.24 descriptor consumer CLI
+│   ├── run_indirect_address_v525.py           # Milestone 5.25 indirect address & pointer chain CLI
 │   ├── bench_diff/                 # L1/L2 event log differential runner
 │   ├── trace_parser/               # EDIABAS *.trc parser and VIN sanitizer
 │   └── analysis/                   # Master password decoder & SP-Daten scanner

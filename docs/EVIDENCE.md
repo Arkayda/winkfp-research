@@ -46,6 +46,7 @@ The following table documents the **highest proven evidence level** achieved in 
 | **Calibration Runtime Code-Path (5.22)** | **L2** (Code) / **L3** (Golden) | `VALIDATED (OFFLINE)` | Static executable code-path, TriCore instruction model, 1D curve topology refinement at `0x000454A0`, 10-node execution graph, false-positive filtering in `reconstruction/calibration/`. Zero hardware I/O. |
 | **Calibration Function Reconstruction (5.23)** | **L2** (Code) / **L3** (Golden) | `VALIDATED (OFFLINE)` | Calibration code candidate `CALCODE_CANDIDATE_0001`, basic block entry at `0x00086000`, callgraph, register flow, 1D curve-to-axis domain pairing, machine arithmetic, and negative evidence in `reconstruction/calibration/`. Zero hardware I/O. |
 | **Descriptor Consumer Discovery (5.24)** | **L2** (Code) / **L3** (Golden) | `VALIDATED (OFFLINE)` | Exhaustive TriCore instruction scanner across Segments 8..15, candidate classification, false-positive control, secondary candidate array evaluation, and Stop Condition Case C confirmation in `reconstruction/calibration/`. Zero hardware I/O. |
+| **Indirect Address Reconstruction (5.25)** | **L2** (Code) / **L3** (Golden) | `VALIDATED (OFFLINE)` | TriCore abstract address expression engine, explicit memory model, concrete pointer arithmetic preservation, target read/write discrimination, 10 deterministic JSON artifacts, Case C resolution in `reconstruction/calibration/`. Zero hardware I/O. |
 | **Physical ECU Reprogramming** | **L7** | **Not validated** | Complete flashing of an ECU firmware block on a physical vehicle or hardware bench. No physical vehicle or bench ECU flashing, erase, reset, or flash writing has been performed. Strictly not validated. |
 
 ---
@@ -143,6 +144,22 @@ The repository establishes an explicit provenance and operational boundary betwe
   - Under the declared scanner coverage, zero executable instructions reference `MAP_DESC_0001` or its fields.
   - Result: `case_result = CASE_C_NO_EXECUTABLE_CONSUMER`, `forensic_status = EXECUTABLE_CONSUMER_NOT_FOUND`.
   - All 8 deterministic JSON artifacts generated in `artifacts/calibration/*v524*.json`. 100% offline, zero hardware I/O.
+
+### 3.8 Indirect Address / Pointer-Chain Forensic Reconstruction (Milestone 5.25)
+- **Target Calibration Artifact**: `spdaten_gke/E60/data/GKE195/A7592133.0da` (SHA-256: `45b473d1ee8cc2542a1eb3ecb77bf446f357f81827a464e6c3489257312a0112`, 489,258 bytes, verified from local filesystem).
+- **Associated Base Executive Reference**: `spdaten_gke/E60/data/GKE215/7591971A.0pa` (SHA-256: `63b204d2edbdaa0945d9b0241d55df7c6859b41d3376d9f35e93cc6c82ecfcc3`, 1,942,502 bytes, verified from local filesystem) strictly as `RELATED_BASE_PROGRAM_GS19_11 / DONOR_REFERENCE`.
+- **Soundness Corrections Implemented**:
+  1. *Instruction Boundary Validation*: Strict decoder format recognition (`OP16` | `OP32`) eliminating address parity heuristics; rejects intra-instruction boundary candidate `0x0009C580`.
+  2. *Explicit Memory Endianness Architecture*: Decoupled raw byte retrieval from decoding; static pointer tables (`0x000454A0`, `0x0004BD00/80`, `0x0007CA50/C8`) parameterized as Big-Endian (`STATIC_DATA_ENCODING`), while unclassified memory yields `UNKNOWN`.
+  3. *Concrete Pointer Arithmetic Preservation*: `PTR(src, val) + imm` yields `CONST(val + imm)` preserving concrete target addresses through register displacements.
+  4. *Target Read vs Write Discrimination*: Stores (`ST.W`, `ST.H`, `ST.B`) classified as `TARGET_WRITE` and keep consumer proof `UNCONFIRMED`. Only `TARGET_READ` / `TARGET_POINTER_READ` can satisfy consumer proof.
+- **Candidate References Evaluated (Tier A)**:
+  - 26 evaluated references: 10 descriptor fields in PA Seg 3 (`DIRECT_POINTER`, `PROVEN`), 10 secondary table entries in PA/DA Seg 4 (`SECONDARY_TABLE_ENTRY`, `PROVEN_POINTER_RELATIONSHIP / UNCONFIRMED_SEMANTIC_ROLE`), 5 synthetic unmapped offsets (`REJECTED_SYNTHETIC_ADDRESS`), 1 dynamic RAM collision at `0x000C1A04` (`CONSTANT_COLLISION`).
+- **Dynamic Address Resolution (Tier B & Tier C)**:
+  - 0 pointer producers, 0 pointer chains, 0 target reads, 0 target writes across Segments 8..15.
+- **Stop Condition Outcome: Case C Confirmed**:
+  - `case_result = CASE_C_NO_INDIRECT_CONSUMER`, `forensic_status = INDIRECT_CONSUMER_NOT_FOUND`, `confidence = PROVEN_WITHIN_DECLARED_COVERAGE`.
+  - 10 deterministic JSON artifacts generated in `artifacts/calibration/*v525*.json` (`self_hash_policy: "EXCLUDED"`). Dual-run bit-for-bit identity confirmed (`RUN_A == RUN_B`). 100% offline, zero hardware I/O.
 
 ---
 

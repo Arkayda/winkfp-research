@@ -32,7 +32,7 @@ This document defines the architectural relationship between original BMW factor
 | winkfp-research (This Repository: Research & Reconstruction)          |
 |                                                                       |
 |  Reconstruction Layer (`reconstruction/`):                            |
-|  ├── calibration/ (Hex parser, index, axis validation, descriptor consumer, function tracer, arithmetic) |
+|  ├── calibration/ (Hex parser, index, axis validation, descriptor consumer, indirect address engine, function tracer, arithmetic) |
 |  ├── crypto/    (Symmetric MD5, Simple cipher, RSA modexp, MSVC RNG) |
 |  ├── auth/      (AS2 3DES parser, GetAuthKey, retry chain)            |
 |  ├── vdle/      (INIT_VDLE, segment table, 21-byte block framing)     |

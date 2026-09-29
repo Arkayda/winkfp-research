@@ -1,0 +1,141 @@
+{
+  "address_range_semantics": "[START, END)",
+  "artifacts": [
+    {
+      "filename": "pointer_producers_v525.json",
+      "sha256": "a6f1495739bd72c5adef64f2542ae74ff5839e459d0704d4e4cb378d949a721a",
+      "size_bytes": 69
+    },
+    {
+      "filename": "address_expressions_v525.json",
+      "sha256": "aa786b7ae598a375469fe53d2f4b81cc088da50a1b128e6c0fc5767ac1bf99a5",
+      "size_bytes": 15689
+    },
+    {
+      "filename": "pointer_chains_v525.json",
+      "sha256": "b11fca60130a731c3a7a86a636355dff0165a7725e6b86ad4a5e63eb5669c253",
+      "size_bytes": 63
+    },
+    {
+      "filename": "target_access_v525.json",
+      "sha256": "6abd71c6135bfbd1f839e619fa7ca585a6c310fe1ded47f3df104e4e012502f5",
+      "size_bytes": 163
+    },
+    {
+      "filename": "backward_slices_v525.json",
+      "sha256": "b6b2c5e11f6eb93364c735cca9f58b5402679760ca337b390c5243d4aca9bf43",
+      "size_bytes": 72
+    },
+    {
+      "filename": "forward_slices_v525.json",
+      "sha256": "2875041b89d229b50909a3bccd8698ca922e774cf8bcbea0453f91cb75d9ecfa",
+      "size_bytes": 71
+    },
+    {
+      "filename": "coverage_v525.json",
+      "sha256": "67d06ec693453f7588c052be723604a26982a14c781ed0f13e4e8415f3fb3212",
+      "size_bytes": 1971
+    },
+    {
+      "filename": "epistemic_status_v525.json",
+      "sha256": "1bd65c11c9b767ce49e884feae5a294030e06a1e411f3f109195eb7252544569",
+      "size_bytes": 2717
+    },
+    {
+      "filename": "change_log_v525.json",
+      "sha256": "a143702a92427fd7b2dd5e67e8855552f7d06a048dc29f4e16c05c06b3730319",
+      "size_bytes": 2375
+    }
+  ],
+  "coverage_metadata": {
+    "address_expression_classes": [
+      "CONST",
+      "PTR",
+      "BASE_OFFSET",
+      "PTR_OFFSET",
+      "INDEXED",
+      "UNKNOWN"
+    ],
+    "decoder_capabilities": [
+      "TriCore 16-bit instruction length (OP16)",
+      "TriCore 32-bit instruction length (OP32)",
+      "Instruction boundary validated by decoder recognition",
+      "RLC format: MOVH.A (0x91), ADDIH.A (0x11), ADDI (0x1b)",
+      "BOL format: LEA (0xd9), LD.A (0x99), LD.W (0x19), LD.HU (0xb9), ST.W (0x59), ST.B (0xe9)",
+      "RR format: ADD.A (0x01), SUB.A (0x21)"
+    ],
+    "instruction_reference_classes": [
+      "MOVH_A",
+      "LEA",
+      "ADDIH_A",
+      "ADDI",
+      "ADD_A",
+      "SUB_A",
+      "LD_A",
+      "LD_W",
+      "LD_HU",
+      "LD_B",
+      "LD_BU",
+      "ST_W",
+      "ST_H",
+      "ST_B",
+      "BOL_OFF16",
+      "ABS_OFF18",
+      "RLC_CONST16"
+    ],
+    "pointer_reference_classes": [
+      "DIRECT_POINTER_32_BE",
+      "DIRECT_POINTER_32_LE",
+      "SECONDARY_TABLE_ENTRY",
+      "DESCRIPTOR_FIELD_ENTRY"
+    ],
+    "scanned_calibration_segments": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "scanned_data_segments": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "scanned_executable_segments": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "unsupported_address_generation_models": [
+      "UNMAPPED_PERIPHERAL_BUS_BRIDGE"
+    ],
+    "unsupported_analysis_patterns": [
+      "DYNAMIC_INDIRECT_JUMP_TABLE",
+      "MULTI_REGISTER_POLYNOMIAL_ARITHMETIC"
+    ],
+    "unsupported_instruction_encodings": []
+  },
+  "generator": "reconstruction.calibration.indirect_address_v525",
+  "milestone": "5.25",
+  "records_summary": {
+    "backward_slices": 0,
+    "candidate_references": 26,
+    "forward_slices": 0,
+    "pointer_chains": 0,
+    "pointer_producers": 0,
+    "target_accesses": 0
+  },
+  "self_hash_policy": "EXCLUDED",
+  "total_artifacts": 10
+}

@@ -1,0 +1,47 @@
+{
+  "changes": [
+    {
+      "category": "INDIRECT_ADDRESS_SCANNER",
+      "change_id": "CHG_525_001",
+      "description": "Implemented abstract register file tracking A0..A15 and D0..D15 with provenance and sound UNKNOWN propagation",
+      "field": "reconstruction.calibration.indirect_address_v525",
+      "new_value": "Multi-tier abstract address expression engine with TriCore TC1796/TC1766 instruction semantics",
+      "old_value": "Direct-reference scanner only (Milestone 5.24)"
+    },
+    {
+      "category": "INSTRUCTION_BOUNDARY_VALIDATION",
+      "change_id": "CHG_525_002",
+      "description": "Rejection of invalid boundaries based on decoder state, preserving 0x0009C580 intra-instruction rejection",
+      "field": "decoder_status",
+      "new_value": "Strict decoder-based boundary validation (OP16 vs OP32 format recognition and decoded size)",
+      "old_value": "Bit 0 rule parity heuristic"
+    },
+    {
+      "category": "MEMORY_ENDIANNESS_DISCRIMINATION",
+      "change_id": "CHG_525_003",
+      "description": "Enforced requirement that memory reads must explicitly justify endianness; unclassified addresses yield UNKNOWN",
+      "field": "MemoryModel.decode_pointer",
+      "new_value": "Decoupled byte retrieval with explicit BE/LE/UNKNOWN parameterization and static data justification",
+      "old_value": "Implicit Big-Endian assumption on LD.A"
+    },
+    {
+      "category": "CONCRETE_POINTER_PRESERVATION",
+      "change_id": "CHG_525_004",
+      "description": "Eliminated silent loss of concrete pointer information through known immediate arithmetic",
+      "field": "apply_transfer_function",
+      "new_value": "PTR(source, concrete) + offset preserves CONST(concrete + offset) with provenance tracking",
+      "old_value": "PTR + offset degraded to PTR_OFFSET"
+    },
+    {
+      "category": "TARGET_READ_WRITE_SEPARATION",
+      "change_id": "CHG_525_005",
+      "description": "Prevented store operations (ST.W, ST.H, ST.B) from masquerading as calibration consumer proof",
+      "field": "consumer_proof_status",
+      "new_value": "Strict separation: TARGET_READ (PROVEN consumer) vs TARGET_WRITE (UNCONFIRMED consumer)",
+      "old_value": "Combined read/write access"
+    }
+  ],
+  "milestone": "5.25",
+  "sealed_baseline_commit": "2032e5390b8dc3f861e5ad61f1aa5d6ad8e4c108",
+  "sealed_baseline_tag": "milestone-5.24-complete"
+}
